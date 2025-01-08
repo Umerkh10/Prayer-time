@@ -16,26 +16,37 @@ function DateTimingDisplay() {
   const [city, setCity] = useState<string | null>(null);
   const [country, setCountry] = useState<string | null>(null);
   const [nextPrayerCountdown, setNextPrayerCountdown] = useState<string | null>(null);
+  const [timeZone, setTimeZone] = useState<string>("UTC");
+  const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
 
   useEffect(() => {
     const fetchLocation = async () => {
       try {
         const response = await fetch(
-          "https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,city,country"
+          "https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone"
         );
-        const data = await response.json();
-        if (data) {
-          const { lat, lon, city, country } = data;
-          setLocation(new Coordinates(lat, lon));
-          setCity(city);
-          setCountry(country);
-        }
+        const { lat, lon, city, country, timezone } = await response.json();
+  
+        // Apply the fetched timezone directly
+        setLocation(new Coordinates(lat, lon));
+        setCity(city);
+        setCountry(country);
+        setTimeZone(timezone); // Update the current timezone
       } catch (error) {
         console.error("Error fetching location data:", error);
       }
     };
+  
     fetchLocation();
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer); // Cleanup on unmount
   }, []);
 
   // Fetch location
@@ -57,20 +68,52 @@ function DateTimingDisplay() {
       const params = CalculationMethod.MuslimWorldLeague();
       const prayerTimeObj = new PrayerTimes(location, date, params);
 
-      const formatTime = (time: Date) =>
+      const formatTime = (time: Date, timeZone: string) =>
         time.toLocaleTimeString("en-US", {
           hour: "2-digit",
           minute: "2-digit",
+          hour12: true, // Ensures AM/PM formatting
+          timeZone: timeZone, // Use the dynamically fetched time zone
         });
 
-      const prayers = [
-        { name: "Fajr", time: formatTime(prayerTimeObj.fajr), isActive: false, icon: <SunriseIcon className="w-7 h-7 text-orange-300" /> },
-        { name: "Sunrise", time: formatTime(prayerTimeObj.sunrise), isActive: false, icon: <SunriseIcon className="w-7 h-7 text-orange-400" /> },
-        { name: "Dhuhr", time: formatTime(prayerTimeObj.dhuhr), isActive: false, icon: <SunDimIcon className="w-7 h-7 text-yellow-400" /> },
-        { name: "Asr", time: formatTime(prayerTimeObj.asr), isActive: false, icon: <SunMediumIcon className="w-7 h-7 text-yellow-500" /> },
-        { name: "Maghrib", time: formatTime(prayerTimeObj.maghrib), isActive: false, icon: <LucideSunset className="w-7 h-7 text-orange-600" /> },
-        { name: "Isha", time: formatTime(prayerTimeObj.isha), isActive: false, icon: <MoonStarIcon className="w-7 h-7 text-zinc-50" /> },
-      ];
+        const prayers = [
+          {
+            name: "Fajr",
+            time: formatTime(prayerTimeObj.fajr, timeZone || "UTC"), // Fallback to UTC
+            isActive: false,
+            icon: <SunriseIcon className="w-7 h-7 text-orange-300" />,
+          },
+          {
+            name: "Sunrise",
+            time: formatTime(prayerTimeObj.sunrise, timeZone || "UTC"),
+            isActive: false,
+            icon: <SunriseIcon className="w-7 h-7 text-orange-400" />,
+          },
+          {
+            name: "Dhuhr",
+            time: formatTime(prayerTimeObj.dhuhr, timeZone || "UTC"),
+            isActive: false,
+            icon: <SunDimIcon className="w-7 h-7 text-yellow-400" />,
+          },
+          {
+            name: "Asr",
+            time: formatTime(prayerTimeObj.asr, timeZone || "UTC"),
+            isActive: false,
+            icon: <SunMediumIcon className="w-7 h-7 text-yellow-500" />,
+          },
+          {
+            name: "Maghrib",
+            time: formatTime(prayerTimeObj.maghrib, timeZone || "UTC"),
+            isActive: false,
+            icon: <LucideSunset className="w-7 h-7 text-orange-600" />,
+          },
+          {
+            name: "Isha",
+            time: formatTime(prayerTimeObj.isha, timeZone || "UTC"),
+            isActive: false,
+            icon: <MoonStarIcon className="w-7 h-7 text-zinc-50" />,
+          },
+        ];
 
       // Determine the next prayer
       const now = new Date();
