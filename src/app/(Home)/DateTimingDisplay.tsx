@@ -64,11 +64,11 @@ function DateTimingDisplay() {
         });
 
       const prayers = [
-        { name: "Fajr", time: formatTime(prayerTimeObj.fajr), isActive: false, icon: <SunriseIcon className="w-7 h-7 text-orange-400" /> },
-        { name: "Sunrise", time: formatTime(prayerTimeObj.sunrise), isActive: false, icon: <SunriseIcon className="w-7 h-7 text-zinc-50" /> },
-        { name: "Dhuhr", time: formatTime(prayerTimeObj.dhuhr), isActive: false, icon: <SunDimIcon className="w-7 h-7 text-zinc-50" /> },
-        { name: "Asr", time: formatTime(prayerTimeObj.asr), isActive: false, icon: <SunMediumIcon className="w-7 h-7 text-zinc-50" /> },
-        { name: "Maghrib", time: formatTime(prayerTimeObj.maghrib), isActive: false, icon: <LucideSunset className="w-7 h-7 text-zinc-50" /> },
+        { name: "Fajr", time: formatTime(prayerTimeObj.fajr), isActive: false, icon: <SunriseIcon className="w-7 h-7 text-orange-300" /> },
+        { name: "Sunrise", time: formatTime(prayerTimeObj.sunrise), isActive: false, icon: <SunriseIcon className="w-7 h-7 text-orange-400" /> },
+        { name: "Dhuhr", time: formatTime(prayerTimeObj.dhuhr), isActive: false, icon: <SunDimIcon className="w-7 h-7 text-yellow-400" /> },
+        { name: "Asr", time: formatTime(prayerTimeObj.asr), isActive: false, icon: <SunMediumIcon className="w-7 h-7 text-yellow-500" /> },
+        { name: "Maghrib", time: formatTime(prayerTimeObj.maghrib), isActive: false, icon: <LucideSunset className="w-7 h-7 text-orange-600" /> },
         { name: "Isha", time: formatTime(prayerTimeObj.isha), isActive: false, icon: <MoonStarIcon className="w-7 h-7 text-zinc-50" /> },
       ];
 
