@@ -191,7 +191,7 @@ function DateTimingDisplay() {
         <Swiper
           spaceBetween={30}
           slidesPerView={1}
-          // onSlideChange={handleSlideChange}
+          onSlideChange={handleSlideChange}
           initialSlide={1}
           className="w-full"
         >
