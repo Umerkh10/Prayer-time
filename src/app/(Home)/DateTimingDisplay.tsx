@@ -12,7 +12,7 @@ function DateTimingDisplay() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [prayerTimes, setPrayerTimes] = useState<any[]>([]);
   const [activeIndex, setActiveIndex] = useState(1);
-  const [location, setLocation] = useState<Coordinates | null>(null);
+  const [location, setLocation] = useState<any>(null);
   const [city, setCity] = useState<string | null>(null);
   const [country, setCountry] = useState<string | null>(null);
   const [nextPrayerCountdown, setNextPrayerCountdown] = useState<string | null>(null);
@@ -21,26 +21,20 @@ function DateTimingDisplay() {
   const [userIP, setUserIP] = useState(null);
 
   useEffect(() => {
-    const fetchUserIP = async () => {
-      try {
-        const response = await fetch("/api/fetch-ip");
-        const data = await response.json();
-
-        setUserIP(data.ip)
-        
-      } catch (error) {
-        console.error("Error fetching location data:", error);
-      }
+    const getClientLocation = async () => {
+      const res = await fetch('https://ipinfo.io/json');
+      const locationData = await res.json();
+      setUserIP(locationData.ip)
     };
-    
-    fetchUserIP();
+
+    getClientLocation();
   }, []);
-  
+
   useEffect(() => {
     const fetchLocation = async () => {
       try {
         const response = await fetch(
-          `https://pro.ip-api.com/json/${userIP}?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
+          `https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`, { cache: "reload" }
         );
         const { lat, lon, city, country, timezone } = await response.json();
 
@@ -64,7 +58,6 @@ function DateTimingDisplay() {
     return () => clearInterval(timer); // Cleanup on unmount
   }, []);
 
-  // Fetch location
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -75,21 +68,55 @@ function DateTimingDisplay() {
     );
   }, []);
 
-  // Fetch prayer times for yesterday, today, and tomorrow
+  // useEffect(() => {
+    const getCalculationMethod = (country: string) => {
+      if (country === "Pakistan") {
+        return CalculationMethod.Karachi();
+      } else if (country === "United States") {
+        return CalculationMethod.NorthAmerica();
+      } else if (country === "Germany") {
+        return CalculationMethod.NorthAmerica();
+      } else if (country === "United Kingdom") {
+        return CalculationMethod.MuslimWorldLeague();
+      } else if (country === "Saudi Arabia") {
+        return CalculationMethod.UmmAlQura();
+      } else if (country === "Egypt") {
+        return CalculationMethod.Egyptian();
+      } else if (country === "Singapore") {
+        return CalculationMethod.Singapore();
+      } else if (country === "Kuwait") {
+        return CalculationMethod.Kuwait();
+      } else if (country === "Iran") {
+        return CalculationMethod.Tehran();
+      } else if (country === "Turkey") {
+        return CalculationMethod.Turkey();
+      } else if (country === "Dubai") {
+        return CalculationMethod.Dubai();
+      } else {
+        return CalculationMethod.MuslimWorldLeague(); 
+      }
+    };
+
+    const params = getCalculationMethod(country as any);
+  // }, []);
+
+
   useEffect(() => {
     const fetchPrayerTimes = (date: Date) => {
       if (!location) return null;
 
-      const params = CalculationMethod.NorthAmerica();
+      // Dynamically determine the calculation method
+      const params = getCalculationMethod(location.country); // Based on user's country
       const prayerTimeObj = new PrayerTimes(location, date, params);
 
       const formatTime = (time: Date, timeZone: string) =>
         time.toLocaleTimeString("en-US", {
           hour: "2-digit",
           minute: "2-digit",
-          hour12: true, // Ensures AM/PM formatting
-          timeZone: timeZone, // Use the dynamically fetched time zone
+          hour12: true,
+          timeZone: timeZone,
         });
+
 
       const prayers = [
         {
@@ -166,7 +193,7 @@ function DateTimingDisplay() {
     loadPrayerTimes();
   }, [currentDate, location]);
 
-  // Update countdown timer
+
   useEffect(() => {
     const interval = setInterval(() => {
       const nextPrayer = prayerTimes[activeIndex]?.nextPrayer;
