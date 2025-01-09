@@ -18,26 +18,41 @@ function DateTimingDisplay() {
   const [nextPrayerCountdown, setNextPrayerCountdown] = useState<string | null>(null);
   const [timeZone, setTimeZone] = useState<string>("UTC");
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
-
+  const [userIP, setUserIP] = useState(null);
 
   useEffect(() => {
-    const fetchLocation = async () => {
+    const fetchUserIP = async () => {
       try {
-        const response = await fetch(
-          "https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone"
-        );
-        const { lat, lon, city, country, timezone } = await response.json();
-  
-        // Apply the fetched timezone directly
-        setLocation(new Coordinates(lat, lon));
-        setCity(city);
-        setCountry(country);
-        setTimeZone(timezone); // Update the current timezone
+        const response = await fetch("/api/fetch-ip");
+        const data = await response.json();
+
+        setUserIP(data.ip)
+        
       } catch (error) {
         console.error("Error fetching location data:", error);
       }
     };
+    
+    fetchUserIP();
+  }, []);
   
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const response = await fetch(
+          `https://pro.ip-api.com/json/${userIP}?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
+        );
+        const { lat, lon, city, country, timezone } = await response.json();
+
+        setLocation(new Coordinates(lat, lon));
+        setCity(city);
+        setCountry(country);
+        setTimeZone(timezone); // Update the current timezone
+      } catch (error: any) {
+        console.error("Error fetching location data:", error.message);
+      }
+    };
+
     fetchLocation();
   }, []);
 
@@ -65,7 +80,7 @@ function DateTimingDisplay() {
     const fetchPrayerTimes = (date: Date) => {
       if (!location) return null;
 
-      const params = CalculationMethod.MuslimWorldLeague();
+      const params = CalculationMethod.NorthAmerica();
       const prayerTimeObj = new PrayerTimes(location, date, params);
 
       const formatTime = (time: Date, timeZone: string) =>
@@ -76,44 +91,44 @@ function DateTimingDisplay() {
           timeZone: timeZone, // Use the dynamically fetched time zone
         });
 
-        const prayers = [
-          {
-            name: "Fajr",
-            time: formatTime(prayerTimeObj.fajr, timeZone || "UTC"), // Fallback to UTC
-            isActive: false,
-            icon: <SunriseIcon className="w-7 h-7 text-orange-300" />,
-          },
-          {
-            name: "Sunrise",
-            time: formatTime(prayerTimeObj.sunrise, timeZone || "UTC"),
-            isActive: false,
-            icon: <SunriseIcon className="w-7 h-7 text-orange-400" />,
-          },
-          {
-            name: "Dhuhr",
-            time: formatTime(prayerTimeObj.dhuhr, timeZone || "UTC"),
-            isActive: false,
-            icon: <SunDimIcon className="w-7 h-7 text-yellow-400" />,
-          },
-          {
-            name: "Asr",
-            time: formatTime(prayerTimeObj.asr, timeZone || "UTC"),
-            isActive: false,
-            icon: <SunMediumIcon className="w-7 h-7 text-yellow-500" />,
-          },
-          {
-            name: "Maghrib",
-            time: formatTime(prayerTimeObj.maghrib, timeZone || "UTC"),
-            isActive: false,
-            icon: <LucideSunset className="w-7 h-7 text-orange-600" />,
-          },
-          {
-            name: "Isha",
-            time: formatTime(prayerTimeObj.isha, timeZone || "UTC"),
-            isActive: false,
-            icon: <MoonStarIcon className="w-7 h-7 text-zinc-50" />,
-          },
-        ];
+      const prayers = [
+        {
+          name: "Fajr",
+          time: formatTime(prayerTimeObj.fajr, timeZone || "UTC"), // Fallback to UTC
+          isActive: false,
+          icon: <SunriseIcon className="w-7 h-7 text-orange-300" />,
+        },
+        {
+          name: "Sunrise",
+          time: formatTime(prayerTimeObj.sunrise, timeZone || "UTC"),
+          isActive: false,
+          icon: <SunriseIcon className="w-7 h-7 text-orange-400" />,
+        },
+        {
+          name: "Dhuhr",
+          time: formatTime(prayerTimeObj.dhuhr, timeZone || "UTC"),
+          isActive: false,
+          icon: <SunDimIcon className="w-7 h-7 text-yellow-400" />,
+        },
+        {
+          name: "Asr",
+          time: formatTime(prayerTimeObj.asr, timeZone || "UTC"),
+          isActive: false,
+          icon: <SunMediumIcon className="w-7 h-7 text-yellow-500" />,
+        },
+        {
+          name: "Maghrib",
+          time: formatTime(prayerTimeObj.maghrib, timeZone || "UTC"),
+          isActive: false,
+          icon: <LucideSunset className="w-7 h-7 text-orange-600" />,
+        },
+        {
+          name: "Isha",
+          time: formatTime(prayerTimeObj.isha, timeZone || "UTC"),
+          isActive: false,
+          icon: <MoonStarIcon className="w-7 h-7 text-zinc-50" />,
+        },
+      ];
 
       // Determine the next prayer
       const now = new Date();
@@ -131,10 +146,10 @@ function DateTimingDisplay() {
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
         nextPrayer: nextPrayer
           ? {
-              name: nextPrayer.name,
-              time: nextPrayer.time,
-              countdown: () => differenceInSeconds(new Date(`${date.toDateString()} ${nextPrayer.time}`), new Date()),
-            }
+            name: nextPrayer.name,
+            time: nextPrayer.time,
+            countdown: () => differenceInSeconds(new Date(`${date.toDateString()} ${nextPrayer.time}`), new Date()),
+          }
           : null,
       };
     };
@@ -188,35 +203,35 @@ function DateTimingDisplay() {
       <div className="mx-auto w-[90%] lg:w-[95%] bg-zinc-200 rounded-lg shadow-lg px-2">
         {/* Header with date tabs */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b border-gray-200">
-        <div className="flex space-x-4">
-  <button
-    className={`px-4 py-2 rounded-lg ${activeIndex === 0 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
-    onClick={() => {
-      setActiveIndex(0); // Set active index to 0 for Yesterday
-      setCurrentDate(subDays(currentDate, 0)); // Change date to yesterday
-    }}
-  >
-    Yesterday
-  </button>
-  <button
-    className={`px-4 py-2 rounded-lg ${activeIndex === 1 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
-    onClick={() => {
-      setActiveIndex(1); // Set active index to 1 for Today
-      // No date change needed, as it's already today's date
-    }}
-  >
-    Today
-  </button>
-  <button
-    className={`px-4 py-2 rounded-lg ${activeIndex === 2 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
-    onClick={() => {
-      setActiveIndex(2); // Set active index to 2 for Tomorrow
-      setCurrentDate(addDays(currentDate, 0)); // Change date to tomorrow
-    }}
-  >
-    Tomorrow
-  </button>
-</div>
+          <div className="flex space-x-4">
+            <button
+              className={`px-4 py-2 rounded-lg ${activeIndex === 0 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
+              onClick={() => {
+                setActiveIndex(0); // Set active index to 0 for Yesterday
+                setCurrentDate(subDays(currentDate, 0)); // Change date to yesterday
+              }}
+            >
+              Yesterday
+            </button>
+            <button
+              className={`px-4 py-2 rounded-lg ${activeIndex === 1 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
+              onClick={() => {
+                setActiveIndex(1); // Set active index to 1 for Today
+                // No date change needed, as it's already today's date
+              }}
+            >
+              Today
+            </button>
+            <button
+              className={`px-4 py-2 rounded-lg ${activeIndex === 2 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
+              onClick={() => {
+                setActiveIndex(2); // Set active index to 2 for Tomorrow
+                setCurrentDate(addDays(currentDate, 0)); // Change date to tomorrow
+              }}
+            >
+              Tomorrow
+            </button>
+          </div>
           <div className="lg:text-right text-center">
             <h2 className="text-xl font-semibold text-zinc-900">
               {country ? `${city}, ${country}` : "Loading..."}
