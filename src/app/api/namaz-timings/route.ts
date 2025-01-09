@@ -5,7 +5,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const latitude = parseFloat(searchParams.get("latitude") || "0");
   const longitude = parseFloat(searchParams.get("longitude") || "0");
-  const school = searchParams.get("school") || "hanafi"; // Default to Hanafi
+  const school = searchParams.get("school") || "shafi"; // Default to Hanafi
 
   if (!latitude || !longitude) {
     return NextResponse.json(
@@ -25,7 +25,7 @@ export async function GET(request: Request) {
   // Adhan Configuration
   const coordinates = new Coordinates(latitude, longitude);
   const params = CalculationMethod.Karachi(); // You can change this method
-  params.madhab = school === "hanafi" ? Madhab.Hanafi : Madhab.Shafi;
+  params.madhab = school === "shafi" ? Madhab.Hanafi : Madhab.Shafi;
 
   for (let day = 1; day <= numDays; day++) {
     const date = new Date(year, month, day);
