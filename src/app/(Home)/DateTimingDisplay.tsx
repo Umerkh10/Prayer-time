@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { addDays, subDays, formatDistanceToNow } from "date-fns";
-import { PrayerTimes, Coordinates, CalculationMethod } from "adhan";
+import { PrayerTimes, Coordinates, CalculationMethod, Madhab, CalculationParameters } from "adhan";
 import "swiper/css";
 import "swiper/css/navigation";
 import { CloudSunRainIcon, LucideSunset, MoonStarIcon, SunDimIcon, SunMediumIcon, SunriseIcon } from "lucide-react";
@@ -19,7 +19,7 @@ function DateTimingDisplay() {
   const [nextPrayerCountdown, setNextPrayerCountdown] = useState<string | null>(null);
   const [timeZone, setTimeZone] = useState<string>("UTC");
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
-
+  const [selectedMadhab, setSelectedMadhab] = useState("hanafi");
 
 
 
@@ -102,9 +102,27 @@ function DateTimingDisplay() {
       if (!location) return null;
 
       // Dynamically determine the calculation method
-      const params = getCalculationMethod(location.country); // Based on user's country
+      const calculationMethod = getCalculationMethod(location.country); // Based on user's country
+    
+      // Ensure madhab is selected correctly and pass it
+      const madhab = selectedMadhab === "Shafi" ? Madhab.Shafi : Madhab.Hanafi;
+      const nightPortions = () => {
+        return {
+          fajr: 1.0,  // Adjust this value based on your logic
+          isha: 1.0,  // Adjust this value based on your logic
+        };
+      };
+    
+      // Ensure that nightPortions is included in the params
+      const params: CalculationParameters = {
+        ...calculationMethod,
+        madhab,
+        nightPortions,  // Pass the function
+      };
+    
       const prayerTimeObj = new PrayerTimes(location, date, params);
-
+    
+      // Function to format time
       const formatTime = (time: Date, timeZone: string) =>
         time.toLocaleTimeString("en-US", {
           hour: "2-digit",
@@ -112,8 +130,8 @@ function DateTimingDisplay() {
           hour12: true,
           timeZone: timeZone,
         });
-
-
+    
+      // Define prayer times and icons
       const prayers = [
         {
           name: "Fajr",
@@ -152,42 +170,46 @@ function DateTimingDisplay() {
           icon: <MoonStarIcon className="w-7 h-7 text-zinc-50" />,
         },
       ];
-
+    
       // Determine the next prayer
       const now = new Date();
       const nextPrayer = prayers.find((prayer) => {
         const prayerTime = new Date(`${date.toDateString()} ${prayer.time}`);
         return prayerTime > now;
       });
-
+    
       return {
         date: {
           gregorian: date.toDateString(),
-          hijri: moment(date).locale("en").format("iD iMMMM, iYYYY")// Replace with Hijri date logic if needed
+          hijri: moment(date).locale("en").format("iD iMMMM, iYYYY"), // Replace with Hijri date logic if needed
         },
         prayers,
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
         nextPrayer: nextPrayer
           ? {
-            name: nextPrayer.name,
-            time: nextPrayer.time,
-            countdown: () => differenceInSeconds(new Date(`${date.toDateString()} ${nextPrayer.time}`), new Date()),
-          }
+              name: nextPrayer.name,
+              time: nextPrayer.time,
+              countdown: () =>
+                differenceInSeconds(
+                  new Date(`${date.toDateString()} ${nextPrayer.time}`),
+                  new Date()
+                ),
+            }
           : null,
       };
     };
-
+    
     const loadPrayerTimes = async () => {
       if (location) {
+        // Fetch prayer times for yesterday, today, and tomorrow
         const yesterday = fetchPrayerTimes(subDays(currentDate, 1));
         const today = fetchPrayerTimes(currentDate);
         const tomorrow = fetchPrayerTimes(addDays(currentDate, 1));
         setPrayerTimes([yesterday, today, tomorrow]);
       }
     };
-
     loadPrayerTimes();
-  }, [currentDate, location]);
+  }, [currentDate, location,selectedMadhab]);
 
 
   useEffect(() => {
@@ -227,6 +249,14 @@ function DateTimingDisplay() {
         {/* Header with date tabs */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b border-gray-200">
           <div className="flex space-x-4">
+          <select
+          className="px-4 py-2 rounded-lg bg-zinc-800 outline-none "
+        value={selectedMadhab}
+        onChange={(e) => setSelectedMadhab(e.target.value)}
+      >
+        <option className="rounded-lg bg-zinc-800 outline-none" value="Hanafi">Hanafi</option>
+        <option className="rounded-lg bg-zinc-800 outline-none" value="Shafi">Shafi</option>
+      </select>
             <button
               className={`px-4 py-2 rounded-lg ${activeIndex === 0 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
               onClick={() => {
