@@ -250,7 +250,7 @@ function DateTimingDisplay() {
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b border-gray-200">
           <div className="flex space-x-4">
           <select
-          className="px-4 py-2 rounded-lg bg-zinc-800 outline-none "
+          className="px-4 py-2 rounded-lg bg-zinc-800 outline-none text-white "
         value={selectedMadhab}
         onChange={(e) => setSelectedMadhab(e.target.value)}
       >
