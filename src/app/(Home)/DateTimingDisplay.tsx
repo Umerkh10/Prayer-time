@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { CloudSunRainIcon, LucideSunset, MoonStarIcon, SunDimIcon, SunMediumIcon, SunriseIcon } from "lucide-react";
 import moment from "moment-hijri";
+import Link from "next/link";
 
 function DateTimingDisplay() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -18,17 +19,10 @@ function DateTimingDisplay() {
   const [nextPrayerCountdown, setNextPrayerCountdown] = useState<string | null>(null);
   const [timeZone, setTimeZone] = useState<string>("UTC");
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
-  const [userIP, setUserIP] = useState(null);
 
-  useEffect(() => {
-    const getClientLocation = async () => {
-      const res = await fetch('https://ipinfo.io/json');
-      const locationData = await res.json();
-      setUserIP(locationData.ip)
-    };
 
-    getClientLocation();
-  }, []);
+
+
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -49,6 +43,8 @@ function DateTimingDisplay() {
 
     fetchLocation();
   }, []);
+
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -167,7 +163,7 @@ function DateTimingDisplay() {
       return {
         date: {
           gregorian: date.toDateString(),
-          hijri: moment(date).format("iYYYY/iM/iD") // Replace with Hijri date logic if needed
+          hijri: moment(date).locale("en").format("iD iMMMM, iYYYY")// Replace with Hijri date logic if needed
         },
         prayers,
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
@@ -258,6 +254,11 @@ function DateTimingDisplay() {
             >
               Tomorrow
             </button>
+            <Link href={'/monthly-namaz-timings'}
+              className={`px-4 py-2 rounded-lg bg-zinc-800 hover:bg-blue-400 text-white transition ease-in duration-200 delay-100`}
+            >
+              Monthly
+            </Link>
           </div>
           <div className="lg:text-right text-center">
             <h2 className="text-xl font-semibold text-zinc-900">

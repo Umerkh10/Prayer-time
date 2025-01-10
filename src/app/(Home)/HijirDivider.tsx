@@ -1,17 +1,20 @@
 import { Moon, MoonIcon } from 'lucide-react'
+import moment from 'moment-hijri';
 import React from 'react'
 
 function HijirDivider() {
+  const currentHijriDate = moment().locale("en").format("iD iMMMM, iYYYY");
+
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
     <div className="relative overflow-hidden bg-blue-600 rounded-2xl p-8 md:p-12">
       {/* Content */}
       <div className="relative z-10 space-y-2">
-        <h1 className="text-white text-3xl md:text-4xl font-bold tracking-tight animate-fade-in">
+        <h1 className="text-white text-3xl md:text-4xl font-bold tracking-tight animate-fade-in ">
           Know your Hijri dates!
         </h1>
-        <p className="text-blue-100/80 text-lg md:text-xl animate-fade-in-delay">
-          Hijri date 6th Rajab, 1446
+        <p className="text-blue-100/80 text-lg md:text-xl animate-fade-in-delay ">
+          Hijri date {currentHijriDate}
         </p>
       </div>
 

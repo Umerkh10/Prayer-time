@@ -1,4 +1,5 @@
 "use client";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 
@@ -32,7 +33,7 @@ const MonthlyNamazTimings = () => {
 
             // Fetch namaz timings from the API
             const response = await fetch(
-              `/api/namaz-timings?latitude=${latitude}&longitude=${longitude}&school=shafi`
+              `/api/namaz-timings?latitude=${latitude}&longitude=${longitude}&school=hanafi`
             );
 
             if (!response.ok) {
@@ -68,25 +69,53 @@ const MonthlyNamazTimings = () => {
       <CardTitle className="text-2xl font-bold text-center">Monthly Namaz Timings</CardTitle>
     </CardHeader>
     <CardContent>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4 p-4">
-        <div className="font-semibold text-center">Date</div>
-        <div className="font-semibold text-center hidden lg:block">Fajr</div>
-        <div className="font-semibold text-center hidden md:block">Sunrise</div>
-        <div className="font-semibold text-center hidden sm:block">Dhuhr</div>
-        <div className="font-semibold text-center hidden lg:block">Asr</div>
-        <div className="font-semibold text-center hidden lg:block">Maghrib</div>
-        <div className="font-semibold text-center hidden lg:block">Isha</div>
-        
+      <div className="hidden md:grid md:grid-cols-7 gap-4 p-4 font-semibold text-center">
+        <div>Date</div>
+        <div>Fajr</div>
+        <div>Sunrise</div>
+        <div>Dhuhr</div>
+        <div>Asr</div>
+        <div>Maghrib</div>
+        <div>Isha</div>
+      </div>
+      <div className="md:hidden">
+        <Accordion type="single" collapsible className="w-full">
+          {timings.map((day, index) => (
+            <AccordionItem key={day.date} value={`item-${index}`}>
+              <AccordionTrigger className="text-left">
+                {day.date}
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="font-semibold">Fajr:</div>
+                  <div>{day.timings.Fajr}</div>
+                  <div className="font-semibold">Sunrise:</div>
+                  <div>{day.timings.Sunrise}</div>
+                  <div className="font-semibold">Dhuhr:</div>
+                  <div>{day.timings.Dhuhr}</div>
+                  <div className="font-semibold">Asr:</div>
+                  <div>{day.timings.Asr}</div>
+                  <div className="font-semibold">Maghrib:</div>
+                  <div>{day.timings.Maghrib}</div>
+                  <div className="font-semibold">Isha:</div>
+                  <div>{day.timings.Isha}</div>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+      <div className="hidden md:block">
         {timings.map((day) => (
-          <>
-            <div key={day.date} className="text-center bg-muted p-2 rounded">{day.date}</div>
-            <div className="text-center p-2 hidden lg:block">{day.timings.Fajr}</div>
-            <div className="text-center p-2 hidden md:block">{day.timings.Sunrise}</div>
-            <div className="text-center p-2 hidden sm:block">{day.timings.Dhuhr}</div>
-            <div className="text-center p-2 hidden lg:block">{day.timings.Asr}</div>
-            <div className="text-center p-2 hidden lg:block">{day.timings.Maghrib}</div>
-            <div className="text-center p-2 hidden lg:block">{day.timings.Isha}</div>
-          </>
+          <div key={day.date} className="grid grid-cols-7 gap-4 p-4 even:bg-muted">
+            <div className="text-center">{day.date}</div>
+            <div className="text-center">{day.timings.Fajr}</div>
+            <div className="text-center">{day.timings.Sunrise}</div>
+            <div className="text-center">{day.timings.Dhuhr}</div>
+            <div className="text-center">{day.timings.Asr}</div>
+            <div className="text-center">{day.timings.Maghrib}</div>
+            <div className="text-center">{day.timings.Isha}</div>
+          </div>
         ))}
       </div>
     </CardContent>
