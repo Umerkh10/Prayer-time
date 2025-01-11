@@ -248,7 +248,8 @@ function DateTimingDisplay() {
       <div className="mx-auto w-[90%] lg:w-[95%] bg-zinc-200 rounded-lg shadow-lg px-2">
         {/* Header with date tabs */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b border-gray-200">
-          <div className="flex space-x-4">
+          <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
+            
           <select
           className="px-4 py-2 rounded-lg bg-zinc-800 outline-none text-white "
         value={selectedMadhab}
