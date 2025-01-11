@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body {
+  font-family: var(--font-poppins-sans), sans-serif;
+}
 
 
 @layer base {

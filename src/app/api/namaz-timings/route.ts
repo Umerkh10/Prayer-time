@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import { PrayerTimes, CalculationMethod, Coordinates, Madhab } from "adhan";
+import moment from "moment-hijri";
 
-// API endpoint
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const school = searchParams.get("school") || "hanafi"; // Default to Hanafi
 
-  // Use external service to fetch location by IP
   try {
+    // Fetch location data (city, country, lat, lon, timezone)
     const locationResponse = await fetch(
-      `https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,timezone`
+      `https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
     );
     const locationData = await locationResponse.json();
 
@@ -20,25 +20,22 @@ export async function GET(request: Request) {
       );
     }
 
-    const { lat: latitude, lon: longitude, timezone } = locationData;
+    const { lat: latitude, lon: longitude, city, country, timezone } = locationData;
 
     const currentDate = new Date();
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth(); // 0-indexed
-
-    const numDays = new Date(year, month + 1, 0).getDate(); // Current month's total days
+    const numDays = new Date(year, month + 1, 0).getDate(); // Total days in the current month
 
     const timingsForMonth = [];
 
-    // Adhan Configuration
+    // Adhan configuration
     const coordinates = new Coordinates(latitude, longitude);
     const params = CalculationMethod.Karachi();
     params.madhab = school === "hanafi" ? Madhab.Hanafi : Madhab.Shafi;
 
     for (let day = 1; day <= numDays; day++) {
       const date = new Date(year, month, day);
-
-      // Get daily prayer timings
       const prayerTimes = new PrayerTimes(coordinates, date, params);
 
       timingsForMonth.push({
@@ -54,8 +51,12 @@ export async function GET(request: Request) {
       });
     }
 
+    // Hijri Date using moment-hijri
+    const hijriDate = moment(currentDate).locale("en").format("iD iMMMM iYYYY"); // e.g., 15 Rajab 1445
+
     return NextResponse.json({
-      location: { latitude, longitude, timezone },
+      location: { city, country, latitude, longitude, timezone },
+      hijriDate,
       timings: timingsForMonth,
     });
   } catch (error) {
@@ -68,12 +69,12 @@ export async function GET(request: Request) {
 }
 
 /**
- * Formats a Date object to HH:mm format.
- * @param date - Date object
- * @returns Time in HH:mm format
+ * Formats a Date object to 12-hour format with AM/PM.
  */
 function formatTime(date: Date): string {
-  const hours = String(date.getHours()).padStart(2, "0");
+  const hours24 = date.getHours();
+  const hours12 = hours24 % 12 || 12; // Convert 24-hour to 12-hour
   const minutes = String(date.getMinutes()).padStart(2, "0");
-  return `${hours}:${minutes}`;
+  const period = hours24 >= 12 ? "PM" : "AM";
+  return `${hours12}:${minutes} ${period}`;
 }
