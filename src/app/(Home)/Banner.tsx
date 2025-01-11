@@ -65,13 +65,13 @@ function Banner() {
             <h2 className="lg:text-2xl text-xl font-semibold lg:text-left text-center">
               {isHadith ? "Hadith of the Day" : "Ayat of the Day"}
             </h2>
-            <div className="grid grid-cols-2  gap-2 lg:mx-0 mx-auto pt-2">
-              <div>
+            <div className="grid grid-cols-2 lg:gap-4 gap-8 lg:mx-0 mx-auto pl-10 pt-2">
+              <div className=''>
               <Select
                 value={isHadith ? 'hadith' : 'ayat'}
                 onValueChange={handleContentChange}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="lg:w-[180px] w-[130px]">
                   <SelectValue placeholder="Select content" />
                 </SelectTrigger>
                 <SelectContent>

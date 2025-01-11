@@ -270,7 +270,7 @@ function DateTimingDisplay() {
       </select>
 
       
-      <div className="grid grid-cols-2 lg:gap-0 gap-2 ">
+      <div className="grid grid-cols-2 lg:gap-0 gap-3 ">
         {/* Group 1: Yesterday and Today */}
         <div className="flex flex-col sm:flex-row gap-2">
           <button
@@ -325,7 +325,7 @@ function DateTimingDisplay() {
         </div>
       </div>
           </div>
-          <div className="lg:text-right text-center">
+          <div className="lg:text-right text-center lg:pt-0 pt-3">
             <h2 className="text-xl font-semibold ">
               {country ? `${city}, ${country}` : "Loading..."}
             </h2>
