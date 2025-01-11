@@ -19,7 +19,7 @@ function DateTimingDisplay() {
   const [nextPrayerCountdown, setNextPrayerCountdown] = useState<string | null>(null);
   const [timeZone, setTimeZone] = useState<string>("UTC");
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
-  const [selectedMadhab, setSelectedMadhab] = useState("hanafi");
+  const [selectedMadhab, setSelectedMadhab] = useState("Shafi");
 
 
 
@@ -317,7 +317,7 @@ function DateTimingDisplay() {
               <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 p-4">
                 {day?.prayers.map((prayer: { name: string; time: string; icon: any }, prayerIndex: number) => (
                   <div key={prayerIndex} className={`flex flex-col items-center justify-center py-4 rounded-lg 
-                  ${prayer.name === day?.nextPrayer?.name ?  "bg-blue-400 text-white" : "bg-background border border-muted text-muted-foreground"}`}>
+                  ${prayer.name === day?.nextPrayer?.name ?  "bg-blue-400 text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
                     
                     <div className="flex justify-between items-center mx-auto font-medium">
                       <div className="pr-16 text-lg">{prayer.name}</div>{prayer.icon} </div>
