@@ -10,7 +10,7 @@ export async function GET(request: Request) {
   try {
     // Fetch location data (city, country, lat, lon, timezone)
     const locationResponse = await fetch(
-      `https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
+      `https://pro.ip-api.com/json/39.35.220.207?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
     );
     const locationData = await locationResponse.json();
 
