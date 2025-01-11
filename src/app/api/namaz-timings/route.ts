@@ -5,7 +5,7 @@ import moment from "moment-hijri";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const school = searchParams.get("school") || "hanafi"; // Default to Hanafi
+  const school = searchParams.get("school") || "shafi"; // Default to Hanafi
 
   try {
     // Fetch location data (city, country, lat, lon, timezone)
@@ -59,7 +59,7 @@ export async function GET(request: Request) {
     }
 
     // Set the madhab (Hanafi or Shafi)
-    params.madhab = school === "hanafi" ? Madhab.Hanafi : Madhab.Shafi;
+    params.madhab = school === "shafi" ? Madhab.Hanafi : Madhab.Shafi;
 
     // Calculate prayer timings for the month
     const coordinates = new Coordinates(latitude, longitude);

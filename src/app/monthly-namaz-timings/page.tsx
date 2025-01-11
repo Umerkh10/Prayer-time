@@ -161,7 +161,7 @@ const MonthlyNamazTimings = () => {
   const [timings, setTimings] = useState<NamazTiming[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [school, setSchool] = useState<"hanafi" | "shafi">("hanafi");
+  const [school, setSchool] = useState<"hanafi" | "shafi">("shafi");
 
   const fetchTimings = async () => {
     setLoading(true);
