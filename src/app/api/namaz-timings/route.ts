@@ -1,3 +1,4 @@
+"use client"
 import { NextResponse } from "next/server";
 import { PrayerTimes, CalculationMethod, Coordinates, Madhab } from "adhan";
 import moment from "moment-hijri";
