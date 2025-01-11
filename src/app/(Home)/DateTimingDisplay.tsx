@@ -5,7 +5,7 @@ import { addDays, subDays, formatDistanceToNow } from "date-fns";
 import { PrayerTimes, Coordinates, CalculationMethod, Madhab, CalculationParameters } from "adhan";
 import "swiper/css";
 import "swiper/css/navigation";
-import { CloudSunRainIcon, LucideSunset, MoonStarIcon, SunDimIcon, SunMediumIcon, SunriseIcon } from "lucide-react";
+import { CloudSun, CloudSunRainIcon, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMedium, SunMediumIcon, SunriseIcon, Sunset } from "lucide-react";
 import moment from "moment-hijri";
 import Link from "next/link";
 
@@ -137,37 +137,37 @@ function DateTimingDisplay() {
           name: "Fajr",
           time: formatTime(prayerTimeObj.fajr, timeZone || "UTC"), // Fallback to UTC
           isActive: false,
-          icon: <SunriseIcon className="w-7 h-7 text-orange-300" />,
+          icon: <CloudSun className="w-5 h-5 " />,
         },
         {
           name: "Sunrise",
           time: formatTime(prayerTimeObj.sunrise, timeZone || "UTC"),
           isActive: false,
-          icon: <SunriseIcon className="w-7 h-7 text-orange-400" />,
+          icon: <SunriseIcon className="w-5 h-5 " />,
         },
         {
           name: "Dhuhr",
           time: formatTime(prayerTimeObj.dhuhr, timeZone || "UTC"),
           isActive: false,
-          icon: <SunDimIcon className="w-7 h-7 text-yellow-400" />,
+          icon: <SunDimIcon className="w-5 h-5 " />,
         },
         {
           name: "Asr",
           time: formatTime(prayerTimeObj.asr, timeZone || "UTC"),
           isActive: false,
-          icon: <SunMediumIcon className="w-7 h-7 text-yellow-500" />,
+          icon: <SunMediumIcon className="w-5 h-5 " />,
         },
         {
           name: "Maghrib",
           time: formatTime(prayerTimeObj.maghrib, timeZone || "UTC"),
           isActive: false,
-          icon: <LucideSunset className="w-7 h-7 text-orange-600" />,
+          icon: <LucideSunset className="w-5 h-5 " />,
         },
         {
           name: "Isha",
           time: formatTime(prayerTimeObj.isha, timeZone || "UTC"),
           isActive: false,
-          icon: <MoonStarIcon className="w-7 h-7 text-zinc-50" />,
+          icon: <MoonStarIcon className="w-5 h-5 " />,
         },
       ];
     
@@ -245,21 +245,21 @@ function DateTimingDisplay() {
 
   return (
     <div className="relative max-w-screen-xl mx-auto z-10 -mt-16">
-      <div className="mx-auto w-[90%] lg:w-[95%] bg-zinc-200 rounded-lg shadow-lg px-2">
+      <div className="mx-auto w-[90%] lg:w-[95%] py-3 bg-slate-50 dark:bg-background rounded-xl shadow-lg px-2 border border-muted">
         {/* Header with date tabs */}
-        <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b border-gray-200">
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b-2 border-muted">
           <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
             
           <select
-          className="px-4 py-2 rounded-lg bg-zinc-800 outline-none text-white "
+          className="px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white "
         value={selectedMadhab}
         onChange={(e) => setSelectedMadhab(e.target.value)}
       >
-        <option className="rounded-lg bg-zinc-800 outline-none" value="Hanafi">Hanafi</option>
-        <option className="rounded-lg bg-zinc-800 outline-none" value="Shafi">Shafi</option>
+        <option className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none" value="Hanafi">Hanafi</option>
+        <option className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none" value="Shafi">Shafi</option>
       </select>
             <button
-              className={`px-4 py-2 rounded-lg ${activeIndex === 0 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
+              className={`px-4 py-2 rounded-lg ${activeIndex === 0 ? "bg-blue-400 text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"}`}
               onClick={() => {
                 setActiveIndex(0); // Set active index to 0 for Yesterday
                 setCurrentDate(subDays(currentDate, 0)); // Change date to yesterday
@@ -268,7 +268,7 @@ function DateTimingDisplay() {
               Yesterday
             </button>
             <button
-              className={`px-4 py-2 rounded-lg ${activeIndex === 1 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
+              className={`px-4 py-2 rounded-lg ${activeIndex === 1 ? "bg-blue-400 text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"}`}
               onClick={() => {
                 setActiveIndex(1); // Set active index to 1 for Today
                 // No date change needed, as it's already today's date
@@ -277,7 +277,7 @@ function DateTimingDisplay() {
               Today
             </button>
             <button
-              className={`px-4 py-2 rounded-lg ${activeIndex === 2 ? "bg-blue-400 text-white" : "bg-zinc-800 text-zinc-50"}`}
+              className={`px-4 py-2 rounded-lg ${activeIndex === 2 ? "bg-blue-400 text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"}`}
               onClick={() => {
                 setActiveIndex(2); // Set active index to 2 for Tomorrow
                 setCurrentDate(addDays(currentDate, 0)); // Change date to tomorrow
@@ -286,19 +286,19 @@ function DateTimingDisplay() {
               Tomorrow
             </button>
             <Link href={'/monthly-namaz-timings'}
-              className={`px-4 py-2 rounded-lg bg-zinc-800 hover:bg-blue-400 text-white transition ease-in duration-200 delay-100`}
+              className={`px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 hover:bg-blue-400 text-white transition ease-in duration-200 delay-100`}
             >
               Monthly
             </Link>
           </div>
           <div className="lg:text-right text-center">
-            <h2 className="text-xl font-semibold text-zinc-900">
+            <h2 className="text-xl font-semibold ">
               {country ? `${city}, ${country}` : "Loading..."}
             </h2>
-            <p className="font-medium text-zinc-900">
+            <p className="font-medium ">
               {prayerTimes[activeIndex]?.date.hijri || ""}
             </p>
-            <p className="font-semibold text-lg text-zinc-900">
+            <p className="font-semibold text-lg ">
               {prayerTimes[activeIndex]?.date.gregorian || ""}
             </p>
           </div>
@@ -316,13 +316,14 @@ function DateTimingDisplay() {
             <SwiperSlide key={index}>
               <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 p-4">
                 {day?.prayers.map((prayer: { name: string; time: string; icon: any }, prayerIndex: number) => (
-                  <div key={prayerIndex} className={`flex flex-col items-center justify-center p-4 rounded-lg 
-                  ${prayer.name === day?.nextPrayer?.name ? "bg-blue-400 text-white" : "bg-zinc-300 text-zinc-900"}`}>
-                    {prayer.icon}
-                    <h3 className=" font-semibold">{prayer.name}</h3>
-                    <p className="text-lg font-semibold">{prayer.time}</p>
+                  <div key={prayerIndex} className={`flex flex-col items-center justify-center py-4 rounded-lg 
+                  ${prayer.name === day?.nextPrayer?.name ?  "bg-blue-400 text-white" : "bg-background border border-muted text-muted-foreground"}`}>
+                    
+                    <div className="flex justify-between items-center mx-auto font-medium">
+                      <div className="pr-16 text-lg">{prayer.name}</div>{prayer.icon} </div>
+                    <p className="text-lg font-semibold pt-2">{prayer.time}</p>
                     {prayer.name === day?.nextPrayer?.name && nextPrayerCountdown && (
-                      <p className="text-sm mt-1">{nextPrayerCountdown}</p>
+                      <p className="text-sm ">{nextPrayerCountdown}</p>
                     )}
                   </div>
                 ))}

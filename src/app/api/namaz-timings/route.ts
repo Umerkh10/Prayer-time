@@ -29,10 +29,39 @@ export async function GET(request: Request) {
 
     const timingsForMonth = [];
 
-    // Adhan configuration
-    const coordinates = new Coordinates(latitude, longitude);
-    const params = CalculationMethod.Karachi();
+    // Determine Calculation Method based on Country
+    let params;
+    if (country === "United States") {
+      params = CalculationMethod.NorthAmerica();
+    } else if (country === "Pakistan") {
+      params = CalculationMethod.Karachi();
+    } else if (country === "Germany") {
+      params = CalculationMethod.NorthAmerica();
+    } else if (country === "Egypt") {
+      params = CalculationMethod.Egyptian();
+    } else if (country === "Kuwait") {
+      params = CalculationMethod.Kuwait();
+    } else if (country === "Saudi Arabia") {
+      params = CalculationMethod.UmmAlQura();
+    } else if (country === "Singapore") {
+      params = CalculationMethod.Singapore();
+    } else if (country === "Iran") {
+      params = CalculationMethod.Tehran();
+    } else if (country === "Turkey") {
+      params = CalculationMethod.Turkey();
+    } else if (country === "Dubai") {
+      params = CalculationMethod.Dubai();
+    } else if (country === "United Kingdom") {
+      params = CalculationMethod.MuslimWorldLeague();
+    } else {
+      params = CalculationMethod.MuslimWorldLeague(); // Default to Muslim World League
+    }
+
+    // Set the madhab (Hanafi or Shafi)
     params.madhab = school === "hanafi" ? Madhab.Hanafi : Madhab.Shafi;
+
+    // Calculate prayer timings for the month
+    const coordinates = new Coordinates(latitude, longitude);
 
     for (let day = 1; day <= numDays; day++) {
       const date = new Date(year, month, day);
