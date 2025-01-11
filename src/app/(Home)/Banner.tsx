@@ -57,15 +57,16 @@ function Banner() {
   return (
     <div className="relative h-screen bg-blue-900 bg-[url('/main-page-frame.svg')] bg-center bg-cover bg-no-repeat text-white">
       <div className="absolute inset-0 bg-[#0046E5]/10" />
-      <div className="container relative mx-auto px-4 pt-24">
+      <div className="container relative lg:mx-auto px-4 lg:pt-24 pt-3">
         <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">Welcome to Global Salaah</h1>
         
-        <div className="max-w-3xl mt-12 py-2 mx-auto">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="lg:text-2xl text-xl font-semibold">
+        <div className="max-w-3xl mt-12 py-2 lg:mx-auto ">
+          <div className="flex md:flex-row flex-col lg:justify-between justify-start lg:items-center space-y-2 mb-4">
+            <h2 className="lg:text-2xl text-xl font-semibold text-left">
               {isHadith ? "Hadith of the Day" : "Ayat of the Day"}
             </h2>
-            <div className="flex space-x-2">
+            <div className="grid lg:grid-cols-2 grid-cols-1 gap-3  space-x-2">
+              <div>
               <Select
                 value={isHadith ? 'hadith' : 'ayat'}
                 onValueChange={handleContentChange}
@@ -78,12 +79,15 @@ function Banner() {
                   <SelectItem value="ayat">Ayat</SelectItem>
                 </SelectContent>
               </Select>
+              </div>
+              <div>
               <button
                 onClick={handleNext}
                 className="bg-white text-blue-900 px-4 py-2 rounded-md text-sm font-medium hover:bg-opacity-90 transition-colors"
               >
                 Next {isHadith ? "Hadith" : "Ayat"}
               </button>
+              </div>
             </div>
           </div>
           <AnimatePresence mode="wait">
@@ -97,7 +101,7 @@ function Banner() {
               <p className="lg:text-lg text-sm text-center py-4 leading-relaxed">
                 {content.text}
               </p>
-              <p className="mt-4 text-sm opacity-75">{content.source}</p>
+              <p className="mt-4 text-sm opacity-75 lg:text-left text-center">{content.source}</p>
             </motion.div>
           </AnimatePresence>
         </div>

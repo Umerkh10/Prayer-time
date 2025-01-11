@@ -249,42 +249,52 @@ function DateTimingDisplay() {
         {/* Header with date tabs */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b-2 border-muted">
           <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
-            
-          <select
-          className="px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white "
+         <select className="px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white "
         value={selectedMadhab}
-        onChange={(e) => setSelectedMadhab(e.target.value)}
-      >
+        onChange={(e) => setSelectedMadhab(e.target.value)} >
         <option className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none" value="Hanafi">Hanafi</option>
         <option className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none" value="Shafi">Shafi</option>
       </select>
-            <button
-              className={`px-4 py-2 rounded-lg ${activeIndex === 0 ? "bg-blue-400 text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"}`}
-              onClick={() => {
-                setActiveIndex(0); // Set active index to 0 for Yesterday
-                setCurrentDate(subDays(currentDate, 0)); // Change date to yesterday
-              }}
-            >
-              Yesterday
-            </button>
-            <button
-              className={`px-4 py-2 rounded-lg ${activeIndex === 1 ? "bg-blue-400 text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"}`}
-              onClick={() => {
-                setActiveIndex(1); // Set active index to 1 for Today
-                // No date change needed, as it's already today's date
-              }}
-            >
-              Today
-            </button>
-            <button
-              className={`px-4 py-2 rounded-lg ${activeIndex === 2 ? "bg-blue-400 text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"}`}
-              onClick={() => {
-                setActiveIndex(2); // Set active index to 2 for Tomorrow
-                setCurrentDate(addDays(currentDate, 0)); // Change date to tomorrow
-              }}
-            >
-              Tomorrow
-            </button>
+      <button
+        className={`px-4 py-2 rounded-lg ${
+          activeIndex === 0
+            ? "bg-blue-400 text-white"
+            : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+        }`}
+        onClick={() => {
+          setActiveIndex(0); // Set active index to 0 for Yesterday
+          setCurrentDate(subDays(new Date(), 0)); // Change date to yesterday
+        }}
+      >
+        Yesterday
+      </button>
+      <button
+        className={`px-4 py-2 rounded-lg ${
+          activeIndex === 1
+            ? "bg-blue-400 text-white"
+            : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+        }`}
+        onClick={() => {
+          setActiveIndex(1); // Set active index to 1 for Today
+          setCurrentDate(new Date()); // Reset to today's date
+        }}
+      >
+        Today
+      </button>
+      <button
+        className={`px-4 py-2 rounded-lg ${
+          activeIndex === 2
+            ? "bg-blue-400 text-white"
+            : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+        }`}
+        onClick={() => {
+          setActiveIndex(2); // Set active index to 2 for Tomorrow
+          setCurrentDate(addDays(new Date(), 0)); // Change date to tomorrow
+        }}
+      >
+        Tomorrow
+      </button>
+
             <Link href={'/monthly-namaz-timings'}
               className={`px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 hover:bg-blue-400 text-white transition ease-in duration-200 delay-100`}
             >
@@ -320,7 +330,7 @@ function DateTimingDisplay() {
                   ${prayer.name === day?.nextPrayer?.name ?  "bg-blue-400 text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
                     
                     <div className="flex justify-between items-center mx-auto font-medium">
-                      <div className="pr-16 text-lg">{prayer.name}</div>{prayer.icon} </div>
+                      <div className="lg:pr-16 pr-8 text-lg">{prayer.name}</div>{prayer.icon} </div>
                     <p className="text-lg font-semibold pt-2">{prayer.time}</p>
                     {prayer.name === day?.nextPrayer?.name && nextPrayerCountdown && (
                       <p className="text-sm ">{nextPrayerCountdown}</p>
