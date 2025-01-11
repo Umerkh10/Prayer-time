@@ -249,57 +249,81 @@ function DateTimingDisplay() {
         {/* Header with date tabs */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b-2 border-muted">
           <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
-         <select className="px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white "
+            
+   <select
+        className=" mx-auto lg:w-28 w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
         value={selectedMadhab}
-        onChange={(e) => setSelectedMadhab(e.target.value)} >
-        <option className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none" value="Hanafi">Hanafi</option>
-        <option className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none" value="Shafi">Shafi</option>
+        onChange={(e) => setSelectedMadhab(e.target.value)}
+      >
+        <option
+          className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+          value="Hanafi"
+        >
+          Hanafi
+        </option>
+        <option
+          className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+          value="Shafi"
+        >
+          Shafi
+        </option>
       </select>
-      <button
-        className={`px-4 py-2 rounded-lg ${
-          activeIndex === 0
-            ? "bg-blue-400 text-white"
-            : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-        }`}
-        onClick={() => {
-          setActiveIndex(0); // Set active index to 0 for Yesterday
-          setCurrentDate(subDays(new Date(), 0)); // Change date to yesterday
-        }}
-      >
-        Yesterday
-      </button>
-      <button
-        className={`px-4 py-2 rounded-lg ${
-          activeIndex === 1
-            ? "bg-blue-400 text-white"
-            : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-        }`}
-        onClick={() => {
-          setActiveIndex(1); // Set active index to 1 for Today
-          setCurrentDate(new Date()); // Reset to today's date
-        }}
-      >
-        Today
-      </button>
-      <button
-        className={`px-4 py-2 rounded-lg ${
-          activeIndex === 2
-            ? "bg-blue-400 text-white"
-            : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-        }`}
-        onClick={() => {
-          setActiveIndex(2); // Set active index to 2 for Tomorrow
-          setCurrentDate(addDays(new Date(), 0)); // Change date to tomorrow
-        }}
-      >
-        Tomorrow
-      </button>
 
-            <Link href={'/monthly-namaz-timings'}
-              className={`px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 hover:bg-blue-400 text-white transition ease-in duration-200 delay-100`}
-            >
-              Monthly
-            </Link>
+      
+      <div className="grid grid-cols-2 lg:gap-0 gap-2 ">
+        {/* Group 1: Yesterday and Today */}
+        <div className="flex flex-col sm:flex-row gap-2">
+          <button
+            className={`w-full sm:w-auto px-4 py-2 rounded-lg ${
+              activeIndex === 0
+                ? "bg-blue-400 text-white"
+                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+            }`}
+            onClick={() => {
+              setActiveIndex(0);
+              setCurrentDate((prevDate) => subDays(prevDate, 0));
+            }}
+          >
+            Yesterday
+          </button>
+          <button
+            className={`w-full sm:w-auto px-4 py-2 rounded-lg ${
+              activeIndex === 1
+                ? "bg-blue-400 text-white"
+                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+            }`}
+            onClick={() => {
+              setActiveIndex(1);
+              setCurrentDate(new Date());
+            }}
+          >
+            Today
+          </button>
+        </div>
+
+        {/* Group 2: Tomorrow and Monthly */}
+        <div className="flex flex-col sm:flex-row gap-2">
+          <button
+            className={`w-full sm:w-auto px-4 py-2 rounded-lg ${
+              activeIndex === 2
+                ? "bg-blue-400 text-white"
+                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+            }`}
+            onClick={() => {
+              setActiveIndex(2);
+              setCurrentDate((prevDate) => addDays(prevDate, 0));
+            }}
+          >
+            Tomorrow
+          </button>
+          <Link
+            href={"/monthly-namaz-timings"}
+            className="w-full sm:w-auto px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 hover:bg-blue-400 text-white transition ease-in duration-200 delay-100"
+          >
+            Monthly
+          </Link>
+        </div>
+      </div>
           </div>
           <div className="lg:text-right text-center">
             <h2 className="text-xl font-semibold ">

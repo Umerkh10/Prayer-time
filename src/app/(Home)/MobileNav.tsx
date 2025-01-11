@@ -68,7 +68,7 @@ export function MobileNav() {
         </ScrollArea>
         <Button
           variant="ghost"
-          className="absolute right-4 top-4 text-white hover:bg-white/10"
+          className=" absolute right-4 top-4 text-white hover:bg-white/10"
           onClick={() => setOpen(false)}
         >
           <X className="h-6 w-6" />

@@ -62,10 +62,10 @@ function Banner() {
         
         <div className="max-w-3xl mt-12 py-2 lg:mx-auto ">
           <div className="flex md:flex-row flex-col lg:justify-between justify-start lg:items-center space-y-2 mb-4">
-            <h2 className="lg:text-2xl text-xl font-semibold text-left">
+            <h2 className="lg:text-2xl text-xl font-semibold lg:text-left text-center">
               {isHadith ? "Hadith of the Day" : "Ayat of the Day"}
             </h2>
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-3  space-x-2">
+            <div className="grid grid-cols-2  gap-2 lg:mx-0 mx-auto pt-2">
               <div>
               <Select
                 value={isHadith ? 'hadith' : 'ayat'}
