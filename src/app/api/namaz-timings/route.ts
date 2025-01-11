@@ -73,7 +73,7 @@ export async function GET(request: Request) {
     }
 
     // Set the madhab (Hanafi or Shafi)
-    params.madhab = school === "shafi" ? Madhab.Hanafi : Madhab.Shafi;
+    params.madhab = school === "shafi" ? Madhab.Shafi : Madhab.Hanafi;
 
     // Calculate prayer timings for the month
     const coordinates = new Coordinates(latitude, longitude);

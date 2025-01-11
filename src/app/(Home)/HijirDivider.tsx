@@ -33,7 +33,7 @@ function HijirDivider() {
         <div className='grid lg:grid-cols-3 grid-cols-1 mx-auto pt-5 gap-4'>
 
           <div className='flex justify-center items-center group'>
-            <div className='border border-muted rounded-lg bg-transparent w-52 p-4 text-blue-100/80 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150'>
+            <div className='border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150'>
         <h3 className="  text-lg md:text-xl animate-fade-in-delay text-center ">
           Current Time
         </h3>
@@ -42,7 +42,7 @@ function HijirDivider() {
         </div>
 
        <div className='flex justify-center items-center group'>
-            <div className='border border-muted rounded-lg bg-transparent w-52 p-4 text-blue-100/80 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150'>
+            <div className='border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150'>
         <h3 className="  text-lg md:text-xl animate-fade-in-delay text-center ">
           Hijri date 
         </h3>
@@ -51,7 +51,7 @@ function HijirDivider() {
         </div>
 
         <div className="flex justify-center items-center group">
-        <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-blue-100/80 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
+        <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
           <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
             Current Date 
           </h3>
