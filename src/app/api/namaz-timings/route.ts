@@ -1,4 +1,3 @@
-
 import { NextResponse } from "next/server";
 import { PrayerTimes, CalculationMethod, Coordinates, Madhab } from "adhan";
 import moment from "moment-hijri";
@@ -8,9 +7,24 @@ export async function GET(request: Request) {
   const school = searchParams.get("school") || "shafi"; // Default to Hanafi
 
   try {
+    // Extract IP address dynamically
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0] || // Use `x-forwarded-for` if behind a proxy
+      request.headers.get("cf-connecting-ip") || // Cloudflare specific header
+      request.headers.get("x-real-ip") || // Nginx specific header
+      request.headers.get("host"); // Fallback (use cautiously)
+
+    if (!ip) {
+      return NextResponse.json(
+        { error: "Unable to determine IP address" },
+        { status: 400 }
+      );
+    }
+
     // Fetch location data (city, country, lat, lon, timezone)
     const locationResponse = await fetch(
-      `https://pro.ip-api.com/json/39.35.220.207?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
+      // `https://pro.ip-api.com/json/39.35.220.207?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
+      `https://pro.ip-api.com/json/${ip}?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
     );
     const locationData = await locationResponse.json();
 

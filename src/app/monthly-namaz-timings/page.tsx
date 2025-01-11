@@ -168,9 +168,10 @@ const MonthlyNamazTimings = () => {
     setError(null);
 
     try {
-      const response = await fetch(`/api/namaz-timings?school=${school}`);
+
+      const response = await fetch(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
       if (!response.ok) {
-        throw new Error("Failed to fetch namaz timings");
+        throw new Error(response.statusText);
       }
       const data = await response.json();
       setLocation({
