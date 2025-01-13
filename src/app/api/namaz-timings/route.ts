@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
 
     // Fetch location data (city, country, lat, lon, timezone)
     const locationResponse = await fetch(
-      `https://pro.ip-api.com/json/${ipData.ip}?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
+      `https://pro.ip-api.com/json/192.44.242.19?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
       , { cache: "reload" });
     const locationData = await locationResponse.json();
 
@@ -64,6 +64,8 @@ export async function GET(request: NextRequest) {
     } else if (country === "Dubai") {
       params = CalculationMethod.Dubai();
     } else if (country === "United Kingdom") {
+      params = CalculationMethod.MuslimWorldLeague();
+    } else if (country === "Sweden") {
       params = CalculationMethod.MuslimWorldLeague();
     } else {
       params = CalculationMethod.MuslimWorldLeague(); // Default to Muslim World League
