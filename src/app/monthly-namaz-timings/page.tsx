@@ -2,14 +2,14 @@
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton"; // Import your skeleton component
+import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
-import axios from "axios"
+import { Coordinates, CalculationMethod, Madhab, PrayerTimes } from "adhan";
 
 interface LocationInfo {
   city: string;
   country: string;
-  hijriDate: string;
+  timezone: string;
 }
 
 const MonthlyNamazTimings = () => {
@@ -31,34 +31,81 @@ const MonthlyNamazTimings = () => {
   const [error, setError] = useState<string | null>(null);
   const [school, setSchool] = useState<"hanafi" | "shafi">("shafi");
 
-  const fetchTimings = async () => {
-    setLoading(true);
-    setError(null);
-
+  const fetchLocation = async () => {
     try {
-
-      const response = await axios.get(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
-      // const response = await axios.get(`http://localhost:3000/api/namaz-timings?school=${school}`);
-      
-      setLocation({
-        city: response.data.location.city,
-        country: response.data.location.country,
-        hijriDate: response.data.hijriDate,
-      });
-      setTimings(response.data.timings);
+      const response = await fetch(
+        `https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`,
+        { cache: "reload" }
+      );
+      const data = await response.json();
+      const { lat, lon, city, country, timezone } = data;
+      setLocation({ city, country, timezone });
+      return { lat, lon };
     } catch (error: any) {
-      console.error("Failed to fetch namaz timings:", error.message);
-      setError("Something went wrong while fetching namaz timings.");
-    } finally {
-      setLoading(false);
+      console.error("Error fetching location data:", error.message);
+      setError("Failed to fetch location data.");
+      return null;
     }
   };
 
+  const calculateMonthlyTimings = async () => {
+    const coordinates = await fetchLocation();
+    if (!coordinates) return;
+
+    const { lat, lon } = coordinates;
+    const calculationMethod = CalculationMethod.MuslimWorldLeague();
+    const madhab = school === "hanafi" ? Madhab.Hanafi : Madhab.Shafi;
+
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const newTimings: NamazTiming[] = [];
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      calculationMethod.madhab = madhab;
+
+      const prayerTimes = new PrayerTimes(
+        new Coordinates(lat, lon),
+        date,
+        calculationMethod
+      );
+
+      newTimings.push({
+        date: date.toISOString().split("T")[0],
+        timings: {
+          Fajr: prayerTimes.fajr.toLocaleTimeString("en-US", {
+            timeZone: location?.timezone,
+          }),
+          Sunrise: prayerTimes.sunrise.toLocaleTimeString("en-US", {
+            timeZone: location?.timezone,
+          }),
+          Dhuhr: prayerTimes.dhuhr.toLocaleTimeString("en-US", {
+            timeZone: location?.timezone,
+          }),
+          Asr: prayerTimes.asr.toLocaleTimeString("en-US", {
+            timeZone: location?.timezone,
+          }),
+          Maghrib: prayerTimes.maghrib.toLocaleTimeString("en-US", {
+            timeZone: location?.timezone,
+          }),
+          Isha: prayerTimes.isha.toLocaleTimeString("en-US", {
+            timeZone: location?.timezone,
+          }),
+        },
+      });
+    }
+
+    setTimings(newTimings);
+    setLoading(false);
+  };
+
   useEffect(() => {
-
-    fetchTimings();
+    setLoading(true);
+    calculateMonthlyTimings();
   }, [school]);
-
 
   const renderSkeletonRow = () => (
     <div className="grid grid-cols-7 gap-4 p-4 rounded-lg animate-pulse">
@@ -72,7 +119,6 @@ const MonthlyNamazTimings = () => {
     </div>
   );
 
-  // Get current date in the same format as the timings array (assuming 'YYYY-MM-DD')
   const currentDate = new Date().toISOString().split("T")[0];
 
   return (
@@ -82,7 +128,6 @@ const MonthlyNamazTimings = () => {
         {location && (
           <div className="text-center mt-2">
             <h2 className="font-bold text-2xl">{`${location.city}, ${location.country}`}</h2>
-            <p className="py-2 font-medium ">{`Hijri Date: ${location.hijriDate}`}</p>
           </div>
         )}
         <div className="flex justify-center mt-4">
@@ -101,23 +146,10 @@ const MonthlyNamazTimings = () => {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="hidden md:grid md:grid-cols-7 gap-4 p-4 font-semibold text-center">
-          <div>Date</div>
-          <div>Fajr</div>
-          <div>Sunrise</div>
-          <div>Dhuhr</div>
-          <div>Asr</div>
-          <div>Maghrib</div>
-          <div>Isha</div>
-        </div>
-        <div className="hidden md:block">
-          {loading
-            ? Array.from({ length: 5 }).map((_, index) => <div key={index}>{renderSkeletonRow()}</div>)
-            : timings.map((day) => (
-              <div
-                key={day.date}
-                className={`grid grid-cols-7 gap-4 p-4 rounded-lg ${day.date === currentDate ? "bg-blue-500 text-zinc-100" : "even:bg-muted"}`}
-              >
+        {loading
+          ? Array.from({ length: 5 }).map((_, index) => <div key={index}>{renderSkeletonRow()}</div>)
+          : timings.map((day) => (
+              <div key={day.date} className={`grid grid-cols-7 gap-4 p-4 ${day.date === currentDate ? "bg-blue-500 text-white" : "even:bg-gray-100/10"}`}>
                 <div className="text-center">{day.date}</div>
                 <div className="text-center">{day.timings.Fajr}</div>
                 <div className="text-center">{day.timings.Sunrise}</div>
@@ -127,48 +159,6 @@ const MonthlyNamazTimings = () => {
                 <div className="text-center">{day.timings.Isha}</div>
               </div>
             ))}
-        </div>
-        <div className="md:hidden">
-          <Accordion type="single" collapsible className="w-full">
-            {loading
-              ? Array.from({ length: 5 }).map((_, index) => (
-                <AccordionItem key={index} value={`skeleton-${index}`}>
-                  <AccordionTrigger>
-                    <Skeleton className="h-4 w-32" />
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    {Array.from({ length: 7 }).map((_, index) => (
-                      <div key={index} className="grid grid-cols-2 gap-2">
-                        <Skeleton className="h-4 w-full" />
-                        <Skeleton className="h-4 w-full" />
-                      </div>
-                    ))}
-                  </AccordionContent>
-                </AccordionItem>
-              ))
-              : timings.map((day, index) => (
-                <AccordionItem key={day.date} value={`item-${index}`}>
-                  <AccordionTrigger className="text-left">{day.date}</AccordionTrigger>
-                  <AccordionContent>
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="font-semibold">Fajr:</div>
-                      <div>{day.timings.Fajr}</div>
-                      <div className="font-semibold">Sunrise:</div>
-                      <div>{day.timings.Sunrise}</div>
-                      <div className="font-semibold">Dhuhr:</div>
-                      <div>{day.timings.Dhuhr}</div>
-                      <div className="font-semibold">Asr:</div>
-                      <div>{day.timings.Asr}</div>
-                      <div className="font-semibold">Maghrib:</div>
-                      <div>{day.timings.Maghrib}</div>
-                      <div className="font-semibold">Isha:</div>
-                      <div>{day.timings.Isha}</div>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-          </Accordion>
-        </div>
       </CardContent>
     </Card>
   );
