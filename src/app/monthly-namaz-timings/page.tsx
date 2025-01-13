@@ -169,7 +169,8 @@ const MonthlyNamazTimings = () => {
 
     try {
 
-      const response = await fetch(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
+      // const response = await fetch(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
+      const response = await fetch(`http://localhost:3000/api/namaz-timings?school=${school}`);
       if (!response.ok) {
         throw new Error(response.statusText);
       }

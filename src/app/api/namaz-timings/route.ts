@@ -1,18 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PrayerTimes, CalculationMethod, Coordinates, Madhab } from "adhan";
 import moment from "moment-hijri";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const school = searchParams.get("school") || "shafi"; // Default to Hanafi
 
   try {
     // Extract IP address dynamically
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0] || // Use `x-forwarded-for` if behind a proxy
-      request.headers.get("cf-connecting-ip") || // Cloudflare specific header
-      request.headers.get("x-real-ip") || // Nginx specific header
-      request.headers.get("host"); // Fallback (use cautiously)
+    const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0]
+    console.log("ip===>",ip);
+    // return NextResponse.json({ ip })
 
     if (!ip) {
       return NextResponse.json(
