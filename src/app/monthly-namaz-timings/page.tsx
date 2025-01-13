@@ -170,8 +170,8 @@ const MonthlyNamazTimings = () => {
 
     try {
 
-      // const response = await axios.get(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
-      const response = await axios.get(`http://localhost:3000/api/namaz-timings?school=${school}`);
+      const response = await axios.get(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
+      // const response = await axios.get(`http://localhost:3000/api/namaz-timings?school=${school}`);
       
       setLocation({
         city: response.data.location.city,
