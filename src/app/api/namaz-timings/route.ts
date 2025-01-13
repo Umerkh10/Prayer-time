@@ -3,6 +3,10 @@ import { PrayerTimes, CalculationMethod, Coordinates, Madhab } from "adhan";
 import moment from "moment-hijri";
 
 export async function GET(request: NextRequest) {
+  const headers = new Headers();
+  headers.set("Access-Control-Allow-Origin", "*"); // Allow all origins
+  headers.set("Access-Control-Allow-Methods", "GET, OPTIONS"); // Allow specific methods
+  headers.set("Access-Control-Allow-Headers", "Content-Type"); // Allow specific headers
   const { searchParams } = new URL(request.url);
   const school = searchParams.get("school") || "shafi"; // Default to Hanafi
 
