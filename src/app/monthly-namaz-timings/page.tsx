@@ -168,8 +168,8 @@ const MonthlyNamazTimings = () => {
     setError(null);
 
     try {
-    
-      const response = await fetch(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
+
+      const response = await fetch(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`, { cache: "no-store" });
       // const response = await fetch(`http://localhost:3000/api/namaz-timings?school=${school}`);
       if (!response.ok) {
         throw new Error(response.statusText);
@@ -190,7 +190,7 @@ const MonthlyNamazTimings = () => {
   };
 
   useEffect(() => {
-     
+
     fetchTimings();
   }, [school]);
 
@@ -249,59 +249,59 @@ const MonthlyNamazTimings = () => {
           {loading
             ? Array.from({ length: 5 }).map((_, index) => <div key={index}>{renderSkeletonRow()}</div>)
             : timings.map((day) => (
-                <div
-                  key={day.date}
-                  className={`grid grid-cols-7 gap-4 p-4 rounded-lg ${day.date === currentDate ? "bg-blue-500 text-zinc-100" : "even:bg-muted"}`}
-                >
-                  <div className="text-center">{day.date}</div>
-                  <div className="text-center">{day.timings.Fajr}</div>
-                  <div className="text-center">{day.timings.Sunrise}</div>
-                  <div className="text-center">{day.timings.Dhuhr}</div>
-                  <div className="text-center">{day.timings.Asr}</div>
-                  <div className="text-center">{day.timings.Maghrib}</div>
-                  <div className="text-center">{day.timings.Isha}</div>
-                </div>
-              ))}
+              <div
+                key={day.date}
+                className={`grid grid-cols-7 gap-4 p-4 rounded-lg ${day.date === currentDate ? "bg-blue-500 text-zinc-100" : "even:bg-muted"}`}
+              >
+                <div className="text-center">{day.date}</div>
+                <div className="text-center">{day.timings.Fajr}</div>
+                <div className="text-center">{day.timings.Sunrise}</div>
+                <div className="text-center">{day.timings.Dhuhr}</div>
+                <div className="text-center">{day.timings.Asr}</div>
+                <div className="text-center">{day.timings.Maghrib}</div>
+                <div className="text-center">{day.timings.Isha}</div>
+              </div>
+            ))}
         </div>
         <div className="md:hidden">
           <Accordion type="single" collapsible className="w-full">
             {loading
               ? Array.from({ length: 5 }).map((_, index) => (
-                  <AccordionItem key={index} value={`skeleton-${index}`}>
-                    <AccordionTrigger>
-                      <Skeleton className="h-4 w-32" />
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      {Array.from({ length: 7 }).map((_, index) => (
-                        <div key={index} className="grid grid-cols-2 gap-2">
-                          <Skeleton className="h-4 w-full" />
-                          <Skeleton className="h-4 w-full" />
-                        </div>
-                      ))}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))
-              : timings.map((day, index) => (
-                  <AccordionItem key={day.date} value={`item-${index}`}>
-                    <AccordionTrigger className="text-left">{day.date}</AccordionTrigger>
-                    <AccordionContent>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="font-semibold">Fajr:</div>
-                        <div>{day.timings.Fajr}</div>
-                        <div className="font-semibold">Sunrise:</div>
-                        <div>{day.timings.Sunrise}</div>
-                        <div className="font-semibold">Dhuhr:</div>
-                        <div>{day.timings.Dhuhr}</div>
-                        <div className="font-semibold">Asr:</div>
-                        <div>{day.timings.Asr}</div>
-                        <div className="font-semibold">Maghrib:</div>
-                        <div>{day.timings.Maghrib}</div>
-                        <div className="font-semibold">Isha:</div>
-                        <div>{day.timings.Isha}</div>
+                <AccordionItem key={index} value={`skeleton-${index}`}>
+                  <AccordionTrigger>
+                    <Skeleton className="h-4 w-32" />
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    {Array.from({ length: 7 }).map((_, index) => (
+                      <div key={index} className="grid grid-cols-2 gap-2">
+                        <Skeleton className="h-4 w-full" />
+                        <Skeleton className="h-4 w-full" />
                       </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              ))
+              : timings.map((day, index) => (
+                <AccordionItem key={day.date} value={`item-${index}`}>
+                  <AccordionTrigger className="text-left">{day.date}</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="font-semibold">Fajr:</div>
+                      <div>{day.timings.Fajr}</div>
+                      <div className="font-semibold">Sunrise:</div>
+                      <div>{day.timings.Sunrise}</div>
+                      <div className="font-semibold">Dhuhr:</div>
+                      <div>{day.timings.Dhuhr}</div>
+                      <div className="font-semibold">Asr:</div>
+                      <div>{day.timings.Asr}</div>
+                      <div className="font-semibold">Maghrib:</div>
+                      <div>{day.timings.Maghrib}</div>
+                      <div className="font-semibold">Isha:</div>
+                      <div>{day.timings.Isha}</div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
           </Accordion>
         </div>
       </CardContent>

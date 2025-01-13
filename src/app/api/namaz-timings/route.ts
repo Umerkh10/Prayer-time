@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
 
   try {
     // Extract IP address dynamically
-    const res = await fetch('https://ipinfo.io/json');
+    const res = await fetch('https://ipinfo.io/json', { cache: "no-store" });
     const ipData = await res.json();
     console.log(ipData.ip);
 
@@ -17,13 +17,13 @@ export async function GET(request: NextRequest) {
         { error: "Unable to determine IP address" },
         { status: 400 }
       );
-    } 
+    }
 
     // Fetch location data (city, country, lat, lon, timezone)
     const locationResponse = await fetch(
       // `https://pro.ip-api.com/json/39.35.220.207?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
       `https://pro.ip-api.com/json/${ipData.ip}?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
-    );
+      , { cache: "no-store" });
     const locationData = await locationResponse.json();
 
     if (!locationData.lat || !locationData.lon) {
