@@ -137,6 +137,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton"; // Import your skeleton component
 import { useEffect, useState } from "react";
+import axios from "axios"
 
 interface LocationInfo {
   city: string;
@@ -169,18 +170,15 @@ const MonthlyNamazTimings = () => {
 
     try {
 
-      const response = await fetch(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`, { cache: "reload" });
-      // const response = await fetch(`http://localhost:3000/api/namaz-timings?school=${school}`);
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      const data = await response.json();
+      // const response = await axios.get(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
+      const response = await axios.get(`http://localhost:3000/api/namaz-timings?school=${school}`);
+      
       setLocation({
-        city: data.location.city,
-        country: data.location.country,
-        hijriDate: data.hijriDate,
+        city: response.data.location.city,
+        country: response.data.location.country,
+        hijriDate: response.data.hijriDate,
       });
-      setTimings(data.timings);
+      setTimings(response.data.timings);
     } catch (error: any) {
       console.error("Failed to fetch namaz timings:", error.message);
       setError("Something went wrong while fetching namaz timings.");
