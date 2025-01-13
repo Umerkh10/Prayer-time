@@ -21,9 +21,8 @@ export async function GET(request: NextRequest) {
 
     // Fetch location data (city, country, lat, lon, timezone)
     const locationResponse = await fetch(
-      // `https://pro.ip-api.com/json/39.35.220.207?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
       `https://pro.ip-api.com/json/${ipData.ip}?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
-      , { cache: "no-store" });
+      , { cache: "reload" });
     const locationData = await locationResponse.json();
 
     if (!locationData.lat || !locationData.lon) {
