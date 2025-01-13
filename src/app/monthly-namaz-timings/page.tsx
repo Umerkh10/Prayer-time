@@ -168,7 +168,7 @@ const MonthlyNamazTimings = () => {
     setError(null);
 
     try {
-
+    
       const response = await fetch(`https://prayer-time-seven.vercel.app/api/namaz-timings?school=${school}`);
       // const response = await fetch(`http://localhost:3000/api/namaz-timings?school=${school}`);
       if (!response.ok) {
@@ -190,8 +190,10 @@ const MonthlyNamazTimings = () => {
   };
 
   useEffect(() => {
+     
     fetchTimings();
   }, [school]);
+
 
   const renderSkeletonRow = () => (
     <div className="grid grid-cols-7 gap-4 p-4 rounded-lg animate-pulse">

@@ -8,11 +8,11 @@ export async function GET(request: NextRequest) {
 
   try {
     // Extract IP address dynamically
-    const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0]
-    console.log("ip===>", ip);
-    // return NextResponse.json({ ip })
+    const res = await fetch('https://ipinfo.io/json');
+    const ipData = await res.json();
+    console.log(ipData.ip);
 
-    if (!ip) {
+    if (!ipData) {
       return NextResponse.json(
         { error: "Unable to determine IP address" },
         { status: 400 }
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     // Fetch location data (city, country, lat, lon, timezone)
     const locationResponse = await fetch(
       // `https://pro.ip-api.com/json/39.35.220.207?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
-      `https://pro.ip-api.com/json/${ip}?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
+      `https://pro.ip-api.com/json/${ipData.ip}?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`
     );
     const locationData = await locationResponse.json();
 
@@ -100,7 +100,7 @@ export async function GET(request: NextRequest) {
       location: { city, country, latitude, longitude, timezone },
       hijriDate,
       timings: timingsForMonth,
-      ip
+      ip: ipData.ip
     });
   } catch (error) {
     console.error("Error fetching location or prayer timings:", error);
