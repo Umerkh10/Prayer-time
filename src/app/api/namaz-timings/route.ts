@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   try {
     // Extract IP address dynamically
     const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0]
-    console.log("ip===>",ip);
+    console.log("ip===>", ip);
     // return NextResponse.json({ ip })
 
     if (!ip) {
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
         { error: "Unable to determine IP address" },
         { status: 400 }
       );
-    }
+    } 
 
     // Fetch location data (city, country, lat, lon, timezone)
     const locationResponse = await fetch(
@@ -100,12 +100,14 @@ export async function GET(request: NextRequest) {
       location: { city, country, latitude, longitude, timezone },
       hijriDate,
       timings: timingsForMonth,
+      ip
     });
   } catch (error) {
     console.error("Error fetching location or prayer timings:", error);
     return NextResponse.json(
       { error: "Something went wrong while fetching data" },
-      { status: 500 }
+      { status: 500 },
+
     );
   }
 }
