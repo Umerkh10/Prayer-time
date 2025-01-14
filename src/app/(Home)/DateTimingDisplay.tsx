@@ -5,9 +5,10 @@ import { addDays, subDays, formatDistanceToNow } from "date-fns";
 import { PrayerTimes, Coordinates, CalculationMethod, Madhab, CalculationParameters } from "adhan";
 import "swiper/css";
 import "swiper/css/navigation";
-import { CloudSun, CloudSunRainIcon, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMedium, SunMediumIcon, SunriseIcon, Sunset } from "lucide-react";
+import { CloudSun, CloudSunRainIcon, Divide, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMedium, SunMediumIcon, SunriseIcon, Sunset } from "lucide-react";
 import moment from "moment-hijri";
 import Link from "next/link";
+import MonthlyNamazTimings from "./MonthlyNamaz";
 
 function DateTimingDisplay() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -65,35 +66,35 @@ function DateTimingDisplay() {
   }, []);
 
   // useEffect(() => {
-    const getCalculationMethod = (country: string) => {
-      if (country === "Pakistan") {
-        return CalculationMethod.Karachi();
-      } else if (country === "United States") {
-        return CalculationMethod.NorthAmerica();
-      } else if (country === "Germany") {
-        return CalculationMethod.NorthAmerica();
-      } else if (country === "United Kingdom") {
-        return CalculationMethod.MuslimWorldLeague();
-      } else if (country === "Saudi Arabia") {
-        return CalculationMethod.UmmAlQura();
-      } else if (country === "Egypt") {
-        return CalculationMethod.Egyptian();
-      } else if (country === "Singapore") {
-        return CalculationMethod.Singapore();
-      } else if (country === "Kuwait") {
-        return CalculationMethod.Kuwait();
-      } else if (country === "Iran") {
-        return CalculationMethod.Tehran();
-      } else if (country === "Turkey") {
-        return CalculationMethod.Turkey();
-      } else if (country === "Dubai") {
-        return CalculationMethod.Dubai();
-      } else {
-        return CalculationMethod.MuslimWorldLeague(); 
-      }
-    };
+  const getCalculationMethod = (country: string) => {
+    if (country === "Pakistan") {
+      return CalculationMethod.Karachi();
+    } else if (country === "United States") {
+      return CalculationMethod.NorthAmerica();
+    } else if (country === "Germany") {
+      return CalculationMethod.NorthAmerica();
+    } else if (country === "United Kingdom") {
+      return CalculationMethod.MuslimWorldLeague();
+    } else if (country === "Saudi Arabia") {
+      return CalculationMethod.UmmAlQura();
+    } else if (country === "Egypt") {
+      return CalculationMethod.Egyptian();
+    } else if (country === "Singapore") {
+      return CalculationMethod.Singapore();
+    } else if (country === "Kuwait") {
+      return CalculationMethod.Kuwait();
+    } else if (country === "Iran") {
+      return CalculationMethod.Tehran();
+    } else if (country === "Turkey") {
+      return CalculationMethod.Turkey();
+    } else if (country === "Dubai") {
+      return CalculationMethod.Dubai();
+    } else {
+      return CalculationMethod.MuslimWorldLeague();
+    }
+  };
 
-    const params = getCalculationMethod(country as any);
+  const params = getCalculationMethod(country as any);
   // }, []);
 
 
@@ -103,7 +104,7 @@ function DateTimingDisplay() {
 
       // Dynamically determine the calculation method
       const calculationMethod = getCalculationMethod(location.country); // Based on user's country
-    
+
       // Ensure madhab is selected correctly and pass it
       const madhab = selectedMadhab === "Shafi" ? Madhab.Shafi : Madhab.Hanafi;
       const nightPortions = () => {
@@ -112,16 +113,16 @@ function DateTimingDisplay() {
           isha: 1.0,  // Adjust this value based on your logic
         };
       };
-    
+
       // Ensure that nightPortions is included in the params
       const params: CalculationParameters = {
         ...calculationMethod,
         madhab,
         nightPortions,  // Pass the function
       };
-    
+
       const prayerTimeObj = new PrayerTimes(location, date, params);
-    
+
       // Function to format time
       const formatTime = (time: Date, timeZone: string) =>
         time.toLocaleTimeString("en-US", {
@@ -130,7 +131,7 @@ function DateTimingDisplay() {
           hour12: true,
           timeZone: timeZone,
         });
-    
+
       // Define prayer times and icons
       const prayers = [
         {
@@ -170,14 +171,14 @@ function DateTimingDisplay() {
           icon: <MoonStarIcon className="w-5 h-5 " />,
         },
       ];
-    
+
       // Determine the next prayer
       const now = new Date();
       const nextPrayer = prayers.find((prayer) => {
         const prayerTime = new Date(`${date.toDateString()} ${prayer.time}`);
         return prayerTime > now;
       });
-    
+
       return {
         date: {
           gregorian: date.toDateString(),
@@ -187,18 +188,18 @@ function DateTimingDisplay() {
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
         nextPrayer: nextPrayer
           ? {
-              name: nextPrayer.name,
-              time: nextPrayer.time,
-              countdown: () =>
-                differenceInSeconds(
-                  new Date(`${date.toDateString()} ${nextPrayer.time}`),
-                  new Date()
-                ),
-            }
+            name: nextPrayer.name,
+            time: nextPrayer.time,
+            countdown: () =>
+              differenceInSeconds(
+                new Date(`${date.toDateString()} ${nextPrayer.time}`),
+                new Date()
+              ),
+          }
           : null,
       };
     };
-    
+
     const loadPrayerTimes = async () => {
       if (location) {
         // Fetch prayer times for yesterday, today, and tomorrow
@@ -209,7 +210,7 @@ function DateTimingDisplay() {
       }
     };
     loadPrayerTimes();
-  }, [currentDate, location,selectedMadhab]);
+  }, [currentDate, location, selectedMadhab]);
 
 
   useEffect(() => {
@@ -249,81 +250,83 @@ function DateTimingDisplay() {
         {/* Header with date tabs */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b-2 border-muted">
           <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
-            
-   <select
-        className=" mx-auto lg:w-28 w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
-        value={selectedMadhab}
-        onChange={(e) => setSelectedMadhab(e.target.value)}
-      >
-        <option
-          className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
-          value="Hanafi"
-        >
-          Hanafi
-        </option>
-        <option
-          className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
-          value="Shafi"
-        >
-          Shafi
-        </option>
-      </select>
 
-      
-      <div className="grid grid-cols-2 lg:gap-0 gap-3 ">
-        {/* Group 1: Yesterday and Today */}
-        <div className="flex flex-col sm:flex-row gap-2">
-          <button
-            className={`w-full sm:w-auto px-4 py-2 rounded-lg ${
-              activeIndex === 0
-                ? "bg-blue-400 text-white"
-                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-            }`}
-            onClick={() => {
-              setActiveIndex(0);
-              setCurrentDate((prevDate) => subDays(prevDate, 0));
-            }}
-          >
-            Yesterday
-          </button>
-          <button
-            className={`w-full sm:w-auto px-4 py-2 rounded-lg ${
-              activeIndex === 1
-                ? "bg-blue-400 text-white"
-                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-            }`}
-            onClick={() => {
-              setActiveIndex(1);
-              setCurrentDate(new Date());
-            }}
-          >
-            Today
-          </button>
-        </div>
+            <select
+              className=" mx-auto lg:w-28 w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
+              value={selectedMadhab}
+              onChange={(e) => setSelectedMadhab(e.target.value)}
+            >
+              <option
+                className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+                value="Hanafi"
+              >
+                Hanafi
+              </option>
+              <option
+                className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+                value="Shafi"
+              >
+                Shafi
+              </option>
+            </select>
 
-        {/* Group 2: Tomorrow and Monthly */}
-        <div className="flex flex-col sm:flex-row gap-2">
-          <button
-            className={`w-full sm:w-auto px-4 py-2 rounded-lg ${
-              activeIndex === 2
-                ? "bg-blue-400 text-white"
-                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-            }`}
-            onClick={() => {
-              setActiveIndex(2);
-              setCurrentDate((prevDate) => addDays(prevDate, 0));
-            }}
-          >
-            Tomorrow
-          </button>
-          <Link
-            href={"/monthly-namaz-timings"}
-            className="w-full sm:w-auto px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 hover:bg-blue-400 text-white transition ease-in duration-200 delay-100"
-          >
-            Monthly
-          </Link>
-        </div>
-      </div>
+
+            <div className="grid grid-cols-2 lg:gap-0 gap-3 ">
+              {/* Group 1: Yesterday and Today */}
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 0
+                    ? "bg-blue-400 text-white"
+                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(0);
+                    setCurrentDate((prevDate) => subDays(prevDate, 0));
+                  }}
+                >
+                  Yesterday
+                </button>
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 1
+                    ? "bg-blue-400 text-white"
+                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(1);
+                    setCurrentDate(new Date());
+                  }}
+                >
+                  Today
+                </button>
+              </div>
+
+              {/* Group 2: Tomorrow and Monthly */}
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 2
+                    ? "bg-blue-400 text-white"
+                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(2);
+                    setCurrentDate((prevDate) => addDays(prevDate, 0));
+                  }}
+                >
+                  Tomorrow
+                </button>
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3
+                    ? "bg-blue-400 text-white"
+                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(3);
+                  }}
+                >
+                  Monthly
+                </button>
+              </div>
+            </div>
           </div>
           <div className="lg:text-right text-center lg:pt-0 pt-3">
             <h2 className="text-xl font-semibold ">
@@ -339,7 +342,7 @@ function DateTimingDisplay() {
         </div>
 
         {/* Swiper for Prayer Times */}
-        <Swiper
+        {activeIndex !== 3 ? <Swiper
           spaceBetween={30}
           slidesPerView={1}
           onSlideChange={handleSlideChange}
@@ -351,8 +354,8 @@ function DateTimingDisplay() {
               <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 p-4">
                 {day?.prayers.map((prayer: { name: string; time: string; icon: any }, prayerIndex: number) => (
                   <div key={prayerIndex} className={`flex flex-col items-center justify-center py-4 rounded-lg 
-                  ${prayer.name === day?.nextPrayer?.name ?  "bg-blue-400 text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
-                    
+                  ${prayer.name === day?.nextPrayer?.name ? "bg-blue-400 text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
+
                     <div className="flex justify-between items-center mx-auto font-medium">
                       <div className="lg:pr-16 pr-8 text-lg">{prayer.name}</div>{prayer.icon} </div>
                     <p className="text-lg font-semibold pt-2">{prayer.time}</p>
@@ -364,7 +367,7 @@ function DateTimingDisplay() {
               </div>
             </SwiperSlide>
           ))}
-        </Swiper>
+        </Swiper> : <MonthlyNamazTimings/> }
       </div>
     </div>
   );

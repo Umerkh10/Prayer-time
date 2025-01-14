@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 const links = [
   { href: "/", label: "Home" },
   { href: "/countries", label: "Countries" },
-  { href: "/monthly-namaz-timings", label: "Monthly Namaz Timings" },
+  { href: "/islamic-calender", label: "Islamic Calender" },
   { href: "/duas", label: "Duas" },
   { href: "/about", label: "About us" },
   { href: "/contact", label: "Contact us" },
