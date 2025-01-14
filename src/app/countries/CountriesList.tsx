@@ -214,6 +214,8 @@ export default function CountriesList() {
   const [filteredCountries, setFilteredCountries] = useState<Country[]>([])
   const searchRef = useRef<HTMLDivElement>(null)
   const [isSearchFocused, setIsSearchFocused] = useState(false)
+  const [selectedCountry, setSelectedCountry] = useState<string>('') // New state
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -264,6 +266,7 @@ export default function CountriesList() {
     setSearchQuery('')
     setFilteredCountries([])
     setIsSearchFocused(false)
+    setSelectedCountry(countryName) // New state
     const element = document.getElementById(letter)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
@@ -343,10 +346,12 @@ export default function CountriesList() {
               <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white scale-90">{letter}</h2>
               <div className="grid gap-4">
                 {countries.map((country) => (
-                  <div
-                    key={country.code}
-                    className="flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200  hover:shadow-lg"
-                  >
+                 <div
+                 key={country.code}
+                 className={`flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200 hover:shadow-lg ${
+                   selectedCountry === country.name ? 'bg-gray-800 text-zinc-200 dark:bg-zinc-200 dark:text-zinc-900 border-blue-500 dark:border-blue-400' : ''
+                 }`}
+               >
                     <div className="flex items-center gap-4">
                       <img
                         src={`https://flagcdn.com/48x36/${country.code.toLowerCase()}.png`}
@@ -355,11 +360,11 @@ export default function CountriesList() {
                         className="w-8 h-6 rounded object-cover"
                       />
                       <div>
-                        <h3 className="font-medium text-gray-900 dark:text-white">{country.name}</h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">{country.offset}</p>
+                        <h3 className="font-medium text-sm ">{country.name}</h3>
+                        <p className="text-sm ">{country.offset}</p>
                       </div>
                     </div>
-                    <div className="text-base font-medium text-gray-900 dark:text-white">
+                    <div className="text-base font-medium ">
                       {formatTime(country.offset)}
                     </div>
                   </div>
