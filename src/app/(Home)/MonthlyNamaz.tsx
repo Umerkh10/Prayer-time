@@ -278,9 +278,9 @@ const MonthlyNamazTimings = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100  ${
+                className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-gray-200 dark:hover:bg-slate-900 hover:shadow-xl  ${
                   day.date === currentDate
-                    ? "bg-primary text-primary-foreground"
+                    ? "bg-primary text-primary-foreground hover:bg-blue-700 dark:hover:bg-blue-800"
                     : "even:bg-muted"
                 }`}
               >

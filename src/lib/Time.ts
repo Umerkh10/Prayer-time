@@ -1,12 +1,15 @@
-export function formatTime(offset: string): string {
-    const now = new Date()
-    const utc = now.getTime() + now.getTimezoneOffset() * 60000
-    const offsetMinutes = parseInt(offset.replace(':', '')) * 60
-    const localTime = new Date(utc + offsetMinutes * 60000)
-    
-    return localTime.toLocaleTimeString('en-US', {
+export function formatTime(timezone: string): string {
+  try {
+    const now = new Date();
+
+    return new Intl.DateTimeFormat('en-US', {
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true
-    })
+      hour12: true,
+      timeZone: timezone, // Timezone ensures exact offset
+    }).format(now);
+  } catch (error) {
+    console.error(`Invalid timezone: ${timezone}`, error);
+    return 'Invalid timezone';
   }
+}

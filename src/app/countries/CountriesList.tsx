@@ -1,8 +1,11 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { ChevronRight } from 'lucide-react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { ChevronRight, Search, X } from 'lucide-react'
 import { Country } from '@/lib/country'
 import { formatTime } from '@/lib/Time'
+import { Button } from '@/components/ui/button'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Input } from '@/components/ui/input'
 
 const countries = [
     { name: 'Afghanistan', code: 'AF', timezone: 'Asia/Kabul', offset: '+04:30' },
@@ -44,7 +47,6 @@ const countries = [
     { name: 'China', code: 'CN', timezone: 'Asia/Shanghai', offset: '+08:00' },
     { name: 'Colombia', code: 'CO', timezone: 'America/Bogota', offset: '-05:00' },
     { name: 'Comoros', code: 'KM', timezone: 'Indian/Comoro', offset: '+03:00' },
-    { name: 'Congo (Congo-Brazzaville)', code: 'CG', timezone: 'Africa/Brazzaville', offset: '+01:00' },
     { name: 'Congo (Democratic Republic of the Congo)', code: 'CD', timezone: 'Africa/Kinshasa', offset: '+01:00' },
     { name: 'Costa Rica', code: 'CR', timezone: 'America/Costa_Rica', offset: '-06:00' },
     { name: 'Croatia', code: 'HR', timezone: 'Europe/Zagreb', offset: '+01:00' },
@@ -94,8 +96,7 @@ const countries = [
     { name: 'Kazakhstan', code: 'KZ', timezone: 'Asia/Almaty', offset: '+06:00' },
     { name: 'Kenya', code: 'KE', timezone: 'Africa/Nairobi', offset: '+03:00' },
     { name: 'Kiribati', code: 'KI', timezone: 'Pacific/Tarawa', offset: '+12:00' },
-    { name: 'Korea (North)', code: 'KP', timezone: 'Asia/Pyongyang', offset: '+09:00' },
-    { name: 'Korea (South)', code: 'KR', timezone: 'Asia/Seoul', offset: '+09:00' },
+    { name: 'North Korea ', code: 'KP', timezone: 'Asia/Pyongyang', offset: '+09:00' },
     { name: 'Kuwait', code: 'KW', timezone: 'Asia/Kuwait', offset: '+03:00' },
     { name: 'Kyrgyzstan', code: 'KG', timezone: 'Asia/Bishkek', offset: '+06:00' },
     { name: 'Laos', code: 'LA', timezone: 'Asia/Vientiane', offset: '+07:00' },
@@ -209,12 +210,41 @@ const countries = [
 export default function CountriesList() {
   const [time, setTime] = useState<Date>(new Date())
   const [selectedLetter, setSelectedLetter] = useState<string>('A')
+  const [searchQuery, setSearchQuery] = useState<string>('')
+  const [filteredCountries, setFilteredCountries] = useState<Country[]>([])
+  const searchRef = useRef<HTMLDivElement>(null)
+  const [isSearchFocused, setIsSearchFocused] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date())
     }, 1000)
     return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchFocused(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+
+  const handleSearch = useCallback((query: string) => {
+    setSearchQuery(query)
+    if (query.trim() === '') {
+      setFilteredCountries([])
+    } else {
+      const filtered = countries.filter(country =>
+        country.name.toLowerCase().includes(query.toLowerCase())
+      )
+      setFilteredCountries(filtered)
+    }
   }, [])
 
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZÅ'.split('')
@@ -228,76 +258,137 @@ export default function CountriesList() {
     return acc
   }, {} as Record<string, Country[]>)
 
+  const handleCountryClick = (countryName: string) => {
+    const letter = countryName[0].toUpperCase()
+    setSelectedLetter(letter)
+    setSearchQuery('')
+    setFilteredCountries([])
+    setIsSearchFocused(false)
+    const element = document.getElementById(letter)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <div className=" ">
-      <div className="container mx-auto px-4 py-8">
-        {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 mb-8 text-sm">
-          <a href="#" className="text-gray-400 hover:text-gray-300">Home</a>
-          <ChevronRight className="w-4 h-4 text-gray-600" />
-          <span className="text-gray-300">Countries</span>
-        </nav>
+    <div className="  ">
+    <div className="container mx-auto px-4 py-8">
+      {/* Breadcrumb */}
+      <nav className="flex items-center space-x-2 mb-8 text-sm">
+        <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">Home</a>
+        <ChevronRight className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+        <span className="text-gray-900 dark:text-gray-100">Countries</span>
+      </nav>
 
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">Country</h1>
-          <p className="text-gray-400">Discover accurate prayer timings for countries worldwide.</p>
+      {/* Header */}
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Country</h1>
+        <p className="text-gray-600 dark:text-gray-400">Discover accurate prayer timings for countries worldwide.</p>
+      </div>
+
+      {/* Search input */}
+      <div className="mb-8 relative" ref={searchRef}>
+        <div className="relative">
+          <Input
+            type="text"
+            placeholder="Search for a country..."
+            value={searchQuery}
+            onChange={(e) => handleSearch(e.target.value)}
+            onFocus={() => setIsSearchFocused(true)}
+            className="w-full pl-10 pr-10"
+          />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          {searchQuery && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              onClick={() => handleSearch('')}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
         </div>
+        {isSearchFocused && filteredCountries.length > 0 && (
+          <div className="absolute z-10 w-full mt-1 bg-white dark:bg-gray-800 rounded-md shadow-lg">
+            <ScrollArea className="h-64">
+              {filteredCountries.map((country) => (
+                <div
+                  key={country.code}
+                  className="flex items-center gap-4 p-3 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                  onClick={() => handleCountryClick(country.name)}
+                >
+                  <img
+                    src={`https://flagcdn.com/48x36/${country.code.toLowerCase()}.png`}
+                    alt={`${country.name} flag`}
+                    className="w-8 h-6 object-cover rounded"
+                  />
+                  <div>
+                    <h3 className="font-medium text-gray-900 dark:text-white">{country.name}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{country.offset}</p>
+                  </div>
+                </div>
+              ))}
+            </ScrollArea>
+          </div>
+        )}
+      </div>
 
-        {/* Main content */}
-        <div className="flex gap-8">
-          {/* Countries list */}
-          <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
-            {Object.entries(groupedCountries).map(([letter, countries]) => (
-              <div key={letter} id={letter} className="mb-8">
-                <h2 className="text-2xl font-bold mb-4">{letter}</h2>
-                <div className="grid gap-4">
-                  {countries.map((country) => (
-                    <div
-                      key={country.code}
-                      className="flex items-center justify-between bg-gray-200 dark:bg-transparent border border-muted rounded-lg p-4"
-                    >
-                      <div className="flex items-center gap-4">
-                        <img
-                          src={`https://flagcdn.com/48x36/${country.code.toLowerCase()}.png`}
-                          alt={`${country.name} flag`}
-                          className="w-8 h-8 rounded-full object-cover"
-                        />
-                        <div>
-                          <h3 className="font-medium">{country.name}</h3>
-                          <p className="text-sm text-gray-400">{country.offset}</p>
-                        </div>
-                      </div>
-                      <div className="text-lg font-medium">
-                        {formatTime(country.offset)}
+      {/* Main content */}
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Countries list */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 flex-grow">
+          {Object.entries(groupedCountries).map(([letter, countries]) => (
+            <div key={letter} id={letter} className="mb-8">
+              <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white scale-90">{letter}</h2>
+              <div className="grid gap-4">
+                {countries.map((country) => (
+                  <div
+                    key={country.code}
+                    className="flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200  hover:shadow-lg"
+                  >
+                    <div className="flex items-center gap-4">
+                      <img
+                        src={`https://flagcdn.com/48x36/${country.code.toLowerCase()}.png`}
+                        alt={`${country.name} flag`}
+                        loading='eager'
+                        className="w-8 h-6 rounded object-cover"
+                      />
+                      <div>
+                        <h3 className="font-medium text-gray-900 dark:text-white">{country.name}</h3>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">{country.offset}</p>
                       </div>
                     </div>
-                  ))}
-                </div>
+                    <div className="text-base font-medium text-gray-900 dark:text-white">
+                      {formatTime(country.offset)}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-
-          {/* Alphabet navigation */}
-          <div className=" top-8 h-fit scale-90">
-            <div className="flex flex-col items-center bg-gray-200 dark:bg-gray-900 rounded-lg py-2">
-              {alphabet.map((letter) => (
-                <a
-                  key={letter}
-                  href={`#${letter}`}
-                  className={`p-2 text-sm hover:text-blue-400 transition-colors ${
-                    selectedLetter === letter ? 'text-blue-500' : 'text-gray-400'
-                  }`}
-                  onClick={() => setSelectedLetter(letter)}
-                >
-                  {letter}
-                </a>
-              ))}
             </div>
+          ))}
+        </div>
+
+        {/* Alphabet navigation */}
+        <div className="sticky h-fit   scale-95 lg:block hidden">
+          <div className="flex lg:flex-col items-center justify-center lg:justify-start bg-white dark:bg-gray-800 rounded-lg p-2 shadow-md">
+            {alphabet.map((letter) => (
+              <a
+                key={letter}
+                href={`#${letter}`}
+                className={`p-2 text-sm hover:text-blue-500 transition-colors ${
+                  selectedLetter === letter ? 'text-blue-500 font-bold' : 'text-gray-500 dark:text-gray-400'
+                }`}
+                onClick={() => setSelectedLetter(letter)}
+              >
+                {letter}
+              </a>
+            ))}
           </div>
         </div>
       </div>
     </div>
+  </div>
   )
 }
 
