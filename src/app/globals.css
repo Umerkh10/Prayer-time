@@ -146,3 +146,11 @@ body {
   transition: color 0.3s ease; /* Smooth transition for color change */
 
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

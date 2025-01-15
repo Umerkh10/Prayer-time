@@ -6,6 +6,7 @@ import { formatTime } from '@/lib/Time'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
+import Link from 'next/link'
 
 const countries = [
     { name: 'Afghanistan', code: 'AF', timezone: 'Asia/Kabul', offset: '+04:30' },
@@ -345,11 +346,13 @@ export default function CountriesList() {
             <div key={letter} id={letter} className="mb-8">
               <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white scale-90">{letter}</h2>
               <div className="grid gap-4">
+             
                 {countries.map((country) => (
-                 <div
-                 key={country.code}
+                
+                <Link href={`/countries/${country.name.toLowerCase()}`} key={country.code}>
+                <div
                  className={`flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200 hover:shadow-lg ${
-                   selectedCountry === country.name ? 'bg-gray-800 text-zinc-200 dark:bg-zinc-200 dark:text-zinc-900 border-blue-500 dark:border-blue-400' : ''
+                   selectedCountry === country.name ? 'text-blue-50 bg-slate-800 dark:bg-slate-100 dark:text-slate-950  border-blue-500 dark:border-blue-400' : ''
                  }`}
                >
                     <div className="flex items-center gap-4">
@@ -368,6 +371,7 @@ export default function CountriesList() {
                       {formatTime(country.offset)}
                     </div>
                   </div>
+                  </Link>
                 ))}
               </div>
             </div>
