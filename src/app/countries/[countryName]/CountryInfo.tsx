@@ -11,7 +11,7 @@ interface CountryInfoProps {
   timezone: string
 }
 
-export function CountryInfo({ name, flagUrl, timezone }: CountryInfoProps) {
+export function CountryInfo({ name, timezone }: CountryInfoProps) {
   const [time, setTime] = useState<string>("")
   
   useEffect(() => {
@@ -35,15 +35,15 @@ export function CountryInfo({ name, flagUrl, timezone }: CountryInfoProps) {
     <Card className="w-full">
       <CardContent className="flex items-center gap-4 p-4">
         <div className="flex items-center gap-4">
-          <img
+          {/* <img
             src={flagUrl || "/placeholder.svg"}
             alt={`${name} flag`}
             width={60}
             height={40}
             className="rounded shadow-sm"
-          />
+          /> */}
           <div>
-            <h1 className="text-2xl font-bold">{name}</h1>
+            <h1 className="text-2xl font-bold capitalize">{name}</h1>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Clock className="h-4 w-4" />
               <span>{time}</span>

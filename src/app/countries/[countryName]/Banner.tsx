@@ -8,7 +8,7 @@ export function Banner({ image }: BannerProps) {
   return (
     <div className="relative h-[400px] overflow-hidden">
       <Image
-        src={image || "/placeholder.svg"}
+        src={image || "/banner-countries.webp"}
         alt="Country banner"
         fill
         className="object-cover"

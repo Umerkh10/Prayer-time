@@ -19,7 +19,7 @@ interface City {
 }
 
 interface PrayerTimesTableProps {
-  cities: City[]
+  city: City[]
 }
 
 const prayerIcons = {
@@ -31,12 +31,13 @@ const prayerIcons = {
   isha: Moon,
 }
 
-export function PrayerTimesTable({ cities }: PrayerTimesTableProps) {
+export function PrayerTimesTable({ city }: PrayerTimesTableProps) {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {cities.map((city) => (
+    {Array.isArray(city) && city.length > 0 ? (
+      city.map((city) => (
         <Card key={city.name} className="overflow-hidden hover:shadow-lg transition-shadow">
-          <Link href={`/${(city.name.toLowerCase())}`} className="block h-full">
+          <Link href={`/${city.name.toLowerCase()}`} className="block h-full">
             <CardHeader className="bg-primary text-zinc-100 p-4">
               <CardTitle className="text-xl font-bold">{city.name}</CardTitle>
             </CardHeader>
@@ -53,8 +54,11 @@ export function PrayerTimesTable({ cities }: PrayerTimesTableProps) {
             </CardContent>
           </Link>
         </Card>
-      ))}
-    </div>
+      ))
+    ) : (
+      <p>No cities available.</p>
+    )}
+  </div>
   )
 }
 
