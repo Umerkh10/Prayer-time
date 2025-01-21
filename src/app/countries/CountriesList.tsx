@@ -38,7 +38,6 @@ const countries = [
     { name: 'Bulgaria', code: 'BG', timezone: 'Europe/Sofia', offset: '+02:00' },
     { name: 'Burkina Faso', code: 'BF', timezone: 'Africa/Ouagadougou', offset: '+00:00' },
     { name: 'Burundi', code: 'BI', timezone: 'Africa/Bujumbura', offset: '+02:00' },
-    { name: 'Cabo Verde', code: 'CV', timezone: 'Atlantic/Cape_Verde', offset: '-01:00' },
     { name: 'Cambodia', code: 'KH', timezone: 'Asia/Phnom_Penh', offset: '+07:00' },
     { name: 'Cameroon', code: 'CM', timezone: 'Africa/Douala', offset: '+01:00' },
     { name: 'Canada', code: 'CA', timezone: 'America/Toronto', offset: '-08:00' },
@@ -48,7 +47,6 @@ const countries = [
     { name: 'China', code: 'CN', timezone: 'Asia/Shanghai', offset: '+08:00' },
     { name: 'Colombia', code: 'CO', timezone: 'America/Bogota', offset: '-05:00' },
     { name: 'Comoros', code: 'KM', timezone: 'Indian/Comoro', offset: '+03:00' },
-    { name: 'Congo (Democratic Republic of the Congo)', code: 'CD', timezone: 'Africa/Kinshasa', offset: '+01:00' },
     { name: 'Costa Rica', code: 'CR', timezone: 'America/Costa_Rica', offset: '-06:00' },
     { name: 'Croatia', code: 'HR', timezone: 'Europe/Zagreb', offset: '+01:00' },
     { name: 'Cuba', code: 'CU', timezone: 'America/Havana', offset: '-05:00' },
@@ -349,7 +347,7 @@ export default function CountriesList() {
              
                 {countries.map((country) => (
                 
-                <Link href={`/countries/${country.name.toLowerCase()}`} key={country.code}>
+                <Link target='_blank' href={`/countries/${country.name.toLowerCase()}`} key={country.code}>
                 <div
                  className={`flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200 hover:shadow-lg ${
                    selectedCountry === country.name ? 'text-blue-50 bg-slate-800 dark:bg-slate-100 dark:text-slate-950  border-blue-500 dark:border-blue-400' : ''
@@ -363,7 +361,8 @@ export default function CountriesList() {
                         className="w-8 h-6 rounded object-cover"
                       />
                       <div>
-                        <h3 className="font-medium text-sm ">{country.name}</h3>
+                        <h3 className="font-medium text-sm ">{country.name
+                          }</h3>
                         <p className="text-sm ">{country.offset}</p>
                       </div>
                     </div>
