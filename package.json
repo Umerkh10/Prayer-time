@@ -40,7 +40,8 @@
     "react-slick": "^0.30.3",
     "react-swipeable": "^7.0.2",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "wft-geodb-js-client": "^2.0.3"
   },
   "devDependencies": {
     "@types/moment-hijri": "^2.1.4",

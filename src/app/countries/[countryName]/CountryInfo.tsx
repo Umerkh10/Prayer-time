@@ -12,7 +12,7 @@ type CountryInfoProps = {
 
 export function CountryInfo({ name, flagUrl, timezone, time }: CountryInfoProps) {
   return (
-    <Card className="w-full">
+    <Card className="w-full bg-transparent shadow-lg border border-muted-foreground">
       <CardContent className="flex items-center gap-4 p-4">
         <div className="flex items-center gap-4">
           <img
@@ -24,7 +24,7 @@ export function CountryInfo({ name, flagUrl, timezone, time }: CountryInfoProps)
           />
           <div>
             <h1 className="text-2xl font-bold capitalize">{name}</h1>
-            <div className="flex items-center gap-2 text-muted-foreground">
+            <div className="flex items-center gap-1 space-y-1 text-muted-foreground">
               <Clock className="h-4 w-4" />
               <span>{time}</span>
               <span className="text-sm">({timezone})</span>
