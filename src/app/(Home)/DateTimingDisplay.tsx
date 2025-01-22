@@ -1,191 +1,380 @@
 "use client";
+import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { addDays, subDays, formatDistanceToNow } from "date-fns";
+import { PrayerTimes, Coordinates, CalculationMethod, Madhab, CalculationParameters } from "adhan";
+import "swiper/css";
+import "swiper/css/navigation";
+import { CloudSun, CloudSunRainIcon, Divide, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMedium, SunMediumIcon, SunriseIcon, Sunset } from "lucide-react";
+import moment from "moment-hijri";
+import Link from "next/link";
+import MonthlyNamazTimings from "./MonthlyNamaz";
 
-import { useEffect, useState } from "react";
-import {
-  PrayerTimes,
-  CalculationMethod,
-  Madhab,
-  CalculationParameters,
-} from "adhan";
+function DateTimingDisplay() {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [prayerTimes, setPrayerTimes] = useState<any[]>([]);
+  const [activeIndex, setActiveIndex] = useState(1);
+  const [location, setLocation] = useState<any>(null);
+  const [city, setCity] = useState<string | null>(null);
+  const [country, setCountry] = useState<string | null>(null);
+  const [nextPrayerCountdown, setNextPrayerCountdown] = useState<string | null>(null);
+  const [timeZone, setTimeZone] = useState<string>("UTC");
+  const [currentTime, setCurrentTime] = useState<Date>(new Date());
+  const [selectedMadhab, setSelectedMadhab] = useState("Shafi");
 
-interface PrayerTime {
-  fajr: string;
-  sunrise: string;
-  dhuhr: string;
-  asr: string;
-  maghrib: string;
-  isha: string;
-  current?: string; // To track the current prayer
-}
 
-interface City {
-  name: string;
-  latitude: number;
-  longitude: number;
-}
 
-interface PrayerTimesTableProps {
-  country: string; // Country name as a string
-}
 
-const prayerIcons = {
-  fajr: "Fajr",
-  sunrise: "Sunrise",
-  dhuhr: "Dhuhr",
-  asr: "Asr",
-  maghrib: "Maghrib",
-  isha: "Isha",
-};
+  useEffect(() => {
+    const fetchLocation = async () => {
+      try {
+        const response = await fetch(
+          `https://pro.ip-api.com/json/?key=kHg84ht9eNasCRN&fields=lat,lon,city,country,timezone`, { cache: "reload" }
+        );
+        const { lat, lon, city, country, timezone } = await response.json();
 
-// Static list of cities with their locations
-const citiesByCountry: { [key: string]: City[] } = {
-  Pakistan: [
-    { name: "Karachi", latitude: 24.8607, longitude: 67.0011 },
-    { name: "Lahore", latitude: 31.5497, longitude: 74.3436 },
-    { name: "Islamabad", latitude: 33.6844, longitude: 73.0479 },
-  ],
-  "United States": [
-    { name: "New York", latitude: 40.7128, longitude: -74.006 },
-    { name: "Los Angeles", latitude: 34.0522, longitude: -118.2437 },
-    { name: "Chicago", latitude: 41.8781, longitude: -87.6298 },
-  ],
-  "Saudi Arabia": [
-    { name: "Riyadh", latitude: 24.7136, longitude: 46.6753 },
-    { name: "Mecca", latitude: 21.3891, longitude: 39.8579 },
-    { name: "Medina", latitude: 24.5247, longitude: 39.5692 },
-  ],
-};
+        setLocation(new Coordinates(lat, lon));
+        setCity(city);
+        setCountry(country);
+        setTimeZone(timezone); // Update the current timezone
+      } catch (error: any) {
+        console.error("Error fetching location data:", error.message);
+      }
+    };
 
-const getCalculationMethod = (country: string): CalculationParameters => {
-  switch (country) {
-    case "Pakistan":
+    fetchLocation();
+  }, []);
+
+
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer); // Cleanup on unmount
+  }, []);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation(new Coordinates(latitude, longitude));
+      },
+      (error) => console.error("Error fetching location", error)
+    );
+  }, []);
+
+  // useEffect(() => {
+  const getCalculationMethod = (country: string) => {
+    if (country === "Pakistan") {
       return CalculationMethod.Karachi();
-    case "United States":
-    case "Germany":
+    } else if (country === "United States") {
       return CalculationMethod.NorthAmerica();
-    case "United Kingdom":
+    } else if (country === "Germany") {
+      return CalculationMethod.NorthAmerica();
+    } else if (country === "United Kingdom") {
       return CalculationMethod.MuslimWorldLeague();
-    case "Saudi Arabia":
+    } else if (country === "Saudi Arabia") {
       return CalculationMethod.UmmAlQura();
-    case "Egypt":
+    } else if (country === "Egypt") {
       return CalculationMethod.Egyptian();
-    case "Singapore":
+    } else if (country === "Singapore") {
       return CalculationMethod.Singapore();
-    case "Kuwait":
+    } else if (country === "Kuwait") {
       return CalculationMethod.Kuwait();
-    case "Iran":
+    } else if (country === "Iran") {
       return CalculationMethod.Tehran();
-    case "Turkey":
+    } else if (country === "Turkey") {
       return CalculationMethod.Turkey();
-    case "Dubai":
+    } else if (country === "Dubai") {
       return CalculationMethod.Dubai();
-    default:
+    } else {
       return CalculationMethod.MuslimWorldLeague();
-  }
-};
-
-export function PrayerTimesTable({ country }: PrayerTimesTableProps) {
-  const [cities, setCities] = useState<City[]>([]);
-  const [prayerTimes, setPrayerTimes] = useState<Record<string, PrayerTime>>({});
-  const [selectedMadhab, setSelectedMadhab] = useState<typeof Madhab.Shafi>(Madhab.Shafi);
-  const [error, setError] = useState<string | null>(null);
-
-  const calculatePrayerTimes = () => {
-    const cityList = citiesByCountry[country];
-    if (!cityList) {
-      setError(`No cities available for ${country}.`);
-      return;
     }
+  };
 
-    const now = new Date();
-    const calculationMethod = getCalculationMethod(country);
-    calculationMethod.madhab = selectedMadhab;
+  const params = getCalculationMethod(country as any);
+  // }, []);
 
-    const times = cityList.reduce((acc, city) => {
-      const prayerTimes = new PrayerTimes(
-        { latitude: city.latitude, longitude: city.longitude },
-        now,
-        calculationMethod
-      );
 
-      const formatTime = (time: Date) =>
+  useEffect(() => {
+    const fetchPrayerTimes = (date: Date) => {
+      if (!location) return null;
+
+      // Dynamically determine the calculation method
+      const calculationMethod = getCalculationMethod(location.country); // Based on user's country
+
+      // Ensure madhab is selected correctly and pass it
+      const madhab = selectedMadhab === "Shafi" ? Madhab.Shafi : Madhab.Hanafi;
+      const nightPortions = () => {
+        return {
+          fajr: 1.0,  // Adjust this value based on your logic
+          isha: 1.0,  // Adjust this value based on your logic
+        };
+      };
+
+      // Ensure that nightPortions is included in the params
+      const params: CalculationParameters = {
+        ...calculationMethod,
+        madhab,
+        nightPortions,  // Pass the function
+      };
+
+      const prayerTimeObj = new PrayerTimes(location, date, params);
+
+      // Function to format time
+      const formatTime = (time: Date, timeZone: string) =>
         time.toLocaleTimeString("en-US", {
           hour: "2-digit",
           minute: "2-digit",
           hour12: true,
+          timeZone: timeZone,
         });
 
-      acc[city.name] = {
-        fajr: formatTime(prayerTimes.fajr),
-        sunrise: formatTime(prayerTimes.sunrise),
-        dhuhr: formatTime(prayerTimes.dhuhr),
-        asr: formatTime(prayerTimes.asr),
-        maghrib: formatTime(prayerTimes.maghrib),
-        isha: formatTime(prayerTimes.isha),
-        current: prayerTimes.currentPrayer(now) || undefined,
+      // Define prayer times and icons
+      const prayers = [
+        {
+          name: "Fajr",
+          time: formatTime(prayerTimeObj.fajr, timeZone || "UTC"), // Fallback to UTC
+          isActive: false,
+          icon: <CloudSun className="w-5 h-5 " />,
+        },
+        {
+          name: "Sunrise",
+          time: formatTime(prayerTimeObj.sunrise, timeZone || "UTC"),
+          isActive: false,
+          icon: <SunriseIcon className="w-5 h-5 " />,
+        },
+        {
+          name: "Dhuhr",
+          time: formatTime(prayerTimeObj.dhuhr, timeZone || "UTC"),
+          isActive: false,
+          icon: <SunDimIcon className="w-5 h-5 " />,
+        },
+        {
+          name: "Asr",
+          time: formatTime(prayerTimeObj.asr, timeZone || "UTC"),
+          isActive: false,
+          icon: <SunMediumIcon className="w-5 h-5 " />,
+        },
+        {
+          name: "Maghrib",
+          time: formatTime(prayerTimeObj.maghrib, timeZone || "UTC"),
+          isActive: false,
+          icon: <LucideSunset className="w-5 h-5 " />,
+        },
+        {
+          name: "Isha",
+          time: formatTime(prayerTimeObj.isha, timeZone || "UTC"),
+          isActive: false,
+          icon: <MoonStarIcon className="w-5 h-5 " />,
+        },
+      ];
+
+      // Determine the next prayer
+      const now = new Date();
+      const nextPrayer = prayers.find((prayer) => {
+        const prayerTime = new Date(`${date.toDateString()} ${prayer.time}`);
+        return prayerTime > now;
+      });
+
+      return {
+        date: {
+          gregorian: date.toDateString(),
+          hijri: moment(date).locale("en").format("iD iMMMM, iYYYY"), // Replace with Hijri date logic if needed
+        },
+        prayers,
+        location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
+        nextPrayer: nextPrayer
+          ? {
+            name: nextPrayer.name,
+            time: nextPrayer.time,
+            countdown: () =>
+              differenceInSeconds(
+                new Date(`${date.toDateString()} ${nextPrayer.time}`),
+                new Date()
+              ),
+          }
+          : null,
       };
+    };
 
-      return acc;
-    }, {} as Record<string, PrayerTime>);
+    const loadPrayerTimes = async () => {
+      if (location) {
+        // Fetch prayer times for yesterday, today, and tomorrow
+        const yesterday = fetchPrayerTimes(subDays(currentDate, 1));
+        const today = fetchPrayerTimes(currentDate);
+        const tomorrow = fetchPrayerTimes(addDays(currentDate, 1));
+        setPrayerTimes([yesterday, today, tomorrow]);
+      }
+    };
+    loadPrayerTimes();
+  }, [currentDate, location, selectedMadhab]);
 
-    setCities(cityList);
-    setPrayerTimes(times);
-    setError(null); // Clear error if previously set
-  };
 
   useEffect(() => {
-    calculatePrayerTimes();
-  }, [country, selectedMadhab]);
+    const interval = setInterval(() => {
+      const nextPrayer = prayerTimes[activeIndex]?.nextPrayer;
+      if (nextPrayer) {
+        const countdownInSeconds = nextPrayer.countdown();
+        if (countdownInSeconds > 0) {
+          const hours = Math.floor(countdownInSeconds / 3600);
+          const minutes = Math.floor((countdownInSeconds % 3600) / 60);
+          const seconds = countdownInSeconds % 60;
+          setNextPrayerCountdown(`${hours}h ${minutes}m ${seconds}s`);
+        } else {
+          setNextPrayerCountdown(null);
+        }
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [prayerTimes, activeIndex]);
 
-  if (error) {
-    return <div className="text-red-500">{error}</div>;
-  }
+  // Handle Swiper slide changes
+  const handleSlideChange = (swiper: any) => {
+    const { activeIndex } = swiper;
+    if (activeIndex === 0) {
+      setCurrentDate(subDays(currentDate, 1));
+      swiper.slideTo(1, 0);
+    } else if (activeIndex === 2) {
+      setCurrentDate(addDays(currentDate, 1));
+      swiper.slideTo(1, 0);
+    }
+    setActiveIndex(1); // Reset to center
+  };
 
   return (
-    <div>
-      {/* Madhab Selection */}
-      <div className="mb-4">
-        <label htmlFor="madhab" className="block text-sm font-medium">
-          Select Madhab:
-        </label>
-        <select
-          id="madhab"
-          className="mt-1 block w-full rounded-lg border px-3 py-2"
-          value={selectedMadhab}
-          onChange={(e) =>
-            setSelectedMadhab(
-              e.target.value === "Shafi" ? Madhab.Shafi : Madhab.Hanafi
-            )
-          }
-        >
-          <option value="Shafi">Shafi</option>
-          <option value="Hanafi">Hanafi</option>
-        </select>
-      </div>
+    <div className="relative max-w-screen-xl mx-auto z-10 -mt-16">
+      <div className="mx-auto w-[90%] lg:w-[95%] py-3 bg-slate-50 dark:bg-background rounded-xl shadow-lg px-2 border border-muted">
+        {/* Header with date tabs */}
+        <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b-2 border-muted">
+          <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
 
-      {/* Prayer Times */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {cities.map((city) => (
-          <div key={city.name} className="p-4 border rounded-lg shadow">
-            <h3 className="text-lg font-bold">{city.name}</h3>
-            <ul className="mt-2">
-              {Object.entries(prayerIcons).map(([prayer, label]) => (
-                <li
-                  key={prayer}
-                  className={`${
-                    prayerTimes[city.name]?.current === prayer
-                      ? "text-blue-500 font-bold"
-                      : ""
-                  }`}
+            <select
+              className=" mx-auto lg:w-28 w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
+              value={selectedMadhab}
+              onChange={(e) => setSelectedMadhab(e.target.value)}
+            >
+              <option
+                className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+                value="Hanafi"
+              >
+                Hanafi
+              </option>
+              <option
+                className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+                value="Shafi"
+              >
+                Shafi
+              </option>
+            </select>
+
+
+            <div className="grid grid-cols-2 lg:gap-0 gap-3 ">
+              {/* Group 1: Yesterday and Today */}
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 0
+                    ? "bg-blue-400 text-white"
+                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(0);
+                    setCurrentDate((prevDate) => subDays(prevDate, 0));
+                  }}
                 >
-                  <strong>{label}: </strong>
-                  {prayerTimes[city.name]?.[prayer as keyof PrayerTime]}
-                </li>
-              ))}
-            </ul>
+                  Yesterday
+                </button>
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 1
+                    ? "bg-blue-400 text-white"
+                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(1);
+                    setCurrentDate(new Date());
+                  }}
+                >
+                  Today
+                </button>
+              </div>
+
+              {/* Group 2: Tomorrow and Monthly */}
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 2
+                    ? "bg-blue-400 text-white"
+                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(2);
+                    setCurrentDate((prevDate) => addDays(prevDate, 0));
+                  }}
+                >
+                  Tomorrow
+                </button>
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3
+                    ? "bg-blue-400 text-white"
+                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(3);
+                  }}
+                >
+                  Monthly
+                </button>
+              </div>
+            </div>
           </div>
-        ))}
+          <div className="lg:text-right text-center lg:pt-0 pt-3">
+            <h2 className="text-xl font-semibold ">
+              {country ? `${city}, ${country}` : "Loading..."}
+            </h2>
+            <p className="font-medium ">
+              {prayerTimes[activeIndex]?.date.hijri || ""}
+            </p>
+            <p className="font-semibold text-lg ">
+              {prayerTimes[activeIndex]?.date.gregorian || ""}
+            </p>
+          </div>
+        </div>
+
+        {/* Swiper for Prayer Times */}
+        {activeIndex !== 3 ? <Swiper
+          spaceBetween={30}
+          slidesPerView={1}
+          onSlideChange={handleSlideChange}
+          initialSlide={1}
+          className="w-full"
+        >
+          {prayerTimes.map((day, index) => (
+            <SwiperSlide key={index}>
+              <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 p-4">
+                {day?.prayers.map((prayer: { name: string; time: string; icon: any }, prayerIndex: number) => (
+                  <div key={prayerIndex} className={`flex flex-col items-center justify-center py-4 rounded-lg 
+                  ${prayer.name === day?.nextPrayer?.name ? "bg-blue-400 text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
+
+                    <div className="flex justify-between items-center mx-auto font-medium">
+                      <div className="lg:pr-16 pr-8 text-lg">{prayer.name}</div>{prayer.icon} </div>
+                    <p className="text-lg font-semibold pt-2">{prayer.time}</p>
+                    {prayer.name === day?.nextPrayer?.name && nextPrayerCountdown && (
+                      <p className="text-sm ">{nextPrayerCountdown}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper> : <MonthlyNamazTimings/> }
       </div>
     </div>
   );
+}
+
+export default DateTimingDisplay;
+
+function differenceInSeconds(date1: Date, date2: Date): number {
+  return Math.floor((date1.getTime() - date2.getTime()) / 1000);
 }
