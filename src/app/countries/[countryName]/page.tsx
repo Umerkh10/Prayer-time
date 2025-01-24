@@ -18,10 +18,8 @@ type CityPrayerTimes = {
   };
 };
 interface PrayerTimesTableProps {
-
-  country: CountryData;
-  timezones: string[];
-
+  country: string;
+  timezone: string;
 }
 
 type CountryData = {
@@ -34,6 +32,12 @@ type CountryData = {
 };
 
 const timezoneMapping: { zone: string; utc: string; name: string }[] = [
+  { zone: "Asia/Baku", utc: "(GMT+04:00)", name: "Azerbaijan" },
+  { zone: "Asia/Yerevan", utc: "(GMT+04:00)", name: "Armenia" },
+  { zone: "America/Antigua", utc: "(GMT-04:00)", name: "Antigua and Barbuda" },
+  { zone: "Europe/Andorra", utc: "(GMT+01:00)", name: "Andorra" },
+  { zone: "Pacific/Pago_Pago", utc: "(GMT-11:00)", name: "American Samoa" },
+  { zone: "Europe/Tirane", utc: "(GMT+01:00)", name: "Albania" },
   { zone: "Pacific/Midway", utc: "(GMT-11:00)", name: "Midway Island" },
   { zone: "US/Samoa", utc: "(GMT-11:00)", name: "Samoa" },
   { zone: "US/Hawaii", utc: "(GMT-10:00)", name: "Hawaii" },
@@ -339,6 +343,9 @@ export default function CountryPage() {
         } else if (data[0].name.common === "Saudi Arabia") {
           mappedTimezone = "Asia/Riyadh";
           countryData.timezones = ["Asia/Riyadh"];
+        } else if (data[0].name.common === "United Arab Emirates") {
+          mappedTimezone = "Asia/Dubai";
+          countryData.timezones = ["Asia/Dubai"];
         } else if (data[0].name.common === "Turkey") {
           mappedTimezone = "Europe/Istanbul";
           countryData.timezones = ["Europe/Istanbul"];
@@ -811,16 +818,33 @@ export default function CountryPage() {
           mappedTimezone = "Europe/Vatican";
           countryData.timezones = ["Europe/Vatican"];
         }
-
         else if (data[0].name.common === "Venezuela") {
           mappedTimezone = "America/Caracas";
           countryData.timezones = ["America/Caracas"];
         }
-
         else if (data[0].name.common === "Yemen") {
           mappedTimezone = "Asia/Aden";
           countryData.timezones = ["Asia/Aden"];
         }
+        else if (data[0].name.common === "Azerbaijan") {
+          mappedTimezone = "Asia/Baku";
+          countryData.timezones = ["Asia/Baku"];
+      } else if (data[0].name.common === "Armenia") {
+          mappedTimezone = "Asia/Yerevan";
+          countryData.timezones = ["Asia/Yerevan"];
+      } else if (data[0].name.common === "Antigua and Barbuda") {
+          mappedTimezone = "America/Antigua";
+          countryData.timezones = ["America/Antigua"];
+      } else if (data[0].name.common === "Andorra") {
+          mappedTimezone = "Europe/Andorra";
+          countryData.timezones = ["Europe/Andorra"];
+      } else if (data[0].name.common === "American Samoa") {
+          mappedTimezone = "Pacific/Pago_Pago";
+          countryData.timezones = ["Pacific/Pago_Pago"];
+      } else if (data[0].name.common === "Albania") {
+          mappedTimezone = "Europe/Tirane";
+          countryData.timezones = ["Europe/Tirane"];
+      }
         else {
           const timezoneEntry = timezoneMapping.find(tz => tz.zone === rawTimezone);
           mappedTimezone = timezoneEntry ? timezoneEntry.zone : rawTimezone;
@@ -898,7 +922,7 @@ export default function CountryPage() {
             <h2 className="text-2xl font-bold">
               Prayer Times For Cities in <span className="capitalize">{country.name}</span>
             </h2>
-            <PrayerTimesTable country={country.name} timezone={""} />
+            <PrayerTimesTable country={country.name} timezone={country.timezone} />
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-blue-900 dark:text-zinc-100 pt-8 pb-1">Discover the {country.name}</h2>
