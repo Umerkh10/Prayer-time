@@ -7,6 +7,10 @@ import {
   Madhab,
   CalculationParameters,
 } from "adhan";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Moon, Sun, Sunrise, Sunset } from "lucide-react";
 
 interface PrayerTime {
   fajr: string;
@@ -26,28 +30,61 @@ interface City {
 
 interface PrayerTimesTableProps {
   country: string; // Country name as a string
+  timezone: string; 
 }
 
 const prayerIcons = {
-  fajr: "Fajr",
-  sunrise: "Sunrise",
-  dhuhr: "Dhuhr",
-  asr: "Asr",
-  maghrib: "Maghrib",
-  isha: "Isha",
+  fajr: Sunrise,
+  dhuhr: Sun,
+  asr: Sun,
+  maghrib: Sunset,
+  isha: Moon,
 };
 
 // Static list of cities with their locations
 const citiesByCountry: { [key: string]: City[] } = {
+  // Pacific Time Zone
+  "Pacific Time Zone": [
+    { name: "Los Angeles", latitude: 34.0522, longitude: -118.2437 },
+    { name: "San Francisco", latitude: 37.7749, longitude: -122.4194 },
+    { name: "Seattle", latitude: 47.6067, longitude: -122.3321 },
+  ],
+
+  // Eastern Time Zone
+  "Eastern Time Zone": [
+    { name: "New York", latitude: 40.7128, longitude: -74.006 },
+    { name: "Miami", latitude: 25.7617, longitude: -80.1918 },
+    { name: "Boston", latitude: 42.3584, longitude: -71.0596 },
+  ],
+
+  // Central Time Zone
+  "Central Time Zone": [
+    { name: "Chicago", latitude: 41.8781, longitude: -87.6298 },
+    { name: "Houston", latitude: 29.7633, longitude: -95.3632 },
+    { name: "Dallas", latitude: 32.7763, longitude: -96.7969 },
+  ],
+
+  // Mountain Time Zone
+  "Mountain Time Zone": [
+    { name: "Denver", latitude: 39.7392, longitude: -104.9903 },
+    { name: "Phoenix", latitude: 33.4484, longitude: -112.0739 },
+    { name: "Salt Lake City", latitude: 40.7677, longitude: -111.8906 },
+  ],
+
+  // Other countries
   Pakistan: [
     { name: "Karachi", latitude: 24.8607, longitude: 67.0011 },
     { name: "Lahore", latitude: 31.5497, longitude: 74.3436 },
     { name: "Islamabad", latitude: 33.6844, longitude: 73.0479 },
-  ],
-  "United States": [
-    { name: "New York", latitude: 40.7128, longitude: -74.006 },
-    { name: "Los Angeles", latitude: 34.0522, longitude: -118.2437 },
-    { name: "Chicago", latitude: 41.8781, longitude: -87.6298 },
+    { name: "Faisalabad", latitude: 31.4167, longitude: 73.0833 },
+    { name: "Rawalpindi", latitude: 33.6007, longitude: 73.0679 },
+    { name: "Gujranwala", latitude: 32.1611, longitude: 74.1883 },
+    { name: "Peshawar", latitude: 34.0083, longitude: 71.5783 },
+    { name: "Multan", latitude: 30.1956, longitude: 71.4681 },
+    { name: "Hyderabad", latitude: 25.3925, longitude: 68.3734 },
+    { name: "Quetta", latitude: 30.1843, longitude: 67.0099 },
+    { name: "Sialkot", latitude: 32.5069, longitude: 74.5319 },
+    { name: "Bahawalpur", latitude: 29.3956, longitude: 71.6839 },
   ],
   "Saudi Arabia": [
     { name: "Riyadh", latitude: 24.7136, longitude: 46.6753 },
@@ -82,9 +119,9 @@ const citiesByCountry: { [key: string]: City[] } = {
   Singapore: [
     { name: "Singapore", latitude: 1.3521, longitude: 103.8198 },
   ],
-  Kuwait: [
-    { name: "Kuwait City", latitude: 29.3759, longitude: 47.9774 },
-  ],
+  // Kuwait: [
+  //   { name: "Kuwait City", latitude: 29.3759, longitude: 47.9774 },
+  // ],
   Germany: [
     { name: "Berlin", latitude: 52.5200, longitude: 13.405 },
     { name: "Munich", latitude: 48.1351, longitude: 11.582 },
@@ -118,7 +155,7 @@ const citiesByCountry: { [key: string]: City[] } = {
 };
 
 
-const getCalculationMethod = (country: string): CalculationParameters => {
+const getCalculationMethod = (country: string) => {
   switch (country) {
     case "Pakistan":
       return CalculationMethod.Karachi();
@@ -146,11 +183,12 @@ const getCalculationMethod = (country: string): CalculationParameters => {
   }
 };
 
-export function PrayerTimesTable({ country }: PrayerTimesTableProps) {
+export function PrayerTimesTable({ country,timezone }: PrayerTimesTableProps) {
   const [cities, setCities] = useState<City[]>([]);
   const [prayerTimes, setPrayerTimes] = useState<Record<string, PrayerTime>>({});
   const [selectedMadhab, setSelectedMadhab] = useState<keyof typeof Madhab>("Shafi");
   const [error, setError] = useState<string | null>(null);
+  
 
   const calculatePrayerTimes = () => {
     const cityList = citiesByCountry[country];
@@ -170,11 +208,13 @@ export function PrayerTimesTable({ country }: PrayerTimesTableProps) {
         calculationMethod
       );
 
+      // Use the passed timezone prop instead of resolving it dynamically
       const formatTime = (time: Date) =>
         time.toLocaleTimeString("en-US", {
           hour: "2-digit",
           minute: "2-digit",
           hour12: true,
+          timeZone: timezone, // Ensure the passed timezone is used here
         });
 
       acc[city.name] = {
@@ -197,57 +237,91 @@ export function PrayerTimesTable({ country }: PrayerTimesTableProps) {
 
   useEffect(() => {
     calculatePrayerTimes();
-  }, [country, selectedMadhab]);
+  }, [country, selectedMadhab, timezone]); // Add timezone to dependencies to recalculate when it changes
 
   if (error) {
     return <div className="text-red-500">{error}</div>;
   }
 
   return (
-    <div>
-      {/* Madhab Selection */}
-      <div className="mb-4">
-        <label htmlFor="madhab" className="block text-sm font-medium">
-          Select Madhab:
-        </label>
-        <select
-          id="madhab"
-          className="mt-1 block w-full rounded-lg border px-3 py-2"
-          value={selectedMadhab}
-          onChange={(e) =>
-            setSelectedMadhab(
-              e.target.value as keyof typeof Madhab
-            )
-          }
-        >
-          <option value="Shafi">Shafi</option>
-          <option value="Hanafi">Hanafi</option>
-        </select>
-      </div>
-
-      {/* Prayer Times */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {cities.map((city) => (
-          <div key={city.name} className="p-4 border rounded-lg shadow">
-            <h3 className="text-lg font-bold">{city.name}</h3>
-            <ul className="mt-2">
-              {Object.entries(prayerIcons).map(([prayer, label]) => (
-                <li
-                  key={prayer}
-                  className={`${
-                    prayerTimes[city.name]?.current === prayer
-                      ? "text-blue-500 font-bold"
-                      : ""
-                  }`}
-                >
-                  <strong>{label}: </strong>
-                  {prayerTimes[city.name]?.[prayer as keyof PrayerTime]}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+    <div className="container mx-auto px-4 py-8">
+    <div className="mb-6">
+      <label htmlFor="madhab" className="block text-sm font-medium mb-2">
+        Select Madhab:
+      </label>
+      <Select value={selectedMadhab} onValueChange={(value) => setSelectedMadhab(value as keyof typeof Madhab)}>
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Select Madhab" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="Shafi">Shafi</SelectItem>
+          <SelectItem value="Hanafi">Hanafi</SelectItem>
+        </SelectContent>
+      </Select>
     </div>
+
+    {/* Mobile view */}
+    <div className="grid gap-6 md:hidden">
+      {cities.map((city) => (
+        <CardContent key={city.name}>
+          <CardHeader>
+            <CardTitle>{city.name}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+              {Object.entries(prayerTimes[city.name] || {}).map(([prayer, time]) => {
+                if (prayer === "current") return null
+                return (
+                  <li key={prayer} className="flex items-center justify-between">
+                    <span className="flex items-center">
+                  
+                      {prayer.charAt(0).toUpperCase() + prayer.slice(1)}
+                    </span>
+                    <span className={prayerTimes[city.name]?.current === prayer ? "font-bold text-primary" : ""}>
+                      {time}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </CardContent>
+        </CardContent>
+      ))}
+    </div>
+
+    {/* Desktop view */}
+    <div className="hidden md:block">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>City</TableHead>
+            {Object.entries(prayerIcons).map(([prayer, Icon]) => (
+              <TableHead key={prayer}>
+                <div className="flex items-center">
+
+                  {prayer.charAt(0).toUpperCase() + prayer.slice(1)}
+                </div>
+              </TableHead>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {cities.map((city) => (
+            <TableRow key={city.name}>
+              <TableCell className="font-medium">{city.name}</TableCell>
+              {Object.entries(prayerIcons).map(([prayer]) => (
+                <TableCell
+                  key={prayer}
+                  className={prayerTimes[city.name]?.current === prayer ? "font-bold text-primary" : ""}
+                >
+                  {prayerTimes[city.name]?.[prayer as keyof PrayerTime]}
+                </TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  </div>
   );
 }
