@@ -345,7 +345,7 @@ export default function CountriesList() {
                 <Link target='_blank' href={`/countries/${country.name.toLowerCase()}`} key={country.code}>
                 <div
                  className={`flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200 hover:shadow-lg ${
-                   selectedCountry === country.name ? 'text-blue-50 bg-slate-800 dark:bg-slate-100 dark:text-slate-950  border-blue-500 dark:border-blue-400' : ''
+                   selectedCountry === country.name ? 'text-zinc-100 dark:text-zinc-900 dark:bg-zinc-100 bg-zinc-900 font-semibold' : ''
                  }`}
                >
                     <div className="flex items-center gap-4">
@@ -356,12 +356,12 @@ export default function CountriesList() {
                         className="w-8 h-6 rounded object-cover"
                       />
                       <div>
-                        <h3 className="font-medium text-sm ">{country.name
+                        <h3 className=" text-sm ">{country.name
                           }</h3>
                         <p className="text-sm ">{country.offset}</p>
                       </div>
                     </div>
-                    <div className="text-base font-medium ">
+                    <div className="text-base  ">
                       {formatTime(country.offset)}
                     </div>
                   </div>
