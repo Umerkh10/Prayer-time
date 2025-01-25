@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Banner } from "./Banner";
 import { PrayerTimesTable } from "./PrayerTimeTable";
 import { CountryInfo } from "./CountryInfo";
+import CustomSkeleton from "@/components/ui/CustomSkeleton";
 
 type CityPrayerTimes = {
   name: string;
@@ -294,7 +295,7 @@ export default function CountryPage() {
           countryData.timezones = ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"];
         } else if (data[0].name.common === "Australia") {
           mappedTimezone = "Australia/Sydney"; // Default to Sydney Time
-          countryData.timezones = ["Australia/Sydney", "Australia/Adelaide", "Australia/Perth"];
+          countryData.timezones = ["Australia/Sydney", "Australia/Adelaide", "Australia/Perth","Australia/Melbourne","Australia/Canberra","Australia/Darwin","Australia/Brisbane","Australia/Hobart"];
         } else if (data[0].name.common === "Canada") {
           mappedTimezone = "America/Toronto"; // Default to Eastern Time
           countryData.timezones = ["America/Toronto", "America/Winnipeg", "America/Edmonton", "America/Vancouver"];
@@ -893,7 +894,7 @@ export default function CountryPage() {
   }, [country?.timezone]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <CustomSkeleton/>;
   }
 
   if (!country) {

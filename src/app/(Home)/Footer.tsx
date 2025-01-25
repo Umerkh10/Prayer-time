@@ -11,7 +11,7 @@ function Footer() {
           {/* Brand and Description */}
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold">Global Salah</h2>
-            <p className="mt-4 ">
+            <p className="mt-2 text-sm text-muted-foreground ">
               Global Salah is a website dedicated to providing accurate and convenient Islamic prayer time information to Muslims around the world.
             </p>
             {/* <div className="mt-6 flex gap-4">
@@ -38,8 +38,8 @@ function Footer() {
 
           {/* Quick Links */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-semibold text-blue-700 dark:text-blue-400">Quick links</h3>
-            <ul className="mt-4 space-y-3">
+            <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">Quick links</h3>
+            <ul className="mt-4 space-y-3 text-sm">
               {['Home', 'Monthly Namaz Timings', 'Duas'].map((item) => (
                 <li key={item}>
                   <Link href="#" className=" hover:text-blue-700 dark:hover:text-blue-400">
@@ -52,8 +52,8 @@ function Footer() {
 
           {/* Company */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-semibold text-blue-700 dark:text-blue-400">Company</h3>
-            <ul className="mt-4 space-y-3">
+            <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">Company</h3>
+            <ul className="mt-4 space-y-3 text-sm">
               {['About us', 'Contact us', 'Countries'].map((item) => (
                 <li key={item}>
                   <Link href="#" className=" hover:text-blue-700 dark:hover:text-blue-400">
@@ -66,8 +66,8 @@ function Footer() {
 
           {/* Other */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-semibold text-blue-700 dark:text-blue-400">Other</h3>
-            <ul className="mt-4 space-y-3">
+            <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">Other</h3>
+            <ul className="mt-4 space-y-3 text-sm">
               {['Terms and conditions', 'Privacy policy'].map((item) => (
                 <li key={item}>
                   <Link href="#" className=" hover:text-blue-700 dark:hover:text-blue-400">
@@ -80,8 +80,8 @@ function Footer() {
 
           {/* Popular Cities */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-semibold text-blue-700 dark:text-blue-400">Popular cities</h3>
-            <ul className="mt-4 space-y-3">
+            <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">Popular cities</h3>
+            <ul className="mt-4 space-y-3 text-sm">
               {[
                 'Prayer times in Paris',
                 'Prayer times in London',
