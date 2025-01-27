@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react"
 import { PrayerTimes, CalculationMethod, Madhab } from "adhan"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Moon, Sun, Sunrise, Sunset } from "lucide-react"
 import { countriesData, type City } from "./citiesAndTimezones"
+import Link from "next/link"
 
 interface PrayerTime {
   fajr: string
@@ -21,6 +21,7 @@ interface PrayerTime {
 interface PrayerTimesTableProps {
   country: string
   timezone: string
+  timezoneMapping: any;
 }
 
 const prayerIcons = {
@@ -37,6 +38,7 @@ const getCalculationMethod = (country: string) => {
       return CalculationMethod.Karachi()
     case "United States":
     case "Germany":
+    case "Canada":
       return CalculationMethod.NorthAmerica()
     case "United Kingdom":
       return CalculationMethod.MuslimWorldLeague()
@@ -44,18 +46,28 @@ const getCalculationMethod = (country: string) => {
       return CalculationMethod.UmmAlQura()
     case "Egypt":
       return CalculationMethod.Egyptian()
-    // Add other countries as needed...
+    case "Iran":
+      return CalculationMethod.Tehran()
+    case "Turkey":
+      return CalculationMethod.Turkey()
+    case "United Arab Emirates":
+      return CalculationMethod.Dubai()
+    case "Qatar":
+      return CalculationMethod.Qatar()
+    case "Kuwait":
+      return CalculationMethod.Kuwait()
     default:
       return CalculationMethod.MuslimWorldLeague()
   }
 }
 
-export function PrayerTimesTable({ country }: PrayerTimesTableProps) {
+export function PrayerTimesTable({ country, timezoneMapping }: PrayerTimesTableProps) {
   const [cities, setCities] = useState<City[]>([])
   const [prayerTimes, setPrayerTimes] = useState<Record<string, PrayerTime>>({})
   const [selectedMadhab, setSelectedMadhab] = useState<keyof typeof Madhab>("Shafi")
   const [selectedTimezone, setSelectedTimezone] = useState<string>("")
   const [error, setError] = useState<string | null>(null)
+  const [matchingUTC, setMatchingUTC] = useState<any>(null)
 
   useEffect(() => {
     if (countriesData[country]) {
@@ -121,6 +133,23 @@ export function PrayerTimesTable({ country }: PrayerTimesTableProps) {
   if (error) {
     return <div className="text-red-500">{error}</div>
   }
+  useEffect(() => {
+    const matchingTimezones = timezoneMapping.find((timezone: any) => {
+      return selectedTimezone === timezone.zone
+    });
+
+    if (matchingTimezones) {
+      setMatchingUTC(matchingTimezones)
+    }
+
+
+  }, []);
+
+
+  const saveCityDetails = (city: any) => {
+    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC }))
+  }
+
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -188,35 +217,45 @@ export function PrayerTimesTable({ country }: PrayerTimesTableProps) {
 
       {/* Desktop view */}
       <div className="hidden md:block">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>City</TableHead>
-              {Object.entries(prayerIcons).map(([prayer, Icon]) => (
-                <TableHead key={prayer}>
-                  <div className="flex items-center">{prayer.charAt(0).toUpperCase() + prayer.slice(1)}</div>
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {cities.map((city) => (
-              <TableRow key={city.name}>
-                <TableCell className="font-medium">{city.name}</TableCell>
-                {Object.entries(prayerIcons).map(([prayer]) => (
-                  <TableCell
-                    key={prayer}
-                    className={prayerTimes[city.name]?.current === prayer ? "font-bold text-primary" : ""}
-                  >
-                    {prayerTimes[city.name]?.[prayer as keyof PrayerTime]}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {cities.map((city) => (
+            <Link onClick={() => saveCityDetails(city)} key={city.name} href={`/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}`}>
+              <div className="flex flex-col p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105">
+                {/* City Name */}
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{city.name}</h3>
+                </div>
+
+                {/* Prayer Times */}
+                <div className="space-y-4">
+                  {Object.entries(prayerIcons).map(([prayer, Icon]) => (
+                    <div
+                      key={prayer}
+                      className={`flex justify-between items-center p-3 rounded-lg ${prayerTimes[city.name]?.current === prayer ? "bg-blue-500 text-white" : "bg-gray-50 dark:bg-gray-700"
+                        }`}
+                    >
+                      <div className="flex items-center space-x-2">
+                        <Icon className="w-5 h-5 " />
+                        <span className="capitalize text-sm ">{prayer}</span>
+                      </div>
+                      <span
+                        className={`text-sm font-medium ${prayerTimes[city.name]?.current === prayer ? "font-bold text-primary-700" : "text-gray-500 dark:text-gray-300"
+                          }`}
+                      >
+                        {prayerTimes[city.name]?.[prayer as keyof PrayerTime]}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
+
+
+
   )
 }
 

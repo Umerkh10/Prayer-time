@@ -163,7 +163,7 @@ const MonthlyNamazTimings = () => {
   const currentDate = moment().format("YYYY-MM-DD");
 
   return (
-    <Card className="dark:bg-background bg-transparent w-full max-w-4xl mx-auto my-4 shadow-lg">
+    <Card className="dark:bg-background bg-transparent w-full  mx-auto my-4 shadow-lg">
       <CardHeader>
         <CardTitle className="text-xl sm:text-2xl font-bold text-center">Monthly Namaz Timings</CardTitle>
         {location && (
@@ -190,7 +190,7 @@ const MonthlyNamazTimings = () => {
           <Button
             onClick={() => setSchool("hanafi")}
             variant={school === "hanafi" ? "default" : "outline"}
-            size="sm"
+            size="default"
             className="mx-1 dark:text-zinc-50"
           >
             Hanafi
@@ -198,7 +198,7 @@ const MonthlyNamazTimings = () => {
           <Button
             onClick={() => setSchool("shafi")}
             variant={school === "shafi" ? "default" : "outline"}
-            size="sm"
+            size="default"
             className="mx-1 dark:text-zinc-50"
           >
             Shafi

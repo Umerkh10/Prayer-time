@@ -51,6 +51,7 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
   { zone: "America/Mazatlan", utc: "(GMT-07:00)", name: "Mazatlan" },
   { zone: "America/Mexico_City", utc: "(GMT-06:00)", name: "Mexico City" },
   { zone: "America/Monterrey", utc: "(GMT-06:00)", name: "Monterrey" },
+  { zone: "America/Nassau", utc: "(GMT-05:00)", name: "Bahamas" },
   { zone: "Canada/Saskatchewan", utc: "(GMT-06:00)", name: "Saskatchewan" },
   { zone: "US/Central", utc: "(GMT-06:00)", name: "Central Time (US & Canada)" },
   { zone: "US/Eastern", utc: "(GMT-05:00)", name: "Eastern Time (US & Canada)" },
@@ -232,6 +233,8 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
   { zone: "America/St_Lucia", utc: "(GMT-04:00)", name: "Saint Lucia" },
   { zone: "Pacific/Apia", utc: "(GMT+13:00)", name: "Samoa" },
   { zone: "Europe/San_Marino", utc: "(GMT+01:00)", name: "San Marino" },
+  { zone: "Asia/Gaza", utc: "(GMT+02:00)", name: "Palestine" },
+  { zone: "Asia/Hebron", utc: "(GMT+02:00)", name: "Palestine" },
   { zone: "Europe/Belgrade", utc: "(GMT+01:00)", name: "Serbia" },
   { zone: "Europe/Bratislava", utc: "(GMT+01:00)", name: "Slovakia" },
   { zone: "Europe/Ljubljana", utc: "(GMT+01:00)", name: "Slovenia" },
@@ -266,7 +269,7 @@ export default function CountryPage() {
     const fetchCountryData = async () => {
       try {
         const response = await fetch(
-          `https://restcountries.com/v3.1/name/${extracted}?fullText=true`
+          `https://restcountries.com/v3.1/name/${extracted.replaceAll("-", " ")}?fullText=true`
         );
 
         if (!response.ok) {
@@ -291,8 +294,8 @@ export default function CountryPage() {
         };
 
         if (data[0].name.common === "United States") {
-          mappedTimezone = "America/New_York"; // Default to Eastern Time
-          countryData.timezones = ["America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"];
+          mappedTimezone = "US/Eastern"; // Default to Eastern Time
+          countryData.timezones = ["US/Eastern", "US/Central", "US/Mountain", "US/Pacific"];
         } else if (data[0].name.common === "Australia") {
           mappedTimezone = "Australia/Sydney"; // Default to Sydney Time
           countryData.timezones = ["Australia/Sydney", "Australia/Adelaide", "Australia/Perth","Australia/Melbourne","Australia/Canberra","Australia/Darwin","Australia/Brisbane","Australia/Hobart"];
@@ -386,6 +389,9 @@ export default function CountryPage() {
         } else if (data[0].name.common === "Israel") {
           mappedTimezone = "Asia/Jerusalem";
           countryData.timezones = ["Asia/Jerusalem"];
+        } else if (data[0].name.common === "Palestine") {
+          mappedTimezone = "Asia/Gaza";
+          countryData.timezones = ["Asia/Gaza","Asia/Hebron"];
         } else if (data[0].name.common === "Netherlands") {
           mappedTimezone = "Europe/Amsterdam";
           countryData.timezones = ["Europe/Amsterdam"];
@@ -846,6 +852,10 @@ export default function CountryPage() {
           mappedTimezone = "Europe/Tirane";
           countryData.timezones = ["Europe/Tirane"];
       }
+       else if (data[0].name.common === "Bahamas") {
+          mappedTimezone = "America/Nassau";
+          countryData.timezones = ["America/Nassau"];
+      }
         else {
           const timezoneEntry = timezoneMapping.find(tz => tz.zone === rawTimezone);
           mappedTimezone = timezoneEntry ? timezoneEntry.zone : rawTimezone;
@@ -923,7 +933,7 @@ export default function CountryPage() {
             <h2 className="text-2xl font-bold">
               Prayer Times For Cities in <span className="capitalize">{country.name}</span>
             </h2>
-            <PrayerTimesTable country={country.name} timezone={country.timezone} />
+            <PrayerTimesTable country={country.name} timezone={country.timezone} timezoneMapping={timezoneMapping} />
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-blue-900 dark:text-zinc-100 pt-8 pb-1">Discover the {country.name}</h2>

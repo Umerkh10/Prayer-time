@@ -21,8 +21,8 @@ const countries = [
     { name: 'Australia', code: 'AU', timezone: 'Australia/Sydney', offset: '+10:00' },
     { name: 'Austria', code: 'AT', timezone: 'Europe/Vienna', offset: '+01:00' },
     { name: 'Azerbaijan', code: 'AZ', timezone: 'Asia/Baku', offset: '+04:00' },
-    { name: 'Bahamas', code: 'BS', timezone: 'America/Nassau', offset: '-05:00' },
     { name: 'Bahrain', code: 'BH', timezone: 'Asia/Bahrain', offset: '+03:00' },
+    { name: 'Bahamas', code: 'BS', timezone: 'America/Nassau', offset: '-05:00' },
     { name: 'Bangladesh', code: 'BD', timezone: 'Asia/Dhaka', offset: '+06:00' },
     { name: 'Barbados', code: 'BB', timezone: 'America/Barbados', offset: '-04:00' },
     { name: 'Belarus', code: 'BY', timezone: 'Europe/Minsk', offset: '+03:00' },
@@ -134,6 +134,7 @@ const countries = [
     { name: 'Norway', code: 'NO', timezone: 'Europe/Oslo', offset: '+01:00' },
     { name: 'Oman', code: 'OM', timezone: 'Asia/Muscat', offset: '+04:00' },
     { name: 'Pakistan', code: 'PK', timezone: 'Asia/Karachi', offset: '+05:00' },
+    {name: "Palestine", code: "PS", timezone: "Asia/Gaza", offset: "+02:00"},
     { name: 'Palau', code: 'PW', timezone: 'Pacific/Palau', offset: '+09:00' },
     { name: 'Panama', code: 'PA', timezone: 'America/Panama', offset: '-05:00' },
     { name: 'Papua New Guinea', code: 'PG', timezone: 'Pacific/Port_Moresby', offset: '+10:00' },
@@ -342,7 +343,7 @@ export default function CountriesList() {
              
                 {countries.map((country) => (
                 
-                <Link target='_blank' href={`/countries/${country.name.toLowerCase()}`} key={country.code}>
+                <Link target='_blank' href={`/countries/${country.name.toLowerCase().replaceAll(" ","-")}`} key={country.code}>
                 <div
                  className={`flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200 hover:shadow-lg ${
                    selectedCountry === country.name ? 'text-zinc-100 dark:text-zinc-900 dark:bg-zinc-100 bg-zinc-900 font-semibold' : ''

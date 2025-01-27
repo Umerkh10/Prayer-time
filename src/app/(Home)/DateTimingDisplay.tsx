@@ -263,10 +263,10 @@ function DateTimingDisplay() {
                 Hanafi
               </option>
               <option
-                className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+                className="rounded-lg dark:bg-zinc-200 px-4 dark:text-zinc-800 bg-zinc-800 outline-none"
                 value="Shafi"
               >
-                Shafi
+                Shafi/Maliki/Hanbli
               </option>
             </select>
 

@@ -1,4 +1,5 @@
 export interface City {
+  [x: string]: any
   name: string
   latitude: number
   longitude: number
@@ -13,24 +14,24 @@ export interface CountryData {
 
 export const countriesData: { [country: string]: CountryData } = {
   "United States": {
-    timezones: ["America/New_York", "America/Los_Angeles", "America/Chicago", "America/Denver"],
+    timezones: ["US/Eastern", "US/Pacific", "US/Central", "US/Mountain"],
     cities: {
-      "America/New_York": [
+      "US/Eastern": [
         { name: "New York", latitude: 40.7128, longitude: -74.006 },
         { name: "Miami", latitude: 25.7617, longitude: -80.1918 },
         { name: "Boston", latitude: 42.3584, longitude: -71.0596 },
       ],
-      "America/Los_Angeles": [
+      "US/Pacific": [
         { name: "Los Angeles", latitude: 34.0522, longitude: -118.2437 },
         { name: "San Francisco", latitude: 37.7749, longitude: -122.4194 },
         { name: "Seattle", latitude: 47.6067, longitude: -122.3321 },
       ],
-      "America/Chicago": [
+      "US/Central": [
         { name: "Chicago", latitude: 41.8781, longitude: -87.6298 },
         { name: "Houston", latitude: 29.7633, longitude: -95.3632 },
         { name: "Dallas", latitude: 32.7763, longitude: -96.7969 },
       ],
-      "America/Denver": [
+      "US/Mountain": [
         { name: "Denver", latitude: 39.7392, longitude: -104.9903 },
         { name: "Phoenix", latitude: 33.4484, longitude: -112.0739 },
         { name: "Salt Lake City", latitude: 40.7677, longitude: -111.8906 },
@@ -2407,6 +2408,37 @@ export const countriesData: { [country: string]: CountryData } = {
     ]
   },
 },
+"Palestine": {
+  timezones: ["Asia/Gaza", "Asia/Hebron"],
+  cities: {
+    "Asia/Gaza": [
+      { "name": "Gaza", latitude: 31.5013, longitude: 34.4668 },
+      { "name": "Khan Yunis", latitude: 31.3402, longitude: 34.3063 },
+      { "name": "Rafah", latitude: 31.2941, longitude: 34.2406 },
+      { "name": "Deir al-Balah", latitude: 31.4189, longitude: 34.3497 },
+      { "name": "Jabalia", latitude: 31.5272, longitude: 34.4838 }
+    ],
+    "Asia/Hebron": [
+      { "name": "Hebron", latitude: 31.5326, longitude: 35.0998 },
+      { "name": "Bethlehem", latitude: 31.7054, longitude: 35.2024 },
+      { "name": "Jericho", latitude: 31.8682, longitude: 35.4491 },
+      { "name": "Nablus", latitude: 32.2211, longitude: 35.2544 },
+      { "name": "Ramallah", latitude: 31.8996, longitude: 35.2042 }
+    ]
+  }
+},
+"Bahamas": {
+  timezones: ["America/Nassau"],
+  cities: {
+    "America/Nassau": [
+      { "name": "Nassau", latitude: 25.0343, longitude: -77.3963 },
+      { "name": "Freeport", latitude: 26.5333, longitude: -78.7000 },
+      { "name": "West End", latitude: 26.6872, longitude: -78.9766 },
+      { "name": "Marsh Harbour", latitude: 26.5412, longitude: -77.0636 },
+      { "name": "Alice Town", latitude: 25.7279, longitude: -79.3008 }
+    ]
+  }
+}
 
 
 
