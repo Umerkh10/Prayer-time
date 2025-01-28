@@ -107,6 +107,7 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
   { zone: "Europe/Vilnius", utc: "(UTC+02:00)", name: "Vilnius" },
   { zone: "Asia/Baghdad", utc: "(UTC+03:00)", name: "Baghdad" },
   { zone: "Asia/Kuwait", utc: "(UTC+03:00)", name: "Kuwait" },
+  { zone: "America/Jamaica", utc: "(UTC-05:00)", name: "Jamaica" },
   { zone: "Asia/Riyadh", utc: "(UTC+03:00)", name: "Riyadh" },
   { zone: "Africa/Nairobi", utc: "(UTC+03:00)", name: "Nairobi" },
   { zone: "Asia/Tehran", utc: "(UTC+03:30)", name: "Tehran" },
@@ -596,6 +597,9 @@ export default function CountryPage() {
         } else if (data[0].name.common === "Cameroon") {
           mappedTimezone = "Africa/Douala";
           countryData.timezones = ["Africa/Douala"];
+        } else if (data[0].name.common === "Jamaica") {
+          mappedTimezone = "America/Jamaica";
+          countryData.timezones = ["America/Jamaica"];
         } else if (data[0].name.common === "Djibouti") {
           mappedTimezone = "Africa/Djibouti";
           countryData.timezones = ["Africa/Djibouti"];
@@ -855,6 +859,10 @@ export default function CountryPage() {
        else if (data[0].name.common === "Bahamas") {
           mappedTimezone = "America/Nassau";
           countryData.timezones = ["America/Nassau"];
+      }
+       else if (data[0].name.common === "Iran") {
+          mappedTimezone = "Asia/Tehran";
+          countryData.timezones = ["Asia/Tehran"];
       }
         else {
           const timezoneEntry = timezoneMapping.find(tz => tz.zone === rawTimezone);

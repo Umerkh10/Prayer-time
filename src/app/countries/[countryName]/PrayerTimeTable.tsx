@@ -133,17 +133,26 @@ export function PrayerTimesTable({ country, timezoneMapping }: PrayerTimesTableP
   if (error) {
     return <div className="text-red-500">{error}</div>
   }
-  useEffect(() => {
+
+
+useEffect(() => {
+  if (timezoneMapping && timezoneMapping.length > 0 && selectedTimezone) {
     const matchingTimezones = timezoneMapping.find((timezone: any) => {
-      return selectedTimezone === timezone.zone
+      console.log("Comparing:", selectedTimezone, timezone.zone);
+      return selectedTimezone.trim() === timezone.zone.trim();
     });
 
     if (matchingTimezones) {
-      setMatchingUTC(matchingTimezones)
+      setMatchingUTC(matchingTimezones);
+    } else {
+      console.warn("No matching timezone found for:", selectedTimezone);
     }
 
-
-  }, []);
+    console.log("timezoneMapping:", timezoneMapping);
+  } else {
+    console.warn("timezoneMapping or selectedTimezone is not ready");
+  }
+}, [timezoneMapping, selectedTimezone]);
 
 
   const saveCityDetails = (city: any) => {

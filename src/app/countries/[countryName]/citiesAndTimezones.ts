@@ -50,7 +50,6 @@ export const countriesData: { [country: string]: CountryData } = {
         { name: "Gujranwala", latitude: 32.1611, longitude: 74.1883 },
         { name: "Peshawar", latitude: 34.0083, longitude: 71.5783 },
         { name: "Multan", latitude: 30.1956, longitude: 71.4681 },
-        { name: "Hyderabad", latitude: 25.3925, longitude: 68.3734 },
         { name: "Quetta", latitude: 30.1843, longitude: 67.0099 },
         { name: "Sialkot", latitude: 32.5069, longitude: 74.5319 },
         { name: "Bahawalpur", latitude: 29.3956, longitude: 71.6839 },
@@ -141,23 +140,12 @@ export const countriesData: { [country: string]: CountryData } = {
     }
   },
   "Canada": {
-    timezones: ["America/Toronto", "America/Winnipeg", "America/Edmonton", "America/Vancouver"],
+    timezones: ["America/Toronto", "America/Edmonton", "America/Vancouver"],
     cities: {
       "America/Toronto": [
         { "name": "Toronto", latitude: 43.65107, longitude: -79.347015 },
         { "name": "Ottawa", latitude: 45.4215, longitude: -75.6972 },
         { "name": "Montreal", latitude: 45.5017, longitude: -73.5673 },
-        { "name": "Hamilton", latitude: 43.2557, longitude: -79.8711 },
-        { "name": "Kingston", latitude: 44.2312, longitude: -76.486 },
-        { "name": "London", latitude: 42.9849, longitude: -81.2453 }
-      ],
-      "America/Winnipeg": [
-        { "name": "Winnipeg", latitude: 49.8951, longitude: -97.1384 },
-        { "name": "Brandon", latitude: 49.8469, longitude: -99.9531 },
-        { "name": "Portage la Prairie", latitude: 49.9722, longitude: -98.2922 },
-        { "name": "Steinbach", latitude: 49.5253, longitude: -96.6846 },
-        { "name": "Thompson", latitude: 55.7436, longitude: -97.8558 },
-        { "name": "Flin Flon", latitude: 54.7682, longitude: -101.864 }
       ],
       "America/Edmonton": [
         { "name": "Edmonton", latitude: 53.5461, longitude: -113.4938 },
@@ -178,7 +166,7 @@ export const countriesData: { [country: string]: CountryData } = {
     }
   },
   "Brazil": {
-    timezones: ["America/Sao_Paulo", "America/Manaus", "America/Cuiaba", "America/Fortaleza"],
+    timezones: ["America/Sao_Paulo"],
     cities: {
       "America/Sao_Paulo": [
         { "name": "São Paulo", latitude: -23.5505, longitude: -46.6333 },
@@ -189,30 +177,6 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Santos", latitude: -23.9608, longitude: -46.3339 },
         { "name": "Brasília", latitude: -15.8267, longitude: -47.9218 }
       ],
-      "America/Manaus": [
-        { "name": "Manaus", latitude: -3.1019, longitude: -60.025 },
-        { "name": "Porto Velho", latitude: -8.7612, longitude: -63.9039 },
-        { "name": "Rio Branco", latitude: -9.9754, longitude: -67.8249 },
-        { "name": "Boa Vista", latitude: 2.8235, longitude: -60.6758 },
-        { "name": "Tefé", latitude: -3.3682, longitude: -64.7193 },
-        { "name": "Parintins", latitude: -2.6283, longitude: -56.7351 }
-      ],
-      "America/Cuiaba": [
-        { "name": "Cuiabá", latitude: -15.6014, longitude: -56.0979 },
-        { "name": "Campo Grande", latitude: -20.4697, longitude: -54.6201 },
-        { "name": "Rondonópolis", latitude: -16.4706, longitude: -54.6351 },
-        { "name": "Várzea Grande", latitude: -15.6467, longitude: -56.1326 },
-        { "name": "Sinop", latitude: -11.8606, longitude: -55.5091 },
-        { "name": "Lucas do Rio Verde", latitude: -13.0655, longitude: -55.9228 }
-      ],
-      "America/Fortaleza": [
-        { "name": "Fortaleza", latitude: -3.7172, longitude: -38.5434 },
-        { "name": "Natal", latitude: -5.7945, longitude: -35.211 },
-        { "name": "João Pessoa", latitude: -7.115, longitude: -34.8631 },
-        { "name": "Recife", latitude: -8.0476, longitude: -34.877 },
-        { "name": "Maceió", latitude: -9.6659, longitude: -35.735 },
-        { "name": "Teresina", latitude: -5.0892, longitude: -42.8016 }
-      ]
     }
   },
   "Russia": {
@@ -241,7 +205,7 @@ export const countriesData: { [country: string]: CountryData } = {
     }
   },
   "China": {
-    timezones: ["Asia/Shanghai", "Asia/Urumqi"],
+    timezones: ["Asia/Shanghai"],
     cities: {
       "Asia/Shanghai": [
         { name: "Shanghai", latitude: 31.2304, longitude: 121.4737 },
@@ -250,17 +214,9 @@ export const countriesData: { [country: string]: CountryData } = {
         { name: "Suzhou", latitude: 31.2980, longitude: 120.5853 },
         { name: "Wuxi", latitude: 31.5700, longitude: 120.3119 },
         { name: "Qingdao", latitude: 36.0671, longitude: 120.3826 },
-        { name: "Chongqing", latitude: 29.5630, longitude: 106.5516 }
+        { name: "Chongqing", latitude: 29.5630, longitude: 106.5516 },
+        { name: "Beijing", latitude: 39.9042, longitude: 116.4074 },
       ],
-      "Asia/Urumqi": [
-        { name: "Urumqi", latitude: 43.8256, longitude: 87.6168 },
-        { name: "Kashgar", latitude: 39.4704, longitude: 75.9817 },
-        { name: "Aksu", latitude: 41.1700, longitude: 80.2657 },
-        { name: "Turpan", latitude: 42.9583, longitude: 89.1840 },
-        { name: "Yining", latitude: 43.9273, longitude: 81.3283 },
-        { name: "Korla", latitude: 41.7680, longitude: 86.1559 },
-        { name: "Hotan", latitude: 37.1127, longitude: 79.9294 }
-      ]
     }
   },
   "India": {
@@ -337,28 +293,13 @@ export const countriesData: { [country: string]: CountryData } = {
     }
   },
   "Indonesia": {
-    timezones: ["Asia/Jakarta", "Asia/Pontianak", "Asia/Makassar", "Asia/Jayapura"],
+    timezones: ["Asia/Jakarta"],
     cities: {
       "Asia/Jakarta": [
         { "name": "Jakarta", latitude: -6.2088, longitude: 106.8456 },
         { "name": "Bandung", latitude: -6.9175, longitude: 107.6191 },
         { "name": "Surabaya", latitude: -7.2504, longitude: 112.7688 }
       ],
-      "Asia/Pontianak": [
-        { "name": "Pontianak", latitude: -0.0333, longitude: 109.3333 },
-        { "name": "Sambas", latitude: 1.0847, longitude: 109.4076 },
-        { "name": "Singkawang", latitude: 1.3000, longitude: 108.9622 }
-      ],
-      "Asia/Makassar": [
-        { "name": "Makassar", latitude: -5.1477, longitude: 119.4179 },
-        { "name": "Parepare", latitude: -4.0000, longitude: 119.6167 },
-        { "name": "Palu", latitude: -0.8967, longitude: 119.8583 }
-      ],
-      "Asia/Jayapura": [
-        { "name": "Jayapura", latitude: -2.5333, longitude: 140.7183 },
-        { "name": "Biak", latitude: -1.1617, longitude: 136.1461 },
-        { "name": "Merauke", latitude: -8.4667, longitude: 140.3667 }
-      ]
     }
   },
   "Argentina": {
@@ -493,8 +434,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Osaka", latitude: 34.6937, longitude: 135.5023 },
         { "name": "Nagoya", latitude: 35.1815, longitude: 136.9066 },
         { "name": "Sapporo", latitude: 43.0618, longitude: 141.3545 },
-        { "name": "Fukuoka", latitude: 33.5904, longitude: 130.4017 },
-        { "name": "Kobe", latitude: 34.6901, longitude: 135.1955 }
+        { "name": "Fukuoka", latitude: 33.5904, longitude: 130.4017 }
       ]
     }
   },
@@ -850,7 +790,6 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Bergen", latitude: 60.3913, longitude: 5.3221 },
         { "name": "Stavanger", latitude: 58.9690, longitude: 5.7331 },
         { "name": "Trondheim", latitude: 63.4305, longitude: 10.3951 },
-        { "name": "Drammen", latitude: 59.7425, longitude: 10.2045 },
         { "name": "Fredrikstad", latitude: 59.2181, longitude: 10.9295 },
         { "name": "Kristiansand", latitude: 58.1462, longitude: 7.9956 }
       ]
@@ -1103,18 +1042,18 @@ export const countriesData: { [country: string]: CountryData } = {
       ]
     }
   },
-  "Kenya": {
-    timezones: ["Africa/Nairobi"],
-    cities: {
-      "Africa/Nairobi": [
-        { "name": "Nairobi", latitude: -1.286389, longitude: 36.817223 },
-        { "name": "Mombasa", latitude: -4.043477, longitude: 39.668207 },
-        { "name": "Kisumu", latitude: -0.102206, longitude: 34.761711 },
-        { "name": "Nakuru", latitude: -0.303099, longitude: 36.080025 },
-        { "name": "Eldoret", latitude: 0.520379, longitude: 35.269779 }
-      ]
-    }
-  },
+"Kenya": {
+  timezones: ["Africa/Nairobi"],
+  cities: {
+    "Africa/Nairobi": [
+      { "name": "Nairobi", latitude: -1.286389, longitude: 36.817223 },
+      { "name": "Mombasa", latitude: -4.043473, longitude: 39.668206 },
+      { "name": "Kisumu", latitude: -0.0917, longitude: 34.768 },
+      { "name": "Nakuru", latitude: -0.3031, longitude: 36.066 },
+      { "name": "Eldoret", latitude: 0.5167, longitude: 35.2692 }
+    ]
+  }
+},
   "Morocco": {
     timezones: ["Africa/Casablanca"],
     cities: {
@@ -1481,7 +1420,8 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Santiago de Cuba", latitude: 20.0207, longitude: -75.8219 },
         { "name": "Camagüey", latitude: 21.3800, longitude: -77.9167 },
         { "name": "Holguín", latitude: 20.8800, longitude: -76.2611 },
-        { "name": "Santa Clara", latitude: 22.4083, longitude: -79.9667 }
+        { "name": "Santa Clara", latitude: 22.4083, longitude: -79.9667 },
+        { "name": "Guantánamo", latitude: 20.1444, longitude: -75.2092 }
       ]
     }
   },
@@ -1598,7 +1538,7 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "America/Santo_Domingo": [
         { "name": "Santo Domingo", latitude: 18.4861, longitude: -69.9312 },
-        { "name": "Santiago", latitude: 19.4531, longitude: -70.6928 },
+        { "name": "Santiago de los Caballeros", latitude: 19.4531, longitude: -70.6928 },
         { "name": "La Romana", latitude: 18.4233, longitude: -68.9846 },
         { "name": "Puerto Plata", latitude: 19.7739, longitude: -70.6937 },
         { "name": "San Pedro de Macorís", latitude: 18.4522, longitude: -69.3003 }
@@ -1718,8 +1658,7 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "America/Grenada": [
         { "name": "St. George's", latitude: 12.0564, longitude: -61.7485 },
-        { "name": "Gouyave", latitude: 12.0644, longitude: -61.5403 },
-        { "name": "Victoria", latitude: 12.0328, longitude: -61.3894 }
+        { "name": "Gouyave", latitude: 12.0644, longitude: -61.5403 }
       ]
     }
   },
@@ -1764,17 +1703,32 @@ export const countriesData: { [country: string]: CountryData } = {
       ]
     }
   },
-  "Iraq": {
-    timezones: ["Asia/Baghdad"],
-    cities: {
-      "Asia/Baghdad": [
-        { "name": "Baghdad", latitude: 33.3152, longitude: 44.3661 },
-        { "name": "Basra", latitude: 30.5085, longitude: 47.7835 },
-        { "name": "Mosul", latitude: 36.3400, longitude: 43.1300 },
-        { "name": "Erbil", latitude: 36.1911, longitude: 44.0094 }
-      ]
-    }
-  },
+ "Iraq": {
+  timezones: ["Asia/Baghdad"],
+  cities: {
+    "Asia/Baghdad": [
+      { "name": "Baghdad", latitude: 33.3152, longitude: 44.3661 },
+      { "name": "Basra", latitude: 30.5085, longitude: 47.7804 },
+      { "name": "Erbil", latitude: 36.1911, longitude: 44.0094 },
+      { "name": "Najaf", latitude: 31.9953, longitude: 44.3148 },
+      { "name": "Kirkuk", latitude: 35.4681, longitude: 44.3922 },
+      { "name": "Fallujah", latitude: 33.3561, longitude: 43.7829 }
+    ]
+  }
+},
+  "Iran": {
+  timezones: ["Asia/Tehran"],
+  cities: {
+    "Asia/Tehran": [
+      { "name": "Tehran", latitude: 35.6892, longitude: 51.3890 },
+      { "name": "Isfahan", latitude: 32.6546, longitude: 51.6680 },
+      { "name": "Shiraz", latitude: 29.5926, longitude: 52.5836 },
+      { "name": "Tabriz", latitude: 38.0962, longitude: 46.2738 },
+      { "name": "Mashhad", latitude: 36.2605, longitude: 59.6168 },
+      { "name": "Ahvaz", latitude: 31.3183, longitude: 48.6692 }
+    ]
+  }
+},
   "Jordan": {
     timezones: ["Asia/Amman"],
     cities: {
@@ -1785,65 +1739,81 @@ export const countriesData: { [country: string]: CountryData } = {
       ]
     }
   },
-  "Kazakhstan": {
-    timezones: ["Asia/Almaty", "Asia/Qyzylorda"],
-    cities: {
-      "Asia/Almaty": [
-        { "name": "Almaty", latitude: 43.2220, longitude: 76.8512 },
-        { "name": "Shymkent", latitude: 42.3417, longitude: 69.5901 },
-        { "name": "Taraz", latitude: 42.9017, longitude: 71.3656 }
-      ],
-      "Asia/Qyzylorda": [
-        { "name": "Qyzylorda", latitude: 44.8515, longitude: 65.4821 },
-        { "name": "Kyzylorda", latitude: 44.8545, longitude: 65.5272 }
-      ]
-    }
-  },
-  "Kiribati": {
-    timezones: ["Pacific/Kiritimati"],
-    cities: {
-      "Pacific/Kiritimati": [
-        { "name": "London", latitude: -1.8725, longitude: -157.4404 },
-        { "name": "Banaba", latitude: 0.0142, longitude: 160.0188 }
-      ]
-    }
-  },
-  "Kuwait": {
-    timezones: ["Asia/Kuwait"],
-    cities: {
-      "Asia/Kuwait": [
-        { "name": "Kuwait City", latitude: 29.3759, longitude: 47.9774 },
-        { "name": "Al Ahmadi", latitude: 28.9385, longitude: 48.0421 },
-        { "name": "Hawalli", latitude: 29.3392, longitude: 48.0301 },
-        { "name": "Mubarak Al Kabeer", latitude: 29.3647, longitude: 47.9768 },
-        { "name": "Salwa", latitude: 29.0016, longitude: 48.1366 }
-      ]
-    }
-  },
-  "Kyrgyzstan": {
-    timezones: ["Asia/Bishkek"],
-    cities: {
-      "Asia/Bishkek": [
-        { "name": "Bishkek", latitude: 42.8746, longitude: 74.6122 },
-        { "name": "Osh", latitude: 40.5150, longitude: 72.7886 },
-        { "name": "Jalal-Abad", latitude: 40.9377, longitude: 72.8455 },
-        { "name": "Batken", latitude: 40.0785, longitude: 70.8911 },
-        { "name": "Karakol", latitude: 42.4972, longitude: 78.3916 }
-      ]
-    }
-  },
-  "North Korea": {
-    timezones: ["Asia/Pyongyang"],
-    cities: {
-      "Asia/Pyongyang": [
-        { "name": "Pyongyang", latitude: 39.0194, longitude: 125.7381 },
-        { "name": "Hamhung", latitude: 39.9183, longitude: 127.5354 },
-        { "name": "Nampo", latitude: 38.7333, longitude: 125.3833 },
-        { "name": "Wonsan", latitude: 39.1658, longitude: 127.4419 },
-        { "name": "Sinuiju", latitude: 40.1025, longitude: 124.3892 }
-      ]
-    }
-  },
+  "Jamaica": {
+  "timezones": ["America/Jamaica"],
+  "cities": {
+    "America/Jamaica": [
+      { "name": "Kingston", latitude: 17.9714, longitude: -76.7936 },
+      { "name": "Montego Bay", latitude: 18.1096, longitude: -77.295 },
+      { "name": "Spanish Town", latitude: 17.9971, longitude: -76.9556 },
+      { "name": "Portmore", latitude: 17.9763, longitude: -76.8936 },
+      { "name": "Ocho Rios", latitude: 18.4048, longitude: -77.1049 },
+      { "name": "Mandeville", latitude: 17.9717, longitude: -77.5225 }
+    ]
+  }
+},
+"Kazakhstan": {
+  "timezones": ["Asia/Almaty", "Asia/Qyzylorda"],
+  "cities": {
+    "Asia/Almaty": [
+      { "name": "Almaty", latitude: 43.2220, longitude: 76.8512 },
+      { "name": "Shymkent", latitude: 42.3400, longitude: 69.5901 },
+      { "name": "Karaganda", latitude: 49.8017, longitude: 73.0904 },
+      { "name": "Aktobe", latitude: 50.2833, longitude: 57.1667 }
+    ],
+    "Asia/Qyzylorda": [
+      { "name": "Astana", latitude: 51.1694, longitude: 71.4491 }
+    ]
+  }
+},
+"Kiribati": {
+  timezones: ["Pacific/Tarawa"],
+  cities: {
+    "Pacific/Tarawa": [
+      { "name": "Tarawa", latitude: 1.4511, longitude: 173.0312 },
+      { "name": "Bairiki", latitude: 1.4500, longitude: 173.0100 },
+      { "name": "Betio", latitude: 1.3700, longitude: 173.0300 },
+      { "name": "Buota", latitude: 1.8800, longitude: 173.1100 },
+      { "name": "Tabiteuea", latitude: 1.2278, longitude: 173.0833 }
+    ]
+  }
+},
+"Kuwait": {
+  timezones: ["Asia/Kuwait"],
+  cities: {
+    "Asia/Kuwait": [
+      { "name": "Kuwait City", latitude: 29.3759, longitude: 47.9774 },
+      { "name": "Al Ahmadi", latitude: 28.7277, longitude: 48.0734 },
+      { "name": "Hawalli", latitude: 29.3387, longitude: 48.0001 },
+      { "name": "Mubarak Al Kabeer", latitude: 29.3394, longitude: 48.0016 },
+      { "name": "Farwaniya", latitude: 29.2433, longitude: 47.9752 }
+    ]
+  }
+},
+"Kyrgyzstan": {
+  timezones: ["Asia/Bishkek"],
+  cities: {
+    "Asia/Bishkek": [
+      { "name": "Bishkek", latitude: 42.8746, longitude: 74.6123 },
+      { "name": "Osh", latitude: 40.5137, longitude: 72.7853 },
+      { "name": "Jalal-Abad", latitude: 40.9453, longitude: 73.0922 },
+      { "name": "Karakol", latitude: 42.4997, longitude: 78.3934 },
+      { "name": "Tokmok", latitude: 42.8289, longitude: 75.2433 }
+    ]
+  }
+},
+"North Korea": {
+  timezones: ["Asia/Pyongyang"],
+  cities: {
+    "Asia/Pyongyang": [
+      { "name": "Pyongyang", latitude: 39.0194, longitude: 125.7381 },
+      { "name": "Hamhung", latitude: 39.9186, longitude: 127.5364 },
+      { "name": "Chongjin", latitude: 41.7723, longitude: 129.1983 },
+      { "name": "Sinuiju", latitude: 40.1004, longitude: 124.3877 },
+      { "name": "Nampo", latitude: 38.7402, longitude: 125.4127 }
+    ]
+  }
+},
   "Nauru": {
     timezones: ["Pacific/Nauru"],
     cities: {
@@ -1892,36 +1862,35 @@ export const countriesData: { [country: string]: CountryData } = {
       ]
     }
   },
-  "Laos": {
-    timezones: ["Asia/Vientiane"],
-    cities: {
-      "Asia/Vientiane": [
-        { "name": "Vientiane", latitude: 17.9757, longitude: 102.6331 },
-        { "name": "Luang Prabang", latitude: 19.8843, longitude: 102.1415 },
-        { "name": "Pakse", latitude: 15.1163, longitude: 105.7809 },
-        { "name": "Savannakhet", latitude: 16.5669, longitude: 104.7447 },
-        { "name": "Thakhek", latitude: 17.4022, longitude: 104.8236 }
-      ]
-    }
-  },
-  "Latvia": {
-    timezones: ["Europe/Riga"],
-    cities: {
-      "Europe/Riga": [
-        { "name": "Riga", latitude: 56.946, longitude: 24.1059 },
-        { "name": "Jurmala", latitude: 56.9469, longitude: 23.9978 },
-        { "name": "Liepaja", latitude: 56.5010, longitude: 21.0105 },
-        { "name": "Jelgava", latitude: 56.6533, longitude: 23.7111 },
-        { "name": "Jurmala", latitude: 56.9469, longitude: 23.9978 }
-      ]
-    }
-  },
+ "Laos": {
+  timezones: ["Asia/Vientiane"],
+  "cities": {
+    "Asia/Vientiane": [
+      { "name": "Vientiane", latitude: 17.9757, longitude: 102.6331 },
+      { "name": "Luang Prabang", latitude: 19.8833, longitude: 102.1417 },
+      { "name": "Pakse", latitude: 15.1167, longitude: 105.7833 },
+      { "name": "Champasak", latitude: 15.1333, longitude: 105.7833 },
+      { "name": "Xam Neua", latitude: 20.4167, longitude: 104.0333 }
+    ]
+  }
+},
+"Latvia": {
+  timezones: ["Europe/Riga"],
+  cities: {
+    "Europe/Riga": [
+      { "name": "Riga", latitude: 56.946, longitude: 24.1059 },
+      { "name": "Daugavpils", latitude: 55.8761, longitude: 26.7025 },
+      { "name": "Jurmala", latitude: 56.9639, longitude: 23.8568 },
+      { "name": "Liepaja", latitude: 56.5075, longitude: 21.0103 },
+      { "name": "Jelgava", latitude: 56.6542, longitude: 23.7314 }
+    ]
+  }
+},
   "Lebanon": {
     timezones: ["Asia/Beirut"],
     cities: {
       "Asia/Beirut": [
         { "name": "Beirut", latitude: 33.8886, longitude: 35.4955 },
-        { "name": "Tripoli", latitude: 34.4380, longitude: 35.8497 },
         { "name": "Sidon", latitude: 33.5633, longitude: 35.3750 },
         { "name": "Tyre", latitude: 33.2706, longitude: 35.2000 },
         { "name": "Zahle", latitude: 33.8483, longitude: 36.2119 }
@@ -1959,8 +1928,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Vaduz", latitude: 47.1415, longitude: 9.5215 },
         { "name": "Schaan", latitude: 47.1667, longitude: 9.5167 },
         { "name": "Balzers", latitude: 47.1342, longitude: 9.5119 },
-        { "name": "Eschen", latitude: 47.2367, longitude: 9.5258 },
-        { "name": "Schellenberg", latitude: 47.2342, longitude: 9.5522 }
+        { "name": "Eschen", latitude: 47.2367, longitude: 9.5258 }
       ]
     }
   },
@@ -1983,8 +1951,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Luxembourg City", latitude: 49.6117, longitude: 6.13 },
         { "name": "Ettelbruck", latitude: 49.8672, longitude: 6.1222 },
         { "name": "Differdange", latitude: 49.5475, longitude: 5.9517 },
-        { "name": "Ettelbruck", latitude: 49.8672, longitude: 6.1222 },
-        { "name": "Ettelbruck", latitude: 49.8672, longitude: 6.1222 }
+        { "name": "Esch-sur-Alzette", latitude: 49.8672, longitude: 6.1222 },
       ]
     }
   },
@@ -2024,18 +1991,7 @@ export const countriesData: { [country: string]: CountryData } = {
       ]
     }
   },
-  "Micronesia": {
-    timezones: ["Pacific/Chuuk"],
-    cities: {
-      "Pacific/Chuuk": [
-        { "name": "Weno", latitude: 7.3353, longitude: 151.8403 },
-        { "name": "Tonoas", latitude: 7.3702, longitude: 151.7896 },
-        { "name": "Faichuk", latitude: 7.2933, longitude: 151.9619 },
-        { "name": "Satowan", latitude: 7.057, longitude: 152.0372 },
-        { "name": "Tol", latitude: 7.4063, longitude: 151.9911 }
-      ]
-    }
-  },
+
   "Moldova": {
     timezones: ["Europe/Chisinau"],
     cities: {
