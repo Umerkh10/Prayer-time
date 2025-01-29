@@ -87,7 +87,7 @@ function Page() {
       }
     }
 
-    return "fajr"; // Default to the first prayer of the next day
+    return "fajr"; 
   };
 
   const getCountdown = (prayerTimes: PrayerTimes, dateInCity: Date): string => {
@@ -109,7 +109,7 @@ function Page() {
       }
     }
 
-    return "0h 0m"; // Default to 0 if no next prayer is found
+    return "0h 0m"; 
   };
 
   const calculatePrayerTimes = (timezone: string) => {
@@ -203,12 +203,12 @@ function Page() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
 
-      <div className="flex items-center justify-between mb-8 pr-6">
+      <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold mb-2">Prayer Times In {data?.city?.name}</h1>
           <div className="flex items-center space-x-2">
 
-            <p className="text-lg text-muted-foreground">{data?.timezones?.utc}  {currentTime}</p>
+            <p className="text-lg text-muted-foreground">{data?.timezones?.utc}  </p>
           </div>
         </div>
         <div>

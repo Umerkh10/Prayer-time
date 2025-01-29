@@ -37,7 +37,7 @@ export function MobileNav() {
               Countries
             </Link>
             <Link
-              href="/calendar"
+              href="/islamic-calender"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >

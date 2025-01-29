@@ -70,8 +70,6 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode }: Pray
   const [error, setError] = useState<string | null>(null)
   const [matchingUTC, setMatchingUTC] = useState<any>(null)
 
-  
-
   useEffect(() => {
     if (countriesData[country]) {
       setSelectedTimezone(countriesData[country].timezones[0])
