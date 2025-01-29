@@ -199,30 +199,35 @@ useEffect(() => {
       </div>
 
       {/* Mobile view */}
-      <div className="grid gap-6 md:hidden">
-        {cities.map((city) => (
-          <CardContent key={city.name}>
-            <CardHeader>
-              <CardTitle>{city.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2">
-                {Object.entries(prayerTimes[city.name] || {}).map(([prayer, time]) => {
-                  if (prayer === "current") return null
-                  return (
-                    <li key={prayer} className="flex items-center justify-between">
-                      <span className="flex items-center">{prayer.charAt(0).toUpperCase() + prayer.slice(1)}</span>
-                      <span className={prayerTimes[city.name]?.current === prayer ? "font-bold text-primary" : ""}>
-                        {time}
-                      </span>
-                    </li>
-                  )
-                })}
-              </ul>
-            </CardContent>
-          </CardContent>
-        ))}
-      </div>
+      <div className="grid gap-4 md:hidden px-4">
+      {cities.map((city) => (
+        <Link
+          key={city.name}
+          href={`/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}`}
+          onClick={() => saveCityDetails(city)}
+          className="block rounded-xl shadow-md bg-zinc-50 dark:bg-gray-800 p-4 border border-gray-200 transition hover:shadow-xl scale-95 hover:scale-100 duration-200 delay-200 "
+        >
+          <div className="flex items-center justify-between border-b pb-2 mb-2">
+            <h3 className="text-lg font-bold ">{city.name}</h3>
+            <span className="text-sm ">Tap for details</span>
+          </div>
+
+          <ul className="space-y-2">
+            {Object.entries(prayerTimes[city.name] || {}).map(([prayer, time]) => {
+              if (prayer === "current") return null;
+              return (
+                <li key={prayer} className="flex items-center justify-between text-sm">
+                  <span className="capitalize ">{prayer}</span>
+                  <span className={prayerTimes[city.name]?.current === prayer ? "font-bold text-primary" : "font-semibold"}>
+                    {time}
+                  </span>
+                </li>
+              );
+            })}
+          </ul>
+        </Link>
+      ))}
+    </div>
 
       {/* Desktop view */}
       <div className="hidden md:block">

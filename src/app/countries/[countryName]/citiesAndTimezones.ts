@@ -13,31 +13,51 @@ export interface CountryData {
 }
 
 export const countriesData: { [country: string]: CountryData } = {
-  "United States": {
-    timezones: ["US/Eastern", "US/Pacific", "US/Central", "US/Mountain"],
-    cities: {
-      "US/Eastern": [
-        { name: "New York", latitude: 40.7128, longitude: -74.006 },
-        { name: "Miami", latitude: 25.7617, longitude: -80.1918 },
-        { name: "Boston", latitude: 42.3584, longitude: -71.0596 },
-      ],
-      "US/Pacific": [
-        { name: "Los Angeles", latitude: 34.0522, longitude: -118.2437 },
-        { name: "San Francisco", latitude: 37.7749, longitude: -122.4194 },
-        { name: "Seattle", latitude: 47.6067, longitude: -122.3321 },
-      ],
-      "US/Central": [
-        { name: "Chicago", latitude: 41.8781, longitude: -87.6298 },
-        { name: "Houston", latitude: 29.7633, longitude: -95.3632 },
-        { name: "Dallas", latitude: 32.7763, longitude: -96.7969 },
-      ],
-      "US/Mountain": [
-        { name: "Denver", latitude: 39.7392, longitude: -104.9903 },
-        { name: "Phoenix", latitude: 33.4484, longitude: -112.0739 },
-        { name: "Salt Lake City", latitude: 40.7677, longitude: -111.8906 },
-      ],
-    },
-  },
+ "United States": {
+  timezones: ["US/Eastern", "US/Pacific", "US/Central", "US/Mountain"],
+  cities: {
+    "US/Eastern": [
+      { name: "New York", latitude: 40.7128, longitude: -74.006 },
+      { name: "Miami", latitude: 25.7617, longitude: -80.1918 },
+      { name: "Boston", latitude: 42.3584, longitude: -71.0596 },
+      { name: "Atlanta", latitude: 33.749, longitude: -84.388 },
+      { name: "Washington, D.C.", latitude: 38.9072, longitude: -77.0369 },
+      { name: "Philadelphia", latitude: 39.9526, longitude: -75.1652 },
+      { name: "Orlando", latitude: 28.5383, longitude: -81.3792 },
+      { name: "Charlotte", latitude: 35.2271, longitude: -80.8431 }
+    ],
+    "US/Pacific": [
+      { name: "Los Angeles", latitude: 34.0522, longitude: -118.2437 },
+      { name: "San Francisco", latitude: 37.7749, longitude: -122.4194 },
+      { name: "Seattle", latitude: 47.6067, longitude: -122.3321 },
+      { name: "San Diego", latitude: 32.7157, longitude: -117.1611 },
+      { name: "Portland", latitude: 45.5152, longitude: -122.6784 },
+      { name: "Las Vegas", latitude: 36.1699, longitude: -115.1398 },
+      { name: "Sacramento", latitude: 38.5816, longitude: -121.4944 },
+      { name: "San Jose", latitude: 37.3382, longitude: -121.8863 }
+    ],
+    "US/Central": [
+      { name: "Chicago", latitude: 41.8781, longitude: -87.6298 },
+      { name: "Houston", latitude: 29.7633, longitude: -95.3632 },
+      { name: "Dallas", latitude: 32.7763, longitude: -96.7969 },
+      { name: "Austin", latitude: 30.2672, longitude: -97.7431 },
+      { name: "San Antonio", latitude: 29.4241, longitude: -98.4936 },
+      { name: "Nashville", latitude: 36.1627, longitude: -86.7816 },
+      { name: "New Orleans", latitude: 29.9511, longitude: -90.0715 },
+      { name: "Kansas City", latitude: 39.0997, longitude: -94.5786 }
+    ],
+    "US/Mountain": [
+      { name: "Denver", latitude: 39.7392, longitude: -104.9903 },
+      { name: "Phoenix", latitude: 33.4484, longitude: -112.0739 },
+      { name: "Salt Lake City", latitude: 40.7677, longitude: -111.8906 },
+      { name: "Albuquerque", latitude: 35.0844, longitude: -106.6504 },
+      { name: "Boise", latitude: 43.615, longitude: -116.2023 },
+      { name: "Tucson", latitude: 32.2226, longitude: -110.9747 },
+      { name: "Colorado Springs", latitude: 38.8339, longitude: -104.8214 },
+      { name: "Cheyenne", latitude: 41.1399, longitude: -104.8202 }
+    ]
+  }
+},
   Pakistan: {
     timezones: ["Asia/Karachi"],
     cities: {
@@ -56,16 +76,19 @@ export const countriesData: { [country: string]: CountryData } = {
       ],
     },
   },
-  "Saudi Arabia": {
-    timezones: ["Asia/Riyadh"],
-    cities: {
-      "Asia/Riyadh": [
-        { name: "Riyadh", latitude: 24.7136, longitude: 46.6753 },
-        { name: "Mecca", latitude: 21.3891, longitude: 39.8579 },
-        { name: "Medina", latitude: 24.5247, longitude: 39.5692 },
-      ],
-    },
-  },
+"Saudi Arabia": {
+  timezones: ["Asia/Riyadh"],
+  cities: {
+    "Asia/Riyadh": [
+      { "name": "Riyadh", latitude: 24.7136, longitude: 46.6753 },
+      { "name": "Jeddah", latitude: 21.4858, longitude: 39.1925 },
+      { "name": "Mecca", latitude: 21.3891, longitude: 39.8579 },
+      { "name": "Medina", latitude: 24.5247, longitude: 39.5692 },
+      { "name": "Dammam", latitude: 26.4207, longitude: 50.0888 },
+      { "name": "Tabuk", latitude: 28.3839, longitude: 36.5662 }
+    ]
+  }
+},
   Egypt: {
     timezones: ["Africa/Cairo"],
     cities: {
@@ -447,8 +470,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Haiphong", latitude: 20.8449, longitude: 106.6881 },
         { "name": "Da Nang", latitude: 16.0544, longitude: 108.2022 },
         { "name": "Can Tho", latitude: 10.0458, longitude: 105.7469 },
-        { "name": "Bien Hoa", latitude: 10.9447, longitude: 106.8243 },
-        { "name": "Hue", latitude: 16.4637, longitude: 107.5909 }
+        { "name": "Bien Hoa", latitude: 10.9447, longitude: 106.8243 }
       ]
     }
   },
@@ -573,8 +595,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Malmö", latitude: 55.6044, longitude: 13.0038 },
         { "name": "Uppsala", latitude: 59.8586, longitude: 17.6389 },
         { "name": "Västerås", latitude: 59.6168, longitude: 16.5528 },
-        { "name": "Örebro", latitude: 59.2753, longitude: 15.2134 },
-        { "name": "Linköping", latitude: 58.4108, longitude: 15.6214 }
+        { "name": "Örebro", latitude: 59.2753, longitude: 15.2134 }
       ]
     }
   },
@@ -586,9 +607,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Geneva", latitude: 46.2044, longitude: 6.1432 },
         { "name": "Basel", latitude: 47.5596, longitude: 7.5886 },
         { "name": "Lausanne", latitude: 46.5197, longitude: 6.6323 },
-        { "name": "Bern", latitude: 46.9479, longitude: 7.4446 },
-        { "name": "Winterthur", latitude: 47.4949, longitude: 8.7276 },
-        { "name": "Lucerne", latitude: 47.0502, longitude: 8.3093 }
+        { "name": "Bern", latitude: 46.9479, longitude: 7.4446 }
       ]
     }
   },
@@ -1260,7 +1279,6 @@ export const countriesData: { [country: string]: CountryData } = {
     timezones: ["Indian/Mahe"],
     cities: {
       "Indian/Mahe": [
-        { "name": "Victoria", latitude: -4.6167, longitude: 55.4500 },
         { "name": "Anse Boileau", latitude: -4.7167, longitude: 55.5000 },
         { "name": "Beau Vallon", latitude: -4.6233, longitude: 55.4300 },
         { "name": "Takamaka", latitude: -4.7897, longitude: 55.5086 },
@@ -2316,8 +2334,12 @@ export const countriesData: { [country: string]: CountryData } = {
   timezones: ["Pacific/Funafuti"],
   cities: {
     "Pacific/Funafuti": [
-      { "name": "Funafuti", latitude: -7.4805, longitude: 179.1947 },
-      { "name": "Fongafale", latitude: -7.4744, longitude: 179.1944 }
+      { name: "Funafuti", latitude: -8.5243, longitude: 179.1941 },
+      { name: "Nanumea", latitude: -5.6685, longitude: 176.1311 },
+      { name: "Nukufetau", latitude: -7.989, longitude: 178.3247 },
+      { name: "Vaitupu", latitude: -7.4622, longitude: 178.6736 },
+      { name: "Nanumanga", latitude: -6.2806, longitude: 176.3242 },
+      { name: "Niutao", latitude: -6.1094, longitude: 177.3422 }
     ]
   }
 },
@@ -2346,7 +2368,6 @@ export const countriesData: { [country: string]: CountryData } = {
     "America/Caracas": [
       { "name": "Caracas", latitude: 10.4806, longitude: -66.9036 },
       { "name": "Maracaibo", latitude: 10.6549, longitude: -71.6191 },
-      { "name": "Valencia", latitude: 10.1639, longitude: -68.0014 },
       { "name": "Barquisimeto", latitude: 10.0731, longitude: -69.2910 },
       { "name": "Maracay", latitude: 10.2462, longitude: -67.5952 }
     ]

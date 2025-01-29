@@ -3,11 +3,11 @@ import Image from 'next/image'
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Navigation } from 'swiper/modules'
-
-// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import Link from 'next/link'
+
 
 
 const destinations = [
@@ -133,6 +133,7 @@ function CountrySection() {
       >
         {destinations.map((destination) => (
           <SwiperSlide key={destination.id}>
+            <Link href={`/countries/${destination.name.toLowerCase()}`} passHref>
             <div className="group cursor-pointer">
               <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
@@ -147,6 +148,7 @@ function CountrySection() {
                 {destination.name}
               </h3>
             </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

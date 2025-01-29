@@ -8,7 +8,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 
-const countries = [
+export const countries = [
     { name: 'Afghanistan', code: 'AF', timezone: 'Asia/Kabul', offset: '+04:30' },
     { name: 'Albania', code: 'AL', timezone: 'Europe/Tirane', offset: '+01:00' },
     { name: 'Algeria', code: 'DZ', timezone: 'Africa/Algiers', offset: '+01:00' },
@@ -150,7 +150,6 @@ const countries = [
     { name: 'Senegal', code: 'SN', timezone: 'Africa/Dakar', offset: '+00:00' },
     { name: 'Serbia', code: 'RS', timezone: 'Europe/Belgrade', offset: '+01:00' },
     { name: 'Seychelles', code: 'SC', timezone: 'Indian/Mahe', offset: '+04:00' },
-    { name: 'Sierra Leone', code: 'SL', timezone: 'Africa/Freetown', offset: '+00:00' },
     { name: 'Singapore', code: 'SG', timezone: 'Asia/Singapore', offset: '+08:00' },
     { name: 'Slovakia', code: 'SK', timezone: 'Europe/Bratislava', offset: '+01:00' },
     { name: 'Slovenia', code: 'SI', timezone: 'Europe/Ljubljana', offset: '+01:00' },
@@ -158,7 +157,6 @@ const countries = [
     { name: 'Somalia', code: 'SO', timezone: 'Africa/Mogadishu', offset: '+03:00' },
     { name: 'South Africa', code: 'ZA', timezone: 'Africa/Johannesburg', offset: '+02:00' },
     { name: 'South Korea', code: 'KR', timezone: 'Asia/Seoul', offset: '+09:00' },
-    { name: 'South Sudan', code: 'SS', timezone: 'Africa/Juba', offset: '+03:00' },
     { name: 'Spain', code: 'ES', timezone: 'Europe/Madrid', offset: '+01:00' },
     { name: 'Sri Lanka', code: 'LK', timezone: 'Asia/Colombo', offset: '+05:30' },
     { name: 'Sudan', code: 'SD', timezone: 'Africa/Khartoum', offset: '+02:00' },
@@ -171,7 +169,6 @@ const countries = [
     { name: 'Tanzania', code: 'TZ', timezone: 'Africa/Dar_es_Salaam', offset: '+03:00' },
     { name: 'Thailand', code: 'TH', timezone: 'Asia/Bangkok', offset: '+07:00' },
     { name: 'Timor-Leste', code: 'TL', timezone: 'Asia/Dili', offset: '+09:00' },
-    { name: 'Togo', code: 'TG', timezone: 'Africa/Lome', offset: '+00:00' },
     { name: 'Tokelau', code: 'TK', timezone: 'Pacific/Fakaofo', offset: '+13:00' },
     { name: 'Tonga', code: 'TO', timezone: 'Pacific/Tongatapu', offset: '+13:00' },
     { name: 'Trinidad and Tobago', code: 'TT', timezone: 'America/Port_of_Spain', offset: '-04:00' },
@@ -193,7 +190,7 @@ const countries = [
     { name: 'Yemen', code: 'YE', timezone: 'Asia/Aden', offset: '+03:00' },
     { name: 'Zambia', code: 'ZM', timezone: 'Africa/Lusaka', offset: '+02:00' },
     { name: 'Zimbabwe', code: 'ZW', timezone: 'Africa/Harare', offset: '+02:00' },
-  ];
+];
   
 
 export default function CountriesList() {
@@ -337,7 +334,7 @@ export default function CountriesList() {
              
                 {countries.map((country) => (
                 
-                <Link target='_blank' href={`/countries/${country.name.toLowerCase().replaceAll(" ","-")}`} key={country.code}>
+                <Link href={`/countries/${country.name.toLowerCase().replaceAll(" ","-")}`} key={country.code}>
                 <div
                  className={`flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200 hover:shadow-lg ${
                    selectedCountry === country.name ? 'text-zinc-100 dark:text-zinc-900 dark:bg-zinc-100 bg-zinc-900 font-semibold' : ''

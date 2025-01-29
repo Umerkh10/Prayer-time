@@ -1158,59 +1158,388 @@ export const cityTimezones: Record<string, string> = {
     "Nyamata": "Africa/Kigali",
 
 
+    ////////////////////////// For Alphabet S //////////////////////////
 
-    // Saudi Arabia
-    "Riyadh": "Asia/Riyadh",
+// Saint Kitts and Nevis
+"Basseterre": "America/St_Kitts",
+"Charlestown": "America/St_Kitts",
+"Sandy Point Town": "America/St_Kitts",
+"Tabernacle": "America/St_Kitts",
+"Cayon": "America/St_Kitts",
 
-    // Singapore
-    "Singapore": "Asia/Singapore",
+// Saint Lucia
+"Castries": "America/St_Lucia",
+"Vieux Fort": "America/St_Lucia",
+"Soufrière": "America/St_Lucia",
+"Gros Islet": "America/St_Lucia",
+"Dennery": "America/St_Lucia",
 
-    // South Africa
-    "Johannesburg": "Africa/Johannesburg",
-    "Cape Town": "Africa/Johannesburg",
+// Samoa
+"Apia": "Pacific/Apia",
+"Vaitele": "Pacific/Apia",
+"Faleula": "Pacific/Apia",
+"Siumu": "Pacific/Apia",
+"Saleufi": "Pacific/Apia",
 
-    // South Korea
-    "Seoul": "Asia/Seoul",
+// San Marino
+"San Marino": "Europe/San_Marino",
+"Borgo Maggiore": "Europe/San_Marino",
+"Serravalle": "Europe/San_Marino",
+"Domagnano": "Europe/San_Marino",
+"Chiesanuova": "Europe/San_Marino",
 
-    // Spain
-    "Madrid": "Europe/Madrid",
+// Saudi Arabia
+"Riyadh": "Asia/Riyadh",
+"Jeddah": "Asia/Riyadh",
+"Mecca": "Asia/Riyadh",
+"Medina": "Asia/Riyadh",
+"Dammam": "Asia/Riyadh",
+"Tabuk": "Asia/Riyadh",
 
-    // Sri Lanka
-    "Colombo": "Asia/Colombo",
+// Senegal
+"Dakar": "Africa/Dakar",
+"Thies": "Africa/Dakar",
+"Saint-Louis": "Africa/Dakar",
+"Kaolack": "Africa/Dakar",
+"Ziguinchor": "Africa/Dakar",
 
-    // Sweden
-    "Stockholm": "Europe/Stockholm",
+// Serbia
+"Belgrade": "Europe/Belgrade",
+"Novi Sad": "Europe/Belgrade",
+"Niš": "Europe/Belgrade",
+"Kragujevac": "Europe/Belgrade",
+"Subotica": "Europe/Belgrade",
+"Zrenjanin": "Europe/Belgrade",
+"Pančevo": "Europe/Belgrade",
 
-    // Switzerland
-    "Zurich": "Europe/Zurich",
+// Seychelles
+"Beau Vallon": "Indian/Mahe",
+"Anse Boileau": "Indian/Mahe",
+"Takamaka": "Indian/Mahe",
+"Anse Royale": "Indian/Mahe",
 
-    // Syria
-    "Damascus": "Asia/Damascus",
+
+
+// Singapore
+"Singapore": "Asia/Singapore",
+
+// Slovakia
+"Bratislava": "Europe/Bratislava",
+"Košice": "Europe/Bratislava",
+"Prešov": "Europe/Bratislava",
+"Žilina": "Europe/Bratislava",
+"Nitra": "Europe/Bratislava",
+"Banská Bystrica": "Europe/Bratislava",
+"Trnava": "Europe/Bratislava",
+
+// Slovenia
+"Ljubljana": "Europe/Ljubljana",
+"Maribor": "Europe/Ljubljana",
+"Celje": "Europe/Ljubljana",
+"Kranj": "Europe/Ljubljana",
+"Koper": "Europe/Ljubljana",
+"Velenje": "Europe/Ljubljana",
+"Novo Mesto": "Europe/Ljubljana",
+
+// Solomon Islands
+"Honiara": "Pacific/Guadalcanal",
+"Gizo": "Pacific/Guadalcanal",
+"Auki": "Pacific/Guadalcanal",
+"Tulagi": "Pacific/Guadalcanal",
+"Munda": "Pacific/Guadalcanal",
+"Kira kira": "Pacific/Guadalcanal",
+
+// Somalia
+"Mogadishu": "Africa/Mogadishu",
+"Hargeisa": "Africa/Mogadishu",
+"Kismayo": "Africa/Mogadishu",
+"Baidoa": "Africa/Mogadishu",
+"Bossaso": "Africa/Mogadishu",
+
+// South Africa
+"Cape Town": "Africa/Johannesburg",
+"Johannesburg": "Africa/Johannesburg",
+"Pretoria": "Africa/Johannesburg",
+"Durban": "Africa/Johannesburg",
+"Port Elizabeth": "Africa/Johannesburg",
+"Bloemfontein": "Africa/Johannesburg",
+
+// South Korea
+"Seoul": "Asia/Seoul",
+"Busan": "Asia/Seoul",
+"Incheon": "Asia/Seoul",
+"Daegu": "Asia/Seoul",
+"Daejeon": "Asia/Seoul",
+"Suwon": "Asia/Seoul",
+"Gwangju": "Asia/Seoul",
+
+
+// Spain
+"Madrid": "Europe/Madrid",
+"Barcelona": "Europe/Madrid",
+"Valencia": "Europe/Madrid",
+"Seville": "Europe/Madrid",
+"Zaragoza": "Europe/Madrid",
+"Malaga": "Europe/Madrid",
+"Murcia": "Europe/Madrid",
+
+// Sri Lanka
+"Colombo": "Asia/Colombo",
+"Kandy": "Asia/Colombo",
+"Galle": "Asia/Colombo",
+"Jaffna": "Asia/Colombo",
+"Negombo": "Asia/Colombo",
+
+// Sudan
+"Khartoum": "Africa/Khartoum",
+"Omdurman": "Africa/Khartoum",
+"Port Sudan": "Africa/Khartoum",
+"Kosti": "Africa/Khartoum",
+"El Obeid": "Africa/Khartoum",
+
+// Suriname
+"Paramaribo": "America/Paramaribo",
+"Lelydorp": "America/Paramaribo",
+"Papatam": "America/Paramaribo",
+"Nieuw Nickerie": "America/Paramaribo",
+"Moengo": "America/Paramaribo",
+
+// Sweden
+"Stockholm": "Europe/Stockholm",
+"Gothenburg": "Europe/Stockholm",
+"Malmö": "Europe/Stockholm",
+"Uppsala": "Europe/Stockholm",
+"Västerås": "Europe/Stockholm",
+"Örebro": "Europe/Stockholm",
+
+// Switzerland
+"Zurich": "Europe/Zurich",
+"Geneva": "Europe/Zurich",
+"Basel": "Europe/Zurich",
+"Lausanne": "Europe/Zurich",
+"Bern": "Europe/Zurich",
+"Lugano": "Europe/Zurich",
+
+    ////////////////////////// For Alphabet T //////////////////////////
 
     // Taiwan
     "Taipei": "Asia/Taipei",
+    "Kaohsiung": "Asia/Taipei",
+    "Taichung": "Asia/Taipei",
+    "Tainan": "Asia/Taipei",
+    "Keelung": "Asia/Taipei",
+
+    // Tajikistan
+    "Dushanbe": "Asia/Dushanbe",
+    "Khujand": "Asia/Dushanbe",
+    "Kulob": "Asia/Dushanbe",
+    "Bokhtar": "Asia/Dushanbe",
+    "Istaravshan": "Asia/Dushanbe",
 
     // Tanzania
+    "Dodoma": "Africa/Dar_es_Salaam",
     "Dar es Salaam": "Africa/Dar_es_Salaam",
+    "Mwanza": "Africa/Dar_es_Salaam",
+    "Arusha": "Africa/Dar_es_Salaam",
+    "Mbeya": "Africa/Dar_es_Salaam",
 
     // Thailand
     "Bangkok": "Asia/Bangkok",
+    "Chiang Mai": "Asia/Bangkok",
+    "Pattaya": "Asia/Bangkok",
+    "Phuket": "Asia/Bangkok",
+    "Hua Hin": "Asia/Bangkok",
+    "Nonthaburi": "Asia/Bangkok",
+    "Udon Thani": "Asia/Bangkok",
+
+    // Timor-Leste
+    "Dili": "Asia/Dili",
+    "Baucau": "Asia/Dili",
+    "Maliana": "Asia/Dili",
+    "Lospalos": "Asia/Dili",
+    "Viqueque": "Asia/Dili",
+
+    // Tokelau
+    "Atafu": "Pacific/Fakaofo",
+    "Nukunonu": "Pacific/Fakaofo",
+    "Fakaofo": "Pacific/Fakaofo",
+
+    // Tonga
+    "Nuku'alofa": "Pacific/Tongatapu",
+    "Neiafu": "Pacific/Tongatapu",
+    "Vava'u": "Pacific/Tongatapu",
+    "Ha'apai": "Pacific/Tongatapu",
+   
+
+    // Trinidad and Tobago
+    "Port of Spain": "America/Port_of_Spain",
+    "San Fernando": "America/Port_of_Spain",
+    "Chaguanas": "America/Port_of_Spain",
+    "Scarborough": "America/Port_of_Spain",
+    "Point Fortin": "America/Port_of_Spain",
+    "Arima": "America/Port_of_Spain",
+
+    // Tunisia
+    "Tunis": "Africa/Tunis",
+    "Sfax": "Africa/Tunis",
+    "Sousse": "Africa/Tunis",
+    "Gabès": "Africa/Tunis",
 
     // Turkey
     "Istanbul": "Europe/Istanbul",
+    "Ankara": "Europe/Istanbul",
+    "Izmir": "Europe/Istanbul",
+    "Bursa": "Europe/Istanbul",
+    "Adana": "Europe/Istanbul",
+    "Gaziantep": "Europe/Istanbul",
+    "Konya": "Europe/Istanbul",
 
-    // United Arab Emirates
-    "Dubai": "Asia/Dubai",
-    "Abu Dhabi": "Asia/Dubai",
+    // Turkmenistan
+    "Ashgabat": "Asia/Ashgabat",
+    "Turkmenabat": "Asia/Ashgabat",
+    "Mary": "Asia/Ashgabat",
+    "Dashoguz": "Asia/Ashgabat",
 
-    // United Kingdom
-    "London": "Europe/London",
 
-    // United States
-    "New York": "America/New_York",
-    "Boston": "America/New_York",
-    "Miami": "America/New_York",
-    "Los Angeles": "America/Los_Angeles",
-    "Seattle": "America/Los_Angeles",
-    "San Francisco": "America/Los_Angeles",
+    // Tuvalu
+    "Funafuti": "Pacific/Funafuti",
+    "Nanumea": "Pacific/Funafuti",
+    "Nukufetau": "Pacific/Funafuti",
+    "Vaitupu": "Pacific/Funafuti",
+    "Nanumanga": "Pacific/Funafuti",
+    "Niutao": "Pacific/Funafuti",
+
+    ////////////////////////// For Alphabet U //////////////////////////
+
+
+// United States    
+"New York": "US/Eastern",
+"Miami": "US/Eastern",
+"Boston": "US/Eastern",
+"Atlanta": "US/Eastern",
+"Washington, D.C.": "US/Eastern",
+"Philadelphia": "US/Eastern",
+"Orlando": "US/Eastern",
+"Charlotte": "US/Eastern",
+"Los Angeles": "US/Pacific",
+"San Francisco": "US/Pacific",
+"Seattle": "US/Pacific",
+"San Diego": "US/Pacific",
+"Portland": "US/Pacific",
+"Las Vegas": "US/Pacific",
+"Sacramento": "US/Pacific",
+"San Jose": "US/Pacific",
+"Chicago": "US/Central",
+"Houston": "US/Central",
+"Dallas": "US/Central",
+"Austin": "US/Central",
+"San Antonio": "US/Central",
+"Nashville": "US/Central",
+"New Orleans": "US/Central",
+"Kansas City": "US/Central",
+"Denver": "US/Mountain",
+"Phoenix": "US/Mountain",
+"Salt Lake City": "US/Mountain",
+"Albuquerque": "US/Mountain",
+"Boise": "US/Mountain",
+"Tucson": "US/Mountain",
+"Colorado Springs": "US/Mountain",
+"Cheyenne": "US/Mountain",
+
+
+// Uganda
+"Kampala": "Africa/Kampala",
+"Entebbe": "Africa/Kampala",
+"Mbale": "Africa/Kampala",
+"Jinja": "Africa/Kampala",
+"Mbarara": "Africa/Kampala",
+
+// Ukraine
+"Kyiv": "Europe/Kiev",
+"Kharkiv": "Europe/Kiev",
+"Odesa": "Europe/Kiev",
+"Dnipro": "Europe/Kiev",
+"Donetsk": "Europe/Kiev",
+"Zaporizhzhia": "Europe/Kiev",
+"Lviv": "Europe/Kiev",
+
+// United Arab Emirates
+"Abu Dhabi": "Asia/Dubai",
+"Dubai": "Asia/Dubai",
+"Sharjah": "Asia/Dubai",
+"Al Ain": "Asia/Dubai",
+"Ajman": "Asia/Dubai",
+"Fujairah": "Asia/Dubai",
+"Ras Al Khaimah": "Asia/Dubai",
+
+// United Kingdom
+"London": "Europe/London",
+"Manchester": "Europe/London",
+"Birmingham": "Europe/London",
+"Liverpool": "Europe/London",
+"Glasgow": "Europe/London",
+"Edinburgh": "Europe/London",
+"Bristol": "Europe/London",
+
+// Uruguay
+"Montevideo": "America/Montevideo",
+"Salto": "America/Montevideo",
+"Paysandú": "America/Montevideo",
+"Rivera": "America/Montevideo",
+"Maldonado": "America/Montevideo",
+"Ciudad de la Costa": "America/Montevideo",
+"Las Piedras": "America/Montevideo",
+
+// Uzbekistan
+"Tashkent": "Asia/Tashkent",
+"Samarkand": "Asia/Samarkand",
+"Bukhara": "Asia/Samarkand",
+"Andijan": "Asia/Tashkent",
+
+// Vanuatu
+"Port Vila": "Pacific/Efate",
+"Luganville": "Pacific/Efate",
+"Norsup": "Pacific/Efate",
+"Isangel": "Pacific/Efate",
+"Sola": "Pacific/Efate",
+"Lenakel": "Pacific/Efate",
+
+// Vatican City
+"Vatican City": "Europe/Vatican",
+
+// Venezuela
+"Caracas": "America/Caracas",
+"Maracaibo": "America/Caracas",
+"Barquisimeto": "America/Caracas",
+"Maracay": "America/Caracas",
+
+// Vietnam
+"Hanoi": "Asia/Ho_Chi_Minh",
+"Ho Chi Minh City": "Asia/Ho_Chi_Minh",
+"Da Nang": "Asia/Ho_Chi_Minh",
+"Haiphong": "Asia/Ho_Chi_Minh",
+"Can Tho": "Asia/Ho_Chi_Minh",
+"Bien Hoa": "Asia/Ho_Chi_Minh",
+
+// Yemen
+"Sanaa": "Asia/Aden",
+"Aden": "Asia/Aden",
+"Taiz": "Asia/Aden",
+"Al Hudaydah": "Asia/Aden",
+"Al Mukalla": "Asia/Aden",
+
+// Zambia
+"Lusaka": "Africa/Lusaka",
+"Kitwe": "Africa/Lusaka",
+"Ndola": "Africa/Lusaka",
+"Livingstone": "Africa/Lusaka",
+"Chipata": "Africa/Lusaka",
+
+// Zimbabwe
+"Harare": "Africa/Harare",
+"Bulawayo": "Africa/Harare",
+"Mutare": "Africa/Harare",
+"Gweru": "Africa/Harare",
+"Masvingo": "Africa/Harare",
+
 };
