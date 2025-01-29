@@ -24,8 +24,8 @@ const formatMonthlyDate = (date: string): string => {
   return new Date(date).toLocaleDateString(undefined, options);
 };
 
+
 function Page() {
-  const [data, setData] = useState<any>({});
   const [prayerTimes, setPrayerTimes] = useState<PrayerTime | null>(null);
   const [monthlyTimes, setMonthlyTimes] = useState<PrayerTime[] | null>(null);
   const [selectedMadhab, setSelectedMadhab] = useState<keyof typeof Madhab>("Shafi");
@@ -33,6 +33,7 @@ function Page() {
   const [nextPrayer, setNextPrayer] = useState<string | null>(null);
   const [countdown, setCountdown] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<string | null>(null);
+  const [data, setData] = useState<any>(null);
 
   useEffect(() => {
     const cityDetails = localStorage.getItem("cityDetails");
@@ -40,7 +41,13 @@ function Page() {
       setData(JSON.parse(cityDetails));
     }
   }, []);
-  
+
+  const flagUrl = data?.countryCode
+    ? `https://flagcdn.com/w320/${data.countryCode.toLowerCase()}.png`
+    : null;
+
+
+
   useEffect(() => {
     if (data?.city?.name) {
       const timezone = cityTimezones[data.city.name];
@@ -53,7 +60,7 @@ function Page() {
       }
     }
   }, [data, selectedMadhab]);
-  
+
   const updateCurrentTime = (timezone: string) => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -110,10 +117,10 @@ function Page() {
       setError("Invalid city data. Please ensure latitude and longitude are set.");
       return;
     }
-  
+
     const method = CalculationMethod[(data.city.country as keyof typeof CalculationMethod) || "MuslimWorldLeague"]();
     method.madhab = Madhab[selectedMadhab];
-  
+
     const now = new Date();
     const dateInCity = new Date(now.toLocaleString("en-US", { timeZone: timezone }));
     const prayerTimes = new PrayerTimes(
@@ -121,7 +128,7 @@ function Page() {
       dateInCity,
       method
     );
-  
+
     const formatTime = (time: Date) =>
       time.toLocaleTimeString("en-US", {
         hour: "2-digit",
@@ -129,7 +136,7 @@ function Page() {
         hour12: true,
         timeZone: timezone,
       });
-  
+
     setPrayerTimes({
       date: dateInCity.toLocaleDateString(),
       fajr: formatTime(prayerTimes.fajr),
@@ -139,27 +146,27 @@ function Page() {
       maghrib: formatTime(prayerTimes.maghrib),
       isha: formatTime(prayerTimes.isha),
     });
-  
+
     setNextPrayer(getNextPrayer(prayerTimes, dateInCity));
     setCountdown(getCountdown(prayerTimes, dateInCity));
-  
+
     setError(null);
   };
-  
+
   const calculateMonthlyPrayerTimes = (timezone: string) => {
     if (!data?.city?.latitude || !data?.city?.longitude) {
       setError("Invalid city data for monthly prayer times.");
       return;
     }
-  
+
     const method = CalculationMethod[(data.city.country as keyof typeof CalculationMethod) || "MuslimWorldLeague"]();
     method.madhab = Madhab[selectedMadhab];
-  
+
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-  
+
     const monthlyTimesArray: PrayerTime[] = [];
     for (let day = 1; day <= daysInMonth; day++) {
       const date = new Date(year, month, day);
@@ -169,7 +176,7 @@ function Page() {
         dateInCity,
         method
       );
-  
+
       const formatTime = (time: Date) =>
         time.toLocaleTimeString("en-US", {
           hour: "2-digit",
@@ -177,7 +184,7 @@ function Page() {
           hour12: true,
           timeZone: timezone,
         });
-  
+
       monthlyTimesArray.push({
         date: formatMonthlyDate(dateInCity.toLocaleDateString("en-US")), // Update here
         fajr: formatTime(prayerTimes.fajr),
@@ -188,30 +195,36 @@ function Page() {
         isha: formatTime(prayerTimes.isha),
       });
     }
-  
+
     setMonthlyTimes(monthlyTimesArray);
     setError(null);
-  };
-  
+  }
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
 
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between mb-8 pr-6">
         <div>
-        <h1 className="text-3xl font-bold mb-2">Prayer Times In {data?.city?.name}</h1>
+          <h1 className="text-3xl font-bold mb-2">Prayer Times In {data?.city?.name}</h1>
           <div className="flex items-center space-x-2">
-            {data?.city?.country && (
-              <Flag code={data?.city?.country} className="h-6 w-6" />
-            )}
+
             <p className="text-lg text-muted-foreground">{data?.timezones?.utc}  {currentTime}</p>
           </div>
+        </div>
+        <div>
+          <img
+            src={flagUrl || "/placeholder.svg"}
+            alt={`${name} flag`}
+            width={120}
+            height={120}
+            className="rounded shadow-sm"
+          />
         </div>
       </div>
 
       <Card className="mb-8">
         <CardContent className="pt-6">
-      
+
 
           <div className="flex justify-between items-center px-3 py-4 ">
             <div className="font-medium bg-secondary hover:bg-blue-500 duration-200 delay-150 rounded-lg  px-4 py-2 ">
@@ -219,17 +232,17 @@ function Page() {
             </div>
 
             <div className="my-3">
-            <label className="block mb-2 text-sm font-medium">Select School of Thought:</label>
-            <Select value={selectedMadhab} onValueChange={(value) => setSelectedMadhab(value as keyof typeof Madhab)}>
-              <SelectTrigger className="w-full sm:w-[190px]">
-                <SelectValue placeholder="Select Madhab" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Shafi">Shafi/Maliki/Hanbali</SelectItem>
-                <SelectItem value="Hanafi">Hanafi</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+              <label className="block mb-2 text-sm font-medium">Select School of Thought:</label>
+              <Select value={selectedMadhab} onValueChange={(value) => setSelectedMadhab(value as keyof typeof Madhab)}>
+                <SelectTrigger className="w-full sm:w-[190px]">
+                  <SelectValue placeholder="Select Madhab" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Shafi">Shafi/Maliki/Hanbali</SelectItem>
+                  <SelectItem value="Hanafi">Hanafi</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           {prayerTimes ? (

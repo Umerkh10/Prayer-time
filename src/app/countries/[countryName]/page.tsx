@@ -941,7 +941,7 @@ export default function CountryPage() {
             <h2 className="text-2xl font-bold">
               Prayer Times For Cities in <span className="capitalize">{country.name}</span>
             </h2>
-            <PrayerTimesTable country={country.name} timezone={country.timezone} timezoneMapping={timezoneMapping} />
+            <PrayerTimesTable country={country.name} countryCode={country.countryCode} timezone={country.timezone} timezoneMapping={timezoneMapping} />
           </div>
 
           <h2 className="text-3xl md:text-4xl font-bold text-blue-900 dark:text-zinc-100 pt-8 pb-1">Discover the {country.name}</h2>

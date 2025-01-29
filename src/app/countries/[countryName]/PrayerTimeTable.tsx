@@ -22,6 +22,7 @@ interface PrayerTimesTableProps {
   country: string
   timezone: string
   timezoneMapping: any;
+  countryCode: any;
 }
 
 const prayerIcons = {
@@ -61,13 +62,15 @@ const getCalculationMethod = (country: string) => {
   }
 }
 
-export function PrayerTimesTable({ country, timezoneMapping }: PrayerTimesTableProps) {
+export function PrayerTimesTable({ country, timezoneMapping, countryCode }: PrayerTimesTableProps) {
   const [cities, setCities] = useState<City[]>([])
   const [prayerTimes, setPrayerTimes] = useState<Record<string, PrayerTime>>({})
   const [selectedMadhab, setSelectedMadhab] = useState<keyof typeof Madhab>("Shafi")
   const [selectedTimezone, setSelectedTimezone] = useState<string>("")
   const [error, setError] = useState<string | null>(null)
   const [matchingUTC, setMatchingUTC] = useState<any>(null)
+
+  
 
   useEffect(() => {
     if (countriesData[country]) {
@@ -135,28 +138,28 @@ export function PrayerTimesTable({ country, timezoneMapping }: PrayerTimesTableP
   }
 
 
-useEffect(() => {
-  if (timezoneMapping && timezoneMapping.length > 0 && selectedTimezone) {
-    const matchingTimezones = timezoneMapping.find((timezone: any) => {
-      console.log("Comparing:", selectedTimezone, timezone.zone);
-      return selectedTimezone.trim() === timezone.zone.trim();
-    });
+  useEffect(() => {
+    if (timezoneMapping && timezoneMapping.length > 0 && selectedTimezone) {
+      const matchingTimezones = timezoneMapping.find((timezone: any) => {
+        console.log("Comparing:", selectedTimezone, timezone.zone);
+        return selectedTimezone.trim() === timezone.zone.trim();
+      });
 
-    if (matchingTimezones) {
-      setMatchingUTC(matchingTimezones);
+      if (matchingTimezones) {
+        setMatchingUTC(matchingTimezones);
+      } else {
+        console.warn("No matching timezone found for:", selectedTimezone);
+      }
+
+      console.log("timezoneMapping:", timezoneMapping);
     } else {
-      console.warn("No matching timezone found for:", selectedTimezone);
+      console.warn("timezoneMapping or selectedTimezone is not ready");
     }
-
-    console.log("timezoneMapping:", timezoneMapping);
-  } else {
-    console.warn("timezoneMapping or selectedTimezone is not ready");
-  }
-}, [timezoneMapping, selectedTimezone]);
+  }, [timezoneMapping, selectedTimezone]);
 
 
   const saveCityDetails = (city: any) => {
-    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC }))
+    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC, countryCode }))
   }
 
 
@@ -200,34 +203,34 @@ useEffect(() => {
 
       {/* Mobile view */}
       <div className="grid gap-4 md:hidden px-4">
-      {cities.map((city) => (
-        <Link
-          key={city.name}
-          href={`/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}`}
-          onClick={() => saveCityDetails(city)}
-          className="block rounded-xl shadow-md bg-zinc-50 dark:bg-gray-800 p-4 border border-gray-200 transition hover:shadow-xl scale-95 hover:scale-100 duration-200 delay-200 "
-        >
-          <div className="flex items-center justify-between border-b pb-2 mb-2">
-            <h3 className="text-lg font-bold ">{city.name}</h3>
-            <span className="text-sm ">Tap for details</span>
-          </div>
+        {cities.map((city) => (
+          <Link
+            key={city.name}
+            href={`/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}`}
+            onClick={() => saveCityDetails(city)}
+            className="block rounded-xl shadow-md bg-zinc-50 dark:bg-gray-800 p-4 border border-gray-200 transition hover:shadow-xl scale-95 hover:scale-100 duration-200 delay-200 "
+          >
+            <div className="flex items-center justify-between border-b pb-2 mb-2">
+              <h3 className="text-lg font-bold ">{city.name}</h3>
+              <span className="text-sm ">Tap for details</span>
+            </div>
 
-          <ul className="space-y-2">
-            {Object.entries(prayerTimes[city.name] || {}).map(([prayer, time]) => {
-              if (prayer === "current") return null;
-              return (
-                <li key={prayer} className="flex items-center justify-between text-sm">
-                  <span className="capitalize ">{prayer}</span>
-                  <span className={prayerTimes[city.name]?.current === prayer ? "font-bold text-primary" : "font-semibold"}>
-                    {time}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        </Link>
-      ))}
-    </div>
+            <ul className="space-y-2">
+              {Object.entries(prayerTimes[city.name] || {}).map(([prayer, time]) => {
+                if (prayer === "current") return null;
+                return (
+                  <li key={prayer} className="flex items-center justify-between text-sm">
+                    <span className="capitalize ">{prayer}</span>
+                    <span className={prayerTimes[city.name]?.current === prayer ? "font-bold text-primary" : "font-semibold"}>
+                      {time}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </Link>
+        ))}
+      </div>
 
       {/* Desktop view */}
       <div className="hidden md:block">
