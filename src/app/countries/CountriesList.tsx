@@ -262,11 +262,13 @@ export default function CountriesList() {
     <div className="  ">
     <div className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
-      <nav className="flex items-center space-x-2 mb-8 text-sm">
-        <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">Home</a>
-        <ChevronRight className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-        <span className="text-gray-900 dark:text-gray-100">Countries</span>
-      </nav>
+      <div className="mb-6 flex items-center text-sm text-muted-foreground">
+        <Link href="/" className="hover:text-primary">
+          Home
+        </Link>
+        <ChevronRight className="h-4 w-4 mx-2" />
+        <span className="text-foreground">Countries</span>
+      </div>
 
       {/* Header */}
       <div className="mb-8">

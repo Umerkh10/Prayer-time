@@ -6,6 +6,8 @@ import { Banner } from "./Banner";
 import { PrayerTimesTable } from "./PrayerTimeTable";
 import { CountryInfo } from "./CountryInfo";
 import CustomSkeleton from "@/components/ui/CustomSkeleton";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 type CityPrayerTimes = {
   name: string;
@@ -297,7 +299,7 @@ export default function CountryPage() {
           countryData.timezones = ["US/Eastern", "US/Central", "US/Mountain", "US/Pacific"];
         } else if (data[0].name.common === "Australia") {
           mappedTimezone = "Australia/Sydney"; // Default to Sydney Time
-          countryData.timezones = ["Australia/Sydney", "Australia/Adelaide", "Australia/Perth","Australia/Melbourne","Australia/Canberra","Australia/Darwin","Australia/Brisbane","Australia/Hobart"];
+          countryData.timezones = ["Australia/Sydney", "Australia/Adelaide", "Australia/Perth", "Australia/Melbourne", "Australia/Canberra", "Australia/Darwin", "Australia/Brisbane", "Australia/Hobart"];
         } else if (data[0].name.common === "Canada") {
           mappedTimezone = "America/Toronto"; // Default to Eastern Time
           countryData.timezones = ["America/Toronto", "America/Winnipeg", "America/Edmonton", "America/Vancouver"];
@@ -390,7 +392,7 @@ export default function CountryPage() {
           countryData.timezones = ["Asia/Jerusalem"];
         } else if (data[0].name.common === "Palestine") {
           mappedTimezone = "Asia/Gaza";
-          countryData.timezones = ["Asia/Gaza","Asia/Hebron"];
+          countryData.timezones = ["Asia/Gaza", "Asia/Hebron"];
         } else if (data[0].name.common === "Netherlands") {
           mappedTimezone = "Europe/Amsterdam";
           countryData.timezones = ["Europe/Amsterdam"];
@@ -835,30 +837,30 @@ export default function CountryPage() {
         else if (data[0].name.common === "Azerbaijan") {
           mappedTimezone = "Asia/Baku";
           countryData.timezones = ["Asia/Baku"];
-      } else if (data[0].name.common === "Armenia") {
+        } else if (data[0].name.common === "Armenia") {
           mappedTimezone = "Asia/Yerevan";
           countryData.timezones = ["Asia/Yerevan"];
-      } else if (data[0].name.common === "Antigua and Barbuda") {
+        } else if (data[0].name.common === "Antigua and Barbuda") {
           mappedTimezone = "America/Antigua";
           countryData.timezones = ["America/Antigua"];
-      } else if (data[0].name.common === "Andorra") {
+        } else if (data[0].name.common === "Andorra") {
           mappedTimezone = "Europe/Andorra";
           countryData.timezones = ["Europe/Andorra"];
-      } else if (data[0].name.common === "American Samoa") {
+        } else if (data[0].name.common === "American Samoa") {
           mappedTimezone = "Pacific/Pago_Pago";
           countryData.timezones = ["Pacific/Pago_Pago"];
-      } else if (data[0].name.common === "Albania") {
+        } else if (data[0].name.common === "Albania") {
           mappedTimezone = "Europe/Tirane";
           countryData.timezones = ["Europe/Tirane"];
-      }
-       else if (data[0].name.common === "Bahamas") {
+        }
+        else if (data[0].name.common === "Bahamas") {
           mappedTimezone = "America/Nassau";
           countryData.timezones = ["America/Nassau"];
-      }
-       else if (data[0].name.common === "Iran") {
+        }
+        else if (data[0].name.common === "Iran") {
           mappedTimezone = "Asia/Tehran";
           countryData.timezones = ["Asia/Tehran"];
-      }
+        }
         else {
           const timezoneEntry = timezoneMapping.find(tz => tz.zone === rawTimezone);
           mappedTimezone = timezoneEntry ? timezoneEntry.zone : rawTimezone;
@@ -907,7 +909,7 @@ export default function CountryPage() {
   }, [country?.timezone]);
 
   if (loading) {
-    return <CustomSkeleton/>;
+    return <CustomSkeleton />;
   }
 
   if (!country) {
@@ -933,6 +935,17 @@ export default function CountryPage() {
           </div>
 
           <div className="space-y-8">
+            <div className="mb-6 flex items-center text-sm text-muted-foreground">
+              <Link href="/" className="hover:text-primary">
+                Home
+              </Link>
+              <ChevronRight className="h-4 w-4 mx-1" />
+              <Link href="/countries" className="hover:text-primary">
+                Countries
+              </Link>
+              <ChevronRight className="h-4 w-4 mx-1" />
+              <span className="text-foreground">{country.name}</span>
+            </div>
             <h2 className="text-2xl font-bold">
               Prayer Times For Cities in <span className="capitalize">{country.name}</span>
             </h2>
