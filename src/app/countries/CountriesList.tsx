@@ -48,7 +48,6 @@ export const countries = [
     { name: 'Croatia', code: 'HR', timezone: 'Europe/Zagreb', offset: '+01:00' },
     { name: 'Cuba', code: 'CU', timezone: 'America/Havana', offset: '-05:00' },
     { name: 'Cyprus', code: 'CY', timezone: 'Asia/Nicosia', offset: '+02:00' },
-    { name: 'Czech Republic', code: 'CZ', timezone: 'Europe/Prague', offset: '+01:00' },
     { name: 'Denmark', code: 'DK', timezone: 'Europe/Copenhagen', offset: '+01:00' },
     { name: 'Djibouti', code: 'DJ', timezone: 'Africa/Djibouti', offset: '+03:00' },
     { name: 'Dominica', code: 'DM', timezone: 'America/Dominica', offset: '-04:00' },

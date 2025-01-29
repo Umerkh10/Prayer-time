@@ -101,6 +101,9 @@ function Banner() {
               <p className="lg:text-lg text-sm text-center py-4 leading-relaxed">
                 {content.text}
               </p>
+              <p className=" text-sm text-center py-4 leading-relaxed">
+                {content.translation}
+              </p>
               <p className="mt-4 text-sm opacity-75 lg:text-left text-center">{content.source}</p>
             </motion.div>
           </AnimatePresence>

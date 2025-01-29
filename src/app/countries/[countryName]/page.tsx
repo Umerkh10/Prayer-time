@@ -83,7 +83,6 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
   { zone: "Europe/Ljubljana", utc: "(UTC+01:00)", name: "Ljubljana" },
   { zone: "Europe/Madrid", utc: "(UTC+01:00)", name: "Madrid" },
   { zone: "Europe/Paris", utc: "(UTC+01:00)", name: "Paris" },
-  { zone: "Europe/Prague", utc: "(UTC+01:00)", name: "Prague" },
   { zone: "Europe/Rome", utc: "(UTC+01:00)", name: "Rome" },
   { zone: "Europe/Sarajevo", utc: "(UTC+01:00)", name: "Sarajevo" },
   { zone: "Europe/Skopje", utc: "(UTC+01:00)", name: "Skopje" },
@@ -164,7 +163,6 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
   { zone: "Asia/Kamchatka", utc: "(UTC+12:00)", name: "Kamchatka" },
   { zone: "Pacific/Auckland", utc: "(UTC+12:00)", name: "Auckland" },
   { zone: "Pacific/Tongatapu", utc: "(UTC+13:00)", name: "Nukualofa" },
-  { zone: "Europe/Prague", utc: "(GMT+01:00)", name: "Czechia" },
   { zone: "Asia/Nicosia", utc: "(GMT+02:00)", name: "Cyprus" },
   { zone: "America/Havana", utc: "(GMT-05:00)", name: "Cuba" },
   { zone: "Europe/Zagreb", utc: "(GMT+01:00)", name: "Croatia" },
@@ -429,9 +427,6 @@ export default function CountryPage() {
         } else if (data[0].name.common === "Poland") {
           mappedTimezone = "Europe/Warsaw";
           countryData.timezones = ["Europe/Warsaw"];
-        } else if (data[0].name.common === "Czech Republic") {
-          mappedTimezone = "Europe/Prague";
-          countryData.timezones = ["Europe/Prague"];
         } else if (data[0].name.common === "Hungary") {
           mappedTimezone = "Europe/Budapest";
           countryData.timezones = ["Europe/Budapest"];

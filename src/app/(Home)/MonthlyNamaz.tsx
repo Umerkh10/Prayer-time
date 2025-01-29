@@ -160,8 +160,10 @@ const MonthlyNamazTimings = () => {
     </div>
   )
 
-  const currentDate = moment().format("YYYY-MM-DD");
-
+  const currentDate = new Date(Date.now()).toLocaleDateString("en-CA");
+  console.log(currentDate);
+  
+  
   return (
     <Card className="dark:bg-background bg-transparent w-full  mx-auto my-4 shadow-lg">
       <CardHeader>
@@ -238,7 +240,7 @@ const MonthlyNamazTimings = () => {
                   >
                     <AccordionTrigger className={`text-sm ${
                       day.date === currentDate
-                        ? "bg-primary text-primary-foreground"
+                        ? "bg-blue-500 text-white"
                         : "even:bg-muted"
                     } p-4 rounded-lg`}>
                       <div className="flex justify-between w-full">
@@ -273,7 +275,7 @@ const MonthlyNamazTimings = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-blue-400 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-blue-400 text-primary-foreground" : "even:bg-muted"}`}>
+                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-blue-400 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-blue-500 text-white" : "even:bg-muted"}`}>
                   <div className="text-center">{day.formattedDate}</div>
                   <div className="text-center">{day.timings.Fajr}</div>
                   <div className="text-center">{day.timings.Sunrise}</div>

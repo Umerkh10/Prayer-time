@@ -16,6 +16,7 @@ interface PrayerTime {
   maghrib: string
   isha: string
   current?: string
+  upcoming?: string
 }
 
 interface PrayerTimesTableProps {
@@ -114,7 +115,7 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode }: Pray
           asr: formatTime(prayerTimes.asr),
           maghrib: formatTime(prayerTimes.maghrib),
           isha: formatTime(prayerTimes.isha),
-          current: prayerTimes.currentPrayer(now) || undefined,
+          upcoming: prayerTimes.nextPrayer(now) || undefined,
         }
 
         return acc
@@ -173,7 +174,7 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode }: Pray
               <SelectValue placeholder="Select Madhab" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="Shafi">Shafi</SelectItem>
+              <SelectItem value="Shafi">Shafi/Maliki/Hanbali</SelectItem>
               <SelectItem value="Hanafi">Hanafi</SelectItem>
             </SelectContent>
           </Select>
@@ -246,7 +247,7 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode }: Pray
                   {Object.entries(prayerIcons).map(([prayer, Icon]) => (
                     <div
                       key={prayer}
-                      className={`flex justify-between items-center p-3 rounded-lg ${prayerTimes[city.name]?.current === prayer ? "bg-blue-500 text-white" : "bg-gray-50 dark:bg-gray-700"
+                      className={`flex justify-between items-center p-3 rounded-lg ${prayerTimes[city.name]?.upcoming === prayer ? "bg-blue-500 text-white" : "bg-gray-50 dark:bg-gray-700"
                         }`}
                     >
                       <div className="flex items-center space-x-2">
@@ -254,7 +255,7 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode }: Pray
                         <span className="capitalize text-sm ">{prayer}</span>
                       </div>
                       <span
-                        className={`text-sm font-medium ${prayerTimes[city.name]?.current === prayer ? "font-bold text-primary-700" : "text-gray-500 dark:text-gray-300"
+                        className={`text-sm font-medium ${prayerTimes[city.name]?.upcoming === prayer ? "font-bold text-primary-700" : "text-gray-500 dark:text-gray-300"
                           }`}
                       >
                         {prayerTimes[city.name]?.[prayer as keyof PrayerTime]}
