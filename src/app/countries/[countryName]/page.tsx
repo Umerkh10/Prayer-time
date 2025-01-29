@@ -941,7 +941,7 @@ export default function CountryPage() {
               </Link>
               <ChevronRight className="h-4 w-4 mx-1" />
               <Link href="/countries" className="hover:text-primary">
-                Countries
+                country
               </Link>
               <ChevronRight className="h-4 w-4 mx-1" />
               <span className="text-foreground">{country.name}</span>
