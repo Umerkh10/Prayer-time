@@ -30,6 +30,13 @@ export function MobileNav() {
               Home
             </Link>
             <Link
+              href="./#namaz-time"
+              onClick={() => setOpen(false)}
+              className="block text-lg font-semibold text-white hover:text-gray-200"
+            >
+              Namaz Time
+            </Link>
+            <Link
               href="/countries"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
@@ -51,14 +58,14 @@ export function MobileNav() {
               Duas
             </Link>
             <Link
-              href="/about"
+              href="/about-us"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
               About us
             </Link>
             <Link
-              href="/contact"
+              href="/contact-us"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
@@ -71,7 +78,6 @@ export function MobileNav() {
           className=" absolute right-4 top-4 text-white hover:bg-white/10"
           onClick={() => setOpen(false)}
         >
-          <X className="h-6 w-6" />
         </Button>
       </SheetContent>
     </Sheet>

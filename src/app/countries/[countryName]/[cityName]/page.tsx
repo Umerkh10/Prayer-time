@@ -228,7 +228,7 @@ function Page() {
           />
         </div>
       </div>
-{/*  */}
+
       <Card className="mb-8">
         <CardContent className="pt-6">
 
@@ -256,7 +256,7 @@ function Page() {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {Object.entries(prayerTimes).map(([key, value]) =>
                 key !== "date" ? (
-                  <div key={key} className={`p-4 rounded-xl ${nextPrayer === key ? "bg-blue-500 text-white" : "bg-secondary"}`}>
+                  <div key={key} className={`p-4 rounded-xl ${nextPrayer === key ? "bg-secondary" : "bg-secondary"}`}>
                     <div className="flex items-center gap-2 mb-2">
                       {key === "fajr" && <Sun className="h-4 w-4" />}
                       {key === "sunrise" && <Sunrise className="h-4 w-4" />}

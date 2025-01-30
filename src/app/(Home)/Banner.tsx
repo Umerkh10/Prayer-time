@@ -57,7 +57,7 @@ function Banner() {
   return (
     <div className="relative h-screen bg-blue-900 bg-[url('/main-page-frame.svg')] bg-center bg-cover bg-no-repeat text-white">
       <div className="absolute inset-0 bg-[#0046E5]/10" />
-      <div className="container relative lg:mx-auto px-4 lg:pt-24 pt-3">
+      <div className="container relative lg:mx-auto px-4 lg:pt-20 pt-3">
         <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">Welcome to Global Salaah</h1>
         
         <div className="max-w-3xl mt-12 py-2 lg:mx-auto ">
@@ -99,12 +99,12 @@ function Banner() {
               transition={{ duration: 0.5 }}
             >
               <p className="lg:text-lg text-sm text-center py-4 leading-relaxed">
-                {content.text}
+                {content.text} {content.arabic}
               </p>
               <p className=" text-sm text-center py-4 leading-relaxed">
-                {content.translation}
+                {content.translation} {content.english}
               </p>
-              <p className="mt-4 text-sm opacity-75 lg:text-left text-center">{content.source}</p>
+              <p className="mt-4 text-sm opacity-75 lg:text-left text-center">{content.source} {content.refrence} </p>
             </motion.div>
           </AnimatePresence>
         </div>

@@ -108,7 +108,7 @@ export default function IslamicCalendar() {
       </div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Islamic Calender</h1>
-        <p className="text-muted-foreground">Islamic Calender Know Your Gregorian Date to Islamic Date</p>
+        <p className="text-muted-foreground">Islamic Calender Know Your Gregorian Date with Islamic Date</p>
       </div>
       <Card className="max-w-3xl mx-auto">
         <CardHeader>

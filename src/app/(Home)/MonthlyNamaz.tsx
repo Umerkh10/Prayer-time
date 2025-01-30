@@ -160,8 +160,13 @@ const MonthlyNamazTimings = () => {
     </div>
   )
 
-  const currentDate = new Date(Date.now()).toLocaleDateString("en-CA");
-  console.log(currentDate);
+  const currentDate = new Date().toLocaleDateString("en-US", { 
+    day: "numeric", 
+    month: "long", 
+    year: "numeric", 
+    timeZone: location?.timezone 
+  });
+  
   
   
   return (
@@ -175,6 +180,8 @@ const MonthlyNamazTimings = () => {
             transition={{ duration: 0.5 }}
             className="text-center "
           >
+           
+            
             {/* <h2 className="font-bold text-lg sm:text-xl">{`${location.city}, ${location.country}`}</h2> */}
           </motion.div>
         )}
@@ -185,6 +192,7 @@ const MonthlyNamazTimings = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-center text-base text-muted-foreground"
           >
+            <p> Current Date: {currentDate}</p>
             <p>Hijri Date: {hijriDate}</p>
           </motion.div>
         )}
@@ -275,7 +283,7 @@ const MonthlyNamazTimings = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-blue-400 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-blue-500 text-white" : "even:bg-muted"}`}>
+                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-blue-400 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-muted text-white" : "even:bg-muted"}`}>
                   <div className="text-center">{day.formattedDate}</div>
                   <div className="text-center">{day.timings.Fajr}</div>
                   <div className="text-center">{day.timings.Sunrise}</div>

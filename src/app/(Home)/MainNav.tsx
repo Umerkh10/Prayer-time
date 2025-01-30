@@ -6,11 +6,12 @@ import { usePathname } from "next/navigation"
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "./#namaz-time", label: "Namaz Time" },
   { href: "/countries", label: "Countries" },
   { href: "/islamic-calender", label: "Islamic Calender" },
   { href: "/duas", label: "Duas" },
-  { href: "/about", label: "About us" },
-  { href: "/contact", label: "Contact us" },
+  { href: "/about-us", label: "About us" },
+  { href: "/contact-us", label: "Contact us" },
 ]
 
 export function MainNav() {

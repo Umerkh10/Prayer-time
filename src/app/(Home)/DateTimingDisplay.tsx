@@ -245,7 +245,7 @@ function DateTimingDisplay() {
   };
 
   return (
-    <div className="relative max-w-screen-xl mx-auto z-10 -mt-16">
+    <div id="namaz-time" className="relative max-w-screen-xl mx-auto z-10 -mt-16">
       <div className="mx-auto w-[90%] lg:w-[95%] py-3 bg-slate-50 dark:bg-background rounded-xl shadow-lg px-2 border border-muted">
         {/* Header with date tabs */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b-2 border-muted">
