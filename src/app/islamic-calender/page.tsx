@@ -7,8 +7,9 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { cn } from "@/lib/utils"
 import moment from "moment-hijri"
+import Link from "next/link"
 
-const years = Array.from({ length: 200 }, (_, i) => 1900 + i)
+const years = Array.from({ length: 200 }, (_, i) => 1938 + i)
 const months = [
   "January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
@@ -98,9 +99,20 @@ export default function IslamicCalendar() {
 
   return (
     <div className="container mx-auto py-4 px-4 md:py-8 md:px-0">
+        <div className="mt-5 mb-6 flex items-center text-sm text-muted-foreground">
+        <Link href="/" className="hover:text-primary">
+          Home
+        </Link>
+        <ChevronRight className="h-4 w-4 mx-2" />
+        <span className="text-foreground">Islamic Calender</span>
+      </div>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold mb-2">Islamic Calender</h1>
+        <p className="text-muted-foreground">Islamic Calender Know Your Gregorian Date to Islamic Date</p>
+      </div>
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Islamic Calendar</CardTitle>
+          <CardTitle className="text-3xl font-bold text-center"> Calendar</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">

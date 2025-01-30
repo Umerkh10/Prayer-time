@@ -48,28 +48,35 @@ function Page() {
 
 
 
-  useEffect(() => {
-    if (data?.city?.name) {
-      const timezone = cityTimezones[data.city.name];
-      if (timezone) {
-        calculatePrayerTimes(timezone);
-        calculateMonthlyPrayerTimes(timezone);
-        updateCurrentTime(timezone);
-      } else {
-        setError("Timezone for the selected city is not available.");
+    useEffect(() => {
+      if (data?.city?.name) {
+        const timezone = data?.timezones?.zone || data?.timezone;
+        
+        if (timezone) {
+          calculatePrayerTimes(timezone);
+          calculateMonthlyPrayerTimes(timezone);
+          
+          const interval = setInterval(() => {
+            updateCurrentTime(timezone);
+          }, 1000);
+    
+          return () => clearInterval(interval); 
+        } else {
+          setError("Timezone for the selected city is not available.");
+        }
       }
-    }
-  }, [data, selectedMadhab]);
-
-  const updateCurrentTime = (timezone: string) => {
-    const interval = setInterval(() => {
-      const now = new Date();
-      const dateInCity = new Date(now.toLocaleString("en-US", { timeZone: timezone }));
-      setCurrentTime(dateInCity.toLocaleTimeString("en-US", { timeZone: timezone }));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  };
+    }, [data, selectedMadhab]);
+    
+    const updateCurrentTime = (timezone: string) => {
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: timezone,
+        timeStyle: "medium",
+        dateStyle: "long",
+      };
+      const formatter = new Intl.DateTimeFormat("en-US", options);
+      setCurrentTime(formatter.format(new Date()));
+    };
+    
 
   const getNextPrayer = (prayerTimes: PrayerTimes, dateInCity: Date): string => {
     const now = dateInCity.getTime();
@@ -87,7 +94,7 @@ function Page() {
       }
     }
 
-    return "fajr"; 
+    return "fajr";
   };
 
   const getCountdown = (prayerTimes: PrayerTimes, dateInCity: Date): string => {
@@ -109,7 +116,7 @@ function Page() {
       }
     }
 
-    return "0h 0m"; 
+    return "0h 0m";
   };
 
   const calculatePrayerTimes = (timezone: string) => {
@@ -208,7 +215,7 @@ function Page() {
           <h1 className="text-3xl font-bold mb-2">Prayer Times In {data?.city?.name}</h1>
           <div className="flex items-center space-x-2">
 
-            <p className="text-lg text-muted-foreground">{data?.timezones?.utc}  </p>
+            <p className="text-lg text-muted-foreground">{data?.timezones?.utc} {currentTime} </p>
           </div>
         </div>
         <div>
@@ -261,7 +268,7 @@ function Page() {
                     </div>
                     <p className="text-2xl font-bold">{value}</p>
                     {nextPrayer === key && countdown && (
-                      <p className="text-xs font-semibold text-white">{countdown}</p>
+                      <p className="text-xs font-semibold text-white"></p>
                     )}
                   </div>
                 ) : null

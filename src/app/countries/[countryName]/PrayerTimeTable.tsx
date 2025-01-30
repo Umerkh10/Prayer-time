@@ -63,7 +63,7 @@ const getCalculationMethod = (country: string) => {
   }
 }
 
-export function PrayerTimesTable({ country, timezoneMapping, countryCode }: PrayerTimesTableProps) {
+export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezone }: PrayerTimesTableProps) {
   const [cities, setCities] = useState<City[]>([])
   const [prayerTimes, setPrayerTimes] = useState<Record<string, PrayerTime>>({})
   const [selectedMadhab, setSelectedMadhab] = useState<keyof typeof Madhab>("Shafi")
@@ -74,6 +74,7 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode }: Pray
   useEffect(() => {
     if (countriesData[country]) {
       setSelectedTimezone(countriesData[country].timezones[0])
+      console.log("timezones ==>", countriesData[country].timezones[0]);
     } else {
       setError(`No data available for ${country}.`)
     }
@@ -158,7 +159,7 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode }: Pray
 
 
   const saveCityDetails = (city: any) => {
-    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC, countryCode }))
+    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC, countryCode,timezone }))
   }
 
 

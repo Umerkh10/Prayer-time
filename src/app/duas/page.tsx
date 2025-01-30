@@ -106,11 +106,11 @@ export default function DuasPage() {
                   <div className="space-y-4">
                     <div>
                       <p className="text-sm font-medium text-muted-foreground mb-2">Transliteration</p>
-                      <p className="text-lg italic leading-relaxed">{dua.transliteration}</p>
+                      <p className=" italic leading-relaxed">{dua.transliteration}</p>
                     </div>
                     <div>
                       <p className="text-sm font-medium text-muted-foreground mb-2">Translation</p>
-                      <p className="text-lg leading-relaxed">{dua.translation}</p>
+                      <p className="leading-relaxed">{dua.translation}</p>
                     </div>
                   </div>
                 </div>

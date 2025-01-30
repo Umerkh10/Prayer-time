@@ -46,6 +46,9 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
   { zone: "US/Hawaii", utc: "(GMT-10:00)", name: "Hawaii" },
   { zone: "US/Alaska", utc: "(GMT-09:00)", name: "Alaska" },
   { zone: "US/Pacific", utc: "(GMT-08:00)", name: "Pacific Time (US & Canada)" },
+  { zone: "America/Toronto", utc: "(GMT-05:00)", name: "Eastern Time (Canada)" },
+  { zone: "America/Edmonton", utc: "(GMT-07:00)", name: "Mountain Time (Canada)" },
+  { zone: "America/Vancouver", utc: "(GMT-08:00)", name: "Pacific Time (Canada)" },
   { zone: "America/Tijuana", utc: "(GMT-08:00)", name: "Tijuana" },
   { zone: "US/Arizona", utc: "(GMT-07:00)", name: "Arizona" },
   { zone: "US/Mountain", utc: "(GMT-07:00)", name: "Mountain Time (US & Canada)" },
@@ -302,7 +305,7 @@ export default function CountryPage() {
           countryData.timezones = ["Australia/Sydney", "Australia/Adelaide", "Australia/Perth", "Australia/Melbourne", "Australia/Canberra", "Australia/Darwin", "Australia/Brisbane", "Australia/Hobart"];
         } else if (data[0].name.common === "Canada") {
           mappedTimezone = "America/Toronto"; // Default to Eastern Time
-          countryData.timezones = ["America/Toronto", "America/Winnipeg", "America/Edmonton", "America/Vancouver"];
+          countryData.timezones = ["America/Toronto", "America/Edmonton", "America/Vancouver"];
         } else if (data[0].name.common === "Brazil") {
           mappedTimezone = "America/Sao_Paulo"; // Default to Sao Paulo Time
           countryData.timezones = ["America/Sao_Paulo", "America/Manaus", "America/Cuiaba", "America/Fortaleza"];
@@ -941,7 +944,7 @@ export default function CountryPage() {
               </Link>
               <ChevronRight className="h-4 w-4 mx-1" />
               <Link href="/countries" className="hover:text-primary">
-                country
+                Countries
               </Link>
               <ChevronRight className="h-4 w-4 mx-1" />
               <span className="text-foreground">{country.name}</span>
