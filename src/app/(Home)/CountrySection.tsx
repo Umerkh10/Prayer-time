@@ -113,17 +113,14 @@ function CountrySection() {
         modules={[Pagination ]}
         pagination={{ clickable: true }}
         breakpoints={{
-          // When window width is >= 640px
           640: {
             slidesPerView: 1,
             spaceBetween: 20
           },
-          // When window width is >= 768px
           768: {
             slidesPerView: 2,
             spaceBetween: 24
           },
-          // When window width is >= 1024px
           1024: {
             slidesPerView: 3,
             spaceBetween: 32
@@ -152,6 +149,10 @@ function CountrySection() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      <div className='flex justify-center items-center mt-3 bg-blue-500 text-white p-2 rounded-md lg:w-1/6 w-1/2  mx-auto hover:bg-zinc-900 hover:text-blue-50 transition ease-in duration-150 delay-150 dark:hover:bg-white dark:hover:text-black font-medium'>
+       <Link href={'/countries'}> More Countries </Link>
+      </div>
 
     </div>
   )

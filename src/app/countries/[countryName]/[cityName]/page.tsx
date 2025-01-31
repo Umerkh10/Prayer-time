@@ -249,7 +249,7 @@ function Page() {
                   <SelectItem value="Hanafi">Hanafi</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
+            </div> 
           </div>
 
           {prayerTimes ? (

@@ -131,7 +131,7 @@ function StoryImageSec() {
       </Swiper>
 
       {showModal && (
-        <div  className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+        <div onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
           <div className="relative w-full max-w-2xl">
             {/* Progress Bar */}
             <div className="absolute -top-10 left-0 w-full h-1 bg-gray-700">
@@ -141,7 +141,6 @@ function StoryImageSec() {
               ></div>
             </div>
 
-            {/* Swiper for Stories */}
             <Swiper
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               slidesPerView={1}
@@ -154,8 +153,7 @@ function StoryImageSec() {
             >
               {images.map((image, index) => (
                 <SwiperSlide key={index}>
-                  <div onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}  className="flex justify-center items-center h-[75vh]">
+                  <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  className="flex justify-center items-center h-[75vh]">
                     <img
                       src={image.src}
                       alt={image.alt}

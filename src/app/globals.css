@@ -186,3 +186,8 @@ body {
 .animate-slide-right {
   animation: slide-right 0.3s ease-out;
 }
+
+.sticky-namaz{
+  position: sticky;
+    top: 65px;
+}

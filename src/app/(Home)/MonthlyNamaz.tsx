@@ -229,7 +229,7 @@ const MonthlyNamazTimings = () => {
           ))
         ) : (
           <>
-            <div className="hidden md:grid md:grid-cols-7 gap-2 p-2 font-semibold text-center bg-gray-100 dark:bg-gray-800 rounded-lg my-2 text-sm sticky top-0">
+            <div className="hidden md:grid md:grid-cols-7 gap-2 p-2 font-semibold text-center bg-gray-100 dark:bg-gray-800 rounded-lg my-2 text-sm sticky-namaz">
               <div>Date</div>
               <div><SunIcon className="inline-block mr-1" size={16} /> Fajr</div>
               <div><SunIcon className="inline-block mr-1" size={16} /> Sunrise</div>
