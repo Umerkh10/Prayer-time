@@ -142,7 +142,7 @@ function CountrySection() {
                 />
               </div>
               <h3 className="mt-4 text-xl font-semibold ">
-                {destination.name}
+                {destination.name} 
               </h3>
             </div>
             </Link>

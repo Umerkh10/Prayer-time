@@ -24,7 +24,8 @@ export const countriesData: { [country: string]: CountryData } = {
       { name: "Washington, D.C.", latitude: 38.9072, longitude: -77.0369 },
       { name: "Philadelphia", latitude: 39.9526, longitude: -75.1652 },
       { name: "Orlando", latitude: 28.5383, longitude: -81.3792 },
-      { name: "Charlotte", latitude: 35.2271, longitude: -80.8431 }
+      { name: "Detroit", latitude: 42.3314, longitude: -83.0458 },
+      { name: "Tampa", latitude: 27.9506, longitude: -82.4572 }
     ],
     "US/Pacific": [
       { name: "Los Angeles", latitude: 34.0522, longitude: -118.2437 },
@@ -53,8 +54,7 @@ export const countriesData: { [country: string]: CountryData } = {
       { name: "Albuquerque", latitude: 35.0844, longitude: -106.6504 },
       { name: "Boise", latitude: 43.615, longitude: -116.2023 },
       { name: "Tucson", latitude: 32.2226, longitude: -110.9747 },
-      { name: "Colorado Springs", latitude: 38.8339, longitude: -104.8214 },
-      { name: "Cheyenne", latitude: 41.1399, longitude: -104.8202 }
+      { name: "Colorado Springs", latitude: 38.8339, longitude: -104.8214 }
     ]
   }
 },
