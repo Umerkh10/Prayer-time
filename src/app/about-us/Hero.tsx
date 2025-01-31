@@ -10,7 +10,7 @@ const Hero = () => {
       transition={{ duration: 1 }}
       className="py-28 text-center bg-blue-600 text-white"
     >
-      <h1 className="text-4xl md:text-6xl font-bold mb-4">About Global Salaah</h1>
+      <h1 className="text-4xl md:text-6xl font-bold mb-4">About Global Salah</h1>
       <p className="text-xl max-w-2xl mx-auto">Connecting hearts through prayer, transcending borders with faith.</p>
     </motion.section>
   )

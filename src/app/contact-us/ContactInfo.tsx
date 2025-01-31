@@ -30,7 +30,7 @@ const ContactInfo = () => {
         <FaEnvelope className="text-blue-600 text-xl mt-1" />
         <div>
           <h3 className="font-semibold">Email</h3>
-          <p className="">contact@globalsalaah.com</p>
+          <p className="">contact@globalsalah.com</p>
         </div>
       </div>
 

@@ -15,10 +15,9 @@ export const countries = [
     { name: 'American Samoa', code: 'AS', timezone: 'Pacific/Pago_Pago', offset: '-11:00' },
     { name: 'Andorra', code: 'AD', timezone: 'Europe/Andorra', offset: '+01:00' },
     { name: 'Angola', code: 'AO', timezone: 'Africa/Luanda', offset: '+01:00' },
-    { name: 'Antigua and Barbuda', code: 'AG', timezone: 'America/Antigua', offset: '-04:00' },
     { name: 'Argentina', code: 'AR', timezone: 'America/Argentina/Buenos_Aires', offset: '-03:00' },
     { name: 'Armenia', code: 'AM', timezone: 'Asia/Yerevan', offset: '+04:00' },
-    { name: 'Australia', code: 'AU', timezone: 'Australia/Sydney', offset: '+10:00' },
+    { name: 'Australia', code: 'AU', timezone: 'Australia/Sydney', offset: '+11:00' },
     { name: 'Austria', code: 'AT', timezone: 'Europe/Vienna', offset: '+01:00' },
     { name: 'Azerbaijan', code: 'AZ', timezone: 'Asia/Baku', offset: '+04:00' },
     { name: 'Bahrain', code: 'BH', timezone: 'Asia/Bahrain', offset: '+03:00' },
@@ -37,7 +36,7 @@ export const countries = [
     { name: 'Bulgaria', code: 'BG', timezone: 'Europe/Sofia', offset: '+02:00' },
     { name: 'Cambodia', code: 'KH', timezone: 'Asia/Phnom_Penh', offset: '+07:00' },
     { name: 'Cameroon', code: 'CM', timezone: 'Africa/Douala', offset: '+01:00' },
-    { name: 'Canada', code: 'CA', timezone: 'America/Toronto', offset: '-08:00' },
+    { name: 'Canada', code: 'CA', timezone: 'America/Toronto', offset: '-05:00' },
     { name: 'Central African Republic', code: 'CF', timezone: 'Africa/Bangui', offset: '+01:00' },
     { name: 'Chad', code: 'TD', timezone: 'Africa/Ndjamena', offset: '+01:00' },
     { name: 'Chile', code: 'CL', timezone: 'America/Santiago', offset: '-04:00' },
@@ -335,7 +334,7 @@ export default function CountriesList() {
              
                 {countries.map((country) => (
                 
-                <Link href={`/countries/${country.name.toLowerCase().replaceAll(" ","-")}`} key={country.code}>
+                <Link target='_blank' href={`/countries/${country.name.toLowerCase().replaceAll(" ","-")}`} key={country.code}>
                 <div
                  className={`flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200 hover:shadow-lg ${
                    selectedCountry === country.name ? 'text-zinc-100 dark:text-zinc-900 dark:bg-zinc-100 bg-zinc-900 font-semibold' : ''
@@ -351,7 +350,7 @@ export default function CountriesList() {
                       <div>
                         <h3 className=" text-sm ">{country.name
                           }</h3>
-                        <p className="text-sm ">{country.offset}</p>
+                        <p className="text-xs mt-1 ">{country.timezone}</p>
                       </div>
                     </div>
                     <div className="text-base  ">

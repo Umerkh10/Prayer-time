@@ -27,7 +27,7 @@ function Navbar() {
                   priority
                 />
               </div>
-              <span className="text-xl font-semibold text-white">Global Salaah</span>
+              <span className="text-xl font-semibold text-white">Global Salah</span>
             </Link>
           </div>
   

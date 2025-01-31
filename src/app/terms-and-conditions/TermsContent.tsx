@@ -12,19 +12,19 @@ const TermsContent = () => {
     >
       <h2 className="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
       <p className="mb-4">
-        By accessing and using Global Salaah, you accept and agree to be bound by the terms and provision of this
+        By accessing and using Global Salah, you accept and agree to be bound by the terms and provision of this
         agreement.
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">2. Use of the Service</h2>
       <p className="mb-4">
-        You agree to use Global Salaah only for purposes that are permitted by these Terms and any applicable law,
+        You agree to use Global Salah only for purposes that are permitted by these Terms and any applicable law,
         regulation, or generally accepted practices or guidelines in the relevant jurisdictions.
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">3. User Account</h2>
       <p className="mb-4">
-        To access some features of Global Salaah, you may be required to create an account. You are responsible for
+        To access some features of Global Salah, you may be required to create an account. You are responsible for
         maintaining the confidentiality of your account and password.
       </p>
 
@@ -37,7 +37,7 @@ const TermsContent = () => {
       <h2 className="text-2xl font-semibold mb-4">5. Intellectual Property</h2>
       <p className="mb-4">
         The Service and its original content, features, and functionality are and will remain the exclusive property of
-        Global Salaah and its licensors.
+        Global Salah and its licensors.
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">6. Termination</h2>
@@ -53,7 +53,7 @@ const TermsContent = () => {
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">8. Contact Us</h2>
-      <p>If you have any questions about these Terms, please contact us at terms@globalsalaah.com.</p>
+      <p>If you have any questions about these Terms, please contact us at terms@globalsalah.com.</p>
     </motion.div>
   )
 }

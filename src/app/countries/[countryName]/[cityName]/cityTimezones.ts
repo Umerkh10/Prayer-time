@@ -26,10 +26,10 @@ export const cityTimezones: Record<string, string> = {
 
     // American Samoa
     "Pago Pago": "Pacific/Pago_Pago",
-    "Fitiuta": "Pacific/Pago_Pago",
-    "Taʻū": "Pacific/Pago_Pago",
-    "Ofu": "Pacific/Pago_Pago",
-    "Aunu'u": "Pacific/Pago_Pago",
+    "Tafuna": "Pacific/Pago_Pago",
+    "Leone": "Pacific/Pago_Pago",
+    "Faleniu": "Pacific/Pago_Pago",
+    "Aua": "Pacific/Pago_Pago",
 
     // Andorra
     "Andorra la Vella": "Europe/Andorra",

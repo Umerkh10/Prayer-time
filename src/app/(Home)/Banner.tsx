@@ -58,7 +58,7 @@ function Banner() {
     <div className="relative h-screen bg-blue-900 bg-[url('/main-page-frame.svg')] bg-center bg-cover bg-no-repeat text-white">
       <div className="absolute inset-0 bg-[#0046E5]/10" />
       <div className="container relative lg:mx-auto px-4 lg:pt-20 pt-3">
-        <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">Welcome to Global Salaah</h1>
+        <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">Welcome to Global Salah</h1>
         
         <div className="max-w-3xl mt-12 py-2 lg:mx-auto ">
           <div className="flex md:flex-row flex-col lg:justify-between justify-start lg:items-center space-y-2 mb-4">

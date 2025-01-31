@@ -25,7 +25,7 @@ const PrivacyContent = () => {
       <h2 className="text-2xl font-semibold mb-4">3. Information Sharing and Disclosure</h2>
       <p className="mb-4">
         We may share the information we collect with third parties for various purposes, including to: comply with laws;
-        respond to lawful requests and legal process; protect the rights and property of Global Salaah, our agents,
+        respond to lawful requests and legal process; protect the rights and property of Global Salah, our agents,
         customers, and others.
       </p>
 
@@ -49,7 +49,7 @@ const PrivacyContent = () => {
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">7. Contact Us</h2>
-      <p>If you have any questions about this privacy policy, please contact us at: privacy@globalsalaah.com.</p>
+      <p>If you have any questions about this privacy policy, please contact us at: privacy@globalsalah.com.</p>
     </motion.div>
   )
 }

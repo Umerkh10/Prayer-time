@@ -2190,6 +2190,18 @@ export const countriesData: { [country: string]: CountryData } = {
       ]
     }
   },
+  "American Samoa": {
+  timezones: ["Pacific/Pago_Pago"],
+  cities: {
+    "Pacific/Pago_Pago": [
+      { "name": "Pago Pago", latitude: -14.2781, longitude: -170.7025 },
+      { "name": "Tafuna", latitude: -14.335, longitude: -170.72 },
+      { "name": "Leone", latitude: -14.343, longitude: -170.785 },
+      { "name": "Faleniu", latitude: -14.3333, longitude: -170.7167 },
+      { "name": "Aua", latitude: -14.2767, longitude: -170.6667 }
+    ]
+  }
+},
   "Samoa": {
     timezones: ["Pacific/Apia"],
     cities: {
@@ -2415,7 +2427,20 @@ export const countriesData: { [country: string]: CountryData } = {
       { "name": "Alice Town", latitude: 25.7279, longitude: -79.3008 }
     ]
   }
+},
+"Andorra": {
+  timezones: ["Europe/Andorra"],
+  cities: {
+    "Europe/Andorra": [
+      { name: "Andorra la Vella", latitude: 42.506317, longitude: 1.521835 },
+      { name: "Escaldes-Engordany", latitude: 42.5078, longitude: 1.5341 },
+      { name: "Sant Julià de Lòria", latitude: 42.46372, longitude: 1.49129 },
+      { name: "La Massana", latitude: 42.54499, longitude: 1.51483 },
+      { name: "Ordino", latitude: 42.55623, longitude: 1.53319 }
+    ]
+  }
 }
+
 
 
 

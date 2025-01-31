@@ -14,8 +14,8 @@ const poppins = Poppins({
 
 
 export const metadata: Metadata = {
-  title: "Global Salaah",
-  description: "Global Salaah is a platform that helps you find the most accurate prayer times  for your location.",
+  title: "Global Salah",
+  description: "Global Salah is a platform that helps you find the most accurate prayer times  for your location.",
   robots: {
     index: false,
     follow: false,
