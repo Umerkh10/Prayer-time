@@ -98,10 +98,10 @@ function Banner() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <p className="lg:text-lg text-sm text-center py-4 leading-relaxed">
+              <p className="lg:text-lg text-sm text-center pt-6 leading-relaxed">
                 {content.text} {content.arabic}
               </p>
-              <p className=" text-sm text-center py-4 leading-relaxed">
+              <p className=" text-sm text-center pt-3 leading-relaxed">
                 {content.translation} {content.english}
               </p>
               <p className="mt-4 text-sm opacity-75 lg:text-left text-center">{content.source} {content.refrence} </p>

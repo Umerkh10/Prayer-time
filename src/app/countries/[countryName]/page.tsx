@@ -264,7 +264,6 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
 export default function CountryPage() {
   const pathname = usePathname();
   const extracted = pathname.split("/")[2]?.toLowerCase();
-
   const [country, setCountry] = useState<CountryData | null>(null);
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState<string>("");

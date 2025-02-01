@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  
   async headers() {
     return [
       {
@@ -40,5 +41,7 @@ const nextConfig: NextConfig = {
     ];
   },
 };
+
+
 
 export default nextConfig;
