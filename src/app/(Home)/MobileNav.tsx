@@ -7,9 +7,11 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useTranslation } from '@/lib/useTranslation'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
+  const {t} = useTranslation("navigation")
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -27,49 +29,49 @@ export function MobileNav() {
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
-              Home
+            {t("navigation.home")}
             </Link>
             <Link
               href="./#namaz-time"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
-              Namaz Time
+              {t("navigation.namazTime")}
             </Link>
             <Link
               href="/countries"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
-              Countries
+             {t("navigation.countries")}
             </Link>
             <Link
               href="/islamic-calender"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
-              Islamic Calendar
+             {t("navigation.islamicCalender")}
             </Link>
             <Link
               href="/duas"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
-              Duas
+              {t("navigation.duas")}
             </Link>
             <Link
               href="/about-us"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
-              About us
+              {t("navigation.aboutUs")}
             </Link>
             <Link
               href="/contact-us"
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
-              Contact us
+             {t("navigation.contactUs")}
             </Link>
           </div>
         </ScrollArea>

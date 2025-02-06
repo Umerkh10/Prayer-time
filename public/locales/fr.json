@@ -1,0 +1,70 @@
+{
+    "navigation": {
+        "title": "Salah Mondial",
+        "home": "Accueil",
+        "namazTime": "Heure de prière",
+        "countries": "Pays",
+        "islamicCalender": "Calendrier islamique",
+        "duas": "Duas",
+        "aboutUs": "À propos de nous",
+        "contactUs": "Contactez-nous"
+    },
+    "banner": {
+        "title": "Bienvenue sur Salah Mondial",
+        "hadithofday": "Hadith du Jour",
+        "ayatofday": "Ayat du Jour",
+        "next": "Suivant"
+    },
+    "CurrentNamazTime": {
+        "yesterday": "Hier",
+        "today": "Aujourd'hui",
+        "tomorrow": "Demain",
+        "monthly": "Mensuel",
+        "monthlynamaztitle": "Horaires du Namaz mensuel",
+        "currentdate": "Date actuelle",
+        "months": {
+            "Jan": "Janvier",
+            "Feb": "Février",
+            "Mar": "Mars",
+            "Apr": "Avril",
+            "May": "Mai",
+            "Jun": "Juin",
+            "Jul": "Juillet",
+            "Aug": "Août",
+            "Sep": "Septembre",
+            "Oct": "Octobre",
+            "Nov": "Novembre",
+            "Dec": "Décembre"
+        },
+        "days": {
+            "0": "dimanche",
+            "1": "lundi",
+            "2": "mardi",
+            "3": "mercredi",
+            "4": "jeudi",
+            "5": "vendredi",
+            "6": "samedi"
+        }
+    },
+    "CountrySection": {
+        "country": "Pays",
+        "countryline": "Choisissez un pays pour voir les heures et lieux de prière",
+        "countrylink": "Plus de pays"
+    },
+    "HijriDivider": {
+        "dividertitle": "Connaître la date et l'heure actuelles !",
+        "currenttime": "Heure actuelle",
+        "currentdate": "Date actuelle"
+    },
+    "Footer":{
+        "footertitle":"Salah mondial",
+        "footerdesc":"  Salah mondial est un site web dont la vocation est de fournir aux musulmans du monde entier des informations précises et pratiques sur les horaires des prières islamiques.",
+        "quicklinkstitle":"Liens rapides",
+        "companytitle":"Entreprise",
+        "otherlinktitle":"Autres",
+        "termslink":"Conditions d'utilisation",
+        "privacylink":"Politique de confidentialité",
+        "rightsdesc":"Tous droits réservés © 2025 Salah mondial"
+  
+      }
+}

@@ -7,6 +7,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import Link from 'next/link'
+import { useTranslation } from '@/lib/useTranslation'
 
 
 
@@ -104,10 +105,11 @@ const destinations = [
   ]
 
 function CountrySection() {
+  const {t} = useTranslation("CountrySection")
   return (
     <div className='mx-auto max-w-screen-xl my-8 p-4'>
-    <h2 className='text-3xl font-bold text-center'>Country </h2>
-    <p className='text-lg text-center font-semibold text-muted-foreground pt-1'>Choose a country to see prayer times and places</p>
+    <h2 className='text-3xl font-bold text-center'>{t("CountrySection.country")} </h2>
+    <p className='text-lg text-center font-semibold text-muted-foreground pt-1'>{t("CountrySection.countryline")}</p>
 
     <Swiper
         modules={[Pagination ]}
@@ -151,7 +153,7 @@ function CountrySection() {
       </Swiper>
 
       <div className='flex justify-center items-center mt-3 bg-blue-500 text-white p-2 rounded-md lg:w-1/6 w-1/2  mx-auto hover:bg-zinc-900 hover:text-blue-50 transition ease-in duration-150 delay-150 dark:hover:bg-white dark:hover:text-black font-medium'>
-       <Link href={'/countries'}> More Countries </Link>
+       <Link href={'/countries'}> {t("CountrySection.countrylink")} </Link>
       </div>
 
     </div>

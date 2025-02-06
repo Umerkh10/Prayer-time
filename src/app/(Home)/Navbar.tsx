@@ -6,8 +6,11 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import { MainNav } from './MainNav'
 import { MobileNav } from './MobileNav'
+import { useTranslation } from "@/lib/useTranslation"
 
 function Navbar() {
+    const { t } = useTranslation("navigation")
+  
 
     return (
         <motion.header
@@ -27,7 +30,7 @@ function Navbar() {
                   priority
                 />
               </div>
-              <span className="text-xl font-semibold text-white">Global Salah</span>
+              <span className="text-xl font-semibold text-white">{t("navigation.title")}</span>
             </Link>
           </div>
   

@@ -8,6 +8,7 @@ import { Coordinates, CalculationMethod, Madhab, PrayerTimes } from "adhan";
 import moment from "moment-hijri";
 import { Button } from "@/components/ui/button";
 import { CalendarIcon, ChevronDownIcon, MoonIcon, SunIcon } from 'lucide-react';
+import { useTranslation } from "@/lib/useTranslation";
 
 interface LocationInfo {
   city: string;
@@ -167,12 +168,13 @@ const MonthlyNamazTimings = () => {
     timeZone: location?.timezone 
   });
   
+    const { t } = useTranslation("CurrentNamazTime")
   
   
   return (
     <Card className="dark:bg-background bg-transparent w-full  mx-auto my-4 shadow-lg">
       <CardHeader>
-        <CardTitle className="text-xl sm:text-2xl font-bold text-center">Monthly Namaz Timings</CardTitle>
+        <CardTitle className="text-xl sm:text-2xl font-bold text-center">{t("CurrentNamazTime.monthlynamaztitle")}</CardTitle>
         {location && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -180,10 +182,7 @@ const MonthlyNamazTimings = () => {
             transition={{ duration: 0.5 }}
             className="text-center "
           >
-           
-            
-            {/* <h2 className="font-bold text-lg sm:text-xl">{`${location.city}, ${location.country}`}</h2> */}
-          </motion.div>
+           </motion.div>
         )}
         {hijriDate && (
           <motion.div
@@ -192,7 +191,7 @@ const MonthlyNamazTimings = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-center text-base text-muted-foreground"
           >
-            <p> Current Date: {currentDate}</p>
+            <p> {t("CurrentNamazTime.currentdate")}: {currentDate}</p>
             <p>Hijri Date: {hijriDate}</p>
           </motion.div>
         )}
@@ -246,14 +245,10 @@ const MonthlyNamazTimings = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <AccordionTrigger className={`text-sm ${
-                      day.date === currentDate
-                        ? "bg-blue-500 text-white"
-                        : "even:bg-muted"
-                    } p-4 rounded-lg`}>
+                    <AccordionTrigger className={`text-sm ${day.date === currentDate? "bg-blue-500 text-white ": "even:bg-muted"} p-4  rounded-lg`}>
                       <div className="flex justify-between w-full">
                         <span>{day.formattedDate}</span>
-                        <ChevronDownIcon className="h-4 w-4" />
+                       
                       </div>
                     </AccordionTrigger>
                     <AccordionContent>
@@ -283,7 +278,7 @@ const MonthlyNamazTimings = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-blue-400 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-muted text-white" : "even:bg-muted"}`}>
+                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-blue-400 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-blue-700 text-white" : "even:bg-muted"}`}>
                   <div className="text-center">{day.formattedDate}</div>
                   <div className="text-center">{day.timings.Fajr}</div>
                   <div className="text-center">{day.timings.Sunrise}</div>

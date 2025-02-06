@@ -9,6 +9,7 @@ import { CloudSun, CloudSunRainIcon, Divide, LucideSunset, MoonStarIcon, SunDim,
 import moment from "moment-hijri";
 import Link from "next/link";
 import MonthlyNamazTimings from "./MonthlyNamaz";
+import { useTranslation } from "@/lib/useTranslation";
 
 function DateTimingDisplay() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -180,10 +181,13 @@ function DateTimingDisplay() {
       });
 
       return {
+
         date: {
           gregorian: date.toDateString(),
+
           hijri: moment(date).locale("en").format("iD iMMMM, iYYYY"), // Replace with Hijri date logic if needed
         },
+
         prayers,
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
         nextPrayer: nextPrayer
@@ -244,6 +248,23 @@ function DateTimingDisplay() {
     setActiveIndex(1); // Reset to center
   };
 
+  const { t } = useTranslation("CurrentNamazTime")
+
+  const gregorian = prayerTimes[activeIndex]?.date.gregorian;
+  if (gregorian) {
+    const [, month, day, year] = gregorian.split(" "); // Extract month, day, year
+    const translatedMonth = t(`CurrentNamazTime.months.${month}`); // Translate month
+
+    const formattedDate = `${day} ${translatedMonth} ${year}`;
+
+  }
+  const formattedDate = gregorian
+    ? (() => {
+      const [, month, day, year] = gregorian.split(" ");
+      return `${day} ${t(`CurrentNamazTime.months.${month}`)} ${year}`;
+    })()
+    : "";
+
   return (
     <div id="namaz-time" className="relative max-w-screen-xl mx-auto z-10 -mt-16">
       <div className="mx-auto w-[90%] lg:w-[95%] py-3 bg-slate-50 dark:bg-background rounded-xl shadow-lg px-2 border border-muted">
@@ -284,7 +305,7 @@ function DateTimingDisplay() {
                     setCurrentDate((prevDate) => subDays(prevDate, 0));
                   }}
                 >
-                  Yesterday
+                  {t("CurrentNamazTime.yesterday")}
                 </button>
                 <button
                   className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 1
@@ -296,7 +317,7 @@ function DateTimingDisplay() {
                     setCurrentDate(new Date());
                   }}
                 >
-                  Today
+                  {t("CurrentNamazTime.today")}
                 </button>
               </div>
 
@@ -312,7 +333,7 @@ function DateTimingDisplay() {
                     setCurrentDate((prevDate) => addDays(prevDate, 0));
                   }}
                 >
-                  Tomorrow
+                  {t("CurrentNamazTime.tomorrow")}
                 </button>
                 <button
                   className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3
@@ -323,7 +344,7 @@ function DateTimingDisplay() {
                     setActiveIndex(3);
                   }}
                 >
-                  Monthly
+                  {t("CurrentNamazTime.monthly")}
                 </button>
               </div>
             </div>
@@ -335,8 +356,14 @@ function DateTimingDisplay() {
             <p className="font-medium ">
               {prayerTimes[activeIndex]?.date.hijri || ""}
             </p>
-            <p className="font-semibold text-lg ">
-              {prayerTimes[activeIndex]?.date.gregorian || ""}
+            <p className="font-semibold text-lg">
+              {prayerTimes[activeIndex]?.date.gregorian
+                ? (() => {
+                  const gregorian = prayerTimes[activeIndex]?.date.gregorian;
+                  const [, month, day, year] = gregorian.split(" ");
+                  return `${day} ${t(`CurrentNamazTime.months.${month}`)} ${year}`;
+                })()
+                : ""}
             </p>
           </div>
         </div>
@@ -367,7 +394,7 @@ function DateTimingDisplay() {
               </div>
             </SwiperSlide>
           ))}
-        </Swiper> : <MonthlyNamazTimings/> }
+        </Swiper> : <MonthlyNamazTimings />}
       </div>
     </div>
   );

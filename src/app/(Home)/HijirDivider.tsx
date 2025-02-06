@@ -1,4 +1,5 @@
 "use client";
+import { useTranslation } from "@/lib/useTranslation";
 import { MoonIcon } from "lucide-react";
 import moment from "moment-hijri";
 import React, { useEffect, useState } from "react";
@@ -40,6 +41,7 @@ function HijirDivider() {
     minute: "2-digit",
     hour12: true,
   });
+  const {t} = useTranslation("HijriDivider")
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
@@ -48,7 +50,7 @@ function HijirDivider() {
         <div className="relative z-10 space-y-2">
           {/* Main Heading */}
           <h1 className="text-white text-3xl md:text-4xl text-center font-bold tracking-tight animate-fade-in">
-            Know your Current Date & Time!
+            {t("HijriDivider.dividertitle")}
           </h1>
 
           {/* Subheading for Location */}
@@ -63,7 +65,7 @@ function HijirDivider() {
             <div className="flex justify-center items-center group">
               <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
                 <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
-                  Current Time
+                {t("HijriDivider.currenttime")}
                 </h3>
                 <div className="text-lg text-center">{formattedTime}</div>
               </div>
@@ -83,7 +85,7 @@ function HijirDivider() {
             <div className="flex justify-center items-center group">
               <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
                 <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
-                  Current Date
+                  {t("HijriDivider.currentdate")}
                 </h3>
                 <div className="text-lg text-center">{formattedDate}</div>
               </div>

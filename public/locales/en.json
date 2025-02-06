@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "title": "Global Salah",
+    "home": "Home",
+    "namazTime": "Namaz Time",
+    "countries": "Countries",
+    "islamicCalender": "Islamic Calendar",
+    "duas": "Duas",
+    "aboutUs": "About Us",
+    "contactUs": "Contact Us"
+  },
+    "banner": {
+      "title": "Welcome to Global Salah",
+      "hadithofday": "Hadith of the Day",
+      "ayatofday": "Ayat of the Day",
+      "next": "Next"
+
+    },
+    "CurrentNamazTime":{
+      "yesterday": "Yesterday",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "monthly": "Monthly",
+      "monthlynamaztitle":"Monthly Namaz Timings",
+      "currentdate":"Current Date",
+      "months": {
+        "Jan": "January",
+        "Feb": "February",
+        "Mar": "March",
+        "Apr": "April",
+        "May": "May",
+        "Jun": "June",
+        "Jul": "July",
+        "Aug": "August",
+        "Sep": "September",
+        "Oct": "October",
+        "Nov": "November",
+        "Dec": "December"
+      },
+      "days": {
+        "0": "Sunday",
+        "1": "Monday",
+        "2": "Tuesday",
+        "3": "Wednesday",
+        "4": "Thursday",
+        "5": "Friday",
+        "6": "Saturday"
+      }
+    },
+    "CountrySection":{
+      "country": "Country",
+      "countryline":"Choose a country to see prayer times and places",
+      "countrylink":"More Countries"
+    },
+    "HijriDivider":{
+      "dividertitle":"Know your Current Date & Time!",
+      "currenttime":"Current Time",
+      "currentdate":"Current Date"
+
+    },
+    "Footer":{
+      "footertitle":"Global Salah",
+      "footerdesc":"  Global Salah is a website dedicated to providing accurate and convenient Islamic prayer time information to Muslims around the world.",
+      "quicklinkstitle":"Quick links",
+      "companytitle":"Company",
+      "otherlinktitle":"Other",
+      "termslink":"Terms and conditions",
+      "privacylink":"Privacy policy",
+      "rightsdesc":"All Rights Reserved © 2025 Global Salah"
+
+    }
+  }
+  
