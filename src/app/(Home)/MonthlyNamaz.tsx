@@ -8,7 +8,7 @@ import { Coordinates, CalculationMethod, Madhab, PrayerTimes } from "adhan";
 import moment from "moment-hijri";
 import { Button } from "@/components/ui/button";
 import { CalendarIcon, ChevronDownIcon, MoonIcon, SunIcon } from 'lucide-react';
-import { useTranslation } from "@/lib/useTranslation";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface LocationInfo {
   city: string;

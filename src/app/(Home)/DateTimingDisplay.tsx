@@ -9,7 +9,7 @@ import { CloudSun, CloudSunRainIcon, Divide, LucideSunset, MoonStarIcon, SunDim,
 import moment from "moment-hijri";
 import Link from "next/link";
 import MonthlyNamazTimings from "./MonthlyNamaz";
-import { useTranslation } from "@/lib/useTranslation";
+import { useTranslation } from "@/hooks/useTranslation";
 
 function DateTimingDisplay() {
   const [currentDate, setCurrentDate] = useState(new Date());

@@ -1,5 +1,5 @@
+import PrivacyContent from '@/app/privacy-policy/PrivacyContent'
 import React from 'react'
-import PrivacyContent from './PrivacyContent'
 
 function page() {
   return (

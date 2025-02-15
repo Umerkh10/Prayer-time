@@ -9,65 +9,344 @@
     "aboutUs": "About Us",
     "contactUs": "Contact Us"
   },
-    "banner": {
-      "title": "Welcome to Global Salah",
-      "hadithofday": "Hadith of the Day",
-      "ayatofday": "Ayat of the Day",
-      "next": "Next"
-
-    },
-    "CurrentNamazTime":{
-      "yesterday": "Yesterday",
-      "today": "Today",
-      "tomorrow": "Tomorrow",
-      "monthly": "Monthly",
-      "monthlynamaztitle":"Monthly Namaz Timings",
-      "currentdate":"Current Date",
-      "months": {
-        "Jan": "January",
-        "Feb": "February",
-        "Mar": "March",
-        "Apr": "April",
-        "May": "May",
-        "Jun": "June",
-        "Jul": "July",
-        "Aug": "August",
-        "Sep": "September",
-        "Oct": "October",
-        "Nov": "November",
-        "Dec": "December"
+  "banner": {
+    "title": "Welcome to Global Salah",
+    "hadithofday": "Hadith of the Day",
+    "ayatofday": "Ayat of the Day",
+    "next": "Next",
+    "hadiths": [
+      {
+        "arabic": "حَدَّثَنَا أَبُو الْوَلِيدِ ، قَالَ : حَدَّثَنَا شُعْبَةُ ، قَالَ : حَدَّثَنَا سُلَيْمَانُ الشَّيْبَانِيُّ ، عَنْ عَبْدِ اللَّهِ بْنِ شَدَّادٍ ، عَنْ مَيْمُونَةَ ، قَالَتْ : \" كَانَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يُصَلِّي عَلَى الْخُمْرَةِ \"",
+        "translation": "Narrated Anas bin Malik: We used to pray with the Prophet and some of us used to place the ends of their clothes at the place of prostration because of scorching heat.",
+        "refrence": "Sahih Bukhari - 385"
       },
-      "days": {
-        "0": "Sunday",
-        "1": "Monday",
-        "2": "Tuesday",
-        "3": "Wednesday",
-        "4": "Thursday",
-        "5": "Friday",
-        "6": "Saturday"
+      {
+        "arabic": "حَدَّثَنَا عَمْرُو بْنُ عَبَّاسٍ ، قَالَ : حَدَّثَنَا ابْنُ الْمَهْدِيِّ ، قَالَ : حَدَّثَنَا مَنْصُورُ بْنُ سَعْدٍ ، عَنْ مَيْمُونِ بْنِ سِيَاهٍ ، عَنْ أَنَسِ بْنِ مَالِكٍ ، قَالَ : قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ : مَنْ صَلَّى صَلَاتَنَا ، وَاسْتَقْبَلَ قِبْلَتَنَا ، وَأَكَلَ ذَبِيحَتَنَا ، فَذَلِكَ الْمُسْلِمُ الَّذِي لَهُ ذِمَّةُ اللَّهِ وَذِمَّةُ رَسُولِهِ ، فَلَا تُخْفِرُوا اللَّهَ فِي ذِمَّتِهِ .",
+        "translation": "Narrated Anas bin Malik: Allah's Apostle said, Whoever prays like us and faces our Qibla and eats our slaughtered animals is a Muslim and is under Allah's and His Apostle's protection. So do not betray Allah by betraying those who are in His protection.",
+        "refrence": "Sahih Bukhari - 391"
+      },
+      {
+        "arabic": "حَدَّثَنَا عَبْدُ اللَّهِ بْنُ يُوسُفَ ، قَالَ : أَخْبَرَنَا مَالِكٌ ، عَنْ نَافِعٍ ، عَنْ عَبْدِ اللَّهِ بْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا ، أَنّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ ، قَالَ : إِذَا جَاءَ أَحَدُكُمُ الْجُمُعَةَ فَلْيَغْتَسِلْ .",
+        "translation": "Abdullah bin Umar: Allah's Apostle (p.b.u.h) said: Whoever of you attends the Friday prayer must take a bath.",
+        "refrence": "Sahih Bukhari - 877"
+      },
+      {
+        "arabic": "حَدَّثَنَا مُحَمَّدُ بْنُ بَشَّارٍ ، حَدَّثَنَا غُنْدَرٌ ، حَدَّثَنَا شُعْبَةُ ، عَنْ أَبِي حَصِينٍ وَالْأَشْعَثِ بْنِ سُلَيْمٍ ، سَمِعَا الْأَسْوَدَ بْنَ هِلَالٍ ، عَنْ مُعَاذِ بْنِ جَبَلٍ ، قَالَ : قَالَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ : يَا مُعَاذُ أَتَدْرِي مَا حَقُّ اللَّهِ عَلَى الْعِبَادِ ؟ ، قَالَ : اللَّهُ وَرَسُولُهُ أَعْلَمُ ، قَالَ : أَنْ يَعْبُدُوهُ وَلَا يُشْرِكُوا بِهِ شَيْئًا أَتَدْرِي مَا حَقُّهُمْ عَلَيْهِ ؟ ، قَالَ : اللَّهُ وَرَسُولُهُ أَعْلَمُ ، قَالَ : أَنْ لَا يُعَذِّبَهُمْ .",
+        "translation": "Narrated Muadh bin Jabal: The Prophet said, O Muadh! Do you know what Allah's Right upon His slaves is? I said, Allah and His Apostle know best. The Prophet said, To worship Him (Allah) Alone and to join none in worship with Him (Allah). Do you know what their right upon Him is? I replied, Allah and His Apostle know best. The Prophet said, Not to punish them (if they do so).",
+        "refrence": "Sahih Bukhari - 7373"
       }
+    ],
+    "ayats": [
+      {
+        "text": "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ ۖ فَلْيَسْتَجِيبُوا لِي وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ",
+        "translation": "And when My servants ask you, [O Muhammad], concerning Me - indeed I am near. I respond to the invocation of the supplicant when he calls upon Me. So let them respond to Me [by obedience] and believe in Me that they may be [rightly] guided.",
+        "refrence": "[Quran 2:186]"
+      },
+      {
+        "text": "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+        "translation": "Allah does not burden a soul beyond that it can bear.",
+        "refrence": "[Quran 2:286]"
+      },
+      {
+        "text": "إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ",
+        "translation": "Indeed, Allah will not change the condition of a people until they change what is in themselves.",
+        "refrence": "[Quran 13:11]"
+      },
+      {
+        "text": "وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ",
+        "translation": "And We have certainly made the Quran easy for remembrance, so is there any who will remember?",
+        "refrence": "[Quran 54:17]"
+      }
+    ]
+  },
+  "CurrentNamazTime": {
+    "yesterday": "Yesterday",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "monthly": "Monthly",
+    "monthlynamaztitle": "Monthly Namaz Timings",
+    "currentdate": "Current Date",
+    "months": {
+      "Jan": "January",
+      "Feb": "February",
+      "Mar": "March",
+      "Apr": "April",
+      "May": "May",
+      "Jun": "June",
+      "Jul": "July",
+      "Aug": "August",
+      "Sep": "September",
+      "Oct": "October",
+      "Nov": "November",
+      "Dec": "December"
     },
-    "CountrySection":{
-      "country": "Country",
-      "countryline":"Choose a country to see prayer times and places",
-      "countrylink":"More Countries"
-    },
-    "HijriDivider":{
-      "dividertitle":"Know your Current Date & Time!",
-      "currenttime":"Current Time",
-      "currentdate":"Current Date"
-
-    },
-    "Footer":{
-      "footertitle":"Global Salah",
-      "footerdesc":"  Global Salah is a website dedicated to providing accurate and convenient Islamic prayer time information to Muslims around the world.",
-      "quicklinkstitle":"Quick links",
-      "companytitle":"Company",
-      "otherlinktitle":"Other",
-      "termslink":"Terms and conditions",
-      "privacylink":"Privacy policy",
-      "rightsdesc":"All Rights Reserved © 2025 Global Salah"
-
+    "days": {
+      "0": "Sunday",
+      "1": "Monday",
+      "2": "Tuesday",
+      "3": "Wednesday",
+      "4": "Thursday",
+      "5": "Friday",
+      "6": "Saturday"
     }
+  },
+  "CountrySection": {
+    "country": "Country",
+    "countryline": "Choose a country to see prayer times and places",
+    "countrylink": "More Countries"
+  },
+  "HijriDivider": {
+    "dividertitle": "Know your Current Date & Time!",
+    "currenttime": "Current Time",
+    "currentdate": "Current Date"
+  },
+  "Footer": {
+    "footertitle": "Global Salah",
+    "footerdesc": "  Global Salah is a website dedicated to providing accurate and convenient Islamic prayer time information to Muslims around the world.",
+    "quicklinkstitle": "Quick links",
+    "companytitle": "Company",
+    "otherlinktitle": "Other",
+    "termslink": "Terms and conditions",
+    "privacylink": "Privacy policy",
+    "rightsdesc": "All Rights Reserved © 2025 Global Salah"
+  },
+  "calender":{
+    "homelink": "Home",
+    "title": "Islamic Calender",
+    "desc": "Islamic Calender Know Your Gregorian Date with Islamic Date",
+    "calendertitle":"Calendar",
+    "buttontoday":"Today"
+  },
+  "duas": {
+    "title": "Duas",
+    "desc": "Quranic Duas in Arabic with Translation",
+    "copydua": "Copy Dua",
+    "sharedua": "Share Dua",
+    "translitration": "Transliteration",
+    "translationword": "Translation",
+    "duasTranslation": [
+        {
+            "id": "before-ablution",
+            "title": "Dhikr Before Ablution",
+            "arabic": "بِسْمِ اللَّهِ",
+            "transliteration": "Bismillaahi",
+            "translation": "In The Name Of Allah",
+            "category": "before"
+          },
+          {
+            "id": "after-ablution",
+            "title": "Dhikr After The Completion Of Ablution",
+            "arabic": "أَشْهَدُ أَنْ لاَ إِلَهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّداً عَبْدُهُ وَرَسُولُهُ",
+            "transliteration":
+              "Ash-hadu 'an laa 'ilaaha 'illallaahu wahdahu laa shareeka lahu wa 'ash-hadu 'anna Muhammadan 'abduhu wa Rasooluhu.",
+            "translation":
+              "I Bear Witness That None Has The Right To Be Worshipped Except Allah, Alone Without Partner, And I Bear Witness That Muhammad Is His Slave And Messenger.",
+            "category": "after"
+          },
+          {
+            "id": "before-eating",
+            "title": "Dhikr Before Eating",
+            "arabic": "بِسْمِ اللَّهِ",
+            "transliteration": "Bismillaahi",
+            "translation": "In The Name Of Allah",
+            "category": "before"
+          },
+          {
+            "id": "after-eating",
+            "title": "Dhikr After Eating",
+            "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ",
+            "transliteration": "Alhamdu lillaahil-lathee at'amanaa wa saqaanaa wa ja'alanaa Muslimeen.",
+            "translation": "All praise is due to Allah Who has fed us, given us drink, and made us Muslims.",
+            "category": "after"
+          },
+          {
+            "id": "before-sleeping",
+            "title": "Dhikr Before Sleeping",
+            "arabic": "بِسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+            "transliteration": "Bismika Allahumma amootu wa ahyaa.",
+            "translation": "In Your Name, O Allah, I die and I live.",
+            "category": "before"
+          },
+          {
+            "id": "after-waking-up",
+            "title": "Dhikr After Waking Up",
+            "arabic": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+            "transliteration": "Alhamdu lillaahil-lathee ahyaanaa ba'da maa amaatanaa wa ilayhin-nushoor.",
+            "translation":
+              "All praise is due to Allah, Who has given us life after He has caused us to die, and to Him is the return.",
+            "category": "after"
+          },
+          {
+            "id": "morning-azkar",
+            "title": "Morning Azkar",
+            "arabic": "اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ",
+            "transliteration": "Allahumma bika asbahna wa bika amsayna wa bika nahya wa bika namootu wa ilaykan-nushoor.",
+            "translation":
+              "O Allah, by You we enter the morning and by You we enter the evening, by You we live and by You we die, and to You is the resurrection.",
+            "category": "azkar"
+          },
+          {
+            "id": "evening-azkar",
+            "title": "Evening Azkar",
+            "arabic": "اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ الْمَصِيرُ",
+            "transliteration": "Allahumma bika amsayna wa bika asbahna wa bika nahya wa bika namootu wa ilaykal-maseer.",
+            "translation":
+              "O Allah, by You we enter the evening and by You we enter the morning, by You we live and by You we die, and to You is our return.",
+            "category": "azkar"
+          },
+          {
+            "id": "before-entering-bathroom",
+            "title": "Dhikr Before Entering The Bathroom",
+            "arabic": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبْثِ وَالْخَبَائِثِ",
+            "transliteration": "Allahumma inni a'udhu bika minal khubthi wal khabaa'ith.",
+            "translation": "O Allah, I seek refuge with You from the male and female devils.",
+            "category": "before"
+          },
+          {
+            "id": "after-exiting-bathroom",
+            "title": "Dhikr After Exiting The Bathroom",
+            "arabic": "غُفْرَانَكَ",
+            "transliteration": "Ghufraanaka.",
+            "translation": "I seek Your forgiveness.",
+            "category": "after"
+          },
+          {
+            "id": "before-journey",
+            "title": "Dhikr Before Starting A Journey",
+            "arabic": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَىٰ رَبِّنَا لَمُنقَلِبُونَ",
+            "transliteration":
+              "Subhaanal-lathee sakhkhara lanaa haathaa wamaa kunnaa lahu muqrineen wa inna ilaa rabbinaa lamunqaliboon.",
+            "translation":
+              "Glory is to Him Who has subjected this to us, and we could not have otherwise subdued it. And indeed, to our Lord we will return.",
+            "category": "before"
+          },
+          {
+            "id": "during-journey",
+            "title": "Dhikr During A Journey",
+            "arabic": "اللَّهُمَّ إِنَّا نَسْأَلُكَ فِي سَفَرِنَا هَذَا الْبِرَّ وَالتَّقْوَىٰ وَمِنَ الْعَمَلِ مَا تَرْضَىٰ",
+            "transliteration": "Allahumma innaa nas’aluka fi safarina haatha al-birra wat-taqwa wa minal ‘amali ma tardhaa.",
+            "translation": "O Allah, we ask You during this journey for righteousness and piety and for actions that please You.",
+            "category": "during"
+          },
+          {
+            "id": "after-returning-home",
+            "title": "Dhikr After Returning Home From A Journey",
+            "arabic": "آيِبُونَ تَائِبُونَ عَابِدُونَ لِرَبِّنَا حَامِدُونَ",
+            "transliteration": "Aayiboona taa’iboona ‘aabidoona lirabbinaa haamidoon.",
+            "translation": "We return repenting, worshiping, and praising our Lord.",
+            "category": "after"
+          }
+      ],
+      "categorytitle":"Categories",
+      "categories": [
+        {
+          "id": "all",
+          "label": "All"
+        },
+        {
+          "id": "azkar",
+          "label": "Azkar"
+        },
+        {
+          "id": "before",
+          "label": "Before"
+        },
+        {
+          "id": "during",
+          "label": "During"
+        },
+        {
+          "id": "after",
+          "label": "After"
+        }
+      ]
+  },
+  "aboutus":{
+    "title":"About Global Salah",
+    "desc":"Connecting hearts through prayer, transcending borders with faith.",
+    "mission":"Our Mission",
+    "globaltitle":"Global Reach",
+    "globaldesc":"Connecting Muslims worldwide",
+    "communitytitle":"Community",
+    "communitydesc":"Fostering a sense of belonging",
+    "spiritualtitle":"Spiritual Growth",
+    "spiritualdesc":"Encouraging regular prayer",
+    "benefittitle":"Benefits of Prayer",
+    "spiritualconnectiontitle":"Spiritual Connection",
+    "spiritualconnectiondesc":"Strengthens your relationship with Allah",
+    "mentalclaritytitle":"Mental Clarity",
+    "mentalclaritydesc":"Helps in reducing stress and anxiety",
+    "disciplinetitle":"Discipline",
+    "disciplinedesc":"Builds self-control and time management skills",
+    "dailystructuretitle":"Daily Structure",
+    "dailystructuredesc":"Provides a beneficial routine to your day",
+    "communitybondingtitle":"Community Bonding",
+    "communitybondingdesc":"Encourages unity among Muslims",
+    "servicetitle":"Our Services",
+    "prayertimestitle":"Prayer Times",
+    "prayertimesdesc":"Accurate prayer times for your location",
+    "islamiccalendertitle":"Islamic Calender",
+    "islamiccalenderdesc":"Know your hijri date according to the gregorian date",
+    "quranrecitationtitle":"Quran Recitation",
+    "quranrecitationdesc":"Listen to beautiful Quran recitations"
+
+  },
+  "countrieslist":{
+    "title":"Country",
+    "desc":"Discover accurate prayer timings for countries worldwide.",
+    "placeholder":"Search for a country..."
+  },
+  "contact":{
+    "title":"Contact Us",
+    "desc":"Get in touch with Global Salah. We're here to answer your questions and listen to your feedback.",
+    "formtitle":"Send us a message",
+    "formname":"Name",
+    "nameplaceholder":"Enter your name",
+    "formemail":"Email",
+    "emailplaceholder":"Enter your email address",
+    "formmessage":"Message",
+    "messageplaceholder":"Enter Your Message...",
+    "formbutton":"Send Message",
+    "infotitle":"Contact Information",
+    "infophone":"Phone"
+  },
+  "terms":{
+    "title":"Terms and Conditions",
+    "subheading_1":"1. Acceptance of Terms",
+    "subparagraph_1":"By accessing and using Global Salah, you accept and agree to be bound by the terms and provision of this agreement.",
+    "subheading_2":"2. Use of the Service",
+    "subparagraph_2":"You agree to use Global Salah only for purposes that are permitted by these Terms and any applicable law, regulation, or generally accepted practices or guidelines in the relevant jurisdictions.",
+    "subheading_3":"3. User Account",
+    "subparagraph_3":"To access some features of Global Salah, you may be required to create an account. You are responsible for maintaining the confidentiality of your account and password.",
+    "subheading_4":"4. Content",
+    "subparagraph_4":"Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material. You are responsible for the content that you post to the Service.",
+    "subheading_5":"5. Intellectual Property",
+    "subparagraph_5":"The Service and its original content, features, and functionality are and will remain the exclusive property of Global Salah and its licensors.",
+    "subheading_6":"6. Termination",
+    "subparagraph_6":"We may terminate or suspend your account and bar access to the Service immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever and without limitation.",
+    "subheading_7":"7. Changes to Terms",
+    "subparagraph_7":" We reserve the right, at our sole discretion, to modify or replace these Terms at any time. What constitutes a material change will be determined at our sole discretion.",
+    "subheading_8":"8. Contact Us",
+    "subparagraph_8":" If you have any questions about these Terms, please contact us at terms@globalsalah.com." 
+  },
+
+  "privacy":{
+    "title":"Privacy Policy",
+    "subheading_1":"1. Information We Collect",
+    "subparagraph_1":"We collect information you provide directly to us, such as when you create or modify your account, request services, contact customer support, or otherwise communicate with us.",
+    "subheading_2":"2. How We Use Your Information",
+    "subparagraph_2":"We use the information we collect to provide, maintain, and improve our services, such as to process and complete your prayer requests, and communicate with you.",
+    "subheading_3":"3. Information Sharing and Disclosure",
+    "subparagraph_3":"We may share the information we collect with third parties for various purposes, including to: comply with laws; respond to lawful requests and legal process; protect the rights and property of Global Salah, our agents, customers, and others.",
+    "subheading_4":"4. Security",
+    "subparagraph_4":" We take reasonable measures to help protect information about you from loss, theft, misuse and unauthorized access, disclosure, alteration and destruction.",
+    "subheading_5":"5. Your Choices",
+    "subparagraph_5":" You may update, correct or delete information about you at any time by logging into your online account or by contacting us. You may also opt out of receiving promotional communications from us by following the instructions in those messages.",
+    "subheading_6":"6. Changes to this Policy",
+    "subparagraph_6":"We may change this privacy policy from time to time. If we make changes, we will notify you by revising the date at the top of the policy and, in some cases, we may provide you with additional notice.",
+    "subheading_7":"7. Contact Us",
+    "subparagraph_7":" If you have any questions about this privacy policy, please contact us at: privacy@globalsalah.com."
   }
-  
+
+}
+ 

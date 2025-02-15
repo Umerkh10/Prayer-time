@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { useTranslation } from '@/hooks/useTranslation'
 
 export const countries = [
     { name: 'Afghanistan', code: 'AF', timezone: 'Asia/Kabul', offset: '+04:30' },
@@ -250,29 +251,30 @@ export default function CountriesList() {
     setSearchQuery('')
     setFilteredCountries([])
     setIsSearchFocused(false)
-    setSelectedCountry(countryName) // New state
+    setSelectedCountry(countryName)
     const element = document.getElementById(letter)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
   }
+const { t } = useTranslation("countrieslist")
 
   return (
-    <div className="  ">
+    <div >
     <div className="container mx-auto px-4 py-8">
       {/* Breadcrumb */}
       <div className="mb-6 flex items-center text-sm text-muted-foreground">
         <Link href="/" className="hover:text-primary">
-          Home
+          {t("navigation.home")}
         </Link>
         <ChevronRight className="h-4 w-4 mx-2" />
-        <span className="text-foreground">Countries</span>
+        <span className="text-foreground">{t("navigation.countries")}</span>
       </div>
 
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">Country</h1>
-        <p className="text-gray-600 dark:text-gray-400">Discover accurate prayer timings for countries worldwide.</p>
+        <h1 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">{t("countrieslist.title")}</h1>
+        <p className="text-gray-600 dark:text-gray-400">{t("countrieslist.desc")}</p>
       </div>
 
       {/* Search input */}
@@ -280,7 +282,7 @@ export default function CountriesList() {
         <div className="relative">
           <Input
             type="text"
-            placeholder="Search for a country..."
+            placeholder={t("countrieslist.placeholder")}
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
             onFocus={() => setIsSearchFocused(true)}
@@ -348,9 +350,8 @@ export default function CountriesList() {
                         className="w-8 h-6 rounded object-cover"
                       />
                       <div>
-                        <h3 className=" text-sm ">{country.name
-                          }</h3>
-                        <p className="text-xs mt-1 ">{country.timezone}</p>
+                      <h3 className=" text-sm ">{country.name}</h3>
+                        <p className="text-xs mt-1 ">{country.offset}</p>
                       </div>
                     </div>
                     <div className="text-base  ">

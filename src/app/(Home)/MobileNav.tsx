@@ -7,11 +7,18 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { useTranslation } from '@/lib/useTranslation'
+import { useTranslation } from '@/hooks/useTranslation'
+import { usePathname } from 'next/navigation'
+import { checkIsPathnameIsEqualToLang, urlSplitter } from '@/lib'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
-  const {t} = useTranslation("navigation")
+const pathname = usePathname()
+  const currentLang = urlSplitter(pathname)
+
+  
+  const { t } = useTranslation("navigation")
+  const isLang = checkIsPathnameIsEqualToLang(currentLang)
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -25,7 +32,7 @@ export function MobileNav() {
         <ScrollArea className="h-full px-6">
           <div className="mt-6 space-y-6">
             <Link
-              href="/"
+              href={isLang ? `/${currentLang}` : "/"}
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
@@ -39,35 +46,35 @@ export function MobileNav() {
               {t("navigation.namazTime")}
             </Link>
             <Link
-              href="/countries"
+              href={isLang ? `/${currentLang}/countries` : "/countries"}
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
              {t("navigation.countries")}
             </Link>
             <Link
-              href="/islamic-calender"
+              href={ isLang ? `/${currentLang}/islamic-calender` : "/islamic-calender"}
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
              {t("navigation.islamicCalender")}
             </Link>
             <Link
-              href="/duas"
+              href={isLang ? `/${currentLang}/duas` : "/duas"}
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
               {t("navigation.duas")}
             </Link>
             <Link
-              href="/about-us"
+              href={isLang ? `/${currentLang}/about-us` : "/about-us"}
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >
               {t("navigation.aboutUs")}
             </Link>
             <Link
-              href="/contact-us"
+              href={ isLang ? `/${currentLang}/contact-us` : "/contact-us"}
               onClick={() => setOpen(false)}
               className="block text-lg font-semibold text-white hover:text-gray-200"
             >

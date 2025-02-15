@@ -1,11 +1,18 @@
 "use client"
-import { useTranslation } from '@/lib/useTranslation'
+import { useTranslation } from '@/hooks/useTranslation'
+import { checkIsPathnameIsEqualToLang, urlSplitter } from '@/lib'
 import { Facebook, Instagram, Twitter } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
 function Footer() {
-    const {t} = useTranslation("Footer")
+    const pathname = usePathname()
+    const currentLang = urlSplitter(pathname)
+  
+    
+    const { t } = useTranslation("Footer")
+    const isLang = checkIsPathnameIsEqualToLang(currentLang)
   
   return (
     <footer className="mt-5 border-t border-muted-foreground bg-transparent">
@@ -21,11 +28,12 @@ function Footer() {
           <div className="lg:col-span-1">
             <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">{t("Footer.quicklinkstitle")}</h3>
             <ul className="mt-4 space-y-3 text-sm">
-              <li > <Link href="/" className=" hover:text-blue-700 dark:hover:text-blue-400">
-              {t("navigation.home")}</Link></li>
+              <li > <Link href={isLang ? `/${currentLang}` : "/"} className=" hover:text-blue-700 dark:hover:text-blue-400">{t("navigation.home")}</Link></li>
               <li > <Link href="./#namaz-time" className=" hover:text-blue-700 dark:hover:text-blue-400">{t("navigation.namazTime")}</Link></li>
-              <li > <Link href="/islamic-calender" className=" hover:text-blue-700 dark:hover:text-blue-400">{t("navigation.islamicCalender")}</Link></li>
-              <li > <Link href="/duas" className=" hover:text-blue-700 dark:hover:text-blue-400">
+
+              <li > <Link href={isLang ? `/${currentLang}/islamic-calender` : "/islamic-calender"} className=" hover:text-blue-700 dark:hover:text-blue-400">{t("navigation.islamicCalender")}</Link></li>
+
+              <li > <Link href={isLang ? `/${currentLang}/duas` : "/duas"} className=" hover:text-blue-700 dark:hover:text-blue-400">
               {t("navigation.duas")}</Link></li>
         
             </ul>
@@ -35,12 +43,13 @@ function Footer() {
             <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">
             {t("Footer.companytitle")}</h3>
             <ul className="mt-4 space-y-3 text-sm">
-                <li ><Link href="/countries" className=" hover:text-blue-700 dark:hover:text-blue-400">
+                <li ><Link href={isLang ? `/${currentLang}/countries` : "/countries"} className=" hover:text-blue-700 dark:hover:text-blue-400">
                 {t("navigation.countries")}</Link></li>
-                <li><Link href="/about-us" className=" hover:text-blue-700 dark:hover:text-blue-400">
+
+                <li><Link href={isLang ? `/${currentLang}/about-us` : "/about-us"} className=" hover:text-blue-700 dark:hover:text-blue-400">
                 {t("navigation.aboutUs")}</Link></li>
-                <li><Link href="/contact-us" className=" hover:text-blue-700 dark:hover:text-blue-400">
-                {t("navigation.contactUs")}</Link></li>
+
+                <li><Link href={isLang ? `/${currentLang}/contact-us` : "/contact-us"} className=" hover:text-blue-700 dark:hover:text-blue-400">{t("navigation.contactUs")}</Link></li>
             </ul>
           </div>
 
@@ -48,11 +57,9 @@ function Footer() {
             <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">
               {t("Footer.otherlinktitle")}</h3>
             <ul className="mt-4 space-y-3 text-sm">
-                <li ><Link href="/terms-and-conditions" className=" hover:text-blue-700 dark:hover:text-blue-400">
-                {t("Footer.termslink")}</Link>
+                <li ><Link href={isLang ? `/${currentLang}/terms-and-conditions` : "/terms-and-conditions"} className=" hover:text-blue-700 dark:hover:text-blue-400">{t("Footer.termslink")}</Link>
                 </li>
-                <li ><Link href="/privacy-policy" className=" hover:text-blue-700 dark:hover:text-blue-400">
-                {t("Footer.privacylink")}</Link>
+                <li ><Link href={isLang ? `/${currentLang}/privacy-policy` : "/privacy-policy"} className=" hover:text-blue-700 dark:hover:text-blue-400">{t("Footer.privacylink")}</Link>
                 </li>
  
             </ul>

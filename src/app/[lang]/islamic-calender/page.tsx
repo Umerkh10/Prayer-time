@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 import moment from "moment-hijri"
 import Link from "next/link"
 import { useTranslation } from "@/hooks/useTranslation"
+import { checkIsPathnameIsEqualToLang } from "@/lib"
 
 const years = Array.from({ length: 200 }, (_, i) => 1938 + i)
 const months = [
@@ -100,23 +101,26 @@ export default function IslamicCalendar() {
   }
 
   const { t } = useTranslation("calender")
+  const pathname = window.location.pathname
+  const isLang = checkIsPathnameIsEqualToLang(pathname)
+  
 
   return (
     <div className="container mx-auto py-4 px-4 md:py-8 md:px-0">
         <div className="mt-5 mb-6 flex items-center text-sm text-muted-foreground">
-        <Link href="/" className="hover:text-primary">
+        <Link  href={isLang ? pathname : "/"} className="hover:text-primary">
           {t("calender.homelink")}
         </Link>
         <ChevronRight className="h-4 w-4 mx-2" />
-        <span className="text-foreground">Islamic Calender</span>
+        <span className="text-foreground"> {t("calender.title")}</span>
       </div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Islamic Calender</h1>
-        <p className="text-muted-foreground">Islamic Calender Know Your Gregorian Date with Islamic Date</p>
+        <h1 className="text-3xl font-bold mb-2">{t("calender.title")}</h1>
+        <p className="text-muted-foreground">{t("calender.desc")}</p>
       </div>
       <Card className="max-w-3xl mx-auto">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-center"> Calendar</CardTitle>
+          <CardTitle className="text-3xl font-bold text-center"> {t("calender.calendertitle")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
@@ -148,7 +152,8 @@ export default function IslamicCalendar() {
                 ))}
               </SelectContent>
             </Select>
-            <Button variant="outline" onClick={goToToday} className="w-full md:w-auto">Today</Button>
+            <Button variant="outline" onClick={goToToday} className="w-full md:w-auto">
+              {t("calender.buttontoday")}</Button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-7 gap-6">

@@ -1,5 +1,5 @@
 "use client";
-import { useTranslation } from "@/lib/useTranslation";
+import { useTranslation } from "@/hooks/useTranslation";
 import { MoonIcon } from "lucide-react";
 import moment from "moment-hijri";
 import React, { useEffect, useState } from "react";
