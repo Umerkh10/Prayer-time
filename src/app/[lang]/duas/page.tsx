@@ -11,6 +11,7 @@ import { usePathname } from "next/navigation"
 import { urlSplitter } from "@/lib"
 import englishLang from "../../../../public/locales/en.json"
 import frenchLang from "../../../../public/locales/fr.json"
+import arabicLang from "../../../../public/locales/ar.json"
 import { useTranslation } from "@/hooks/useTranslation"
 
 
@@ -176,16 +177,20 @@ export default function DuasPage() {
     } else if (lang === "en" || pathname === "/") {
       setDuasContent(englishLang.duas.duasTranslation);
       setButtonLabel(englishLang.duas.categories);
+    } else if (lang === "ar" || pathname === "/"){
+      setDuasContent(arabicLang.duas.duasTranslation);
+      setButtonLabel(arabicLang.duas.categories);
     }
-
   }, [lang]);
 
   const { t } = useTranslation("duas");
+  const isArabic = pathname.split("/")[1]
+
 
 
   return (
     <div className="container mx-auto p-4 md:p-8">
-      <div className="mb-6 flex items-center text-sm text-muted-foreground">
+      <div className={`mb-6 flex items-center text-sm text-muted-foreground ${isArabic === "ar"? "justify-end text-right" : "justify-start text-left"}`}>
         <Link href="/" className="hover:text-primary">
         {t("calender.homelink")}
         </Link>
@@ -193,7 +198,7 @@ export default function DuasPage() {
         <span className="text-foreground">{t("duas.title")}</span>
       </div>
 
-      <div className="mb-8 text-center md:text-left">
+      <div className={`mb-8 text-center  ${isArabic === "ar"? "justify-end text-right" : "justify-start md:text-left"}`}>
         <h1 className="md:text-3xl text-xl font-bold mb-2">{t("duas.title")}</h1>
         <p className="text-muted-foreground md:text-base text-sm">{t("duas.desc")}</p>
       </div>

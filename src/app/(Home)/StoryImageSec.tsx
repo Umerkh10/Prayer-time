@@ -7,18 +7,18 @@ import "swiper/css"
 import "swiper/css/free-mode"
 
 const images = [
-  { src: "/hadees-images/hadees-img-1.png", alt: "Desert with hot air balloons" },
-  { src: "/hadees-images/hadees-img-2.png", alt: "Masjid al-Nabawi at night" },
-  { src: "/hadees-images/hadees-img-3.png", alt: "Worshippers in white ihram" },
-  { src: "/hadees-images/hadees-img-4.png", alt: "Lighthouse at night" },
-  { src: "/hadees-images/hadees-img-5.png", alt: "Masjid al-Nabawi golden hour" },
-  { src: "/hadees-images/hadees-img-6.png", alt: "Minaret silhouettes at sunset" },
-  { src: "/hadees-images/hadees-img-7.png", alt: "Minaret silhouettes at sunset" },
-  { src: "/hadees-images/hadees-img-8.png", alt: "Minaret silhouettes at sunset" },
-  { src: "/hadees-images/hadees-img-9.png", alt: "Minaret silhouettes at sunset" },
-  { src: "/hadees-images/hadees-img-10.png", alt: "Minaret silhouettes at sunset" },
-  { src: "/hadees-images/hadees-img-11.png", alt: "Minaret silhouettes at sunset" },
-  { src: "/hadees-images/hadees-img-12.png", alt: "Minaret silhouettes at sunset" },
+  { src: "/hadees-images/hadees-img-1.webp", alt: "Desert with hot air balloons" },
+  { src: "/hadees-images/hadees-img-2.webp", alt: "Masjid al-Nabawi at night" },
+  { src: "/hadees-images/hadees-img-3.webp", alt: "Worshippers in white ihram" },
+  { src: "/hadees-images/hadees-img-4.webp", alt: "Lighthouse at night" },
+  { src: "/hadees-images/hadees-img-5.webp", alt: "Masjid al-Nabawi golden hour" },
+  { src: "/hadees-images/hadees-img-6.webp", alt: "Minaret silhouettes at sunset" },
+  { src: "/hadees-images/hadees-img-7.webp", alt: "Minaret silhouettes at sunset" },
+  { src: "/hadees-images/hadees-img-8.webp", alt: "Minaret silhouettes at sunset" },
+  { src: "/hadees-images/hadees-img-9.webp", alt: "Minaret silhouettes at sunset" },
+  { src: "/hadees-images/hadees-img-10.webp", alt: "Minaret silhouettes at sunset" },
+  { src: "/hadees-images/hadees-img-11.webp", alt: "Minaret silhouettes at sunset" },
+  { src: "/hadees-images/hadees-img-12.webp", alt: "Minaret silhouettes at sunset" },
 ]
 
 function StoryImageSec() {

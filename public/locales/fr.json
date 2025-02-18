@@ -13,6 +13,8 @@
     "title": "Bienvenue sur Global Salah",
     "hadithofday": "Hadith du Jour",
     "ayatofday": "Ayat du Jour",
+    "titlehadith":"Hadith",
+    "titleayat":"Ayat",
     "next": "Suivant",
     "hadiths": [
       {
@@ -66,6 +68,13 @@
     "monthly": "Mensuel",
     "monthlynamaztitle": "Horaires du Namaz mensuel",
     "currentdate": "Date actuelle",
+    "date":"Date",
+    "namazfajr":"Fajr",
+    "sunrise":"Sunrise",
+    "namazdhuhr":"Dhuhr",
+    "namazasr":"Asr",
+    "namazmaghrib":"Maghrib",
+    "namazisha":"Isha",
     "months": {
       "Jan": "Janvier",
       "Feb": "Février",
@@ -98,6 +107,7 @@
   "HijriDivider": {
     "dividertitle": "Connaître la date et l'heure actuelles !",
     "currenttime": "Heure actuelle",
+    "hijrititle":"Hijri Date",
     "currentdate": "Date actuelle"
   },
   "Footer": {
@@ -340,6 +350,30 @@
     "subparagraph_6":"Nous pouvons modifier cette politique de confidentialité de temps à autre. Si nous apportons des modifications, nous vous en informerons en révisant la date figurant en tête de la politique et, dans certains cas, nous pourrons vous fournir un avis supplémentaire.",
     "subheading_7":"7. Nous contacter",
     "subparagraph_7":" Si vous avez des questions concernant cette politique de confidentialité, veuillez nous contacter à l'adresse suivante : privacy@globalsalah.com."
+  },
+  "country":{
+    "title":"Heures de prière pour les villes en",
+    "subheading_1":"Découvrir",
+    "subparagraph_1":"Découvrez une histoire riche, une culture diversifiée et des paysages époustouflants. Des villes animées aux escapades paisibles, il y en a pour tous les goûts. Savourez les saveurs locales, découvrez des joyaux cachés et créez des souvenirs inoubliables. L'aventure, la détente et la culture vous attendent !",
+
+    "subheading_2":"Culture et charme",
+    "subparagraph_2":"Découvrez un mélange de riches traditions, de patrimoine vibrant et d'hospitalité chaleureuse. Des monuments historiques aux merveilles modernes, chaque coin de rue raconte une histoire. Laissez-vous tenter par les saveurs locales, explorez les expressions artistiques et imprégnez-vous du charme unique de la destination.",
+
+    "subheading_3":"Nature et biodiversité",
+    "subparagraph_3":"Découvrez des paysages à couper le souffle, des écosystèmes diversifiés et une faune abondante. Des forêts luxuriantes aux côtes sereines, la nature s'épanouit à chaque coin de rue. Explorez des sentiers pittoresques, rencontrez des espèces uniques et découvrez la beauté du monde naturel.",
+
+    "subheading_4":"Économie florissante et croissance",
+    "subparagraph_4":" Un pôle d'innovation, d'opportunités et de progrès. Avec un paysage commercial dynamique et une base économique solide, la croissance et le développement sont omniprésents. Des industries émergentes au commerce mondial, l'avenir se construit sur l'ambition et la résilience.",
+
+    "subheading_5":"Un mode de vie décontracté",
+    "subparagraph_5":" Adoptez un rythme détendu où la simplicité et l'équilibre définissent la vie de tous les jours. Des paysages pittoresques à un fort sentiment d'appartenance à la communauté, profitez d'une atmosphère sans stress qui encourage les loisirs, les relations et le bien-être."
+  },
+  "city":{
+    "school":"Sélectionner l'école de pensée :",
+    "hanafi":"Hanafi",
+    "shafi":"Shafi/Maliki/Hanbali",
+    "monthlytitle":"Heures de prière mensuelles"
   }
+
   
 }

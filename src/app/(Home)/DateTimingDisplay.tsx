@@ -1,15 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { addDays, subDays, formatDistanceToNow } from "date-fns";
+import { addDays, subDays } from "date-fns";
 import { PrayerTimes, Coordinates, CalculationMethod, Madhab, CalculationParameters } from "adhan";
 import "swiper/css";
 import "swiper/css/navigation";
-import { CloudSun, CloudSunRainIcon, Divide, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMedium, SunMediumIcon, SunriseIcon, Sunset } from "lucide-react";
+import { CloudSun, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMediumIcon, SunriseIcon, } from "lucide-react";
 import moment from "moment-hijri";
-import Link from "next/link";
 import MonthlyNamazTimings from "./MonthlyNamaz";
 import { useTranslation } from "@/hooks/useTranslation";
+import arabicLang from "../../../public/locales/ar.json"
+
 
 function DateTimingDisplay() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -66,7 +67,6 @@ function DateTimingDisplay() {
     );
   }, []);
 
-  // useEffect(() => {
   const getCalculationMethod = (country: string) => {
     if (country === "Pakistan") {
       return CalculationMethod.Karachi();
@@ -96,7 +96,7 @@ function DateTimingDisplay() {
   };
 
   const params = getCalculationMethod(country as any);
-  // }, []);
+
 
 
   useEffect(() => {
@@ -133,40 +133,41 @@ function DateTimingDisplay() {
           timeZone: timeZone,
         });
 
+        const isArabic = window.location.pathname.includes("/ar");
       // Define prayer times and icons
       const prayers = [
         {
-          name: "Fajr",
+          name: isArabic ? "الفجر" : "Fajr",
           time: formatTime(prayerTimeObj.fajr, timeZone || "UTC"), // Fallback to UTC
           isActive: false,
           icon: <CloudSun className="w-5 h-5 " />,
         },
         {
-          name: "Sunrise",
+          name: isArabic ? "الشروق" : "Sunrise",
           time: formatTime(prayerTimeObj.sunrise, timeZone || "UTC"),
           isActive: false,
           icon: <SunriseIcon className="w-5 h-5 " />,
         },
         {
-          name: "Dhuhr",
+          name: isArabic ? "الظهر" : "Dhuhr",
           time: formatTime(prayerTimeObj.dhuhr, timeZone || "UTC"),
           isActive: false,
           icon: <SunDimIcon className="w-5 h-5 " />,
         },
         {
-          name: "Asr",
+          name: isArabic ? "العصر" : "Asr",
           time: formatTime(prayerTimeObj.asr, timeZone || "UTC"),
           isActive: false,
           icon: <SunMediumIcon className="w-5 h-5 " />,
         },
         {
-          name: "Maghrib",
+          name: isArabic ? "المغرب" : "Maghrib",
           time: formatTime(prayerTimeObj.maghrib, timeZone || "UTC"),
           isActive: false,
           icon: <LucideSunset className="w-5 h-5 " />,
         },
         {
-          name: "Isha",
+          name: isArabic ? "العشاء" : "Isha",
           time: formatTime(prayerTimeObj.isha, timeZone || "UTC"),
           isActive: false,
           icon: <MoonStarIcon className="w-5 h-5 " />,
@@ -180,26 +181,38 @@ function DateTimingDisplay() {
         return prayerTime > now;
       });
 
+
       return {
-
         date: {
-          gregorian: date.toDateString(),
-
-          hijri: moment(date).locale("en").format("iD iMMMM, iYYYY"), // Replace with Hijri date logic if needed
+          gregorian: isArabic
+        ? date.toLocaleDateString("ar-EG", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        : date.toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          }),
+          hijri: isArabic
+        ? moment(date).locale("ar-SA").format("iD iMMMM, iYYYY")
+        : moment(date).locale("en").format("iD iMMMM, iYYYY"),
         },
-
         prayers,
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
         nextPrayer: nextPrayer
           ? {
-            name: nextPrayer.name,
-            time: nextPrayer.time,
-            countdown: () =>
-              differenceInSeconds(
-                new Date(`${date.toDateString()} ${nextPrayer.time}`),
-                new Date()
-              ),
-          }
+          name: nextPrayer.name,
+          time: nextPrayer.time,
+          countdown: () =>
+            differenceInSeconds(
+          new Date(`${date.toDateString()} ${nextPrayer.time}`),
+          new Date()
+            ),
+        }
           : null,
       };
     };
@@ -361,7 +374,7 @@ function DateTimingDisplay() {
                 ? (() => {
                   const gregorian = prayerTimes[activeIndex]?.date.gregorian;
                   const [, month, day, year] = gregorian.split(" ");
-                  return `${day} ${t(`CurrentNamazTime.months.${month}`)} ${year}`;
+                  return `${day} ${month} ${year}`;
                 })()
                 : ""}
             </p>

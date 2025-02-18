@@ -13,6 +13,8 @@
     "title": "Welcome to Global Salah",
     "hadithofday": "Hadith of the Day",
     "ayatofday": "Ayat of the Day",
+    "titlehadith":"Hadith",
+    "titleayat":"Ayat",
     "next": "Next",
     "hadiths": [
       {
@@ -66,6 +68,13 @@
     "monthly": "Monthly",
     "monthlynamaztitle": "Monthly Namaz Timings",
     "currentdate": "Current Date",
+    "date":"Date",
+    "namazfajr":"فجر",
+    "sunrise":"شروق الشمس",
+    "namazdhuhr":"الظهر",
+    "namazasr":"عصر",
+    "namazmaghrib":"المغرب",
+    "namazisha":"إيشا",
     "months": {
       "Jan": "January",
       "Feb": "February",
@@ -98,6 +107,7 @@
   "HijriDivider": {
     "dividertitle": "Know your Current Date & Time!",
     "currenttime": "Current Time",
+    "hijrititle":"Hijri Date",
     "currentdate": "Current Date"
   },
   "Footer": {
@@ -346,6 +356,25 @@
     "subparagraph_6":"We may change this privacy policy from time to time. If we make changes, we will notify you by revising the date at the top of the policy and, in some cases, we may provide you with additional notice.",
     "subheading_7":"7. Contact Us",
     "subparagraph_7":" If you have any questions about this privacy policy, please contact us at: privacy@globalsalah.com."
+  },
+  "country":{
+    "title":"Prayer Times For Cities in",
+    "subheading_1":"Discover",
+    "subparagraph_1":"Explore rich history, diverse culture, and stunning landscapes. From bustling cities to peaceful escapes, there’s something for everyone. Enjoy local flavors, uncover hidden gems, and create unforgettable memories. Adventure, relaxation, and culture await!",
+    "subheading_2":"Culture & Charm",
+    "subparagraph_2":"Experience a blend of rich traditions, vibrant heritage, and warm hospitality. From historic landmarks to modern wonders, every corner tells a story. Indulge in local flavors, explore artistic expressions, and immerse yourself in the unique charm of the destination.",
+    "subheading_3":"Nature & Biodiversity",
+    "subparagraph_3":"Discover breathtaking landscapes, diverse ecosystems, and abundant wildlife. From lush forests to serene coastlines, nature thrives in every corner. Explore scenic trails, encounter unique species, and experience the beauty of the natural world.",
+    "subheading_4":"Thriving Economy & Growth",
+    "subparagraph_4":" A hub of innovation, opportunity, and progress. With a dynamic business landscape and a strong economic foundation, growth and development are ever-present. From emerging industries to global trade, the future is built on ambition and resilience.",
+    "subheading_5":"A Laid-Back Lifestyle",
+    "subparagraph_5":" Embrace a relaxed pace where simplicity and balance define everyday life. From scenic surroundings to a strong sense of community, enjoy a stress-free atmosphere that encourages leisure, connection, and well-being."
+  },
+  "city":{
+    "school":"Select School of Thought:",
+    "hanafi":"Hanafi",
+    "shafi":"Shafi/Maliki/Hanbali",
+    "monthlytitle":"Monthly Prayer Times"
   }
 
 }

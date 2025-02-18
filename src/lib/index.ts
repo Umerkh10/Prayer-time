@@ -1,5 +1,5 @@
 export const checkIsPathnameIsEqualToLang = (pathname:string) => {
-    if(pathname === "en" || pathname === "fr") {
+    if(pathname === "en" || pathname === "fr" || pathname === "ar") {
         return true
     }
 

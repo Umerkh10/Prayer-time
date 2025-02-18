@@ -105,7 +105,7 @@ export default function IslamicCalendar() {
     <div className="container mx-auto py-4 px-4 md:py-8 md:px-0">
         <div className="mt-5 mb-6 flex items-center text-sm text-muted-foreground">
         <Link href="/" className="hover:text-primary">
-          {t("calender.homelink")}
+          Home
         </Link>
         <ChevronRight className="h-4 w-4 mx-2" />
         <span className="text-foreground">Islamic Calender</span>

@@ -5,7 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { usePathname, useRouter } from "next/navigation"
 import { useState } from "react"
 
-const languages = ["en", "fr"]
+const languages = ["en", "fr","ar"]
 
 export default function LanguageSwitcher() {
   const pathname = usePathname()

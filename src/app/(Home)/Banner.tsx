@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { usePathname, useSearchParams } from 'next/navigation'
 import englishLang from "../../../public/locales/en.json"
 import frenchLang from "../../../public/locales/fr.json"
+import arabicLang from "../../../public/locales/ar.json"
 import { urlSplitter } from '@/lib'
 
 function Banner() {
@@ -46,15 +47,21 @@ function Banner() {
             } else if (lang === "en" || pathname === "/") {
                 setHadithContent(englishLang.banner.hadiths[hadithIndex] || {});
             }
+            else if (lang === "ar" || pathname === "/") {
+                setHadithContent(arabicLang.banner.hadiths[hadithIndex] || {});
+            }
         } else {
             if (lang === "fr") {
                 setAyatContent(frenchLang.banner.ayats[ayatIndex] || {});
             } else if (lang === "en" || pathname === "/") {
                 setAyatContent(englishLang.banner.ayats[ayatIndex] || {});
             }
+            else if (lang === "ar" || pathname === "/") {
+                setAyatContent(arabicLang.banner.ayats[ayatIndex] || {});
+            }
         }
     }, [isHadith, hadithIndex, ayatIndex, lang]);
-    
+
 
     const handleContentChange = (value: string) => {
         if (value === 'hadith') {
@@ -100,8 +107,8 @@ function Banner() {
                                         <SelectValue placeholder="Select content" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="hadith">Hadith</SelectItem>
-                                        <SelectItem value="ayat">Ayat</SelectItem>
+                                        <SelectItem value="hadith">{t("banner.titlehadith")}</SelectItem>
+                                        <SelectItem value="ayat">{t("banner.titleayat")}</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -110,7 +117,7 @@ function Banner() {
                                     onClick={handleNext}
                                     className="bg-white text-blue-900 px-4 py-2 rounded-md text-sm font-medium hover:bg-opacity-90 transition-colors"
                                 >
-                                    {t("banner.next")} {isHadith ? "Hadith" : "Ayat"}
+                                    {t("banner.next")} {isHadith ? t("banner.titlehadith") : t("banner.titleayat")}
                                 </button>
                             </div>
                         </div>

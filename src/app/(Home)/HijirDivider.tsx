@@ -7,8 +7,21 @@ import React, { useEffect, useState } from "react";
 function HijirDivider() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [location, setLocation] = useState({ city: "", country: "" });
+  const [currentHijriDate, setCurrentHijriDate] = useState("");
+  const [path, setPath] = useState("");
 
-  const currentHijriDate = moment().locale("en").format("iD iMMMM, iYYYY");
+  useEffect(() => {
+    const pathname = window.location.pathname;
+    setPath(pathname)
+  }, []);
+
+  useEffect(() => {
+    if (path.includes("/ar")) {
+      setCurrentHijriDate(moment().locale("ar-SA").format("iD iMMMM, iYYYY"));
+    } else {
+      setCurrentHijriDate(moment().locale("en").format("iD iMMMM, iYYYY"));
+    }
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -30,7 +43,7 @@ function HijirDivider() {
       });
   }, []);
 
-  const formattedDate = currentTime.toLocaleDateString("en-US", {
+  const formattedDate = currentTime.toLocaleDateString(path.includes("/ar") ? "ar-EG" : "en-US", {
     day: "2-digit",
     month: "long",
     year: "numeric",
@@ -75,7 +88,7 @@ function HijirDivider() {
             <div className="flex justify-center items-center group">
               <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
                 <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
-                  Hijri Date
+                {t("HijriDivider.hijrititle")}
                 </h3>
                 <div className="text-lg text-center">{currentHijriDate}</div>
               </div>

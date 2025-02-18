@@ -10,19 +10,36 @@ import moment from "moment-hijri"
 import Link from "next/link"
 import { useTranslation } from "@/hooks/useTranslation"
 import { checkIsPathnameIsEqualToLang } from "@/lib"
+import { usePathname } from "next/navigation"
 
 const years = Array.from({ length: 200 }, (_, i) => 1938 + i)
-const months = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-]
-const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+const months = {
+  en: [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ],
+  ar: [
+    "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+    "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+  ],
+  fr: [
+    "Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
+    "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+  ]
+}
+
+const weekDays = {
+  en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  ar: ["أحد", "إثنين", "ثلاثاء", "أربعاء", "خميس", "جمعة", "سبت"],
+  fr: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"]
+}
 
 export default function IslamicCalendar() {
+  const pathname = usePathname()
   const [date, setDate] = useState(new Date())
   const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(null)
 
-  const hijriDate = moment(date).locale("en").format("iD iMMMM iYYYY")
+  const hijriDate = moment(date).locale(pathname.includes("/ar") ? "ar" : "en").format("iD iMMMM iYYYY")
   const [hijriDay, hijriMonth, hijriYear] = hijriDate.split(" ")
 
   const nextMonth = () => {
@@ -38,8 +55,15 @@ export default function IslamicCalendar() {
   const goToToday = () => setDate(new Date())
 
   const selectMonth = (month: string) => {
-    const monthIndex = months.indexOf(month)
-    setDate(new Date(date.getFullYear(), monthIndex, 1))
+    let monthIndex;
+    if (pathname.includes("/ar")) {
+      monthIndex = months.ar.indexOf(month);
+    } else if (pathname.includes("/fr")) {
+      monthIndex = months.fr.indexOf(month);
+    } else {
+      monthIndex = months.en.indexOf(month);
+    }
+    setDate(new Date(date.getFullYear(), monthIndex, 1));
   }
 
   const selectYear = (year: number) => {
@@ -89,7 +113,7 @@ export default function IslamicCalendar() {
         slideDirection === "right" && "animate-slide-right",
       )}>
         <div className="grid grid-cols-7 gap-1 mb-2">
-          {weekDays.map((day) => (
+          {weekDays[pathname.includes("/ar") ? "ar" : pathname.includes("/fr") ? "fr" : "en"].map((day) => (
             <div key={day} className="h-8 md:h-10 flex items-center justify-center">
               <span className="text-xs md:text-sm font-medium text-muted-foreground">{day}</span>
             </div>
@@ -101,20 +125,21 @@ export default function IslamicCalendar() {
   }
 
   const { t } = useTranslation("calender")
-  const pathname = window.location.pathname
   const isLang = checkIsPathnameIsEqualToLang(pathname)
+  const isArabic = pathname.split("/")[1]
   
 
   return (
     <div className="container mx-auto py-4 px-4 md:py-8 md:px-0">
-        <div className="mt-5 mb-6 flex items-center text-sm text-muted-foreground">
+        <div className={`mt-5 mb-6 flex items-center text-sm text-muted-foreground ${isArabic === "ar"? "justify-end text-right" : "justify-start text-left"}`}>
         <Link  href={isLang ? pathname : "/"} className="hover:text-primary">
           {t("calender.homelink")}
         </Link>
         <ChevronRight className="h-4 w-4 mx-2" />
         <span className="text-foreground"> {t("calender.title")}</span>
       </div>
-      <div className="mb-8">
+
+      <div className={`mb-8 ${isArabic === "ar"? "justify-end text-right" : "justify-start text-left"}`}>
         <h1 className="text-3xl font-bold mb-2">{t("calender.title")}</h1>
         <p className="text-muted-foreground">{t("calender.desc")}</p>
       </div>
@@ -134,10 +159,10 @@ export default function IslamicCalendar() {
             </div>
             <Select onValueChange={selectMonth}>
               <SelectTrigger>
-                <SelectValue placeholder={months[date.getMonth()]} />
+                <SelectValue placeholder={months[pathname.includes("/ar") ? "ar" : pathname.includes("/fr") ? "fr" : "en"][date.getMonth()]} />
               </SelectTrigger>
               <SelectContent>
-                {months.map((month) => (
+                {months[pathname.includes("/ar") ? "ar" : pathname.includes("/fr") ? "fr" : "en"].map((month) => (
                   <SelectItem key={month} value={month}>{month}</SelectItem>
                 ))}
               </SelectContent>
