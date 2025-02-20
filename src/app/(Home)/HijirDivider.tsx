@@ -15,13 +15,15 @@ function HijirDivider() {
     setPath(pathname)
   }, []);
 
-  useEffect(() => {
-    if (path.includes("/ar")) {
-      setCurrentHijriDate(moment().locale("ar-SA").format("iD iMMMM, iYYYY"));
-    } else {
-      setCurrentHijriDate(moment().locale("en").format("iD iMMMM, iYYYY"));
-    }
-  }, []);
+useEffect(() => {
+  if (path.includes("/ar")) {
+    moment.locale("ar-SA");
+    setCurrentHijriDate(moment().format("iD iMMMM, iYYYY"));
+  } else {
+    moment.locale("en");
+    setCurrentHijriDate(moment().format("iD iMMMM, iYYYY"));
+  }
+}, [path]);
 
   useEffect(() => {
     const timer = setInterval(() => {

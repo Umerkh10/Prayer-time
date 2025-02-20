@@ -161,6 +161,10 @@ function Page() {
 
     setNextPrayer(getNextPrayer(prayerTimes, dateInCity));
     setCountdown(getCountdown(prayerTimes, dateInCity));
+    setError(null);
+
+    setNextPrayer(getNextPrayer(prayerTimes, dateInCity));
+    setCountdown(getCountdown(prayerTimes, dateInCity));
 
     setError(null);
   };
@@ -214,6 +218,15 @@ function Page() {
 
   const isArabic = pathname.split("/")[1]
 
+  const prayerNames = {
+    fajr: pathname.includes('/ar') ? "الفجر" : "fajr",
+    sunrise: pathname.includes('/ar') ? "الشروق" : "sunrise",
+    dhuhr: pathname.includes('/ar') ? "الظهر" : "dhuhr",
+    asr: pathname.includes('/ar') ? "العصر" : "asr",
+    maghrib: pathname.includes('/ar') ? "المغرب" : "maghrib",
+    isha: pathname.includes('/ar') ? "العشاء" : "isha",
+  };
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
 
@@ -264,31 +277,31 @@ function Page() {
             </div> 
           </div>
 
-          {prayerTimes ? (
+            {prayerTimes ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               {Object.entries(prayerTimes).map(([key, value]) =>
-                key !== "date" ? (
-                  <div key={key} className={`p-4 rounded-xl ${nextPrayer === key ? "bg-blue-500 text-zinc-50" : "bg-secondary"}`}>
-                    <div className="flex items-center gap-2 mb-2">
-                        {key === "fajr" && <Sun className="h-4 w-4" />}
-                        {key === "sunrise" && <Sunrise className="h-4 w-4" />}
-                      {key === "dhuhr" && <Sun className="h-4 w-4" />}
-                      {key === "asr" && <Sun className="h-4 w-4" />}
-                      {key === "maghrib" && <Moon className="h-4 w-4" />}
-                      {key === "isha" && <Moon className="h-4 w-4" />}
-                      <span className="capitalize text-sm font-medium">{key}</span>
-                    </div>
-                    <p className="text-2xl font-bold">{value}</p>
-                    {nextPrayer === key && countdown && (
-                      <p className="text-xs font-semibold text-white"></p>
-                    )}
-                  </div>
-                ) : null
+              key !== "date" ? (
+              <div key={key} className={`p-4 rounded-xl ${nextPrayer === key ? "bg-blue-600 text-zinc-50" : "bg-secondary"}`}>
+              <div className="flex items-center gap-2 mb-2">
+                {key === "fajr" && <Sun className="h-4 w-4" />}
+                {key === "sunrise" && <Sunrise className="h-4 w-4" />}
+                {key === "dhuhr" && <Sun className="h-4 w-4" />}
+                {key === "asr" && <Sun className="h-4 w-4" />}
+                {key === "maghrib" && <Moon className="h-4 w-4" />}
+                {key === "isha" && <Moon className="h-4 w-4" />}
+                <span className="capitalize text-sm font-medium">{prayerNames[key as keyof typeof prayerNames]}</span>
+              </div>
+              <p className="text-2xl font-bold">{value}</p>
+              {nextPrayer === key && countdown && (
+                <p className="text-xs font-semibold text-white">{countdown}</p>
+              )}
+              </div>
+              ) : null
               )}
             </div>
-          ) : (
+            ) : (
             <p>Loading prayer times...</p>
-          )}
+            )}
         </CardContent>
       </Card>
 
@@ -316,7 +329,7 @@ function Page() {
                 {monthlyTimes.map((day, index) => {
                   const isToday = new Date().toLocaleDateString() === day.date;
                   return (
-                    <TableRow key={index} className={isToday ? "bg-blue-500" : ""}>
+                    <TableRow key={index} className={isToday ? "bg-primary" : ""}>
                       <TableCell>{formatMonthlyDate(day.date)}</TableCell>
                       <TableCell>{day.fajr}</TableCell>
                       <TableCell>{day.sunrise}</TableCell>

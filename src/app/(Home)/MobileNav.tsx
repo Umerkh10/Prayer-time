@@ -34,51 +34,51 @@ const pathname = usePathname()
             <Link
               href={isLang ? `/${currentLang}` : "/"}
               onClick={() => setOpen(false)}
-              className="block text-lg font-semibold text-white hover:text-gray-200"
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize"
             >
-            {t("navigation.home")}
+           {isLang ? t("navigation.home") : "Home"}
             </Link>
             <Link
               href="./#namaz-time"
               onClick={() => setOpen(false)}
-              className="block text-lg font-semibold text-white hover:text-gray-200"
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize"
             >
-              {t("navigation.namazTime")}
+               {isLang ? t("navigation.namazTime") : "namazTime"}  
             </Link>
             <Link
               href={isLang ? `/${currentLang}/countries` : "/countries"}
               onClick={() => setOpen(false)}
-              className="block text-lg font-semibold text-white hover:text-gray-200"
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize"
             >
-             {t("navigation.countries")}
+             {isLang ? t("navigation.countries") : "countries"} 
             </Link>
             <Link
               href={ isLang ? `/${currentLang}/islamic-calender` : "/islamic-calender"}
               onClick={() => setOpen(false)}
-              className="block text-lg font-semibold text-white hover:text-gray-200"
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize"
             >
-             {t("navigation.islamicCalender")}
+              {isLang ? t("navigation.islamicCalender") : "islamicCalender"}  
             </Link>
             <Link
               href={isLang ? `/${currentLang}/duas` : "/duas"}
               onClick={() => setOpen(false)}
-              className="block text-lg font-semibold text-white hover:text-gray-200"
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize"
             >
-              {t("navigation.duas")}
+              {isLang ? t("navigation.duas") : "duas"}  
             </Link>
             <Link
               href={isLang ? `/${currentLang}/about-us` : "/about-us"}
               onClick={() => setOpen(false)}
-              className="block text-lg font-semibold text-white hover:text-gray-200"
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize"
             >
-              {t("navigation.aboutUs")}
+            {isLang ? t("navigation.aboutUs") : "aboutUs"} 
             </Link>
             <Link
               href={ isLang ? `/${currentLang}/contact-us` : "/contact-us"}
               onClick={() => setOpen(false)}
-              className="block text-lg font-semibold text-white hover:text-gray-200"
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize "
             >
-             {t("navigation.contactUs")}
+              {isLang ? t("navigation.contactUs") : "contactUs"} 
             </Link>
           </div>
         </ScrollArea>

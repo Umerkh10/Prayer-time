@@ -87,15 +87,15 @@ function Banner() {
     const { t } = useTranslation("banner");
 
     return (
-        <div className="relative h-screen bg-blue-900 bg-[url('/main-page-frame.svg')] bg-center bg-cover bg-no-repeat text-white">
+        <div className="relative lg:h-screen h-[700px]  bg-blue-900 bg-[url('/main-page-frame.svg')] bg-center bg-cover bg-no-repeat text-white">
             <div className="absolute inset-0 bg-[#0046E5]/10" />
-            <div className="container relative lg:mx-auto px-4 lg:pt-20 pt-3">
-                <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">{t("banner.title")}</h1>
+            <div className="container relative lg:mx-auto px-4 lg:pt-20  pt-3">
+                <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">{lang ? t("banner.title") : "Welcome to Global Salah"}</h1>
 
-                <div className="max-w-3xl mt-12 py-2 lg:mx-auto ">
+                <div className="max-w-3xl lg:mt-12 py-2 lg:mx-auto ">
                     <div className="flex md:flex-row flex-col lg:justify-between justify-start lg:items-center space-y-2 mb-4">
                         <h2 className="lg:text-2xl text-xl font-semibold lg:text-left text-center">
-                            {isHadith ? t("banner.hadithofday") : t("banner.ayatofday")}
+                            {isHadith && lang ? t("banner.hadithofday") : !isHadith && lang ? t("banner.ayatofday") : isHadith && !lang ? "Hadith of the Day" : "Ayat of the Day" }
                         </h2>
                         <div className="grid grid-cols-2 lg:gap-4 gap-8 lg:mx-0 mx-auto pl-10 pt-2">
                             <div className=''>
@@ -107,8 +107,8 @@ function Banner() {
                                         <SelectValue placeholder="Select content" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="hadith">{t("banner.titlehadith")}</SelectItem>
-                                        <SelectItem value="ayat">{t("banner.titleayat")}</SelectItem>
+                                        <SelectItem value="hadith">{lang ? t("banner.titlehadith") : "Hadith"}</SelectItem>
+                                        <SelectItem value="ayat">{lang ? t("banner.titleayat") : "Ayat"} </SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
@@ -117,7 +117,7 @@ function Banner() {
                                     onClick={handleNext}
                                     className="bg-white text-blue-900 px-4 py-2 rounded-md text-sm font-medium hover:bg-opacity-90 transition-colors"
                                 >
-                                    {t("banner.next")} {isHadith ? t("banner.titlehadith") : t("banner.titleayat")}
+                                    {lang ? `${t("banner.next")} ${isHadith ? t("banner.titlehadith") : t("banner.titleayat")}` : `Next ${isHadith ? "Hadith" : "Ayat"}`}
                                 </button>
                             </div>
                         </div>

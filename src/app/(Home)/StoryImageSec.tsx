@@ -1,10 +1,11 @@
 "use client"
 import React, { useEffect, useRef, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { FreeMode } from "swiper/modules"
+import { FreeMode, Navigation } from "swiper/modules"
 import SwiperCore from "swiper"
 import "swiper/css"
 import "swiper/css/free-mode"
+import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "lucide-react"
 
 const images = [
   { src: "/hadees-images/hadees-img-1.webp", alt: "Desert with hot air balloons" },
@@ -88,7 +89,7 @@ function StoryImageSec() {
   }
 
   const openModal = (index: number) => {
-    console.log("fcftcftcftc");
+  
 
     setCurrentIndex(index)
     setShowModal(true)
@@ -106,29 +107,50 @@ function StoryImageSec() {
   }
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 py-8">
-      <Swiper
-        slidesPerView="auto"
-        spaceBetween={16}
-        freeMode={true}
-        modules={[FreeMode]}
-        className="w-full"
-      >
-        {images.map((image, index) => (
-          <SwiperSlide key={index} className="!w-auto mx-auto">
-            <div
-              className="rounded-xl p-1 bg-blue-500 cursor-pointer"
-              onClick={() => openModal(index)}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                loading="eager"
-                className="w-20 h-20 object-cover rounded-lg"
-              />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+     <div className="relative w-full">
+  <Swiper
+    slidesPerView="auto"
+    spaceBetween={16}
+    navigation={{
+      prevEl: "#previmgslide",
+      nextEl: "#nextimgslide",
+    }}
+    freeMode={true}
+    modules={[FreeMode, Navigation]}
+    className="w-full"
+  >
+    {images.map((image, index) => (
+      <SwiperSlide key={index} className="!w-auto mx-auto">
+        <div
+          className="rounded-xl p-1 bg-blue-500 cursor-pointer"
+          onClick={() => openModal(index)}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading="eager"
+            className="w-20 h-20 object-cover rounded-lg"
+          />
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
+
+  {/* Custom Navigation Arrows - Positioned Opposite and Centered */}
+  <button
+    id="previmgslide"
+    className="absolute top-1/2 left-0 -translate-y-1/2 z-10 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition"
+  >
+    <ArrowLeftCircleIcon size={24} />
+  </button>
+
+  <button
+    id="nextimgslide"
+    className="absolute top-1/2 right-0 -translate-y-1/2 z-10 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition"
+  >
+    <ArrowRightCircleIcon size={24} />
+  </button>
+</div>
 
       {showModal && (
         <div onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">

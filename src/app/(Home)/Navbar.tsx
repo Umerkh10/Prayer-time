@@ -36,7 +36,7 @@ function Navbar() {
                 priority
               />
             </div>
-            <span className="text-xl font-semibold text-white">{t("navigation.title")}</span>
+            <span className="text-xl font-semibold text-white"> {isLang ? t("navigation.title") : "Global Salah"} </span>
           </Link>
         </div>
 

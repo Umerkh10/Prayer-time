@@ -32,20 +32,20 @@ export function MainNav() {
       {links.map(({ href, key }) => {
         const isActive = pathname === href
         return (
-          <Link
+            <Link
             key={href}
             href={href}
-            className="relative px-1 py-2 text-sm font-medium text-white transition-colors hover:text-gray-200"
-          >
-            {t(`navigation.${key}`)} 
+            className="relative px-1 py-2 text-sm font-medium text-white transition-colors hover:text-gray-200 capitalize"
+            >
+            {isLang ? t(`navigation.${key}`) : key}
             {isActive && (
               <motion.div
-                layoutId="activeNav"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
-                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              layoutId="activeNav"
+              className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
+              transition={{ type: "spring", stiffness: 380, damping: 30 }}
               />
             )}
-          </Link>
+            </Link>
         )
       })}
     </nav>

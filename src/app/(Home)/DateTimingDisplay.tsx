@@ -5,11 +5,12 @@ import { addDays, subDays } from "date-fns";
 import { PrayerTimes, Coordinates, CalculationMethod, Madhab, CalculationParameters } from "adhan";
 import "swiper/css";
 import "swiper/css/navigation";
-import { CloudSun, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMediumIcon, SunriseIcon, } from "lucide-react";
+import { ArrowLeftCircleIcon, ArrowLeftFromLine, ArrowRightCircleIcon, CloudSun, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMediumIcon, SunriseIcon, } from "lucide-react";
 import moment from "moment-hijri";
 import MonthlyNamazTimings from "./MonthlyNamaz";
 import { useTranslation } from "@/hooks/useTranslation";
-import arabicLang from "../../../public/locales/ar.json"
+
+import { Navigation } from "swiper/modules";
 
 
 function DateTimingDisplay() {
@@ -133,7 +134,7 @@ function DateTimingDisplay() {
           timeZone: timeZone,
         });
 
-        const isArabic = window.location.pathname.includes("/ar");
+      const isArabic = window.location.pathname.includes("/ar");
       // Define prayer times and icons
       const prayers = [
         {
@@ -185,34 +186,34 @@ function DateTimingDisplay() {
       return {
         date: {
           gregorian: isArabic
-        ? date.toLocaleDateString("ar-EG", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
-        : date.toLocaleDateString("en-US", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          }),
+            ? date.toLocaleDateString("ar-EG", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+            : date.toLocaleDateString("en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }),
           hijri: isArabic
-        ? moment(date).locale("ar-SA").format("iD iMMMM, iYYYY")
-        : moment(date).locale("en").format("iD iMMMM, iYYYY"),
+            ? moment(date).locale("ar-SA").format("iD iMMMM, iYYYY")
+            : moment(date).locale("en").format("iD iMMMM, iYYYY"),
         },
         prayers,
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
         nextPrayer: nextPrayer
           ? {
-          name: nextPrayer.name,
-          time: nextPrayer.time,
-          countdown: () =>
-            differenceInSeconds(
-          new Date(`${date.toDateString()} ${nextPrayer.time}`),
-          new Date()
-            ),
-        }
+            name: nextPrayer.name,
+            time: nextPrayer.time,
+            countdown: () =>
+              differenceInSeconds(
+                new Date(`${date.toDateString()} ${nextPrayer.time}`),
+                new Date()
+              ),
+          }
           : null,
       };
     };
@@ -251,16 +252,25 @@ function DateTimingDisplay() {
   // Handle Swiper slide changes
   const handleSlideChange = (swiper: any) => {
     const { activeIndex } = swiper;
+  
     if (activeIndex === 0) {
       setCurrentDate(subDays(currentDate, 1));
-      swiper.slideTo(1, 0);
+  
+      // Allow transition, then move back to center
+      setTimeout(() => {
+        swiper.slideTo(1, 0);
+      }, 300);
     } else if (activeIndex === 2) {
       setCurrentDate(addDays(currentDate, 1));
-      swiper.slideTo(1, 0);
+  
+      // Allow transition, then move back to center
+      setTimeout(() => {
+        swiper.slideTo(1, 0);
+      }, 300);
     }
-    setActiveIndex(1); // Reset to center
+  
+    setActiveIndex(1); // Reset index tracking
   };
-
   const { t } = useTranslation("CurrentNamazTime")
 
   const gregorian = prayerTimes[activeIndex]?.date.gregorian;
@@ -286,7 +296,7 @@ function DateTimingDisplay() {
           <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
 
             <select
-              className=" mx-auto lg:w-28 w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
+              className=" mx-auto lg:w-[205px] w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
               value={selectedMadhab}
               onChange={(e) => setSelectedMadhab(e.target.value)}
             >
@@ -382,7 +392,9 @@ function DateTimingDisplay() {
         </div>
 
         {/* Swiper for Prayer Times */}
-        {activeIndex !== 3 ? <Swiper
+
+
+        {/* {activeIndex !== 3 ? <Swiper
           spaceBetween={30}
           slidesPerView={1}
           onSlideChange={handleSlideChange}
@@ -407,7 +419,67 @@ function DateTimingDisplay() {
               </div>
             </SwiperSlide>
           ))}
-        </Swiper> : <MonthlyNamazTimings />}
+        </Swiper> : <MonthlyNamazTimings />} */}
+
+
+        {activeIndex !== 3 ? (
+          <div className="relative">
+
+
+            <Swiper
+              spaceBetween={30}
+              slidesPerView={1}
+              onSlideChange={handleSlideChange}
+              initialSlide={1}
+              className="w-full"
+              navigation={{
+                prevEl: "#prevBtn",
+                nextEl: "#nextBtn",
+              }}
+              modules={[Navigation]}
+            >
+              {prayerTimes.map((day, index) => (
+                <SwiperSlide key={index}>
+                  <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 p-4">
+                    {day?.prayers.map((prayer: { name: string; time: string; icon: any }, prayerIndex: number) => (
+                      <div key={prayerIndex} className={`flex flex-col items-center justify-center py-4 rounded-lg 
+                    ${prayer.name === day?.nextPrayer?.name ? "bg-blue-400 text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
+
+                        <div className="flex justify-between items-center mx-auto font-medium">
+                          <div className="lg:pr-16 pr-8 text-lg">{prayer.name}</div>{prayer.icon}
+                        </div>
+                        <p className="text-lg font-semibold pt-2">{prayer.time}</p>
+                        {prayer.name === day?.nextPrayer?.name && nextPrayerCountdown && (
+                          <p className="text-sm ">{nextPrayerCountdown}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </SwiperSlide>
+              ))}
+                     <div className="flex justify-center items-center gap-2">
+              {/* Custom Navigation Arrows */}
+              <button className="z-10 p-2 bg-background text-zinc-900 dark:text-zinc-100 rounded-full shadow-lg transition"
+                id="prevBtn">
+                <ArrowLeftCircleIcon size={24} />
+              </button>
+
+              <button className="z-10 p-2 bg-background text-zinc-900 dark:text-zinc-100 rounded-full shadow-lg transition"
+                id="nextBtn">
+                <ArrowRightCircleIcon size={24} />
+              </button>
+            </div>
+            </Swiper>
+
+     
+
+          </div>
+        ) : (
+          <MonthlyNamazTimings />
+        )}
+
+
+
       </div>
     </div>
   );

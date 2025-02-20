@@ -5,7 +5,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 type Translations = Record<string, any>;
 
-const defaultLang = "en"; 
+const defaultLang = "en";
 
 export function useTranslation(p0?: string) {
 

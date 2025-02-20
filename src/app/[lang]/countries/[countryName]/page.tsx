@@ -938,15 +938,14 @@ export default function CountryPage() {
 
       <main className="mx-auto px-4 py-8 -mt-32 relative z-10">
         <div className="bg-background rounded-lg shadow-lg p-6 mb-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             <CountryInfo
-              name={country.name}
+              name={country.name} // Directly use the country name
               flagUrl={flagUrl}
               timezone={country.timezone} // Pass the timezone
               time={time} // Pass the current time
             />
-
-          </div>
+            </div>
 
           <div className="space-y-8">
 
