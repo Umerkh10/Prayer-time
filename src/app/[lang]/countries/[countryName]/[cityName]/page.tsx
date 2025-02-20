@@ -230,14 +230,14 @@ function Page() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
 
-      {isArabic === "ar" ?  (<div className="flex items-center justify-between mb-8">
+      {isArabic === "ar" ?  (<div className="flex items-center justify-between md:gap-2 gap-5 mb-8">
         <div> <img src={flagUrl || "/placeholder.svg"} alt={`${name} flag`} width={120} height={120}className="rounded shadow-sm"/>
         </div>
         <div>
-          <h1 className="text-3xl font-bold mb-2"> {data?.city?.name} {t("country.title")}</h1>
+          <h1 className="md:text-3xl text-lg font-bold mb-2"> {data?.city?.name} {t("country.title")}</h1>
           <div className="flex items-center space-x-2">
 
-            <p className="text-lg text-muted-foreground">{data?.timezones?.utc} {currentTime} </p>
+            <p className="md:text-lg text-xs font-medium text-muted-foreground">{data?.timezones?.utc} {currentTime} </p>
           </div>
           </div>
   
@@ -305,48 +305,114 @@ function Page() {
         </CardContent>
       </Card>
 
-      <div>
-    {isArabic  === "ar" ?  (<h2 className="text-2xl font-bold mb-6 flex items-center justify-end gap-2">
-      {t("city.monthlytitle")} <Calendar className="h-5 w-5" /> </h2>)
-          : (<h2 className="text-2xl font-bold mb-6 flex items-center justify-start gap-2">
-          <Calendar className="h-5 w-5" /> {t("city.monthlytitle")}</h2>)}
-
-        {monthlyTimes ? (
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>{t("CurrentNamazTime.date")}</TableHead>
-                  <TableHead>{t("CurrentNamazTime.namazfajr")}</TableHead>
-                  <TableHead>{t("CurrentNamazTime.sunrise")}</TableHead>
-                  <TableHead>{t("CurrentNamazTime.namazdhuhr")}</TableHead>
-                  <TableHead>{t("CurrentNamazTime.namazasr")}</TableHead>
-                  <TableHead>{t("CurrentNamazTime.namazmaghrib")}</TableHead>
-                  <TableHead>{t("CurrentNamazTime.namazisha")}</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {monthlyTimes.map((day, index) => {
-                  const isToday = new Date().toLocaleDateString() === day.date;
-                  return (
-                    <TableRow key={index} className={isToday ? "bg-primary" : ""}>
-                      <TableCell>{formatMonthlyDate(day.date)}</TableCell>
-                      <TableCell>{day.fajr}</TableCell>
-                      <TableCell>{day.sunrise}</TableCell>
-                      <TableCell>{day.dhuhr}</TableCell>
-                      <TableCell>{day.asr}</TableCell>
-                      <TableCell>{day.maghrib}</TableCell>
-                      <TableCell>{day.isha}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </div>
+      <div className="mt-4 md:mt-8 w-full">
+      <h2
+        className={`text-lg md:text-2xl font-bold mb-4 md:mb-6 flex items-center ${
+          isArabic === "ar" ? "justify-end" : "justify-start"
+        } gap-2 px-3 md:px-0`}
+      >
+        {isArabic === "ar" ? (
+          <>
+            {t("city.monthlytitle")} <Calendar className="h-5 w-5" />
+          </>
         ) : (
-          <p>No monthly prayer times found.</p>
+          <>
+            <Calendar className="h-5 w-5" /> {t("city.monthlytitle")}
+          </>
         )}
-      </div>
+      </h2>
+
+      {monthlyTimes ? (
+        <>
+          {/* Mobile View */}
+          <div className="md:hidden space-y-3 px-3">
+            {monthlyTimes.map((day, index) => {
+              const isToday = new Date().toLocaleDateString() === day.date
+              return (
+                <Card key={index} className={`p-3 ${isToday ? "bg-primary/10" : ""}`}>
+                  <div className="font-semibold text-base mb-2">{formatMonthlyDate(day.date)}</div>
+                  <div className="grid grid-cols-3 gap-x-4 gap-y-2 text-sm">
+                    <div>
+                      <div className="text-muted-foreground text-xs">{t("CurrentNamazTime.namazfajr")}</div>
+                      <div>{day.fajr}</div>
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground text-xs">{t("CurrentNamazTime.sunrise")}</div>
+                      <div>{day.sunrise}</div>
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground text-xs">{t("CurrentNamazTime.namazdhuhr")}</div>
+                      <div>{day.dhuhr}</div>
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground text-xs">{t("CurrentNamazTime.namazasr")}</div>
+                      <div>{day.asr}</div>
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground text-xs">{t("CurrentNamazTime.namazmaghrib")}</div>
+                      <div>{day.maghrib}</div>
+                    </div>
+                    <div>
+                      <div className="text-muted-foreground text-xs">{t("CurrentNamazTime.namazisha")}</div>
+                      <div>{day.isha}</div>
+                    </div>
+                  </div>
+                </Card>
+              )
+            })}
+          </div>
+
+          {/* Desktop View */}
+          <div className="hidden md:block">
+            <Card className="rounded-lg px-5 py-4">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[180px]">{t("CurrentNamazTime.date")}</TableHead>
+                    <TableHead>{t("CurrentNamazTime.namazfajr")}</TableHead>
+                    <TableHead>{t("CurrentNamazTime.sunrise")}</TableHead>
+                    <TableHead>{t("CurrentNamazTime.namazdhuhr")}</TableHead>
+                    <TableHead>{t("CurrentNamazTime.namazasr")}</TableHead>
+                    <TableHead>{t("CurrentNamazTime.namazmaghrib")}</TableHead>
+                    <TableHead>{t("CurrentNamazTime.namazisha")}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {monthlyTimes.map((day, index) => {
+                    const isToday = new Date().toLocaleDateString() === day.date
+                    return (
+                      <TableRow
+                        key={index}
+                        className={`
+                          transition-colors
+                          hover:bg-muted/50
+                          ${isToday ? "bg-primary/10 hover:bg-primary/20" : ""}
+                        `}
+                      >
+                        <TableCell className="font-medium">{formatMonthlyDate(day.date)}</TableCell>
+                        <TableCell>{day.fajr}</TableCell>
+                        <TableCell>{day.sunrise}</TableCell>
+                        <TableCell>{day.dhuhr}</TableCell>
+                        <TableCell>{day.asr}</TableCell>
+                        <TableCell>{day.maghrib}</TableCell>
+                        <TableCell>{day.isha}</TableCell>
+                      </TableRow>
+                    )
+                  })}
+                </TableBody>
+              </Table>
+            </Card>
+          </div>
+        </>
+      ) : (
+        <div className="px-3 md:px-0">
+          <Card className="flex h-[140px] items-center justify-center rounded-lg border-dashed">
+            <p className="text-muted-foreground text-sm">{t("city.noMonthlyTimes")}</p>
+          </Card>
+        </div>
+      )}
+    </div>
+
     </div>
   );
 }

@@ -347,7 +347,7 @@ export default function CountriesList() {
              
                 {countries.map((country) => (
                 
-                <Link target='_blank' href={isLang ? `/${currentLang}/countries/${country.name.toLowerCase().replaceAll(" ","-")}` : `/countries/${country.name.toLowerCase().replaceAll(" ","-")}` } key={country.code}>
+                <Link href={isLang ? `/${currentLang}/countries/${country.name.toLowerCase().replaceAll(" ","-")}` : `/countries/${country.name.toLowerCase().replaceAll(" ","-")}` } key={country.code}>
                 <div
                  className={`flex items-center justify-between scale-95 bg-transparent border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:scale-100 rounded-lg p-4 transition ease-in duration-200 hover:shadow-lg ${
                    selectedCountry === country.name ? 'text-zinc-100 dark:text-zinc-900 dark:bg-zinc-100 bg-zinc-900 font-semibold' : ''

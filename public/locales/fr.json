@@ -372,7 +372,9 @@
     "school":"Sélectionner l'école de pensée :",
     "hanafi":"Hanafi",
     "shafi":"Shafi/Maliki/Hanbali",
-    "monthlytitle":"Heures de prière mensuelles"
+    "monthlytitle":"Heures de prière mensuelles",
+    "selecttimezone":"Sélectionnez le fuseau horaire :"
+
   }
 
   

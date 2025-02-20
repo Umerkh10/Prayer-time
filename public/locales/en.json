@@ -339,7 +339,6 @@
     "subheading_8":"8. Contact Us",
     "subparagraph_8":" If you have any questions about these Terms, please contact us at terms@globalsalah.com." 
   },
-
   "privacy":{
     "title":"Privacy Policy",
     "subheading_1":"1. Information We Collect",
@@ -374,7 +373,8 @@
     "school":"Select School of Thought:",
     "hanafi":"Hanafi",
     "shafi":"Shafi/Maliki/Hanbali",
-    "monthlytitle":"Monthly Prayer Times"
+    "monthlytitle":"Monthly Prayer Times",
+    "selecttimezone":"Select Timezone:"
   }
 
 }

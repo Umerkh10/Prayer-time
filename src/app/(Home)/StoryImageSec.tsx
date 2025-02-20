@@ -5,7 +5,7 @@ import { FreeMode, Navigation } from "swiper/modules"
 import SwiperCore from "swiper"
 import "swiper/css"
 import "swiper/css/free-mode"
-import { ArrowLeftCircleIcon, ArrowRightCircleIcon } from "lucide-react"
+import { ArrowLeft, ArrowLeftCircleIcon, ArrowRight, ArrowRightCircleIcon } from "lucide-react"
 
 const images = [
   { src: "/hadees-images/hadees-img-1.webp", alt: "Desert with hot air balloons" },
@@ -89,12 +89,17 @@ function StoryImageSec() {
   }
 
   const openModal = (index: number) => {
+    setCurrentIndex(index);
+    setShowModal(true);
+    setProgress(0); // Reset progress when modal is opened
   
-
-    setCurrentIndex(index)
-    setShowModal(true)
-    setProgress(0) // Reset progress when modal is opened
-  }
+    // Wait for modal to open and then slide to correct index
+    setTimeout(() => {
+      if (swiperRef.current) {
+        swiperRef.current.slideTo(index);
+      }
+    }, 10);
+  };
 
   const closeModal = () => {
     setShowModal(false)
@@ -141,14 +146,14 @@ function StoryImageSec() {
     id="previmgslide"
     className="absolute top-1/2 left-0 -translate-y-1/2 z-10 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition"
   >
-    <ArrowLeftCircleIcon size={24} />
+    <ArrowLeft size={24} />
   </button>
 
   <button
     id="nextimgslide"
     className="absolute top-1/2 right-0 -translate-y-1/2 z-10 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition"
   >
-    <ArrowRightCircleIcon size={24} />
+    <ArrowRight size={24} />
   </button>
 </div>
 

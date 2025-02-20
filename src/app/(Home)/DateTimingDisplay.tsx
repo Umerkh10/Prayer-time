@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { addDays, subDays } from "date-fns";
+import { addDays, isSameDay, isToday, isTomorrow, isYesterday, subDays } from "date-fns";
 import { PrayerTimes, Coordinates, CalculationMethod, Madhab, CalculationParameters } from "adhan";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -11,6 +11,7 @@ import MonthlyNamazTimings from "./MonthlyNamaz";
 import { useTranslation } from "@/hooks/useTranslation";
 
 import { Navigation } from "swiper/modules";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 
 function DateTimingDisplay() {
@@ -252,25 +253,40 @@ function DateTimingDisplay() {
   // Handle Swiper slide changes
   const handleSlideChange = (swiper: any) => {
     const { activeIndex } = swiper;
-  
+
     if (activeIndex === 0) {
       setCurrentDate(subDays(currentDate, 1));
-  
-      // Allow transition, then move back to center
       setTimeout(() => {
         swiper.slideTo(1, 0);
       }, 300);
     } else if (activeIndex === 2) {
       setCurrentDate(addDays(currentDate, 1));
-  
-      // Allow transition, then move back to center
       setTimeout(() => {
         swiper.slideTo(1, 0);
       }, 300);
     }
-  
-    setActiveIndex(1); // Reset index tracking
+
+    setActiveIndex(activeIndex);
+
+    const prevBtn = document.getElementById("prevBtn");
+    const todayBtn = document.getElementById("todayBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    if (prevBtn && todayBtn && nextBtn) {
+      prevBtn.classList.remove("bg-blue-400", "text-white");
+      todayBtn.classList.remove("bg-blue-400", "text-white");
+      nextBtn.classList.remove("bg-blue-400", "text-white");
+
+      if (isSameDay(currentDate, subDays(new Date(), 1))) {
+        prevBtn.classList.add("bg-blue-400", "text-white");
+      } else if (isSameDay(currentDate, new Date())) {
+        todayBtn.classList.add("bg-blue-400", "text-white");
+      } else if (isSameDay(currentDate, addDays(new Date(), 1))) {
+        nextBtn.classList.add("bg-blue-400", "text-white");
+      }
+    }
   };
+  
   const { t } = useTranslation("CurrentNamazTime")
 
   const gregorian = prayerTimes[activeIndex]?.date.gregorian;
@@ -295,23 +311,12 @@ function DateTimingDisplay() {
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b-2 border-muted">
           <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
 
-            <select
-              className=" mx-auto lg:w-[205px] w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
-              value={selectedMadhab}
-              onChange={(e) => setSelectedMadhab(e.target.value)}
-            >
-              <option
-                className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
-                value="Hanafi"
-              >
-                Hanafi
-              </option>
-              <option
-                className="rounded-lg dark:bg-zinc-200 px-4 dark:text-zinc-800 bg-zinc-800 outline-none"
-                value="Shafi"
-              >
-                Shafi/Maliki/Hanbli
-              </option>
+            <select className=" mx-auto lg:w-[205px] w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
+              value={selectedMadhab} onChange={(e) => setSelectedMadhab(e.target.value)}>
+              <option className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+                value="Hanafi">{t("city.hanafi")}</option>
+              <option className="rounded-lg dark:bg-zinc-200 px-4 dark:text-zinc-800 bg-zinc-800 outline-none"
+                value="Shafi">{t("city.shafi")}</option>
             </select>
 
 
@@ -319,45 +324,48 @@ function DateTimingDisplay() {
               {/* Group 1: Yesterday and Today */}
               <div className="flex flex-col sm:flex-row gap-2">
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 0
+                  id="prevBtn"
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, subDays(new Date(), 1))
                     ? "bg-blue-400 text-white"
                     : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
                     }`}
                   onClick={() => {
-                    setActiveIndex(0);
-                    setCurrentDate((prevDate) => subDays(prevDate, 0));
+                    setCurrentDate(subDays(currentDate, 1));
                   }}
                 >
                   {t("CurrentNamazTime.yesterday")}
                 </button>
+
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 1
+                  id="todayBtn"
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, new Date())
                     ? "bg-blue-400 text-white"
                     : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
                     }`}
                   onClick={() => {
-                    setActiveIndex(1);
                     setCurrentDate(new Date());
                   }}
                 >
                   {t("CurrentNamazTime.today")}
                 </button>
+
               </div>
 
               {/* Group 2: Tomorrow and Monthly */}
               <div className="flex flex-col sm:flex-row gap-2">
                 <button
-                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 2
-                    ? "bg-blue-400 text-white"
-                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                  id="nextBtn"
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, addDays(new Date(), 1))
+                      ? "bg-blue-400 text-white"
+                      : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
                     }`}
                   onClick={() => {
-                    setActiveIndex(2);
-                    setCurrentDate((prevDate) => addDays(prevDate, 0));
+                    setCurrentDate(addDays(currentDate, 1));
                   }}
                 >
                   {t("CurrentNamazTime.tomorrow")}
                 </button>
+
                 <button
                   className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3
                     ? "bg-blue-400 text-white"
@@ -371,7 +379,9 @@ function DateTimingDisplay() {
                 </button>
               </div>
             </div>
+
           </div>
+
           <div className="lg:text-right text-center lg:pt-0 pt-3">
             <h2 className="text-xl font-semibold ">
               {country ? `${city}, ${country}` : "Loading..."}
@@ -394,38 +404,9 @@ function DateTimingDisplay() {
         {/* Swiper for Prayer Times */}
 
 
-        {/* {activeIndex !== 3 ? <Swiper
-          spaceBetween={30}
-          slidesPerView={1}
-          onSlideChange={handleSlideChange}
-          initialSlide={1}
-          className="w-full"
-        >
-          {prayerTimes.map((day, index) => (
-            <SwiperSlide key={index}>
-              <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 p-4">
-                {day?.prayers.map((prayer: { name: string; time: string; icon: any }, prayerIndex: number) => (
-                  <div key={prayerIndex} className={`flex flex-col items-center justify-center py-4 rounded-lg 
-                  ${prayer.name === day?.nextPrayer?.name ? "bg-blue-400 text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
-
-                    <div className="flex justify-between items-center mx-auto font-medium">
-                      <div className="lg:pr-16 pr-8 text-lg">{prayer.name}</div>{prayer.icon} </div>
-                    <p className="text-lg font-semibold pt-2">{prayer.time}</p>
-                    {prayer.name === day?.nextPrayer?.name && nextPrayerCountdown && (
-                      <p className="text-sm ">{nextPrayerCountdown}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper> : <MonthlyNamazTimings />} */}
-
 
         {activeIndex !== 3 ? (
           <div className="relative">
-
-
             <Swiper
               spaceBetween={30}
               slidesPerView={1}
@@ -436,8 +417,7 @@ function DateTimingDisplay() {
                 prevEl: "#prevBtn",
                 nextEl: "#nextBtn",
               }}
-              modules={[Navigation]}
-            >
+              modules={[Navigation]}>
               {prayerTimes.map((day, index) => (
                 <SwiperSlide key={index}>
                   <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 p-4">
@@ -457,21 +437,15 @@ function DateTimingDisplay() {
                   </div>
                 </SwiperSlide>
               ))}
-                     <div className="flex justify-center items-center gap-2">
-              {/* Custom Navigation Arrows */}
-              <button className="z-10 p-2 bg-background text-zinc-900 dark:text-zinc-100 rounded-full shadow-lg transition"
-                id="prevBtn">
-                <ArrowLeftCircleIcon size={24} />
-              </button>
+              <div className="flex justify-center items-center gap-2">
+                {/* Custom Navigation Arrows */}
+                <button className="z-10 p-2 bg-blue-500 text-zinc-100 rounded-full shadow-lg transition"
+                  id="prevBtn"> <FaArrowLeft size={24} /></button>
 
-              <button className="z-10 p-2 bg-background text-zinc-900 dark:text-zinc-100 rounded-full shadow-lg transition"
-                id="nextBtn">
-                <ArrowRightCircleIcon size={24} />
-              </button>
-            </div>
+                <button className="z-10 p-2 bg-blue-500 text-zinc-100 rounded-full shadow-lg transition"
+                  id="nextBtn"><FaArrowRight size={24} /></button>
+              </div>
             </Swiper>
-
-     
 
           </div>
         ) : (

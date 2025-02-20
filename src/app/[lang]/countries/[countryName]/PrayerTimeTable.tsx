@@ -67,7 +67,7 @@ const getCalculationMethod = (country: string) => {
   }
 }
 
-export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezone }: PrayerTimesTableProps) {
+export function PrayerTimesTable({ country, timezoneMapping, countryCode, timezone }: PrayerTimesTableProps) {
   const [cities, setCities] = useState<City[]>([])
   const [prayerTimes, setPrayerTimes] = useState<Record<string, PrayerTime>>({})
   const [selectedMadhab, setSelectedMadhab] = useState<keyof typeof Madhab>("Shafi")
@@ -114,6 +114,15 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
             timeZone: selectedTimezone,
           })
 
+        const prayerNames = {
+          fajr: isArabic === "ar" ? "الفجر" : "fajr",
+          sunrise: isArabic === "ar" ? "الشروق" : "sunrise",
+          dhuhr: isArabic === "ar" ? "الظهر" : "dhuhr",
+          asr: isArabic === "ar" ? "العصر" : "asr",
+          maghrib: isArabic === "ar" ? "المغرب" : "maghrib",
+          isha: isArabic === "ar" ? "العشاء" : "isha",
+        }
+
         acc[city.name] = {
           fajr: formatTime(prayerTimes.fajr),
           sunrise: formatTime(prayerTimes.sunrise),
@@ -121,7 +130,8 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
           asr: formatTime(prayerTimes.asr),
           maghrib: formatTime(prayerTimes.maghrib),
           isha: formatTime(prayerTimes.isha),
-          upcoming: prayerTimes.nextPrayer(now) || undefined,
+          current: prayerNames[prayerTimes.currentPrayer(now) as keyof typeof prayerNames],
+          upcoming: prayerNames[prayerTimes.nextPrayer(now) as keyof typeof prayerNames] || undefined,
         }
 
         return acc
@@ -164,19 +174,36 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
 
 
   const saveCityDetails = (city: any) => {
-    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC, countryCode,timezone }))
+    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC, countryCode, timezone }))
   }
 
- const pathname = usePathname()
+  const pathname = usePathname()
   const currentLang = urlSplitter(pathname)
-   const isLang = checkIsPathnameIsEqualToLang(currentLang)
+  const isLang = checkIsPathnameIsEqualToLang(currentLang)
+
+  const isArabic = pathname.split("/")[1]
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6 space-y-4">
-        <div>
+
+
+        {isArabic === "ar" ? (<div>
+          <label htmlFor="madhab" className="block text-sm font-medium mb-2 text-right">
+            {t("city.school")}
+          </label>
+          <Select value={selectedMadhab} onValueChange={(value) => setSelectedMadhab(value as keyof typeof Madhab)}>
+            <SelectTrigger className="w-full flex justify-end">
+              <SelectValue placeholder="Select Madhab" />
+            </SelectTrigger>
+            <SelectContent >
+              <SelectItem className="flex justify-end" value="Shafi">{t("city.shafi")}</SelectItem>
+              <SelectItem className="flex justify-end" value="Hanafi">{t("city.hanafi")}</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>) : (<div>
           <label htmlFor="madhab" className="block text-sm font-medium mb-2">
-          {t("city.school")}
+            {t("city.school")}
           </label>
           <Select value={selectedMadhab} onValueChange={(value) => setSelectedMadhab(value as keyof typeof Madhab)}>
             <SelectTrigger className="w-full">
@@ -187,11 +214,13 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
               <SelectItem value="Hanafi">{t("city.hanafi")}</SelectItem>
             </SelectContent>
           </Select>
-        </div>
+        </div>)}
+
+
         {countriesData[country]?.timezones.length > 1 && (
           <div>
             <label htmlFor="timezone" className="block text-sm font-medium mb-2">
-              Select Timezone:
+              {t("city.selecttimezone")}
             </label>
             <Select value={selectedTimezone} onValueChange={setSelectedTimezone}>
               <SelectTrigger className="w-full">
@@ -212,12 +241,8 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
       {/* Mobile view */}
       <div className="grid gap-4 md:hidden px-4">
         {cities.map((city) => (
-          <Link
-            key={city.name}
-            href={`/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}`}
-            onClick={() => saveCityDetails(city)}
-            className="block rounded-xl shadow-md bg-zinc-50 dark:bg-gray-800 p-4 border border-gray-200 transition hover:shadow-xl scale-95 hover:scale-100 duration-200 delay-200 "
-          >
+          <Link onClick={() => saveCityDetails(city)} key={city.name} href={isLang ? `/${currentLang}/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}` : `/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}`}
+            className="block rounded-xl shadow-md bg-zinc-50 dark:bg-gray-800 p-4 border border-gray-200 transition hover:shadow-xl scale-95 hover:scale-100 duration-200 delay-200 ">
             <div className="flex items-center justify-between border-b pb-2 mb-2">
               <h3 className="text-lg font-bold ">{city.name}</h3>
               <span className="text-sm ">Tap for details</span>
@@ -226,9 +251,17 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
             <ul className="space-y-2">
               {Object.entries(prayerTimes[city.name] || {}).map(([prayer, time]) => {
                 if (prayer === "current") return null;
+                const prayerName = isArabic === "ar" ? {
+                  fajr: "الفجر",
+                  sunrise: "الشروق",
+                  dhuhr: "الظهر",
+                  asr: "العصر",
+                  maghrib: "المغرب",
+                  isha: "العشاء",
+                }[prayer] : prayer;
                 return (
                   <li key={prayer} className="flex items-center justify-between text-sm">
-                    <span className="capitalize ">{prayer}</span>
+                    <span className="capitalize ">{prayerName}</span>
                     <span className={prayerTimes[city.name]?.current === prayer ? "font-bold text-primary" : "font-semibold"}>
                       {time}
                     </span>
@@ -253,24 +286,35 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
 
                 {/* Prayer Times */}
                 <div className="space-y-4">
-                  {Object.entries(prayerIcons).map(([prayer, Icon]) => (
-                    <div
-                      key={prayer}
-                      className={`flex justify-between items-center p-3 rounded-lg ${prayerTimes[city.name]?.upcoming === prayer ? "bg-blue-500 text-zinc-50" : "bg-gray-50 dark:bg-gray-700"
-                        }`}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <Icon className="w-5 h-5 " />
-                        <span className="capitalize text-sm ">{prayer}</span>
-                      </div>
-                      <span
-                        className={`text-sm font-medium ${prayerTimes[city.name]?.upcoming === prayer ? "font-bold text-primary-700" : "text-gray-500 dark:text-gray-300"
+                  {Object.entries(prayerIcons).map(([prayer, Icon]) => {
+                    const prayerName = isArabic === "ar" ? {
+                      fajr: "الفجر",
+                      sunrise: "الشروق",
+                      dhuhr: "الظهر",
+                      asr: "العصر",
+                      maghrib: "المغرب",
+                      isha: "العشاء",
+                    }[prayer] : prayer;
+
+                    return (
+                      <div
+                        key={prayer}
+                        className={`flex justify-between items-center p-3 rounded-lg ${prayerTimes[city.name]?.upcoming === prayer ? "bg-blue-500 text-zinc-50" : "bg-gray-50 dark:bg-gray-700"
                           }`}
                       >
-                        {prayerTimes[city.name]?.[prayer as keyof PrayerTime]}
-                      </span>
-                    </div>
-                  ))}
+                        <div className="flex items-center space-x-2">
+                          <Icon className="w-5 h-5 " />
+                          <span className="capitalize text-sm ">{prayerName}</span>
+                        </div>
+                        <span
+                          className={`text-sm font-medium ${prayerTimes[city.name]?.upcoming === prayer ? "font-bold text-primary-700" : "text-gray-500 dark:text-gray-300"
+                            }`}
+                        >
+                          {prayerTimes[city.name]?.[prayer as keyof PrayerTime]}
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </Link>
