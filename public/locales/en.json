@@ -372,6 +372,8 @@
   "city":{
     "school":"Select School of Thought:",
     "hanafi":"Hanafi",
+    "placeholdersearch":"Search cities...",
+    "cities":"Cities",
     "shafi":"Shafi/Maliki/Hanbali",
     "monthlytitle":"Monthly Prayer Times",
     "selecttimezone":"Select Timezone:"

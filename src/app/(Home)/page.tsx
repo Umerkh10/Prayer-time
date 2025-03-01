@@ -8,13 +8,14 @@ import Banner from '../(Home)/Banner';
 
 
 export default function Home() {
-    const [isLoading ,setIsLoading] = useState(false)
+    // const [isLoading ,setIsLoading] = useState(false)
   
 
 
   return (
     <>
-    <Banner isLoading={isLoading} setIsLoading={setIsLoading}/>
+    {/* <Banner isLoading={isLoading} setIsLoading={setIsLoading}/> */}
+    <Banner/>
     <DateTimingDisplay/>
     <StoryImageSec/>
     <CountrySection/>

@@ -883,6 +883,10 @@ export default function CountryPage() {
 
 
         setCountry(countryData);
+
+        localStorage.setItem("CountryData", JSON.stringify(countryData));
+        
+        
       } catch (error) {
         console.error("Error fetching country data:", error);
       } finally {
@@ -894,6 +898,7 @@ export default function CountryPage() {
       fetchCountryData();
     }
   }, [extracted]);
+
 
   useEffect(() => {
     if (country?.timezone) {

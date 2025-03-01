@@ -75,7 +75,6 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
   useEffect(() => {
     if (countriesData[country]) {
       setSelectedTimezone(countriesData[country].timezones[0])
-      console.log("timezones ==>", countriesData[country].timezones[0]);
     } else {
       setError(`No data available for ${country}.`)
     }
@@ -142,7 +141,6 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
   useEffect(() => {
     if (timezoneMapping && timezoneMapping.length > 0 && selectedTimezone) {
       const matchingTimezones = timezoneMapping.find((timezone: any) => {
-        console.log("Comparing:", selectedTimezone, timezone.zone);
         return selectedTimezone.trim() === timezone.zone.trim();
       });
 
@@ -152,7 +150,6 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
         console.warn("No matching timezone found for:", selectedTimezone);
       }
 
-      console.log("timezoneMapping:", timezoneMapping);
     } else {
       console.warn("timezoneMapping or selectedTimezone is not ready");
     }

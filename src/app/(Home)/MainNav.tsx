@@ -19,7 +19,6 @@ export function MainNav() {
 
   const links = [
     { href: isLang ? `/${currentLang}` : "/", key: "home" },
-    { href: "./#namaz-time", key: "namazTime" },
     { href: isLang ? `/${currentLang}/countries` : "/countries", key: "countries" },
     { href: isLang ? `/${currentLang}/islamic-calender` : "/islamic-calender", key: "islamicCalender" },
     { href: isLang ? `/${currentLang}/duas` : "/duas", key: "duas" },

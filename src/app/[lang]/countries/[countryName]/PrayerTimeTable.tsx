@@ -74,12 +74,13 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode, timezo
   const [selectedTimezone, setSelectedTimezone] = useState<string>("")
   const [error, setError] = useState<string | null>(null)
   const [matchingUTC, setMatchingUTC] = useState<any>(null)
+  const pathname = usePathname()
+  
   const { t } = useTranslation("timezonemapping")
 
   useEffect(() => {
     if (countriesData[country]) {
       setSelectedTimezone(countriesData[country].timezones[0])
-      console.log("timezones ==>", countriesData[country].timezones[0]);
     } else {
       setError(`No data available for ${country}.`)
     }
@@ -156,7 +157,6 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode, timezo
   useEffect(() => {
     if (timezoneMapping && timezoneMapping.length > 0 && selectedTimezone) {
       const matchingTimezones = timezoneMapping.find((timezone: any) => {
-        console.log("Comparing:", selectedTimezone, timezone.zone);
         return selectedTimezone.trim() === timezone.zone.trim();
       });
 
@@ -166,7 +166,6 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode, timezo
         console.warn("No matching timezone found for:", selectedTimezone);
       }
 
-      console.log("timezoneMapping:", timezoneMapping);
     } else {
       console.warn("timezoneMapping or selectedTimezone is not ready");
     }
@@ -174,10 +173,9 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode, timezo
 
 
   const saveCityDetails = (city: any) => {
-    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC, countryCode, timezone }))
+    localStorage.setItem("cityDetails", JSON.stringify({ city, timezones: matchingUTC, countryCode, timezone, cities }))
   }
 
-  const pathname = usePathname()
   const currentLang = urlSplitter(pathname)
   const isLang = checkIsPathnameIsEqualToLang(currentLang)
 
@@ -273,18 +271,15 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode, timezo
         ))}
       </div>
 
-      {/* Desktop view */}
       <div className="hidden md:block">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cities.map((city) => (
             <Link onClick={() => saveCityDetails(city)} key={city.name} href={isLang ? `/${currentLang}/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}` : `/countries/${country.toLowerCase().replaceAll(" ", "-")}/${city.name.toLowerCase().replaceAll(" ", "-")}`}>
               <div className="flex flex-col p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105">
-                {/* City Name */}
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-xl font-semibold text-gray-800 dark:text-white">{city.name}</h3>
                 </div>
 
-                {/* Prayer Times */}
                 <div className="space-y-4">
                   {Object.entries(prayerIcons).map(([prayer, Icon]) => {
                     const prayerName = isArabic === "ar" ? {

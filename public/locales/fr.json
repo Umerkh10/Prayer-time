@@ -371,6 +371,8 @@
   "city":{
     "school":"Sélectionner l'école de pensée :",
     "hanafi":"Hanafi",
+    "cities":"Villes",
+    "placeholdersearch":"Recherche de villes...",
     "shafi":"Shafi/Maliki/Hanbali",
     "monthlytitle":"Heures de prière mensuelles",
     "selecttimezone":"Sélectionnez le fuseau horaire :"

@@ -16,7 +16,6 @@ function page() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     // Here you would typically send the form data to your server
-    console.log("Form submitted:", formState)
     // Reset form after submission
     setFormState({ name: "", email: "", message: "" })
   }

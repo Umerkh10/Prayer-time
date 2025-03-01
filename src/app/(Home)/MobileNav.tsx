@@ -38,13 +38,7 @@ const pathname = usePathname()
             >
            {isLang ? t("navigation.home") : "Home"}
             </Link>
-            <Link
-              href="./#namaz-time"
-              onClick={() => setOpen(false)}
-              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize"
-            >
-               {isLang ? t("navigation.namazTime") : "namazTime"}  
-            </Link>
+
             <Link
               href={isLang ? `/${currentLang}/countries` : "/countries"}
               onClick={() => setOpen(false)}
