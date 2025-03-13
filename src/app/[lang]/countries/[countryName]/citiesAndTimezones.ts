@@ -192,7 +192,7 @@ export const countriesData: { [country: string]: CountryData } = {
     timezones: ["America/Sao_Paulo"],
     cities: {
       "America/Sao_Paulo": [
-        { "name": "São Paulo", latitude: -23.5505, longitude: -46.6333 },
+        { "name": "Sao Paulo", latitude: -23.5505, longitude: -46.6333 },
         { "name": "Rio de Janeiro", latitude: -22.9068, longitude: -43.1729 },
         { "name": "Belo Horizonte", latitude: -19.9167, longitude: -43.9345 },
         { "name": "Curitiba", latitude: -25.4284, longitude: -49.2733 },

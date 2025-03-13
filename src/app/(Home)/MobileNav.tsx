@@ -28,7 +28,7 @@ const pathname = usePathname()
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-72 bg-[#0046E5] p-0">
+      <SheetContent side="left" className="w-72 bg-[#003422] p-0">
         <ScrollArea className="h-full px-6">
           <div className="mt-6 space-y-6">
             <Link

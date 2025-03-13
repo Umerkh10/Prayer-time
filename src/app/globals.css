@@ -37,7 +37,7 @@ body {
   }
 
   .dark {
-    --background: 222.2 80% 10.4%;
+    --background: 222.2 80% 3.4%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -222,3 +222,7 @@ body {
 }
 
 
+.swiper-pagination-bullet-active {
+  opacity: var(--swiper-pagination-bullet-opacity, 1);
+  background: #1e8e67;
+}

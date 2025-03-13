@@ -246,7 +246,7 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode,timezon
                   {Object.entries(prayerIcons).map(([prayer, Icon]) => (
                     <div
                       key={prayer}
-                      className={`flex justify-between items-center p-3 rounded-lg ${prayerTimes[city.name]?.upcoming === prayer ? "bg-blue-500 text-zinc-50" : "bg-gray-50 dark:bg-gray-700"
+                      className={`flex justify-between items-center p-3 rounded-lg ${prayerTimes[city.name]?.upcoming === prayer ? "bg-green-700 text-zinc-50" : "bg-gray-50 dark:bg-gray-700"
                         }`}
                     >
                       <div className="flex items-center space-x-2">

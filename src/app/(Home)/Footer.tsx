@@ -26,41 +26,41 @@ function Footer() {
           </div>
 
           <div className="lg:col-span-1">
-            <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400"> 
+            <h3 className="text-base font-semibold text-green-700 dark:text-green-400"> 
               {isLang ? t("Footer.quicklinkstitle") : "Quick links"}  </h3>
             <ul className="mt-4 space-y-3 text-sm">
-              <li > <Link href={isLang ? `/${currentLang}` : "/"} className=" hover:text-blue-700 dark:hover:text-blue-400 capitalize"> {isLang ? t("navigation.home") : "home"}  </Link></li>
-              <li > <Link href="./#namaz-time" className=" hover:text-blue-700 dark:hover:text-blue-400 capitalize">
+              <li > <Link href={isLang ? `/${currentLang}` : "/"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize"> {isLang ? t("navigation.home") : "home"}  </Link></li>
+              <li > <Link href="./#namaz-time" className=" hover:text-green-700 dark:hover:text-green-400 capitalize">
               {isLang ? t("navigation.namazTime") : "namaz Time"}  </Link></li>
 
-              <li > <Link href={isLang ? `/${currentLang}/islamic-calender` : "/islamic-calender"} className=" hover:text-blue-700 dark:hover:text-blue-400 capitalize">
+              <li > <Link href={isLang ? `/${currentLang}/islamic-calender` : "/islamic-calender"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">
               {isLang ? t("navigation.islamicCalender") : "islamic Calender"}  </Link></li>
 
-              <li > <Link href={isLang ? `/${currentLang}/duas` : "/duas"} className=" hover:text-blue-700 dark:hover:text-blue-400 capitalize">{isLang ? t("navigation.duas") : "duas"} </Link></li>
+              <li > <Link href={isLang ? `/${currentLang}/duas` : "/duas"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">{isLang ? t("navigation.duas") : "duas"} </Link></li>
         
             </ul>
           </div>
 
           <div className="lg:col-span-1">
-            <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">
+            <h3 className="text-base font-semibold text-green-700 dark:text-green-400">
             {isLang ? t("Footer.companytitle") : "Company"} </h3>
             <ul className="mt-4 space-y-3 text-sm">
-                <li ><Link href={isLang ? `/${currentLang}/countries` : "/countries"} className=" hover:text-blue-700 dark:hover:text-blue-400 capitalize">{isLang ? t("navigation.countries") : "countries"}</Link></li>
+                <li ><Link href={isLang ? `/${currentLang}/countries` : "/countries"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">{isLang ? t("navigation.countries") : "countries"}</Link></li>
 
-                <li><Link href={isLang ? `/${currentLang}/about-us` : "/about-us"} className=" hover:text-blue-700 dark:hover:text-blue-400 capitalize"> {isLang ? t("navigation.aboutUs") : "about Us"} </Link></li>
+                <li><Link href={isLang ? `/${currentLang}/about-us` : "/about-us"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize"> {isLang ? t("navigation.aboutUs") : "about Us"} </Link></li>
 
-                <li><Link href={isLang ? `/${currentLang}/contact-us` : "/contact-us"} className=" hover:text-blue-700 dark:hover:text-blue-400">{isLang ? t("navigation.contactUs") : "contact Us"} </Link></li>
+                <li><Link href={isLang ? `/${currentLang}/contact-us` : "/contact-us"} className=" hover:text-green-700 dark:hover:text-green-400">{isLang ? t("navigation.contactUs") : "contact Us"} </Link></li>
             </ul>
           </div>
 
           <div className="lg:col-span-1">
-            <h3 className="text-base font-semibold text-blue-700 dark:text-blue-400">
+            <h3 className="text-base font-semibold text-green-700 dark:text-green-400">
             {isLang ? t("Footer.otherlinktitle") : "Other"} </h3>
             <ul className="mt-4 space-y-3 text-sm">
-                <li ><Link href={isLang ? `/${currentLang}/terms-and-conditions` : "/terms-and-conditions"} className=" hover:text-blue-700 dark:hover:text-blue-400"> {isLang ? t("Footer.termslink") : "Terms and conditions"} 
+                <li ><Link href={isLang ? `/${currentLang}/terms-and-conditions` : "/terms-and-conditions"} className=" hover:text-green-700 dark:hover:text-green-400"> {isLang ? t("Footer.termslink") : "Terms and conditions"} 
                 </Link>
                 </li>
-                <li ><Link href={isLang ? `/${currentLang}/privacy-policy` : "/privacy-policy"} className=" hover:text-blue-700 dark:hover:text-blue-400">{isLang ? t("Footer.privacylink") : "Privacy policy"} </Link>
+                <li ><Link href={isLang ? `/${currentLang}/privacy-policy` : "/privacy-policy"} className=" hover:text-green-700 dark:hover:text-green-400">{isLang ? t("Footer.privacylink") : "Privacy policy"} </Link>
                 </li>
  
             </ul>
@@ -68,12 +68,12 @@ function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-12 border-t border-gray-200 pt-8">
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-muted-foreground">
+        <div className="mt-10  border-t border-gray-200 pt-4">
+          <div className="flex lg:flex-row flex-col items-center lg:justify-between  ">
+            <p className="text-sm text-muted-foreground text-center lg:text-left">
             {isLang ? t("Footer.rightsdesc") : "All Rights Reserved © 2025 Global Salah"}
             </p>
-            <div className="flex space-x-6">
+            <div className="flex md:justify-start justify-center md:mt-0 mt-3 space-x-6">
               <Link href="#" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Facebook</span>
                 <Facebook className="h-6 w-6" />

@@ -222,7 +222,7 @@ export const cityTimezones: Record<string, string> = {
 
     // Brazil
     "Brasília": "America/Sao_Paulo",
-    "São Paulo": "America/Sao_Paulo",
+    "Sao Paulo": "America/Sao_Paulo",
     "Rio de Janeiro": "America/Sao_Paulo",
     "Salvador": "America/Sao_Paulo",
     "Curitiba": "America/Sao_Paulo",

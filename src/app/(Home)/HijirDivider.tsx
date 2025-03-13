@@ -60,15 +60,12 @@ useEffect(() => {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
-      <div className="relative overflow-hidden bg-blue-600 bg-[url('/main-page-frame.svg')] bg-no-repeat rounded-2xl lg:h-72 p-8 md:p-12">
-        {/* Content */}
+      <div className="relative overflow-hidden bg-[#1e8e67] bg-[url('/main-page-frame.svg')] bg-no-repeat rounded-2xl lg:h-72 p-8 md:p-12">
         <div className="relative z-10 space-y-2">
-          {/* Main Heading */}
           <h1 className="text-white text-3xl md:text-4xl text-center font-bold tracking-tight animate-fade-in">
             {t("HijriDivider.dividertitle")}
           </h1>
 
-          {/* Subheading for Location */}
           {location.city && location.country && (
             <h2 className="text-white text-lg md:text-xl text-center font-medium animate-fade-in">
               {location.city}, {location.country}
@@ -76,7 +73,6 @@ useEffect(() => {
           )}
 
           <div className="grid lg:grid-cols-3 grid-cols-1 mx-auto pt-5 gap-4">
-            {/* Current Time */}
             <div className="flex justify-center items-center group">
               <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
                 <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
@@ -86,7 +82,6 @@ useEffect(() => {
               </div>
             </div>
 
-            {/* Hijri Date */}
             <div className="flex justify-center items-center group">
               <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
                 <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
@@ -96,7 +91,6 @@ useEffect(() => {
               </div>
             </div>
 
-            {/* Current Date */}
             <div className="flex justify-center items-center group">
               <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
                 <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
@@ -109,7 +103,7 @@ useEffect(() => {
         </div>
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/50 to-blue-600/0 animate-fade-in" />
+        <div className="absolute inset-0 bg-gradient-to-r from-green-800/50 to-green-600/0 animate-fade-in" />
       </div>
     </div>
   );

@@ -273,16 +273,16 @@ function DateTimingDisplay() {
     const nextBtn = document.getElementById("nextBtn");
 
     if (prevBtn && todayBtn && nextBtn) {
-      prevBtn.classList.remove("bg-blue-400", "text-white");
-      todayBtn.classList.remove("bg-blue-400", "text-white");
-      nextBtn.classList.remove("bg-blue-400", "text-white");
+      prevBtn.classList.remove("bg-[#1e8e67]", "text-white");
+      todayBtn.classList.remove("bg-[#1e8e67]", "text-white");
+      nextBtn.classList.remove("bg-[#1e8e67]", "text-white");
 
       if (isSameDay(currentDate, subDays(new Date(), 1))) {
-        prevBtn.classList.add("bg-blue-400", "text-white");
+        prevBtn.classList.add("bg-[#1e8e67]", "text-white");
       } else if (isSameDay(currentDate, new Date())) {
-        todayBtn.classList.add("bg-blue-400", "text-white");
+        todayBtn.classList.add("bg-[#1e8e67]", "text-white");
       } else if (isSameDay(currentDate, addDays(new Date(), 1))) {
-        nextBtn.classList.add("bg-blue-400", "text-white");
+        nextBtn.classList.add("bg-[#1e8e67]", "text-white");
       }
     }
   };
@@ -326,7 +326,7 @@ function DateTimingDisplay() {
                 <button
                   id="prevBtn"
                   className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, subDays(new Date(), 1))
-                    ? "bg-blue-400 text-white"
+                    ? "bg-[#1e8e67] text-white"
                     : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
                     }`}
                   onClick={() => {
@@ -339,7 +339,7 @@ function DateTimingDisplay() {
                 <button
                   id="todayBtn"
                   className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, new Date())
-                    ? "bg-blue-400 text-white"
+                    ? "bg-[#1e8e67] text-white"
                     : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
                     }`}
                   onClick={() => {
@@ -356,7 +356,7 @@ function DateTimingDisplay() {
                 <button
                   id="nextBtn"
                   className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, addDays(new Date(), 1))
-                      ? "bg-blue-400 text-white"
+                      ? "bg-[#1e8e67] text-white"
                       : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
                     }`}
                   onClick={() => {
@@ -368,7 +368,7 @@ function DateTimingDisplay() {
 
                 <button
                   className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3
-                    ? "bg-blue-400 text-white"
+                    ? "bg-[#1e8e67] text-white"
                     : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
                     }`}
                   onClick={() => {
@@ -423,7 +423,7 @@ function DateTimingDisplay() {
                   <div className="grid lg:grid-cols-6 grid-cols-2 gap-4 p-4">
                     {day?.prayers.map((prayer: { name: string; time: string; icon: any }, prayerIndex: number) => (
                       <div key={prayerIndex} className={`flex flex-col items-center justify-center py-4 rounded-lg 
-                    ${prayer.name === day?.nextPrayer?.name ? "bg-blue-400 text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
+                    ${prayer.name === day?.nextPrayer?.name ? "bg-[#1e8e67] text-white" : "bg-background border border-muted text-zinc-900 dark:text-zinc-100"}`}>
 
                         <div className="flex justify-between items-center mx-auto font-medium">
                           <div className="lg:pr-16 pr-8 text-lg">{prayer.name}</div>{prayer.icon}
@@ -439,10 +439,10 @@ function DateTimingDisplay() {
               ))}
               <div className="flex justify-center items-center gap-2">
                 {/* Custom Navigation Arrows */}
-                <button className="z-10 p-2 bg-blue-500 text-zinc-100 rounded-full shadow-lg transition"
+                <button className="z-10 p-2 bg-[#1e8e67] text-zinc-100 rounded-full shadow-lg transition"
                   id="prevBtn"> <FaArrowLeft size={24} /></button>
 
-                <button className="z-10 p-2 bg-blue-500 text-zinc-100 rounded-full shadow-lg transition"
+                <button className="z-10 p-2 bg-[#1e8e67] text-zinc-100 rounded-full shadow-lg transition"
                   id="nextBtn"><FaArrowRight size={24} /></button>
               </div>
             </Swiper>

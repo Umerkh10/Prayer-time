@@ -198,7 +198,7 @@ const MonthlyNamazTimings = () => {
         <div className="flex justify-center mt-4">
           <Button
             onClick={() => setSchool("hanafi")}
-            variant={school === "hanafi" ? "default" : "outline"}
+            variant={school === "hanafi" ? "secondary" : "outline"}
             size="default"
             className="mx-1 dark:text-zinc-50"
           >
@@ -206,7 +206,7 @@ const MonthlyNamazTimings = () => {
           </Button>
           <Button
             onClick={() => setSchool("shafi")}
-            variant={school === "shafi" ? "default" : "outline"}
+            variant={school === "shafi" ? "secondary" : "outline"}
             size="default"
             className="mx-1 dark:text-zinc-50"
           >
@@ -245,7 +245,7 @@ const MonthlyNamazTimings = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <AccordionTrigger className={`text-sm ${day.date === currentDate? "bg-blue-500 text-white ": "even:bg-muted"} p-4  rounded-lg`}>
+                    <AccordionTrigger className={`text-sm ${day.date === currentDate? "bg-green-500 text-white ": "even:bg-muted"} p-4  rounded-lg`}>
                       <div className="flex justify-between w-full">
                         <span>{day.formattedDate}</span>
                        
@@ -278,7 +278,7 @@ const MonthlyNamazTimings = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-blue-400 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-blue-700 text-white" : "even:bg-muted"}`}>
+                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-green-500 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-green-700 text-white" : "even:bg-muted"}`}>
                   <div className="text-center">{day.formattedDate}</div>
                   <div className="text-center">{day.timings.Fajr}</div>
                   <div className="text-center">{day.timings.Sunrise}</div>

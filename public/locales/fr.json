@@ -16,28 +16,88 @@
     "titlehadith":"Hadith",
     "titleayat":"Ayat",
     "next": "Suivant",
-    "hadiths": [
-      {
-        "arabic": "حَدَّثَنَا أَبُو الْوَلِيدِ ، قَالَ : حَدَّثَنَا شُعْبَةُ ، قَالَ : حَدَّثَنَا سُلَيْمَانُ الشَّيْبَانِيُّ ، عَنْ عَبْدِ اللَّهِ بْنِ شَدَّادٍ ، عَنْ مَيْمُونَةَ ، قَالَتْ : \" كَانَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ يُصَلِّي عَلَى الْخُمْرَةِ \"",
-        "translation": "Raconté par Anas bin Malik : Nous avions l'habitude de prier avec le Prophète et certains d'entre nous plaçaient les extrémités de leurs vêtements à l'endroit où ils se prosternaient à cause de la chaleur torride.",
-        "refrence": "Sahih Bukhari - 385"
-      },
-      {
-        "arabic": "حَدَّثَنَا عَمْرُو بْنُ عَبَّاسٍ ، قَالَ : حَدَّثَنَا ابْنُ الْمَهْدِيِّ ، قَالَ : حَدَّثَنَا مَنْصُورُ بْنُ سَعْدٍ ، عَنْ مَيْمُونِ بْنِ سِيَاهٍ ، عَنْ أَنَسِ بْنِ مَالِكٍ ، قَالَ : قَالَ رَسُولُ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ : مَنْ صَلَّى صَلَاتَنَا ، وَاسْتَقْبَلَ قِبْلَتَنَا ، وَأَكَلَ ذَبِيحَتَنَا ، فَذَلِكَ الْمُسْلِمُ الَّذِي لَهُ ذِمَّةُ اللَّهِ وَذِمَّةُ رَسُولِهِ ، فَلَا تُخْفِرُوا اللَّهَ فِي ذِمَّتِهِ .",
-        "translation": "Raconté par Anas bin Malik : L'apôtre d'Allah a dit : Quiconque prie comme nous, fait face à notre Qibla et mange nos animaux abattus est musulman et se trouve sous la protection d'Allah et de son apôtre. Ne trahissez donc pas Allah en trahissant ceux qui sont sous sa protection.",
-        "refrence": "Sahih Bukhari - 391"
-      },
-      {
-        "arabic": "حَدَّثَنَا عَبْدُ اللَّهِ بْنُ يُوسُفَ ، قَالَ : أَخْبَرَنَا مَالِكٌ ، عَنْ نَافِعٍ ، عَنْ عَبْدِ اللَّهِ بْنِ عُمَرَ رَضِيَ اللَّهُ عَنْهُمَا ، أَنّ رَسُولَ اللَّهِ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ ، قَالَ : إِذَا جَاءَ أَحَدُكُمُ الْجُمُعَةَ فَلْيَغْتَسِلْ .",
-        "translation": "Abdullah bin Umar : L'apôtre d'Allah (p.b.u.h) a dit : Quiconque d'entre vous assiste à la prière du vendredi doit prendre un bain.",
-        "refrence": "Sahih Bukhari - 877"
-      },
-      {
-        "arabic": "حَدَّثَنَا مُحَمَّدُ بْنُ بَشَّارٍ ، حَدَّثَنَا غُنْدَرٌ ، حَدَّثَنَا شُعْبَةُ ، عَنْ أَبِي حَصِينٍ وَالْأَشْعَثِ بْنِ سُلَيْمٍ ، سَمِعَا الْأَسْوَدَ بْنَ هِلَالٍ ، عَنْ مُعَاذِ بْنِ جَبَلٍ ، قَالَ : قَالَ النَّبِيُّ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ : يَا مُعَاذُ أَتَدْرِي مَا حَقُّ اللَّهِ عَلَى الْعِبَادِ ؟ ، قَالَ : اللَّهُ وَرَسُولُهُ أَعْلَمُ ، قَالَ : أَنْ يَعْبُدُوهُ وَلَا يُشْرِكُوا بِهِ شَيْئًا أَتَدْرِي مَا حَقُّهُمْ عَلَيْهِ ؟ ، قَالَ : اللَّهُ وَرَسُولُهُ أَعْلَمُ ، قَالَ : أَنْ لَا يُعَذِّبَهُمْ .",
-        "translation": "Raconté par Anas bin Malik : Nous avions l'habitude de prier avec le Prophète et certains d'entre nous plaçaient les extrémités de leurs vêtements à l'endroit où ils se prosternaient à cause de la chaleur torride.",
-        "refrence": "Sahih Bukhari - 7373"
-      }
-    ],
+      "hadiths": [
+        {
+          "arabic": "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى...",
+          "translation": "Le Messager d'Allah (ﷺ) a dit : « Les actions sont jugées par les intentions, et chacun sera récompensé selon ce qu'il a voulu ».",
+          "refrence": "Sahih Bukhari - 1"
+        },
+        {
+          "arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ...",
+          "translation": "Le Prophète (ﷺ) a dit : « Quiconque croit en Allah et au Jour dernier doit dire du bien ou se taire ».",
+          "refrence": "Sahih Bukhari - 6136"
+        },
+        {
+          "arabic": "اللَّهُمَّ اغْفِرْ لِي خَطِيئَتِي وَجَهْلِي وَإِسْرَافِي فِي أَمْرِي...",
+          "translation": "Ô Allah, pardonne mes erreurs, mon ignorance et mes excès dans mes affaires...",
+          "refrence": "Sahih Muslim - 2719"
+        },
+        {
+          "arabic": "إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا...",
+          "translation": "Les meilleurs d'entre vous sont ceux qui ont le meilleur caractère.",
+          "refrence": "Sahih Bukhari - 3559"
+        },
+        {
+          "arabic": "إِذَا مَرِضَ الْعَبْدُ أَوْ سَافَرَ كُتِبَ لَهُ مَا كَانَ يَعْمَلُ صَحِيحًا مُقِيمًا...",
+          "translation": "Lorsqu'un serviteur d'Allah tombe malade ou voyage, il est récompensé pour les actes qu'il accomplirait normalement s'il était en bonne santé ou chez lui.",
+          "refrence": "Sahih Bukhari - 2996"
+        },
+        {
+          "arabic": "إِنَّ الدُّعَاءَ هُوَ الْعِبَادَةُ...",
+          "translation": "En effet, la supplication est une adoration.",
+          "refrence": "Sunan Abi Dawood - 1479"
+        },
+        {
+          "arabic": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ...",
+          "translation": "Aucun de vous ne croit vraiment tant qu'il n'aime pas pour son frère ce qu'il aime pour lui-même.",
+          "refrence": "Sahih Bukhari - 13"
+        },
+        {
+          "arabic": "إِنَّ الرِّزْقَ لَيَطْلُبُ الْعَبْدَ أَكْثَرَ مِمَّا يَطْلُبُهُ أَجَلُهُ...",
+          "translation": "En effet, la subsistance recherche un serviteur plus que l'heure de sa mort.",
+          "refrence": "Sunan Ibn Majah - 2144"
+        },
+        {
+          "arabic": "إِنَّ اللَّهَ جَمِيلٌ يُحِبُّ الْجَمَالَ...",
+          "translation": "En effet, Allah est beau et Il aime la beauté.",
+          "refrence": "Sahih Muslim - 91"
+        },
+        {
+          "arabic": "اتَّقُوا الظُّلْمَ فَإِنَّ الظُّلْمَ ظُلُمَاتٌ يَوْمَ الْقِيَامَةِ...",
+          "translation": "Méfiez-vous de l'oppression, car l'oppression sera ténèbres au jour du jugement.",
+          "refrence": "Sahih Muslim - 2578"
+        },
+        {
+          "arabic": "الرَّاحِمُونَ يَرْحَمُهُمُ الرَّحْمَٰنُ...",
+          "translation": "Les miséricordieux reçoivent la miséricorde des miséricordieux. Soyez miséricordieux sur la terre, et vous serez miséricordieux en haut.",
+          "refrence": "Sunan At-Tirmidhi - 1924"
+        },
+        {
+          "arabic": "خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ...",
+          "translation": "Les meilleures personnes sont celles qui sont les plus bénéfiques pour les autres.",
+          "refrence": "Sunan al-Mu’jam al-Awsat - 5787"
+        },
+        {
+          "arabic": "يَدُ اللَّهِ مَعَ الْجَمَاعَةِ...",
+          "translation": "La main d'Allah est avec le groupe.",
+          "refrence": "Sunan At-Tirmidhi - 2166"
+        },
+        {
+          "arabic": "مَنْ دَلَّ عَلَى خَيْرٍ فَلَهُ مِثْلُ أَجْرِ فَاعِلِهِ...",
+          "translation": "Celui qui guide quelqu'un vers le bien aura une récompense comme celui qui le fait.",
+          "refrence": "Sahih Muslim - 1893"
+        },
+        {
+          "arabic": "سِبَابُ الْمُسْلِمِ فُسُوقٌ وَقِتَالُهُ كُفْرٌ...",
+          "translation": "Maltraiter un musulman est un mal, et le combattre est de l'incrédulité.",
+          "refrence": "Sahih Bukhari - 48"
+        },
+        {
+          "arabic": "إِنَّ اللَّهَ يُحِبُّ إِذَا عَمِلَ أَحَدُكُمْ عَمَلًا أَنْ يُتْقِنَهُ...",
+          "translation": "En effet, Allah aime que lorsque l'un d'entre vous fait un travail, il le perfectionne.",
+          "refrence": "Sunan al-Bayhaqi - 5315"
+        }
+      ],
     "ayats": [
       {
         "text": "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ ۖ فَلْيَسْتَجِيبُوا لِي وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ",
@@ -58,6 +118,131 @@
         "text": "وَلَقَدْ يَسَّرْنَا الْقُرْآنَ لِلذِّكْرِ فَهَلْ مِن مُّدَّكِرٍ",
         "translation": "Nous avons certes rendu le Coran facile à mémoriser. Y a-t-il quelqu'un qui se souviendra ?",
         "refrence": "[Quran 54:17]"
+      },
+      {
+        "text": "إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+        "translation": "En effet, c'est dans la difficulté que l'on trouve la facilité.",
+        "refrence": "[Quran 94:6]"
+      },
+      {
+        "text": "وَرَحْمَتِي وَسِعَتْ كُلَّ شَيْءٍ",
+        "translation": "Et ma miséricorde englobe tout.",
+        "refrence": "[Quran 7:156]"
+      },
+      {
+        "text": "وَتَوَكَّلْ عَلَى اللَّهِ وَكَفَىٰ بِاللَّهِ وَكِيلًا",
+        "translation": "Et comptez sur Allah. Et Allah est suffisant en tant que décideur.",
+        "refrence": "[Quran 33:3]"
+      },
+      {
+        "text": "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",
+        "translation": "En effet, les difficultés s'accompagnent d'une certaine facilité.",
+        "refrence": "[Quran 94:5]"
+      },
+      {
+        "text": "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+        "translation": "Allah est avec le patient.",
+        "refrence": "[Quran 2:153]"
+      },
+      {
+        "text": "فَاذْكُرُونِي أَذْكُرْكُمْ",
+        "translation": "Souvenez-vous de moi, je me souviendrai de vous.",
+        "refrence": "[Quran 2:152]"
+      },
+      {
+        "text": "إِنَّ اللَّهَ غَفُورٌ رَّحِيمٌ",
+        "translation": "Allah est Pardonneur et Miséricordieux.",
+        "refrence": "[Quran 2:173]"
+      },
+      {
+        "text": "يَا أَيُّهَا الَّذِينَ آمَنُوا اصْبِرُوا وَصَابِرُوا",
+        "translation": "O vous qui avez cru, persévérez et supportez.",
+        "refrence": "[Quran 3:200]"
+      },
+      {
+        "text": "إِنَّ اللَّهَ يُحِبُّ الْمُحْسِنِينَ",
+        "translation": "Allah aime les bienfaiteurs.",
+        "refrence": "[Quran 3:134]"
+      },
+      {
+        "text": "وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ",
+        "translation": "Et mon succès n'est dû qu'à Allah.",
+        "refrence": "[Quran 11:88]"
+      },
+      {
+        "text": "وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ",
+        "translation": "Et ne désespérez pas de la miséricorde d'Allah.",
+        "refrence": "[Quran 12:87]"
+      },
+      {
+        "text": "إِنَّ اللَّهَ سَمِيعٌ بَصِيرٌ",
+        "translation": "Allah est Audient et Clairvoyant.",
+        "refrence": "[Quran 40:20]"
+      },
+      {
+        "text": "وَأُفَوِّضُ أَمْرِي إِلَى اللَّهِ",
+        "translation": "Et je confie mon affaire à Allah.",
+        "refrence": "[Quran 40:44]"
+      },
+      {
+        "text": "إِنَّ اللَّهَ لَا يَظْلِمُ النَّاسَ شَيْئًا",
+        "translation": "Allah ne fait pas de tort aux gens.",
+        "refrence": "[Quran 10:44]"
+      },
+      {
+        "text": "وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ",
+        "translation": "Il se peut aussi que vous détestiez une chose et qu'elle soit bonne pour vous.",
+        "refrence": "[Quran 2:216]"
+      },
+      {
+        "text": "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ",
+        "translation": "Et il est avec vous où que vous soyez.",
+        "refrence": "[Quran 57:4]"
+      },
+      {
+        "text": "لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا",
+        "translation": "Ne vous affligez pas ; Allah est avec nous.",
+        "refrence": "[Quran 9:40]"
+      },
+      {
+        "text": "وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ",
+        "translation": "Et quand je suis malade, c'est lui qui me guérit.",
+        "refrence": "[Quran 26:80]"
+      },
+      {
+        "text": "وَمَنْ يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+        "translation": "Et quiconque s'en remet à Allah, alors Il lui suffit.",
+        "refrence": "[Quran 65:3]"
+      },
+      {
+        "text": "إِنَّ اللَّهَ يُحِبُّ الْمُتَوَكِّلِينَ",
+        "translation": "Allah aime ceux qui s'en remettent à lui.",
+        "refrence": "[Quran 3:159]"
+      },
+      {
+        "text": "وَإِلَىٰ اللَّهِ تُرْجَعُ الْأُمُورُ",
+        "translation": "Et c'est à Allah que l'on reviendra.",
+        "refrence": "[Quran 2:210]"
+      },
+      {
+        "text": "إِنَّهُ كَانَ بِعِبَادِهِ بَصِيرًا",
+        "translation": "Il est toujours attentif à ses serviteurs.",
+        "refrence": "[Quran 17:96]"
+      },
+      {
+        "text": "وَاسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ",
+        "translation": "Et cherchez de l'aide par la patience et la prière.",
+        "refrence": "[Quran 2:45]"
+      },
+      {
+        "text": "إِنَّ رَبِّي قَرِيبٌ مُّجِيبٌ",
+        "translation": "En effet, mon Seigneur est proche et attentif.",
+        "refrence": "[Quran 11:61]"
+      },
+      {
+        "text": "إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ",
+        "translation": "En effet, Allah aime ceux qui se repentent.",
+        "refrence": "[Quran 2:222]"
       }
     ]
   },
@@ -237,6 +422,126 @@
         "arabic": "آيِبُونَ تَائِبُونَ عَابِدُونَ لِرَبِّنَا حَامِدُونَ",
         "transliteration": "Aayiboona taa’iboona ‘aabidoona lirabbinaa haamidoon.",
         "translation": "Nous revenons en nous repentant, en adorant et en louant notre Seigneur.",
+        "category": "after"
+      },
+      {
+        "id": "before-entering-market",
+        "title": "Dhikr Before Entering The Market",
+        "arabic": "لَا إِلٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، يُحْيِي وَيُمِيتُ، وَهُوَ حَيٌّ لَا يَمُوتُ، بِيَدِهِ الْخَيْرُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+        "transliteration": "La ilaha illallahu wahdahu la sharika lahu, lahu al-mulku wa lahu al-hamdu, yuhyi wa yumiitu, wa huwa hayyun la yamootu, biyadihi al-khayru, wa huwa 'ala kulli shay'in qadeer.",
+        "translation": "Il n'y a pas d'autre dieu qu'Allah, seul et sans associé. C'est à lui que revient la domination et c'est à lui que revient la louange. Il donne la vie et cause la mort, Il est éternel et ne meurt pas. Tout ce qui est bon est dans sa main, et il a le pouvoir sur tout.",
+        "category": "before"
+      },
+      {
+        "id": "before-dressing",
+        "title": "Dhikr Before Dressing",
+        "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ خَيْرِهِ وَخَيْرِ مَا هُوَ لَهُ وَأَعُوذُ بِكَ مِنْ شَرِّهِ وَشَرِّ مَا هُوَ لَهُ",
+        "transliteration": "Allahumma inni as'aluka min khayrihi wa khayri ma huwa lahu wa a'udhu bika min sharrihi wa sharri ma huwa lahu.",
+        "translation": "Ô Allah, je Te demande le bien de ce vêtement et le bien pour lequel il a été fait, et je cherche refuge auprès de Toi contre son mal et le mal pour lequel il a été fait.",
+        "category": "before"
+      },
+      {
+        "id": "before-undressing",
+        "title": "Dhikr Before Undressing",
+        "arabic": "بِسْمِ اللَّهِ",
+        "transliteration": "Bismillaahi",
+        "translation": "Au nom d'Allah",
+        "category": "before"
+      },
+      {
+        "id": "before-leaving-home",
+        "title": "Dhikr Before Leaving Home",
+        "arabic": "بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+        "transliteration": "Bismillahi, tawakkaltu 'alallahi, wa la hawla wa la quwwata illa billah.",
+        "translation": "Au nom d'Allah, je place ma confiance en Allah, et il n'y a de puissance et de force qu'auprès d'Allah.",
+        "category": "before"
+      },
+      {
+        "id": "before-entering-home",
+        "title": "Dhikr Before Entering Home",
+        "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ الْمَوْلَجِ وَخَيْرَ الْمَخْرَجِ",
+        "transliteration": "Allahumma inni as'aluka khayr al-mawlaji wa khayr al-makhraj.",
+        "translation": "Ô Allah, je Te demande la meilleure entrée et la meilleure sortie.",
+        "category": "before"
+      },
+      {
+        "id": "before-entering-mosque",
+        "title": "Dhikr Before Entering The Mosque",
+        "arabic": "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+        "transliteration": "Allahumma iftah li abwaba rahmatik.",
+        "translation": "Ô Allah, ouvre-moi les portes de ta miséricorde.",
+        "category": "before"
+      },
+      {
+        "id": "before-exiting-mosque",
+        "title": "Dhikr Before Exiting The Mosque",
+        "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+        "transliteration": "Allahumma inni as'aluka min fadhlik.",
+        "translation": "Ô Allah, je te demande ce que tu as à me donner.",
+        "category": "before"
+      },
+      {
+        "id": "after-prayer",
+        "title": "Dhikr After Prayer",
+        "arabic": "أَسْتَغْفِرُ اللَّهَ، أَسْتَغْفِرُ اللَّهَ، أَسْتَغْفِرُ اللَّهَ",
+        "transliteration": "Astaghfirullah, Astaghfirullah, Astaghfirullah.",
+        "translation": "J'implore le pardon d'Allah. Je demande pardon à Allah. J'implore le pardon d'Allah.",
+        "category": "after"
+      },
+      {
+        "id": "after-entering-mosque",
+        "title": "Dhikr After Entering The Mosque",
+        "arabic": "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+        "transliteration": "Allahumma iftah lee abwaaba rahmatika.",
+        "translation": "Ô Allah, ouvre-moi les portes de ta miséricorde.",
+        "category": "after"
+      },
+      {
+        "id": "after-leaving-mosque",
+        "title": "Dhikr After Leaving The Mosque",
+        "arabic": "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+        "transliteration": "Allahumma inni as'aluka min fadhlika.",
+        "translation": "Ô Allah, je te demande ce que tu as à me donner.",
+        "category": "after"
+      },
+      {
+        "id": "after-sneezing",
+        "title": "Dhikr After Sneezing",
+        "arabic": "الْحَمْدُ لِلَّهِ",
+        "transliteration": "Alhamdulillah.",
+        "translation": "C'est à Allah que reviennent toutes les louanges.",
+        "category": "after"
+      },
+      {
+        "id": "after-sneezing-response",
+        "title": "Response To Someone Who Sneezed",
+        "arabic": "يَرْحَمُكَ اللَّهُ",
+        "transliteration": "Yarhamuk Allah.",
+        "translation": "Qu'Allah vous fasse miséricorde.",
+        "category": "after"
+      },
+      {
+        "id": "after-breaking-fast",
+        "title": "Dhikr After Breaking The Fast",
+        "arabic": "ذَهَبَ الظَّمَأُ، وَابْتَلَّتِ الْعُرُوقُ، وَثَبَتَ الأَجْرُ إِنْ شَاءَ اللَّهُ",
+        "transliteration": "Dhahaba adh-dhama'u wabtallatil-urooqu wa thabata al-ajru insha'Allah.",
+        "translation": "La soif a disparu, les veines sont humides et la récompense est assurée, si Allah le veut.",
+        "category": "after"
+      },
+      {
+        "id": "after-entering-home",
+        "title": "Dhikr After Entering Home",
+        "arabic": "بِسْمِ اللَّهِ وَلَجْنَا وَبِسْمِ اللَّهِ خَرَجْنَا وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا",
+        "transliteration": "Bismillah walajna wa bismillah kharajna wa 'ala Allahi rabbina tawakkalna.",
+        "translation": "C'est au nom d'Allah que nous entrons, c'est au nom d'Allah que nous sortons, c'est à notre Seigneur que nous nous en remettons.",
+        "category": "after"
+      },
+      {
+        "id": "after-clothing",
+        "title": "Dhikr After Wearing A New Garment",
+        "arabic": "اللَّهُمَّ لَكَ الْحَمْدُ أَنْتَ كَسَوْتَنِيهِ، أَسْأَلُكَ مِنْ خَيْرِهِ وَخَيْرِ مَا صُنِعَ لَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّهِ وَشَرِّ مَا صُنِعَ لَهُ",
+        "transliteration": "Allahumma lakal-hamdu anta kasawtaneehi, as’aluka min khayrihi wa khayri ma suni'a lahu, wa a'oodhu bika min sharrihi wa sharri ma suni'a lahu.",
+        "translation": "Ô Allah, c'est à Toi que revient la louange. Tu m'en as revêtu. Je Te demande son bien et le bien pour lequel il a été fait, et je cherche refuge auprès de Toi contre son mal et le mal pour lequel il a été fait.",
         "category": "after"
       }
     ],

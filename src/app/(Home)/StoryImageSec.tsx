@@ -127,7 +127,7 @@ function StoryImageSec() {
     {images.map((image, index) => (
       <SwiperSlide key={index} className="!w-auto mx-auto">
         <div
-          className="rounded-xl p-1 bg-blue-500 cursor-pointer"
+          className="rounded-xl p-1 bg-[#1e8e67] cursor-pointer"
           onClick={() => openModal(index)}
         >
           <img
@@ -144,14 +144,14 @@ function StoryImageSec() {
   {/* Custom Navigation Arrows - Positioned Opposite and Centered */}
   <button
     id="previmgslide"
-    className="absolute top-1/2 left-0 -translate-y-1/2 z-10 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition"
+    className="absolute top-1/2 left-0 -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
   >
     <ArrowLeft size={24} />
   </button>
 
   <button
     id="nextimgslide"
-    className="absolute top-1/2 right-0 -translate-y-1/2 z-10 p-2 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition"
+    className="absolute top-1/2 right-0 -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
   >
     <ArrowRight size={24} />
   </button>
@@ -163,7 +163,7 @@ function StoryImageSec() {
             {/* Progress Bar */}
             <div className="absolute -top-10 left-0 w-full h-1 bg-gray-700">
               <div
-                className="h-full bg-blue-500 transition-all"
+                className="h-full bg-[#1e8e67] transition-all"
                 style={{ width: `${progress}%` }}
               ></div>
             </div>
