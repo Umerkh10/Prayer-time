@@ -144,14 +144,14 @@ function StoryImageSec() {
   {/* Custom Navigation Arrows - Positioned Opposite and Centered */}
   <button
     id="previmgslide"
-    className="absolute top-1/2 left-0 -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
+    className="absolute top-1/2 left-0 lg:left-[-50px] -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
   >
     <ArrowLeft size={24} />
   </button>
 
   <button
     id="nextimgslide"
-    className="absolute top-1/2 right-0 -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
+    className="absolute top-1/2 right-0 lg:right-[-35px] -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
   >
     <ArrowRight size={24} />
   </button>

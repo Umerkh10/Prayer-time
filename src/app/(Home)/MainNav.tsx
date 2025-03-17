@@ -24,6 +24,8 @@ export function MainNav() {
     { href: isLang ? `/${currentLang}/duas` : "/duas", key: "duas" },
     { href: isLang ? `/${currentLang}/about-us` : "/about-us", key: "aboutUs" },
     { href: isLang ? `/${currentLang}/contact-us` : "/contact-us", key: "contactUs" },
+    { href: isLang ? `/${currentLang}/makkah-tv` : "/makkah-tv", key: "makkahTv" },
+    { href: isLang ? `/${currentLang}/madina-tv` : "/madina-tv", key: "madinaTv" },
   ]
 
   return (

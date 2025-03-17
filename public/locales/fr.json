@@ -7,7 +7,9 @@
     "islamicCalender": "Calendrier islamique",
     "duas": "Duas",
     "aboutUs": "À propos de nous",
-    "contactUs": "Contactez-nous"
+    "contactUs": "Contactez-nous",
+    "makkahTv": "Makkah Tv",
+    "madinaTv": "Madina Tv"
   },
   "banner": {
     "title": "Bienvenue sur Global Salah",
@@ -252,6 +254,7 @@
     "tomorrow": "Demain",
     "monthly": "Mensuel",
     "monthlynamaztitle": "Horaires du Namaz mensuel",
+    "hijridate":"Hijri Date:",
     "currentdate": "Date actuelle",
     "date":"Date",
     "namazfajr":"Fajr",
@@ -690,6 +693,22 @@
     "sub-heading":"Vous avez d'autres questions ?",
     "sub-paragraph":"N'hésitez pas à nous envoyer un courriel et nous vous répondrons dans les plus brefs délais.",
     "buttontext":"Envoyez-nous un courriel à"
+  },
+  "makkahtv":{
+    "mainheading":"Makkah TV",
+    "mainparagraph":"Faites l'expérience d'un voyage spirituel grâce aux retransmissions en direct de la Sainte Mosquée - regardez en temps réel et sentez-vous connecté.",
+    "videotitle":"EN DIRECT : Masjid Al-Haram",
+    "subheading":"À propos de l'émission",
+    "subparagraph":"Découvrez l'atmosphère spirituelle du site le plus sacré de l'Islam, assistez au Tawaf autour de la Kaaba et participez à la prière depuis n'importe où dans le monde.",
+    "footertext":"Ce flux est fourni à des fins éducatives et spirituelles."
+  },
+  "madinatv":{
+    "mainheading":"Madina TV",
+    "mainparagraph":"Faites l'expérience d'un voyage spirituel grâce aux retransmissions en direct de la mosquée du prophète - regardez en temps réel et sentez-vous connecté.",
+    "videotitle":"EN DIRECT : Al-Masjid an-Nabawi",
+    "subheading":"À propos de l'émission",
+    "subparagraph":"Cette retransmission en direct, 24 heures sur 24 et 7 jours sur 7, permet aux téléspectateurs du monde entier de se rendre à la mosquée du prophète à Médine. Plongez dans l'atmosphère sereine du deuxième site le plus sacré de l'islam, assistez aux prières et faites l'expérience de la tranquillité spirituelle depuis n'importe quel endroit du monde.",
+    "footertext":"Cette filière est proposée à des fins d'apprentissage et d'enrichissement spirituel."
   }
 
   

@@ -74,6 +74,20 @@ const pathname = usePathname()
             >
               {isLang ? t("navigation.contactUs") : "contactUs"} 
             </Link>
+            <Link
+              href={ isLang ? `/${currentLang}/makkah-tv` : "/makkah-tv"}
+              onClick={() => setOpen(false)}
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize "
+            >
+              {isLang ? t("navigation.makkahTv") : "makkahTv"} 
+            </Link>
+            <Link
+              href={ isLang ? `/${currentLang}/madina-tv` : "/madina-tv"}
+              onClick={() => setOpen(false)}
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize "
+            >
+              {isLang ? t("navigation.madinaTv") : "madinaTv"} 
+            </Link>
           </div>
         </ScrollArea>
         <Button

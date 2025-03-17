@@ -222,7 +222,10 @@ body {
 }
 
 
-.swiper-pagination-bullet-active {
-  opacity: var(--swiper-pagination-bullet-opacity, 1);
-  background: #1e8e67;
+span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: green;
+}
+
+span.swiper-pagination-bullet {
+  background: gray;
 }

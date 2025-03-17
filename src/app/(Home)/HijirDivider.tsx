@@ -16,12 +16,13 @@ function HijirDivider() {
   }, []);
 
 useEffect(() => {
+  const hijriDate = moment().subtract(1, 'days');
   if (path.includes("/ar")) {
     moment.locale("ar-SA");
-    setCurrentHijriDate(moment().format("iD iMMMM, iYYYY"));
+    setCurrentHijriDate(hijriDate.format("iD iMMMM, iYYYY"));
   } else {
     moment.locale("en");
-    setCurrentHijriDate(moment().format("iD iMMMM, iYYYY"));
+    setCurrentHijriDate(hijriDate.format("iD iMMMM, iYYYY"));
   }
 }, [path]);
 

@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { addDays, isSameDay, isToday, isTomorrow, isYesterday, subDays } from "date-fns";
+import { addDays, subDays } from "date-fns";
 import { PrayerTimes, Coordinates, CalculationMethod, Madhab, CalculationParameters } from "adhan";
 import "swiper/css";
 import "swiper/css/navigation";
-import { ArrowLeftCircleIcon, ArrowLeftFromLine, ArrowRightCircleIcon, CloudSun, LucideSunset, MoonStarIcon, SunDim, SunDimIcon, SunMediumIcon, SunriseIcon, } from "lucide-react";
+import { CloudSun, LucideSunset, MoonStarIcon, SunDimIcon, SunMediumIcon, SunriseIcon, } from "lucide-react";
 import moment from "moment-hijri";
 import MonthlyNamazTimings from "./MonthlyNamaz";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -187,33 +187,33 @@ function DateTimingDisplay() {
       return {
         date: {
           gregorian: isArabic
-            ? date.toLocaleDateString("ar-EG", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })
-            : date.toLocaleDateString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            }),
+        ? date.toLocaleDateString("ar-EG", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+        : date.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
           hijri: isArabic
-            ? moment(date).locale("ar-SA").format("iD iMMMM, iYYYY")
-            : moment(date).locale("en").format("iD iMMMM, iYYYY"),
+        ? moment(subDays(date, 1)).locale("ar-SA").format("iD iMMMM, iYYYY")
+        : moment(subDays(date, 1)).locale("en").format("iD iMMMM, iYYYY"),
         },
         prayers,
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
         nextPrayer: nextPrayer
           ? {
-            name: nextPrayer.name,
-            time: nextPrayer.time,
-            countdown: () =>
-              differenceInSeconds(
-                new Date(`${date.toDateString()} ${nextPrayer.time}`),
-                new Date()
-              ),
+        name: nextPrayer.name,
+        time: nextPrayer.time,
+        countdown: () =>
+          differenceInSeconds(
+            new Date(`${date.toDateString()} ${nextPrayer.time}`),
+            new Date()
+          ),
           }
           : null,
       };
@@ -267,25 +267,7 @@ function DateTimingDisplay() {
     }
 
     setActiveIndex(activeIndex);
-
-    const prevBtn = document.getElementById("prevBtn");
-    const todayBtn = document.getElementById("todayBtn");
-    const nextBtn = document.getElementById("nextBtn");
-
-    if (prevBtn && todayBtn && nextBtn) {
-      prevBtn.classList.remove("bg-[#1e8e67]", "text-white");
-      todayBtn.classList.remove("bg-[#1e8e67]", "text-white");
-      nextBtn.classList.remove("bg-[#1e8e67]", "text-white");
-
-      if (isSameDay(currentDate, subDays(new Date(), 1))) {
-        prevBtn.classList.add("bg-[#1e8e67]", "text-white");
-      } else if (isSameDay(currentDate, new Date())) {
-        todayBtn.classList.add("bg-[#1e8e67]", "text-white");
-      } else if (isSameDay(currentDate, addDays(new Date(), 1))) {
-        nextBtn.classList.add("bg-[#1e8e67]", "text-white");
-      }
-    }
-  };
+  }
   
   const { t } = useTranslation("CurrentNamazTime")
 
@@ -323,60 +305,60 @@ function DateTimingDisplay() {
             <div className="grid grid-cols-2 lg:gap-0 gap-3 ">
               {/* Group 1: Yesterday and Today */}
               <div className="flex flex-col sm:flex-row gap-2">
-                <button
-                  id="prevBtn"
-                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, subDays(new Date(), 1))
-                    ? "bg-[#1e8e67] text-white"
-                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-                    }`}
-                  onClick={() => {
-                    setCurrentDate(subDays(currentDate, 1));
-                  }}
-                >
-                  {t("CurrentNamazTime.yesterday")}
-                </button>
+              <button
+               className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 0
+                ? "bg-[#1e8e67] text-white"
+                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                }`}
+              onClick={() => {
+                setActiveIndex(0);
+                setCurrentDate(subDays(currentDate, 1));
+              }}
+              >
+                {t("CurrentNamazTime.yesterday")}
+              </button>
 
-                <button
-                  id="todayBtn"
-                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, new Date())
-                    ? "bg-[#1e8e67] text-white"
-                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-                    }`}
-                  onClick={() => {
-                    setCurrentDate(new Date());
-                  }}
-                >
-                  {t("CurrentNamazTime.today")}
-                </button>
+              <button
+               className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 1
+              ? "bg-[#1e8e67] text-white"
+              : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+              }`}
+              onClick={() => {
+              setActiveIndex(1);
+              setCurrentDate(new Date());
+              }}
+              >
+                {t("CurrentNamazTime.today")}
+              </button>
 
               </div>
 
               {/* Group 2: Tomorrow and Monthly */}
               <div className="flex flex-col sm:flex-row gap-2">
-                <button
-                  id="nextBtn"
-                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${isSameDay(currentDate, addDays(new Date(), 1))
-                      ? "bg-[#1e8e67] text-white"
-                      : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-                    }`}
-                  onClick={() => {
-                    setCurrentDate(addDays(currentDate, 1));
-                  }}
-                >
-                  {t("CurrentNamazTime.tomorrow")}
-                </button>
+              <button
+                className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 2
+                  ? "bg-[#1e8e67] text-white"
+                  : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                  }`}
+                onClick={() => {
+                  setActiveIndex(2);
+                  setCurrentDate(addDays(currentDate, 0));
+                }}
+              >
+                {t("CurrentNamazTime.tomorrow")}
+              </button>
 
-                <button
-                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3
-                    ? "bg-[#1e8e67] text-white"
-                    : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-                    }`}
-                  onClick={() => {
-                    setActiveIndex(3);
-                  }}
-                >
-                  {t("CurrentNamazTime.monthly")}
-                </button>
+              <button
+                className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3
+                ? "bg-[#1e8e67] text-white"
+                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                }`}
+                onClick={() => {
+                setActiveIndex(3);
+                }}
+              >
+                {t("CurrentNamazTime.monthly")}
+              </button>
               </div>
             </div>
 

@@ -7,7 +7,9 @@
     "islamicCalender": "Islamic Calendar",
     "duas": "Duas",
     "aboutUs": "About Us",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "makkahTv": "Makkah Tv",
+    "madinaTv": "Madina Tv"
   },
   "banner": {
     "title": "Welcome to Global Salah",
@@ -253,6 +255,7 @@
     "monthly": "Monthly",
     "monthlynamaztitle": "Monthly Namaz Timings",
     "currentdate": "Current Date",
+    "hijridate":"Hijri Date:",
     "date": "Date",
     "namazfajr": "Fajr",
     "sunrise": "Sunrise",
@@ -682,5 +685,21 @@
     "sub-heading":"Have Additional Questions?",
     "sub-paragraph":"Feel free to send us an email and we'll respond as quickly as possible.",
     "buttontext":"Email Us at"
+  },
+  "makkahtv":{
+    "mainheading":"Makkah TV",
+    "mainparagraph":"Experience a spiritual journey with live broadcasts from the Holy Mosque—watch in real-time and feel connected.",
+    "videotitle":"LIVE: Masjid Al-Haram",
+    "subheading":"About the Broadcast",
+    "subparagraph":"This 24/7 live stream provides viewers worldwide with a connection to the Holy Mosque in Makkah.Experience the spiritual atmosphere of Islam's holiest site, witness the Tawaf around the Kaaba, and join in prayer from anywhere in the world.",
+    "footertext":"This stream is provided for educational and spiritual purposes."
+  },
+  "madinatv":{
+    "mainheading":"Madina TV",
+    "mainparagraph":"Experience a spiritual journey with live broadcasts from the Prophet's Mosque—watch in real-time and feel connected.",
+    "videotitle":"LIVE: Al-Masjid an-Nabawi",
+    "subheading":"About the Broadcast",
+    "subparagraph":"This 24/7 live stream connects viewers worldwide to the Prophet’s Mosque in Madinah. Immerse yourself in the serene atmosphere of Islam’s second holiest site, witness the prayers, and experience the spiritual tranquility from anywhere in the world.",
+    "footertext":"This stream is offered for learning and spiritual enrichment."
   }
 }

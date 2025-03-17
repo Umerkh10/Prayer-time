@@ -9,6 +9,8 @@ import moment from "moment-hijri";
 import { Button } from "@/components/ui/button";
 import { CalendarIcon, ChevronDownIcon, MoonIcon, SunIcon } from 'lucide-react';
 import { useTranslation } from "@/hooks/useTranslation";
+import { usePathname } from "next/navigation";
+import { urlSplitter } from "@/lib";
 
 interface LocationInfo {
   city: string;
@@ -30,12 +32,16 @@ const MonthlyNamazTimings = () => {
     };
   }
 
+  const pathname = usePathname();
+  const lang = urlSplitter(pathname)
   const [location, setLocation] = useState<LocationInfo | null>(null);
   const [timings, setTimings] = useState<NamazTiming[]>([]);
   const [hijriDate, setHijriDate] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [school, setSchool] = useState<"hanafi" | "shafi">("shafi");
+  const isArabic = pathname.split("/")[1]
+
 
   const fetchLocation = async () => {
     try {
@@ -114,9 +120,8 @@ const MonthlyNamazTimings = () => {
       );
 
       calculationMethod.madhab = madhab;
-
       if (day === now.getDate()) {
-        const hijri = moment(date).locale("en").format("iD iMMMM iYYYY");
+        const hijri = moment(date).subtract(1, 'days').locale(isArabic === "ar" ? "ar-SA" : "en").format(isArabic === "ar" ? "iD iMMMM iYYYY" : "iD iMMMM iYYYY");
         setHijriDate(hijri);
       }
 
@@ -161,12 +166,8 @@ const MonthlyNamazTimings = () => {
     </div>
   )
 
-  const currentDate = new Date().toLocaleDateString("en-US", { 
-    day: "numeric", 
-    month: "long", 
-    year: "numeric", 
-    timeZone: location?.timezone 
-  });
+  const currentDate = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().split("T")[0];
+
   
     const { t } = useTranslation("CurrentNamazTime")
   
@@ -191,8 +192,7 @@ const MonthlyNamazTimings = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-center text-base text-muted-foreground"
           >
-            <p> {t("CurrentNamazTime.currentdate")}: {currentDate}</p>
-            <p>Hijri Date: {hijriDate}</p>
+            <p>{isArabic ? `${t("CurrentNamazTime.hijridate")} ${hijriDate} ` : `${t("CurrentNamazTime.hijridate")} ${hijriDate}`}</p>
           </motion.div>
         )}
         <div className="flex justify-center mt-4">
@@ -229,13 +229,13 @@ const MonthlyNamazTimings = () => {
         ) : (
           <>
             <div className="hidden md:grid md:grid-cols-7 gap-2 p-2 font-semibold text-center bg-gray-100 dark:bg-gray-800 rounded-lg my-2 text-sm sticky-namaz">
-              <div>Date</div>
-              <div><SunIcon className="inline-block mr-1" size={16} /> Fajr</div>
-              <div><SunIcon className="inline-block mr-1" size={16} /> Sunrise</div>
-              <div><SunIcon className="inline-block mr-1" size={16} /> Dhuhr</div>
-              <div><SunIcon className="inline-block mr-1" size={16} /> Asr</div>
-              <div><MoonIcon className="inline-block mr-1" size={16} /> Maghrib</div>
-              <div><MoonIcon className="inline-block mr-1" size={16} /> Isha</div>
+              <div>{t("CurrentNamazTime.date")}</div>
+              <div><SunIcon className="inline-block mr-1" size={16} /> {t("CurrentNamazTime.namazfajr")}</div>
+              <div><SunIcon className="inline-block mr-1" size={16} /> {t("CurrentNamazTime.sunrise")}</div>
+              <div><SunIcon className="inline-block mr-1" size={16} /> {t("CurrentNamazTime.namazdhuhr")}</div>
+              <div><SunIcon className="inline-block mr-1" size={16} /> {t("CurrentNamazTime.namazasr")}</div>
+              <div><MoonIcon className="inline-block mr-1" size={16} /> {t("CurrentNamazTime.namazmaghrib")}</div>
+              <div><MoonIcon className="inline-block mr-1" size={16} /> {t("CurrentNamazTime.namazisha")}</div>
             </div>
             <Accordion type="single" collapsible className="w-full md:hidden">
               {timings.map((day, index) => (
@@ -253,17 +253,17 @@ const MonthlyNamazTimings = () => {
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="grid grid-cols-2 gap-2 p-2 text-sm">
-                        <div className="flex items-center"><SunIcon className="mr-2 h-4 w-4" /> Fajr</div>
+                        <div className="flex items-center"><SunIcon className="mr-2 h-4 w-4" /> {t("CurrentNamazTime.namazfajr")}</div>
                         <div>{day.timings.Fajr}</div>
-                        <div className="flex items-center"><SunIcon className="mr-2 h-4 w-4" /> Sunrise</div>
+                        <div className="flex items-center"><SunIcon className="mr-2 h-4 w-4" /> {t("CurrentNamazTime.sunrise")}</div>
                         <div>{day.timings.Sunrise}</div>
-                        <div className="flex items-center"><SunIcon className="mr-2 h-4 w-4" /> Dhuhr</div>
+                        <div className="flex items-center"><SunIcon className="mr-2 h-4 w-4" /> {t("CurrentNamazTime.namazdhuhr")}</div>
                         <div>{day.timings.Dhuhr}</div>
-                        <div className="flex items-center"><SunIcon className="mr-2 h-4 w-4" /> Asr</div>
+                        <div className="flex items-center"><SunIcon className="mr-2 h-4 w-4" /> {t("CurrentNamazTime.namazasr")}</div>
                         <div>{day.timings.Asr}</div>
-                        <div className="flex items-center"><MoonIcon className="mr-2 h-4 w-4" /> Maghrib</div>
+                        <div className="flex items-center"><MoonIcon className="mr-2 h-4 w-4" /> {t("CurrentNamazTime.namazmaghrib")}</div>
                         <div>{day.timings.Maghrib}</div>
-                        <div className="flex items-center"><MoonIcon className="mr-2 h-4 w-4" /> Isha</div>
+                        <div className="flex items-center"><MoonIcon className="mr-2 h-4 w-4" /> {t("CurrentNamazTime.namazisha")}</div>
                         <div>{day.timings.Isha}</div>
                       </div>
                     </AccordionContent>
@@ -278,7 +278,7 @@ const MonthlyNamazTimings = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-green-500 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-green-700 text-white" : "even:bg-muted"}`}>
+                  className={`grid grid-cols-7 gap-2 p-4 rounded-lg text-base dark:text-zinc-100 hover:bg-green-500 hover:shadow-xl hover:text-zinc-100 ${day.date === currentDate ? "bg-green-600 text-white" : "even:bg-muted"}`}>
                   <div className="text-center">{day.formattedDate}</div>
                   <div className="text-center">{day.timings.Fajr}</div>
                   <div className="text-center">{day.timings.Sunrise}</div>
