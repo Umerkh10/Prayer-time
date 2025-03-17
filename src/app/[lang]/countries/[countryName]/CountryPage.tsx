@@ -897,7 +897,7 @@ export default function CountryPage() {
 
         setCountry(countryData);
 
-        localStorage.setItem("CountryData", JSON.stringify(countryData));
+        localStorage.setItem("countryData", JSON.stringify(countryData));
         
         
       } catch (error) {

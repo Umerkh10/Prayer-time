@@ -682,6 +682,14 @@
     "monthlytitle":"Heures de prière mensuelles",
     "selecttimezone":"Sélectionnez le fuseau horaire :"
 
+  },
+  "thankyou":{
+    "badge-text":"Merci de tendre la main !",
+    "heading":"Nous apprécions votre message",
+    "paragraph": " Nous vous remercions d'avoir pris contact avec Global Salah. Votre message est important pour nous et nous vous répondrons dès que possible. En attendant, découvrez les heures de prière exactes, le calendrier islamique et des ressources utiles pour rester en contact avec votre foi. JazakAllah Khair !",
+    "sub-heading":"Vous avez d'autres questions ?",
+    "sub-paragraph":"N'hésitez pas à nous envoyer un courriel et nous vous répondrons dans les plus brefs délais.",
+    "buttontext":"Envoyez-nous un courriel à"
   }
 
   

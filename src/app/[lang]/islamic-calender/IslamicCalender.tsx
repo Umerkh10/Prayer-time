@@ -39,6 +39,9 @@ export default function IslamicCalendar() {
   const pathname = usePathname()
   const [date, setDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation("calender")
+  const isLang = checkIsPathnameIsEqualToLang(pathname)
+  const isArabic = pathname.split("/")[1]
   const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(null)
 
   const hijriDate = moment(date).locale(pathname.includes("/ar") ? "ar" : "en").format("iD iMMMM iYYYY")
@@ -139,9 +142,7 @@ export default function IslamicCalendar() {
     )
   }
 
-  const { t } = useTranslation("calender")
-  const isLang = checkIsPathnameIsEqualToLang(pathname)
-  const isArabic = pathname.split("/")[1]
+
 
 
   return (

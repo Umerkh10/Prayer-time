@@ -3,14 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { PrayerTimes, CalculationMethod, Madhab } from "adhan";
 import { Card, CardContent } from "@/components/ui/card";
-import { Calendar, Loader2, MapPin, Moon, Search, Sun, Sunrise } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, Moon, Search, Sun, Sunrise } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { cityTimezones } from '../../[countryName]/[cityName]/cityTimezones';
-import Flag from 'react-world-flags';
 import { useTranslation } from "@/hooks/useTranslation";
 import { usePathname } from "next/navigation";
-import { log } from "console";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { checkIsPathnameIsEqualToLang, urlSplitter } from "@/lib";
@@ -76,6 +73,7 @@ function CityData() {
     const cityDetails: any = localStorage.getItem("cityDetails");
     const parsedCityDetails = cityDetails ? JSON.parse(cityDetails) : null;
     const countryData: any = localStorage.getItem("countryData");
+    console.log("countryData", countryData)
 
     if (parsedCityDetails) {
       setCountryLink(countryData ? (JSON.parse(countryData) as any).name : null);
@@ -310,6 +308,43 @@ function CityData() {
         </div>
       </div> :
         (<div className="container mx-auto px-4 py-8 max-w-6xl">
+
+{isArabic === "ar" ? (
+          <div className={`mb-6 flex items-center justify-end text-sm text-muted-foreground `}>
+          
+            <span className="capitalize text-foreground">{data?.city?.name}</span>
+            <ChevronLeft className="h-4 w-4 mx-1" />
+            <Link href={isLang ? `/${currentLang}/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}` : `/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}`}>
+              <span className=" hover:text-green-500">{countryLink}</span>
+            </Link>
+            <ChevronLeft className="h-4 w-4 mx-1" />
+            <Link href="/countries" className="hover:text-green-500">
+              {t("navigation.countries")}
+            </Link>
+            <ChevronLeft className="h-4 w-4 mx-1" />
+            <Link href="/" className="hover:text-green-500">
+              {t("navigation.home")}
+            </Link>
+          </div>):
+          
+          (<div className={`mb-6 flex items-center text-sm text-muted-foreground `}>
+            <Link href="/" className="hover:text-green-500">
+              {t("navigation.home")}
+            </Link>
+            <ChevronRight className="h-4 w-4 mx-1" />
+            <Link href="/countries" className="hover:text-green-500">
+              {t("navigation.countries")}
+            </Link>
+            <ChevronRight className="h-4 w-4 mx-1" />
+            <Link href={isLang ? `/${currentLang}/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}` : `/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}`}>
+              <span className=" hover:text-green-500">{countryLink}</span>
+            </Link>
+            <ChevronRight className="h-4 w-4 mx-1" />
+            <span className="text-foreground capitalize">{data?.city?.name}</span>
+          </div>)
+          }
+
+
           {isArabic === "ar" ? (<div className="flex items-center justify-between md:gap-2 gap-5 mb-8">
             <div> <img src={flagUrl || "/placeholder.svg"} alt={`${name} flag`} width={120} height={120} className="rounded shadow-sm" />
             </div>
@@ -512,7 +547,7 @@ function CityData() {
               {/* Only iterate over letters that have cities */}
               {Object.keys(groupedCities).map((letter) => (
                 <div key={letter}>
-                  <h2 className="text-2xl font-bold text-primary sticky top-0 bg-background py-2 px-1 z-10 border-b flex items-center">
+                  <h2 className="text-2xl font-bold  sticky top-0 bg-background py-2 px-1 z-10 border-b flex items-center">
                     {letter}
                   </h2>
 
@@ -521,7 +556,7 @@ function CityData() {
                       <Link
                         href={isLang ? `/${currentLang}/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}/${city.name?.toLowerCase().replaceAll(" ", "-")}` : `/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}/${city.name?.toLowerCase().replaceAll(" ", "-")}`}
                         key={index}
-                        className="p-3 bg-secondary rounded-lg shadow hover:bg-green-500 hover:text-zinc-100 transition-all duration-200 flex items-center"
+                        className="p-3 text-white bg-zinc-900 dark:bg-gray-700 rounded-lg shadow hover:bg-emerald-600 hover:text-zinc-100 dark:hover:bg-emerald-700 transition-all duration-200 flex items-center"
                       >
                         <span className="truncate">{city.name}</span>
                       </Link>
@@ -554,7 +589,7 @@ function CityData() {
               {/* Only iterate over letters that have cities */}
               {Object.keys(groupedCities).map((letter) => (
                 <div key={letter}>
-                  <h2 className="text-2xl font-bold  sticky top-0 bg-background py-2 px-1 z-10 border-b flex items-center">
+                  <h2 className="text-2xl font-bold  sticky top-0 py-2 px-1 z-10 border-b flex items-center">
                     {letter}
                   </h2>
 
@@ -563,7 +598,7 @@ function CityData() {
                       <Link
                         href={isLang ? `/${currentLang}/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}/${city.name?.toLowerCase().replaceAll(" ", "-")}` : `/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}/${city.name?.toLowerCase().replaceAll(" ", "-")}`}
                         key={index}
-                        className="p-3 bg-secondary rounded-lg shadow hover:bg-green-500 hover:text-zinc-100 transition-all duration-200 flex items-center"
+                        className="p-3 text-white bg-zinc-900 dark:bg-gray-700 rounded-lg shadow hover:bg-emerald-600 hover:text-zinc-100 dark:hover:bg-emerald-700 transition-all duration-200 flex items-center"
                       >
                         <span className="truncate">{city.name}</span>
                       </Link>

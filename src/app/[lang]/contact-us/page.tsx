@@ -2,7 +2,7 @@ import React from 'react'
 import ContactPage from './ContactPage'
 
 
-export async function generateMetadata({ params }: any) {
+export  async function generateMetadata({ params }: any) {
   const lang = params.lang
   return {
     title: `Contact Us – Global Salah`,
@@ -27,12 +27,14 @@ robots: {
 }
 
 
-function page() {
+function Page({ params }: { params: { lang: string } }) {
+  const { lang } = params;
+  
   return (
     <div>
-      <ContactPage/>
+      <ContactPage lang={lang} />
     </div>
-  )
+  );
 }
 
-export default page
+export default Page;

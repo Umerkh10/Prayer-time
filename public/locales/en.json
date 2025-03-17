@@ -674,5 +674,13 @@
     "shafi": "Shafi/Maliki/Hanbali",
     "monthlytitle": "Monthly Prayer Times",
     "selecttimezone": "Select Timezone:"
+  },
+  "thankyou":{
+    "badge-text":"Thank You for Reaching Out!",
+    "heading":"We Appreciate Your Message",
+    "paragraph": " We appreciate you contacting Global Salah. Your message is important to us, and we'll get back to you as soon as possible. In the meantime, explore accurate prayer times, the Islamic calendar, and helpful resources to stay connected with your faith. JazakAllah Khair!",
+    "sub-heading":"Have Additional Questions?",
+    "sub-paragraph":"Feel free to send us an email and we'll respond as quickly as possible.",
+    "buttontext":"Email Us at"
   }
 }

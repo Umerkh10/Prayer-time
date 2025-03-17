@@ -117,7 +117,7 @@ function page() {
         <FaEnvelope className="text-blue-600 text-xl mt-1" />
         <div>
           <h3 className="font-semibold">Email</h3>
-          <p className="">contact@globalsalah.com</p>
+          <p className="">support@globalsalah.com</p>
         </div>
       </div>
 
