@@ -90,6 +90,8 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode, timezo
     if (!countriesData[country] || !selectedTimezone) return
 
     const cityList = countriesData[country].cities[selectedTimezone]
+    const sortedCities = cityList.sort((a, b) => a.name.localeCompare(b.name))
+
     if (!cityList) {
       setError(`No cities available for ${country} in ${selectedTimezone}.`)
       return
@@ -140,7 +142,7 @@ export function PrayerTimesTable({ country, timezoneMapping, countryCode, timezo
       {} as Record<string, PrayerTime>,
     )
 
-    setCities(cityList)
+    setCities(sortedCities)
     setPrayerTimes(times)
     setError(null)
   }

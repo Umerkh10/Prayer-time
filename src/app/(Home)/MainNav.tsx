@@ -22,8 +22,6 @@ export function MainNav() {
     { href: isLang ? `/${currentLang}/countries` : "/countries", key: "countries" },
     { href: isLang ? `/${currentLang}/islamic-calender` : "/islamic-calender", key: "islamicCalender" },
     { href: isLang ? `/${currentLang}/duas` : "/duas", key: "duas" },
-    { href: isLang ? `/${currentLang}/about-us` : "/about-us", key: "aboutUs" },
-    { href: isLang ? `/${currentLang}/contact-us` : "/contact-us", key: "contactUs" },
     { href: isLang ? `/${currentLang}/makkah-tv` : "/makkah-tv", key: "makkahTv" },
     { href: isLang ? `/${currentLang}/madina-tv` : "/madina-tv", key: "madinaTv" },
   ]
@@ -36,7 +34,7 @@ export function MainNav() {
             <Link
             key={href}
             href={href}
-            className="relative px-1 py-2 text-sm font-medium text-white transition-colors hover:text-gray-200 capitalize"
+            className="relative px-1 py-2 text-xs font-medium text-white transition-colors hover:text-gray-200 capitalize"
             >
             {isLang ? t(`navigation.${key}`) : key}
             {isActive && (

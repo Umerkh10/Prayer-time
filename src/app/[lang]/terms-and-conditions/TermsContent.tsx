@@ -1,5 +1,7 @@
 "use client"
 
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "@/hooks/useTranslation"
 import { motion } from "framer-motion"
@@ -26,52 +28,66 @@ export default function TermsContent() {
      <>
         {isLoading ? <div className='px-8 mt-4'>
           <Skeleton className="h-screen w-full" /></div> :
-          (<div className="min-h-screen ">
-      <main className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold text-green-500 mb-8 text-center">{t("terms.title")}</h1>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="bg-background shadow-md rounded-lg p-8"
-        >
+          (    <div className="container mx-auto py-10 px-4 max-w-4xl">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold tracking-tight">{t("terms.title")}</h1>
+              <p className="text-muted-foreground mt-2">{t("terms.lastupdated")}</p>
+            </div>
+      
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle>{t("terms.subheading_1")}</CardTitle>
+                <CardDescription>{t("terms.subtext_1")}</CardDescription>
+              </CardHeader>
+              <CardContent className="prose prose-slate max-w-none">
+                <p>
+                {t("terms.subparagraph_1")}
+                </p>
+                <p>
+                {t("terms.subparagraph_2")}
+                </p>
+              </CardContent>
+            </Card>
+      
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle>{t("terms.subheading_3")}</CardTitle>
+              </CardHeader>
+              <CardContent className="prose prose-slate max-w-none">
+                <p>
+                {t("terms.subparagraph_3")}
+                </p>
+              </CardContent>
+            </Card>
+      
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle> {t("terms.subheading_4")}  </CardTitle>
+              </CardHeader>
+              <CardContent className="prose prose-slate max-w-none">
+                <p>
+                {t("terms.subparagraph_4")}
+                </p>
+              </CardContent>
+            </Card>
+      
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle>{t("terms.subheading_5")}</CardTitle>
+              </CardHeader>
+              <CardContent className="prose prose-slate max-w-none">
+                <p>
+                {t("terms.subparagraph_5")}
+                </p>
+              </CardContent>
+            </Card>
+      
+            <div className="text-center text-sm text-muted-foreground mt-12">
+              <p>{t("terms.footertext")}</p>
+              <Separator className="my-4" />
 
-          <h2 className="text-2xl font-semibold mb-4">{t("terms.subheading_1")}</h2>
-          <p className="mb-4">{t("terms.subparagraph_1")}</p>
-
-          <h2 className="text-2xl font-semibold mb-4">{t("terms.subheading_2")}</h2>
-          <p className="mb-4">{t("terms.subparagraph_2")}</p>
-
-          <h2 className="text-2xl font-semibold mb-4">{t("terms.subheading_3")}</h2>
-          <p className="mb-4">
-            {t("terms.subparagraph_3")}
-          </p>
-
-          <h2 className="text-2xl font-semibold mb-4">{t("terms.subheading_4")}</h2>
-          <p className="mb-4">
-            {t("terms.subparagraph_4")}
-          </p>
-
-          <h2 className="text-2xl font-semibold mb-4">{t("terms.subheading_5")}</h2>
-          <p className="mb-4">
-            {t("terms.subparagraph_5")}
-          </p>
-
-          <h2 className="text-2xl font-semibold mb-4">{t("terms.subheading_6")}</h2>
-          <p className="mb-4">
-            {t("terms.subparagraph_6")}
-          </p>
-
-          <h2 className="text-2xl font-semibold mb-4">{t("terms.subheading_7")}</h2>
-          <p className="mb-4">
-            {t("terms.subparagraph_7")}
-          </p>
-
-          <h2 className="text-2xl font-semibold mb-4">{t("terms.subheading_8")}</h2>
-          <p>{t("terms.subparagraph_8")}</p>
-        </motion.div>
-      </main>
-    </div>)}
+            </div>
+          </div>)}
     </>
 
 

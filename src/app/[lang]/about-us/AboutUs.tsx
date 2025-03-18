@@ -43,13 +43,14 @@ function AboutUs() {
             className="py-28 text-center bg-[#FAFAFF] dark:bg-[#000000] supports-[backdrop-filter]:bg-[#003524]  text-white"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-4">{t("aboutus.title")}</h1>
-            <p className="text-xl max-w-2xl mx-auto">{t("aboutus.desc")}</p>
+            <p className="text-sm max-w-2xl px-2 mx-auto">{t("aboutus.desc")}</p>
           </motion.section>
 
           <section className="py-20 bg-transparent">
             <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center mb-12 text-green-600">{t("aboutus.mission")}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <h2 className="text-3xl font-bold text-center text-green-600">{t("aboutus.mission")}</h2>
+              <p className="text-sm max-w-2xl mx-auto text-center py-4">{t("aboutus.missionparagraph")}</p>
+              <div className="flex lg:flex-row flex-col justify-center gap-6 pt-5">
 
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
@@ -58,11 +59,11 @@ function AboutUs() {
                   className="text-center"
                 >
                   <FaGlobe className="text-5xl text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.globaltitle")}</h3>
-                  <p className="text-muted-foreground">{t("aboutus.globaldesc")}</p>
+                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.coretitle")}</h3>
+                  <p className="text-muted-foreground text-sm max-w-md mx-auto">{t("aboutus.coredesc")}</p>
                 </motion.div>
 
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, }}
@@ -71,7 +72,8 @@ function AboutUs() {
                   <FaHeart className="text-5xl text-green-600 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2">{t("aboutus.communitytitle")}</h3>
                   <p className="text-muted-foreground">{t("aboutus.communitydesc")}</p>
-                </motion.div>
+                </motion.div> */}
+
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -79,8 +81,8 @@ function AboutUs() {
                   className="text-center"
                 >
                   <FaPrayingHands className="text-5xl text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.spiritualtitle")}</h3>
-                  <p className="text-muted-foreground">{t("aboutus.spiritualdesc")}</p>
+                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.visiontitle")}</h3>
+                  <p className="text-muted-foreground text-sm max-w-sm mx-auto">{t("aboutus.visiondesc")}</p>
                 </motion.div>
 
               </div>
@@ -229,49 +231,7 @@ function AboutUs() {
             </div>
           </section>
 
-          <section className="py-20 bg-transparent">
-            <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center mb-12 text-green-600">{t("aboutus.servicetitle")}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6 text-center"
-                >
-                  <FaClock className="text-4xl text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.prayertimestitle")}</h3>
-                  <p className="text-muted-foreground">{t("aboutus.prayertimesdesc")}</p>
-                </motion.div>
-
-
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6 text-center"
-                >
-                  <FaCalendar className="text-4xl text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.islamiccalendertitle")}</h3>
-                  <p className="text-muted-foreground">{t("aboutus.islamiccalenderdesc")}</p>
-                </motion.div>
-
-
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6 text-center"
-                >
-                  <FaBook className="text-4xl text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.quranrecitationtitle")}</h3>
-                  <p className="text-muted-foreground">{t("aboutus.quranrecitationdesc")}</p>
-                </motion.div>
-
-              </div>
-            </div>
-          </section>
+   
 
         </div>)}
     </>

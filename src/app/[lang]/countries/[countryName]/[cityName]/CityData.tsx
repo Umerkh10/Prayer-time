@@ -586,14 +586,14 @@ function CityData() {
                 </div>
               </div>
 
-              {/* Only iterate over letters that have cities */}
+              <div className="grid grid-cols-1 md:grid-cols-3  gap-6">
               {Object.keys(groupedCities).map((letter) => (
                 <div key={letter}>
                   <h2 className="text-2xl font-bold  sticky top-0 py-2 px-1 z-10 border-b flex items-center">
                     {letter}
                   </h2>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2  gap-3 mt-3">
                     {groupedCities[letter].map((city, index) => (
                       <Link
                         href={isLang ? `/${currentLang}/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}/${city.name?.toLowerCase().replaceAll(" ", "-")}` : `/countries/${countryLink?.toLowerCase().replaceAll(" ", "-")}/${city.name?.toLowerCase().replaceAll(" ", "-")}`}
@@ -606,6 +606,7 @@ function CityData() {
                   </div>
                 </div>
               ))}
+              </div>
 
               {filteredCities.length === 0 && (
                 <div className="p-8 text-center text-muted-foreground">No cities found</div>
