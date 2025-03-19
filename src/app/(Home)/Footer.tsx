@@ -42,6 +42,10 @@ function Footer() {
               <li > <Link href={isLang ? `/${currentLang}/makkah-tv` : "/makkah-tv"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">{isLang ? t("navigation.makkahTv") : "Makkah Tv"} </Link></li>
 
               <li > <Link href={isLang ? `/${currentLang}/madina-tv` : "/madina-tv"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">{isLang ? t("navigation.madinaTv") : "Madina-Tv"} </Link></li>
+
+              <li > <Link href={isLang ? `/${currentLang}/ramadan-calender` : "/ramadan-calender"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">{isLang ? t("navigation.ramadan") : "Ramadan-Calender"} </Link></li>
+              
+              <li > <Link href={isLang ? `/${currentLang}/99-names-of-allah` : "/99-names-of-allah"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">{isLang ? t("navigation.namesallah") : "99-Names-Of-Allah"} </Link></li>
         
             </ul>
           </div>

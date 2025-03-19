@@ -9,7 +9,9 @@
     "aboutUs": "About Us",
     "contactUs": "Contact Us",
     "makkahTv": "Makkah Tv",
-    "madinaTv": "Madina Tv"
+    "madinaTv": "Madina Tv",
+    "ramadan": "Ramadan Calender",
+    "namesallah":"99 Names Of Allah"
   },
   "banner": {
     "title": "Welcome to Global Salah",
@@ -696,5 +698,19 @@
     "subheading":"About the Broadcast",
     "subparagraph":"This 24/7 live stream connects viewers worldwide to the Prophet’s Mosque in Madinah. Immerse yourself in the serene atmosphere of Islam’s second holiest site, witness the prayers, and experience the spiritual tranquility from anywhere in the world.",
     "footertext":"This stream is offered for learning and spiritual enrichment."
+  },
+  "ramadanpage":{
+    "hijri":"1446 Hijri",
+    "heading":"Ramadan Calendar 2025",
+    "suhoor":"Suhoor (Fajr)",
+    "iftar":"Iftar (Maghrib)",
+    "suhoorends":"Suhoor Ends",
+    "iftartime":"Iftar Time",
+    "footertext":"Suhoor ends at Fajr time • Iftar begins at Maghrib time"
+  },
+  "namesofallah":{
+    "heading":"The 99 Names of Allah",
+    "paragraph":"Asma ul-Husna - The Beautiful Names of Allah with Meanings and Pronunciation",
+    "subparagraph":" The 99 Names of Allah, or Asma'ul Husna, reflect His mercy, wisdom, and greatness. Each name carries a special meaning, guiding believers toward faith and inner peace."
   }
 }

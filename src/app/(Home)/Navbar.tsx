@@ -31,12 +31,12 @@ function Navbar() {
               <Image
                 src="/logo.webp"
                 alt="Athan Pro Logo"
-                width={200}
-                height={200}
+                width={160}
+                height={160}
                 priority
               />
             </div>
-            <span className="text-xl font-semibold text-white"> {isLang ? t("navigation.title") : "Global Salah"} </span>
+            <span className="text-lg font-semibold text-white"> {isLang ? t("navigation.title") : "Global Salah"} </span>
           </Link>
         </div>
 

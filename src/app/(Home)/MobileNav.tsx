@@ -75,6 +75,13 @@ const pathname = usePathname()
             >
               {isLang ? t("navigation.madinaTv") : "madinaTv"} 
             </Link>
+            <Link
+              href={ isLang ? `/${currentLang}/ramadan-calender` : "/ramadan-calender"}
+              onClick={() => setOpen(false)}
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize "
+            >
+              {isLang ? t("navigation.ramadan") : "ramadan"} 
+            </Link>
           </div>
         </ScrollArea>
         <Button

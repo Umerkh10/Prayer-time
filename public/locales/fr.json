@@ -9,7 +9,9 @@
     "aboutUs": "À propos de nous",
     "contactUs": "Contactez-nous",
     "makkahTv": "Makkah Tv",
-    "madinaTv": "Madina Tv"
+    "madinaTv": "Madina Tv",
+    "ramadan": "Calendrier du Ramadan",
+    "namesallah":"99 noms d'Allah"
   },
   "banner": {
     "title": "Bienvenue sur Global Salah",
@@ -704,6 +706,20 @@
     "subheading":"À propos de l'émission",
     "subparagraph":"Cette retransmission en direct, 24 heures sur 24 et 7 jours sur 7, permet aux téléspectateurs du monde entier de se rendre à la mosquée du prophète à Médine. Plongez dans l'atmosphère sereine du deuxième site le plus sacré de l'islam, assistez aux prières et faites l'expérience de la tranquillité spirituelle depuis n'importe quel endroit du monde.",
     "footertext":"Cette filière est proposée à des fins d'apprentissage et d'enrichissement spirituel."
+  },
+  "ramadanpage":{
+    "hijri":"1446 Hijri",
+    "heading":"Calendrier du Ramadan 2025",
+    "suhoor":"Suhoor (Fajr)",
+    "iftar":"Iftar (Maghrib)",
+    "suhoorends":"Fin du Suhoor",
+    "iftartime":"Heure de l'Iftar",
+    "footertext":"Suhoor se termine à l'heure de Fajr - Iftar commence à l'heure de Maghrib"
+  },
+  "namesofallah":{
+    "heading":"Les 99 noms d'Allah",
+    "paragraph":"Asma ul-Husna - Les beaux noms d'Allah avec leur signification et leur prononciation",
+    "subparagraph":"Les 99 noms d'Allah, ou Asma'ul Husna, reflètent sa miséricorde, sa sagesse et sa grandeur. Chaque nom a une signification particulière, guidant les croyants vers la foi et la paix intérieure."
   }
 
   

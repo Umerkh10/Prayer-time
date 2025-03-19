@@ -24,6 +24,8 @@ export function MainNav() {
     { href: isLang ? `/${currentLang}/duas` : "/duas", key: "duas" },
     { href: isLang ? `/${currentLang}/makkah-tv` : "/makkah-tv", key: "makkahTv" },
     { href: isLang ? `/${currentLang}/madina-tv` : "/madina-tv", key: "madinaTv" },
+    { href: isLang ? `/${currentLang}/ramadan-calender` : "/ramadan-calender", key: "ramadan" },
+    { href: isLang ? `/${currentLang}/99-names-of-allah` : "/99-names-of-allah", key: "namesallah" },
   ]
 
   return (
