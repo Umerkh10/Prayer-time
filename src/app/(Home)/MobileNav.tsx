@@ -82,6 +82,13 @@ const pathname = usePathname()
             >
               {isLang ? t("navigation.ramadan") : "ramadan"} 
             </Link>
+            <Link
+              href={ isLang ? `/${currentLang}/forum` : "/forum"}
+              onClick={() => setOpen(false)}
+              className="block text-lg font-semibold text-white hover:text-gray-200 capitalize "
+            >
+              {isLang ? t("navigation.forum") : "Forum"} 
+            </Link>
           </div>
         </ScrollArea>
         <Button

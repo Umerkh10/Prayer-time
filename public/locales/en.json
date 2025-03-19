@@ -4,14 +4,17 @@
     "home": "Home",
     "namazTime": "Namaz Time",
     "countries": "Countries",
-    "islamicCalender": "Islamic Calendar",
+    "islamicCalender": "Islamic Calender",
     "duas": "Duas",
     "aboutUs": "About Us",
     "contactUs": "Contact Us",
     "makkahTv": "Makkah Tv",
     "madinaTv": "Madina Tv",
     "ramadan": "Ramadan Calender",
-    "namesallah":"99 Names Of Allah"
+    "namesallah":"99 Names Of Allah",
+    "calender":"Calender",
+    "livetv":"Live TV",
+    "forum":"Forum"
   },
   "banner": {
     "title": "Welcome to Global Salah",
@@ -314,7 +317,7 @@
     "homelink": "Home",
     "title": "Islamic Calender",
     "desc": "Islamic Calender Know Your Gregorian Date with Islamic Date",
-    "calendertitle": "Calendar",
+    "calendertitle": "Calender",
     "buttontoday": "Today"
   },
   "duas": {
@@ -678,7 +681,7 @@
   "thankyou":{
     "badge-text":"Thank You for Reaching Out!",
     "heading":"We Appreciate Your Message",
-    "paragraph": " We appreciate you contacting Global Salah. Your message is important to us, and we'll get back to you as soon as possible. In the meantime, explore accurate prayer times, the Islamic calendar, and helpful resources to stay connected with your faith. JazakAllah Khair!",
+    "paragraph": " We appreciate you contacting Global Salah. Your message is important to us, and we'll get back to you as soon as possible. In the meantime, explore accurate prayer times, the Islamic calender, and helpful resources to stay connected with your faith. JazakAllah Khair!",
     "sub-heading":"Have Additional Questions?",
     "sub-paragraph":"Feel free to send us an email and we'll respond as quickly as possible.",
     "buttontext":"Email Us at"
@@ -701,7 +704,7 @@
   },
   "ramadanpage":{
     "hijri":"1446 Hijri",
-    "heading":"Ramadan Calendar 2025",
+    "heading":"Ramadan Calender 2025",
     "suhoor":"Suhoor (Fajr)",
     "iftar":"Iftar (Maghrib)",
     "suhoorends":"Suhoor Ends",
