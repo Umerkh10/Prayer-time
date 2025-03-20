@@ -146,7 +146,7 @@ export default function NotificationsPage() {
               </div>
             </div>
             {unreadCount > 0 && (
-              <Badge variant="default" className="text-sm">
+              <Badge  className="text-sm bg-emerald-500 text-zinc-100">
                 {unreadCount} unread
               </Badge>
             )}

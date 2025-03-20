@@ -23,7 +23,7 @@ export const mockNotifications: Notification[] = [
     type: "answer",
     title: "New Answer",
     message: "Michael Chen answered your question about React Hooks.",
-    link: "/question/how-to-use-react-hooks",
+    link: "/forum/how-to-use-react-hooks",
     read: false,
     createdAt: "2023-03-18T10:30:00Z",
     sender: {
@@ -37,7 +37,7 @@ export const mockNotifications: Notification[] = [
     type: "mention",
     title: "Mentioned You",
     message: 'Emily Wong mentioned you in a comment on "TypeScript best practices".',
-    link: "/question/typescript-best-practices",
+    link: "/forum/typescript-best-practices",
     read: false,
     createdAt: "2023-03-17T15:45:00Z",
     sender: {
@@ -51,7 +51,7 @@ export const mockNotifications: Notification[] = [
     type: "like",
     title: "Liked Your Answer",
     message: 'Alex Rivera liked your answer to "Next.js vs Gatsby".',
-    link: "/question/nextjs-vs-gatsby",
+    link: "/forum/nextjs-vs-gatsby",
     read: false,
     createdAt: "2023-03-16T09:20:00Z",
     sender: {
@@ -65,7 +65,7 @@ export const mockNotifications: Notification[] = [
     type: "question_approved",
     title: "Question Approved",
     message: 'Your question "How to implement authentication in Next.js?" has been approved and is now live.',
-    link: "/question/how-to-implement-authentication-in-nextjs",
+    link: "/forum/how-to-implement-authentication-in-nextjs",
     read: true,
     createdAt: "2023-03-15T14:10:00Z",
   },
@@ -96,7 +96,7 @@ export const mockNotifications: Notification[] = [
     type: "answer",
     title: "New Answer",
     message: "Jessica Lee answered your question about optimizing React performance.",
-    link: "/question/optimizing-react-performance",
+    link: "/forum/optimizing-react-performance",
     read: true,
     createdAt: "2023-03-08T16:30:00Z",
     sender: {
@@ -110,7 +110,7 @@ export const mockNotifications: Notification[] = [
     type: "like",
     title: "Liked Your Question",
     message: "Ryan Patel and 5 others liked your question about CSS Grid vs Flexbox.",
-    link: "/question/css-grid-vs-flexbox",
+    link: "/forum/css-grid-vs-flexbox",
     read: true,
     createdAt: "2023-03-05T13:15:00Z",
     sender: {
@@ -124,7 +124,7 @@ export const mockNotifications: Notification[] = [
     type: "mention",
     title: "Mentioned You",
     message: 'Sophia Martinez mentioned you in a comment on "Testing React components".',
-    link: "/question/testing-react-components",
+    link: "/forum/testing-react-components",
     read: true,
     createdAt: "2023-03-02T10:45:00Z",
     sender: {

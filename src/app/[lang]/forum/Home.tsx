@@ -50,6 +50,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-background to-muted/30">
       <ForumPage isLoggedIn={isLoggedIn} onAddQuestion={handleAddQuestion} onLogout={handleLogout} userData={{
+        unreadNotifications: 0,
         name: "",
         initials: "",
         avatar: ""
