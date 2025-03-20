@@ -9,6 +9,11 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { User, Mail, Lock, Loader2 } from "lucide-react"
+import { signUp } from "@/services/authentication"
+import { toast } from "sonner"
+import { usePathname, useRouter } from "next/navigation"
+import { urlSplitter } from "@/lib"
+import axios from "axios"
 
 interface SignupFormProps {
   onLoginClick: () => void
@@ -16,20 +21,34 @@ interface SignupFormProps {
 }
 
 export default function SignupForm({ onLoginClick, onSignup }: SignupFormProps) {
-  const [name, setName] = useState("")
+  const [fullname, setFullname] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const pathname = usePathname();
+  const lang = urlSplitter(pathname)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  const router = useRouter()
 
-    // Mock signup - in a real app, this would be an API call
-    setTimeout(() => {
-      setIsLoading(false)
-      onSignup()
-    }, 1000)
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const userDetails = { fullname, email, password };
+
+    try {
+      const response = await signUp(userDetails);
+
+      if (response.status === 201) {
+        localStorage.setItem("userData",JSON.stringify(response.data.user))
+        toast.success(response.data.message);
+        router.push(`/${lang}/verify-code`);
+      }
+    } catch (error: any) {
+      toast.error(error?.message)
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -45,8 +64,8 @@ export default function SignupForm({ onLoginClick, onSignup }: SignupFormProps) 
               <Input
                 id="name"
                 placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={fullname}
+                onChange={(e) => setFullname(e.target.value)}
                 className="border-primary/20 focus-visible:ring-primary/30"
                 required
               />
@@ -82,7 +101,7 @@ export default function SignupForm({ onLoginClick, onSignup }: SignupFormProps) 
               />
               <p className="text-xs text-muted-foreground">Password must be at least 8 characters long</p>
             </div>
-      
+
             <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-800 text-white" disabled={isLoading}>
               {isLoading ? (
                 <>
@@ -93,7 +112,7 @@ export default function SignupForm({ onLoginClick, onSignup }: SignupFormProps) 
                 "Create Account"
               )}
             </Button>
-  
+
           </form>
         </CardContent>
         <CardFooter className="flex justify-center border-t pt-4">

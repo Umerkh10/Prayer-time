@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./(Home)/Navbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Footer from "./(Home)/Footer";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   subsets: ['latin'], // Specify character subsets
@@ -52,8 +53,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+
           
           <Navbar />
+          <Toaster richColors />
           {children}
           <Footer/>
         </ThemeProvider>

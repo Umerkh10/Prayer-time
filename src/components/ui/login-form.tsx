@@ -11,6 +11,9 @@ import { motion } from "framer-motion"
 import { Mail, Lock, Loader2 } from "lucide-react"
 import { usePathname, useRouter } from "next/navigation"
 import { urlSplitter } from "@/lib"
+import { login } from "@/services/authentication"
+import Link from "next/link"
+import { toast } from "sonner"
 
 interface LoginFormProps {
   onSignUpClick: () => void
@@ -25,21 +28,29 @@ export default function LoginForm({ onSignUpClick, onLogin }: LoginFormProps) {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
 
-    // Mock login - in a real app, this would be an API call
-    setTimeout(() => {
-      setIsLoading(false)
-      onLogin()
-    }, 1000)
-  }
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsLoading(true);
+  
+      const userDetails = { email, password }
+  
+      try {
+        const response = await login(userDetails)
+  
+        if (response.status === 200) {
+          localStorage.setItem("userData",JSON.stringify(response.data.user))
+          toast.success(response.data.message);
+          router.push(`/${lang}/forum`);
+        }
+      } catch (error: any) {
+        toast.error(error?.message)
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
-  const handleForgotPassword = (e: React.MouseEvent) => {
-    e.preventDefault()
-    router.push(`/${lang}/verify-email`)
-  }
+
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
@@ -67,9 +78,9 @@ export default function LoginForm({ onSignUpClick, onLogin }: LoginFormProps) {
                   <Lock className="h-4 w-4 text-muted-foreground" />
                   Password
                 </Label>
-                <button onClick={handleForgotPassword} className="text-sm text-green-500 hover:underline">
+                <Link href={`/${lang}/verify-email`} className="text-sm text-green-500 hover:underline">
                   Forgot password?
-                </button>
+                </Link>
               </div>
               <Input
                 id="password"

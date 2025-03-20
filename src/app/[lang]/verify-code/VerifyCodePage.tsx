@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -11,38 +11,80 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { urlSplitter } from "@/lib"
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp"
+import { verifyCode } from "@/services/authentication"
+import { toast } from "sonner"
 
 export default function VerifyCodePage() {
   const router = useRouter()
   const pathname = usePathname()
   const lang = urlSplitter(pathname)
   const [code, setCode] = useState("")
+  const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
 
-    if (code.length !== 6) {
-      setError("Please enter a valid 6-digit code")
-      return
-    }
-
-    setIsLoading(true)
-
-    // Mock API call to verify code
-    setTimeout(() => {
-      setIsLoading(false)
-
-      // Set user as logged in
-      localStorage.setItem("isLoggedIn", "true")
-
-      // Redirect to forum page
-      router.push(`/${lang}/forum`)
-    }, 1500)
+  const handleOTPChange = (value: string) => {
+    setCode(value);
   }
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   setError("")
+
+  //   if (code.length !== 6) {
+  //     setError("Please enter a valid 6-digit code")
+  //     return
+  //   }
+  //   console.log("code", code);
+
+
+  //   setIsLoading(true)
+
+  //   const email = "s"
+
+  //   const userDetails = { email, code }
+  //   const response = await verifyCode(userDetails)
+
+
+
+
+  //   // setIsLoading(false)
+
+  //   // // Set user as logged in
+  //   // localStorage.setItem("isLoggedIn", "true")
+
+  //   // Redirect to forum page
+  //   // router.push(`/${lang}/forum`)
+
+  // }
+
+  useEffect(() => {
+  
+    const user:any = localStorage.getItem("userData")
+    const parseduser = JSON.parse(user)
+    setEmail(parseduser.email)
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      
+      const userDetails = { email, code }
+      const response = await verifyCode(userDetails)
+
+      if (response.status === 200) {
+        toast.success(response.data.message);
+        router.push(`/${lang}/forum`);
+      }
+    } catch (error: any) {
+      toast.error(error?.message)
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <div className="container max-w-md mx-auto py-16 px-4">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
@@ -58,7 +100,7 @@ export default function VerifyCodePage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <div className="flex justify-center">
-                  <InputOTP maxLength={6}>
+                  <InputOTP maxLength={6} value={code} onChange={handleOTPChange}>
                     <InputOTPGroup>
                       <InputOTPSlot index={0} />
                       <InputOTPSlot index={1} />

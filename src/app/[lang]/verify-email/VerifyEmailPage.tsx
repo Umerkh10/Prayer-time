@@ -12,6 +12,8 @@ import { ArrowLeft, Loader2, Mail, Send } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { urlSplitter } from "@/lib"
+import { verifyEmail } from "@/services/authentication"
+import { toast } from "sonner"
 
 export default function VerifyEmailPage() {
   const router = useRouter()
@@ -21,22 +23,28 @@ export default function VerifyEmailPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
+ const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
 
-    if (!email.trim()) {
-      setError("Email is required")
-      return
+    try {
+      const response = await verifyEmail(email)
+      console.log("Response ====>", response);
+
+      if (response.status === 200) {
+        toast.success(response.data.message);
+        router.push(`/${lang}/verify-code`);
+      }
+    } catch (error: any) {
+      toast.error(error?.message)
+    } finally {
+      setIsLoading(false);
     }
-
-    setIsLoading(true)
-
-    setTimeout(() => {
-      setIsLoading(false)
-      router.push(`/${lang}/verify-code`)
-    }, 1500)
   }
+
+
+    // router.push(`/${lang}/verify-code`)
+  
 
   return (
     <div className="container max-w-md mx-auto py-16 px-4">
