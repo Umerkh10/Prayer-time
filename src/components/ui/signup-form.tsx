@@ -17,10 +17,10 @@ import axios from "axios"
 
 interface SignupFormProps {
   onLoginClick: () => void
-  onSignup: () => void
+  // onSignup: () => void
 }
 
-export default function SignupForm({ onLoginClick, onSignup }: SignupFormProps) {
+export default function SignupForm({ onLoginClick }: SignupFormProps) {
   const [fullname, setFullname] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
