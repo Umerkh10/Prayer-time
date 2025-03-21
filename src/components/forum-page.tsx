@@ -1,34 +1,20 @@
 "use client";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import {Card,CardContent,CardFooter,CardHeader,} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import {Pagination,PaginationContent,PaginationItem,PaginationLink,PaginationNext,PaginationPrevious,} from "@/components/ui/pagination";
 import { urlSplitter } from "@/lib";
-import { mockAnswers, mockQuestions } from "@/lib/mock-data";
+import { refactorDate } from "@/lib/date";
+import { mockQuestions } from "@/lib/mock-data";
+import { getAllQuestions } from "@/services/forum";
 import { motion } from "framer-motion";
 import { MessageSquare, Plus, Search, ThumbsUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import UserDropdown from "./ui/user-dropdown";
-import { getAllQuestions } from "@/services/forum";
 import { toast } from "sonner";
-import { refactorDate } from "@/lib/date";
 import { Skeleton } from "./ui/skeleton";
+import UserDropdown from "./ui/user-dropdown";
 
 interface ForumPageProps {
   isLoggedIn: boolean;
@@ -100,7 +86,7 @@ export default function ForumPage({
       const response = await getAllQuestions();
 
       if (response.status === 200) {
-        setQuestions(response.data.questions);
+        setQuestions(response.data.questions.reverse())
       }
     } catch (error: any) {
       toast.error(error?.message);
@@ -260,7 +246,7 @@ export default function ForumPage({
                               <div className="mt-4 pt-4 border-t border-primary/10 bg-muted/30 p-3 rounded-md">
                                 <div className="flex justify-between items-center mb-2 text-sm">
                                   <div className="flex items-center gap-2">
-                                    <Avatar className="h-5 w-5 border border-primary/20">
+                                    {/* <Avatar className="h-5 w-5 border border-primary/20"> */}
                                       {/* <AvatarImage
                                         src={firstAnswer.user.avatar}
                                         alt={firstAnswer.author.name}
@@ -268,7 +254,7 @@ export default function ForumPage({
                                       {/* <AvatarFallback className="bg-primary/10 text-primary">
                                         {firstAnswer.author.initials}
                                       </AvatarFallback> */}
-                                    </Avatar>
+                                    {/* </Avatar> */}
                                     <span className="font-medium">
                                       {firstAnswer.user.name}
                                     </span>
