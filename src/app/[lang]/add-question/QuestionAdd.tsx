@@ -28,15 +28,15 @@ export default function AddQuestionPage() {
   const [titleCount, setTitleCount] = useState(0)
   const MAX_TITLE_LENGTH = 50
 
-  useEffect(() => {
-    // Check if user is logged in
-    const userLoggedIn = localStorage.getItem("isLoggedIn") === "true"
-    if (!userLoggedIn) {
-      router.push("/forum")
-    } else {
-      setIsLoggedIn(true)
-    }
-  }, [router])
+    // useEffect(() => {
+    //   // Check if user is logged in
+    //   const userLoggedIn = localStorage.getItem("isLoggedIn") === "true"
+    //   if (!userLoggedIn) {
+    //     router.push("/forum")
+    //   } else {
+    //     setIsLoggedIn(true)
+    //   }
+    // }, [router])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -64,9 +64,9 @@ export default function AddQuestionPage() {
     }, 1500)
   }
 
-  if (!isLoggedIn) {
-    return <div className="flex items-center justify-center min-h-screen">Redirecting...</div>
-  }
+  // if (!isLoggedIn) {
+  //   return <div className="flex items-center justify-center min-h-screen">Redirecting...</div>
+  // }
 
   return (
     <div className="container max-w-3xl mx-auto py-8 px-4">

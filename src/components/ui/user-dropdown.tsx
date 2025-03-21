@@ -1,36 +1,71 @@
-"use client"
+"use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import {DropdownMenu,DropdownMenuContent,DropdownMenuItem,DropdownMenuLabel,DropdownMenuSeparator,DropdownMenuTrigger,} from "@/components/ui/dropdown-menu"
-import { urlSplitter } from "@/lib"
-import { Settings, LogOut, Bell } from "lucide-react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { urlSplitter } from "@/lib";
+import { Settings, LogOut, Bell } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface UserDropdownProps {
-  userName: string
-  userInitials: string
-  userAvatar?: string
-  unreadNotifications: number
-  onLogout: () => void
+  userName: string;
+  userEmail: string;
+  userAvatar?: string;
+  setIsLoggedIn: (value: boolean) => void;
 }
 
-export default function UserDropdown({ userName, userInitials,unreadNotifications, userAvatar, onLogout, }: UserDropdownProps) {
-       const pathname = usePathname();
-        const lang = urlSplitter(pathname)
+export default function UserDropdown({
+  userName,
+  userAvatar,
+  userEmail,
+  setIsLoggedIn
+}: UserDropdownProps) {
+  const [userDetails, setUserDetails] = useState<any>(null);
+
+  const pathname = usePathname();
+  const lang = urlSplitter(pathname);
+
+  useEffect(() => {
+    const user: any = localStorage.getItem("userData");
+    const parsedUser = JSON.parse(user);
+    setUserDetails(parsedUser);
+  }, []);
+
+  const onLogout = () => {
+    const updatedUserDetails = {
+      ...userDetails,
+      token: null,
+    };
+    localStorage.setItem("userData", JSON.stringify(updatedUserDetails));
+    setIsLoggedIn(false)
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="h-8 w-8 border border-primary/20 cursor-pointer hover:ring-2 hover:ring-primary/20 transition-all">
-          <AvatarImage src={userAvatar} alt={userName} />
-          <AvatarFallback className="bg-primary/10 text-primary">{userInitials}</AvatarFallback>
+        <Avatar className="flex items-center justify-center h-8 w-8 border border-primary/20 cursor-pointer hover:ring-2 hover:ring-primary/20 transition-all">
+          <p className="font-bold">{userAvatar}</p>
+          {/* <AvatarImage src={userAvatar} alt={userName} /> */}
+          {/* <AvatarFallback className="bg-primary/10 text-primary">{userInitials}</AvatarFallback> */}
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56 border-primary/20">
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{userName}</p>
-            <p className="text-xs leading-none text-muted-foreground">user@example.com</p>
+            <p className="text-sm font-medium leading-none text-center">
+              {userName}
+            </p>
+            {/* <p className="text-xs leading-none text-muted-foreground">
+              {userEmail}
+            </p> */}
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -44,19 +79,21 @@ export default function UserDropdown({ userName, userInitials,unreadNotification
           <DropdownMenuItem className="cursor-pointer">
             <Bell className="mr-2 h-4 w-4" />
             <span>Notifications</span>
-            {unreadNotifications > 0 && (
+            {/* {unreadNotifications > 0 && (
               <span className="ml-auto bg-primary text-primary-foreground text-xs rounded-full px-2 py-0.5">
                 {unreadNotifications}
               </span>
-            )}
+            )} */}
           </DropdownMenuItem>
         </Link>
-        <DropdownMenuItem onClick={onLogout} className="cursor-pointer text-destructive focus:text-destructive">
+        <DropdownMenuItem
+          onClick={onLogout}
+          className="cursor-pointer text-destructive focus:text-destructive"
+        >
           <LogOut className="mr-2 h-4 w-4" />
           <span>Logout</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
-
