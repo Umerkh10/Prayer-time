@@ -37,6 +37,20 @@ export default function ForumPage({
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredQuestions, setFilteredQuestions] = useState(mockQuestions);
   const [currentPage, setCurrentPage] = useState(1);
+  const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
+  const [isVerified, setIsVerified] = useState(false);
+
+  useEffect(() => {
+    const user: any = localStorage.getItem("userData");
+    const parsedUser = JSON.parse(user);
+    if (parsedUser) {
+      setUserDetailsInLS(parsedUser);
+    }
+    if (parsedUser?.verification_status === 1) {
+      setIsVerified(true);
+    }
+  }, []);
+
   const questionsPerPage = 10;
 
 
