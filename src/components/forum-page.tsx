@@ -84,7 +84,11 @@ export default function ForumPage({ isLoggedIn, userData, onAddQuestion, onLogou
   }
 
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className="container mx-auto py-4 px-4">
+      <div className="w-full rounded-lg my-2 text-center capitalize bg-orange-700 text-white">
+        You are not verified click here  <Link className="underline" href={`/${lang}/verify-email`}>
+        mock email link</Link> to verify your account
+      </div>
       <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-600/5 to-background rounded-xl p-8 mb-8 shadow-md">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold ">

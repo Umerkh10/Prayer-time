@@ -13,6 +13,8 @@ import { Separator } from "@/components/ui/separator"
 import { ArrowLeft, Loader2, User, Mail, Lock, Save } from "lucide-react"
 import Link from "next/link"
 import { urlSplitter } from "@/lib"
+import { updateUserDetails } from "@/services/authentication"
+import { toast } from "sonner"
 
 export default function EditProfilePage() {
   const router = useRouter()
@@ -20,43 +22,61 @@ export default function EditProfilePage() {
   const lang = urlSplitter(pathname)
   const [isLoading, setIsLoading] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [formData, setFormData] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
-    currentPassword: "",
-    newPassword: "",
-    confirmPassword: "",
-  })
+   const [fullname, setFullname] = useState("")
+   const [email, setEmail] = useState("")
+   const [password, setPassword] = useState("")
+   const [userData, setUserData] = useState("")
 
-  useEffect(() => {
-    // Check if user is logged in
-    const userLoggedIn = localStorage.getItem("isLoggedIn") === "true"
-    if (!userLoggedIn) {
-      router.push(`/${lang}/forum`)
-    } else {
-      setIsLoggedIn(true)
-    }
-  }, [router])
+  // useEffect(() => {
+  //   // Check if user is logged in
+  //   const userLoggedIn = localStorage.getItem("isLoggedIn") === "true"
+  //   if (!userLoggedIn) {
+  //     router.push(`/${lang}/forum`)
+  //   } else {
+  //     setIsLoggedIn(true)
+  //   }
+  // }, [router])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
+    if (name === "name") {
+      setFullname(value);
+    } else if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const parsedUserData = JSON.parse(storedUserData);
+      setUserData(parsedUserData.id);
+    }
+  }, []);
 
-    // Mock API call to update profile
-    setTimeout(() => {
-      setIsLoading(false)
-      alert("Profile updated successfully!")
-      router.push(`/${lang}/forum`)
-    }, 1500)
-  }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setIsLoading(true);
+  
+      const userDetails = { userData,fullname, email, password };
+  
+      try {
+        const response = await updateUserDetails(userDetails);
+  
+        if (response.status === 200) {
+          localStorage.setItem("userData",JSON.stringify(response.data.user))
+          toast.success(response.data.message);
+          router.push(`/${lang}/forum`);
+        }
+      } catch (error: any) {
+        toast.error(error?.message)
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
   if (!isLoggedIn) {
     return <div className="flex items-center justify-center min-h-screen">Redirecting...</div>
@@ -93,8 +113,8 @@ export default function EditProfilePage() {
                 <Input
                   id="name"
                   name="name"
-                  value={formData.name}
-                  onChange={handleChange}
+                  value={fullname}
+                  onChange={(e) => setFullname(e.target.value)}
                   className="border-primary/20 focus-visible:ring-primary/30"
                   required
                 />
@@ -109,8 +129,8 @@ export default function EditProfilePage() {
                   id="email"
                   name="email"
                   type="email"
-                  value={formData.email}
-                  onChange={handleChange}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="border-primary/20 focus-visible:ring-primary/30"
                   required
                 />
@@ -127,8 +147,8 @@ export default function EditProfilePage() {
                 id="currentPassword"
                 name="currentPassword"
                 type="password"
-                value={formData.currentPassword}
-                onChange={handleChange}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="border-primary/20 focus-visible:ring-primary/30"
               />
 
