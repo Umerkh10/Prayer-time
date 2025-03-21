@@ -25,6 +25,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import UserDropdown from "./ui/user-dropdown";
+import { getAllQuestions } from "@/services/forum";
+import { toast } from "sonner";
+import { refactorDate } from "@/lib/date";
+import { Skeleton } from "./ui/skeleton";
 
 interface ForumPageProps {
   isLoggedIn: boolean;
@@ -42,6 +46,8 @@ export default function ForumPage({
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const [questions, setQuestions] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredQuestions, setFilteredQuestions] = useState(mockQuestions);
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,7 +67,7 @@ export default function ForumPage({
 
   const questionsPerPage = 10;
 
-  // Filter questions based on search query
+
   const filterQuestions = useCallback(() => {
     if (searchQuery.trim() === "") {
       setFilteredQuestions(mockQuestions);
@@ -77,7 +83,6 @@ export default function ForumPage({
     setCurrentPage(1); // Reset to first page when search changes
   }, [searchQuery]);
 
-  // Apply filtering when search query changes
   useEffect(() => {
     filterQuestions();
   }, [searchQuery, filterQuestions]);
@@ -91,10 +96,26 @@ export default function ForumPage({
   );
   const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
 
-  // Get first answer for each question
-  const getFirstAnswer = (questionId: number) => {
-    return mockAnswers.find((answer) => answer.questionId === questionId);
+  const fetchAllQuestions = async () => {
+    try {
+      const response = await getAllQuestions();
+
+      if (response.status === 200) {
+        setQuestions(response.data.questions)
+      }
+      console.log(response.data.questions);
+    } catch (error: any) {
+      toast.error(error?.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+
+  useEffect(() => {
+    fetchAllQuestions()
+  }, []);
+
 
   const handleAddQuestionClick = () => {
     if (isLoggedIn) {
@@ -109,21 +130,17 @@ export default function ForumPage({
     ? `${userFullname[0]?.charAt(0)}`
     : "";
   return (
-    <div className="container mx-auto py-4 px-4">
-      {!isVerified && (
-        <div className="w-full rounded-lg my-2 text-center capitalize bg-orange-700 text-white">
-          You are not verified click here{" "}
-          <Link
-            className="underline"
-            target="_blank"
-            href={`/${lang}/verify-email`}
-          >
-            email link
-          </Link>{" "}
-          to verify your account
-        </div>
-      )}
-
+    <>
+    {isLoading ? <div className='px-8 mt-4'>
+      <Skeleton className="h-48 w-full" />
+      <Skeleton className="mt-3 h-screen rounded-lg w-full" />
+     
+    </div> :
+      (<div className="container mx-auto py-4 px-4">
+      <div className="w-full rounded-lg my-2 text-center capitalize bg-orange-700 text-white">
+        You are not verified click here  <Link className="underline" href={`/${lang}/verify-email`}>
+          mock email link</Link> to verify your account
+      </div>
       <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-600/5 to-background rounded-xl p-8 mb-8 shadow-md">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold ">Global Salah Forum</h1>
@@ -204,10 +221,10 @@ export default function ForumPage({
             </div>
           </div>
 
-          {currentQuestions.length > 0 ? (
+          {questions.length > 0 ? (
             <div className="space-y-4">
-              {currentQuestions.map((question, index) => {
-                const firstAnswer = getFirstAnswer(question.id);
+              {questions.map((question:any, index:any) => {
+                
                 return (
                   <motion.div
                     key={question.id}
@@ -218,7 +235,7 @@ export default function ForumPage({
                     <Card className="overflow-hidden border-green-600/20 shadow-md hover:shadow-lg transition-shadow">
                       <CardHeader className="pb-3">
                         <Link
-                          href={`/${lang}/forum/${question.slug}`}
+                          href={`/}`}
                           className="hover:underline"
                         >
                           <h2 className="text-xl font-bold ">
@@ -227,58 +244,15 @@ export default function ForumPage({
                         </Link>
                         <div className="flex justify-between items-center text-sm text-muted-foreground">
                           <div className="flex items-center gap-2">
-                            <Avatar className="h-6 w-6 border border-primary/20">
-                              <AvatarImage
-                                src={question.author.avatar}
-                                alt={question.author.name}
-                              />
-                              <AvatarFallback className="bg-green-700/10 ">
-                                {question.author.initials}
-                              </AvatarFallback>
-                            </Avatar>
-                            <span>{question.author.name}</span>
+                           
+                            <span>{question.user.name}</span>
                           </div>
-                          <span>Posted on {question.date}</span>
+                          <span>Posted on {refactorDate(question.created_at)}</span>
                         </div>
                       </CardHeader>
                       <CardContent>
-                        <p className="line-clamp-3">{question.content}</p>
+                        <p className="line-clamp-3">{question.description}</p>
 
-                        {firstAnswer && (
-                          <div className="mt-4 pt-4 border-t border-primary/10 bg-muted/30 p-3 rounded-md">
-                            <div className="flex justify-between items-center mb-2 text-sm">
-                              <div className="flex items-center gap-2">
-                                <Avatar className="h-5 w-5 border border-primary/20">
-                                  <AvatarImage
-                                    src={firstAnswer.author.avatar}
-                                    alt={firstAnswer.author.name}
-                                  />
-                                  <AvatarFallback className="bg-green-700/10 ">
-                                    {firstAnswer.author.initials}
-                                  </AvatarFallback>
-                                </Avatar>
-                                <span className="font-medium">
-                                  {firstAnswer.author.name}
-                                </span>
-                              </div>
-                              <span className="text-muted-foreground">
-                                {firstAnswer.date}
-                              </span>
-                            </div>
-                            <p className="text-sm line-clamp-2">
-                              {firstAnswer.content}
-                            </p>
-                            <Link href={`/${lang}/forum/${question.slug}`}>
-                              <Button
-                                variant="link"
-                                size="sm"
-                                className="mt-1 h-auto p-0  text-green-600"
-                              >
-                                View more replies
-                              </Button>
-                            </Link>
-                          </div>
-                        )}
                       </CardContent>
                       <CardFooter className="flex justify-between py-3 border-t bg-muted/20">
                         <div className="flex gap-4">
@@ -288,7 +262,7 @@ export default function ForumPage({
                             className="flex items-center gap-1"
                           >
                             <ThumbsUp className="h-4 w-4" />
-                            <span>{question.likes}</span>
+                            {/* <span>{question.likes}</span> */}
                           </Button>
                           <Button
                             variant="ghost"
@@ -296,7 +270,7 @@ export default function ForumPage({
                             className="flex items-center gap-1"
                           >
                             <MessageSquare className="h-4 w-4" />
-                            <span>{question.answers}</span>
+                            <span>{question.answers.length}</span>
                           </Button>
                         </div>
                         <Link href={`/${lang}/forum/${question.slug}`}>
@@ -385,6 +359,7 @@ export default function ForumPage({
           )}
         </div>
       </div>
-    </div>
-  );
+    </div>)}
+    </>
+  )
 }
