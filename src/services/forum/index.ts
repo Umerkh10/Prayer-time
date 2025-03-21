@@ -114,7 +114,6 @@ export const deleteQuestion = async (id: any) => {
 
 
 
-
 export const deleteAnswer = async (id: any) => {
 
 
@@ -134,3 +133,52 @@ export const deleteAnswer = async (id: any) => {
 };
 
 
+
+
+export const updateQuestion = async (editQuestion: any) => {
+
+    const {id,status} = editQuestion
+    
+    try {
+        const response = await axios.patch('http://localhost:3000/api/update-question-status',{
+            id,
+            status,
+        });
+
+        return response; // Corrected
+    } catch (error: any) {
+        if (axios.isAxiosError(error)) {
+            console.error('Axios Error:', error.response?.data || error.message);
+            throw new Error(error.response?.data?.message || 'An error occurred during sign-up');
+        } else {
+            console.error('Unexpected Error:', error);
+            throw new Error('Something went wrong');
+        }
+    }
+};
+
+
+
+
+
+export const updateAnswer = async (editAnswer: any) => {
+
+    const {id,status} = editAnswer
+    
+    try {
+        const response = await axios.patch('http://localhost:3000/api/update-answer-status',{
+            id,
+            status,
+        });
+
+        return response; // Corrected
+    } catch (error: any) {
+        if (axios.isAxiosError(error)) {
+            console.error('Axios Error:', error.response?.data || error.message);
+            throw new Error(error.response?.data?.message || 'An error occurred during sign-up');
+        } else {
+            console.error('Unexpected Error:', error);
+            throw new Error('Something went wrong');
+        }
+    }
+};
