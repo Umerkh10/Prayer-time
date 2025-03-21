@@ -45,6 +45,20 @@ export default function ForumPage({
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredQuestions, setFilteredQuestions] = useState(mockQuestions);
   const [currentPage, setCurrentPage] = useState(1);
+  const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
+  const [isVerified, setIsVerified] = useState(false);
+
+  useEffect(() => {
+    const user: any = localStorage.getItem("userData");
+    const parsedUser = JSON.parse(user);
+    if (parsedUser) {
+      setUserDetailsInLS(parsedUser);
+    }
+    if (parsedUser?.verification_status === 1) {
+      setIsVerified(true);
+    }
+  }, []);
+
   const questionsPerPage = 10;
 
   // Filter questions based on search query
@@ -97,10 +111,20 @@ export default function ForumPage({
 
   return (
     <div className="container mx-auto py-4 px-4">
-      <div className="w-full rounded-lg my-2 text-center capitalize bg-orange-700 text-white">
-        You are not verified click here  <Link className="underline" href={`/${lang}/verify-email`}>
-        mock email link</Link> to verify your account
-      </div>
+      {!isVerified && (
+        <div className="w-full rounded-lg my-2 text-center capitalize bg-orange-700 text-white">
+          You are not verified click here{" "}
+          <Link
+            className="underline"
+            target="_blank"
+            href={`/${lang}/verify-email`}
+          >
+            email link
+          </Link>{" "}
+          to verify your account
+        </div>
+      )}
+
       <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-600/5 to-background rounded-xl p-8 mb-8 shadow-md">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-4xl font-bold ">Global Salah Forum</h1>

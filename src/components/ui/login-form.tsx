@@ -49,15 +49,9 @@ export default function LoginForm({
 
     try {
       const response = await login(userDetails);
-      console.log("response.data.user", response.data.user);
       
-      
-
       if (response.status === 200) {
-        const updatedUserDetails = {
-          ...userDetailsInLS,
-          token: response.data.token,
-        };
+        
         localStorage.setItem("userData", JSON.stringify(response.data.user));
         toast.success(response.data.message);
         setShowAuthModal(false);

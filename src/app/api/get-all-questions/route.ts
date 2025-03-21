@@ -10,25 +10,31 @@ export async function GET(req: Request) {
     const pageSize = 40;
     const offset = (page - 1) * pageSize;
 
+    // Get total questions count
     const [countResult]: any = await db.execute(
       "SELECT COUNT(*) AS total_questions FROM questions"
     );
     const totalQuestions = countResult[0].total_questions;
     const totalPages = Math.ceil(totalQuestions / pageSize);
 
+    // Fetch questions with user and answers
     const [questions]: any = await db.execute(
       `SELECT 
           q.id AS question_id, 
+          q.user_id,
           q.title, 
           q.description, 
           q.status, 
           q.created_at, 
           q.updated_at,
+          u.fullname AS user_name, 
+          u.email AS user_email, 
           a.id AS answer_id,
           a.user_id AS answer_user_id,
           a.answer,
           a.created_at AS answer_created_at
         FROM questions q
+        LEFT JOIN users u ON q.user_id = u.id
         LEFT JOIN answers a ON q.id = a.question_id
         ORDER BY q.created_at DESC
         LIMIT ? OFFSET ?`,
@@ -40,11 +46,14 @@ export async function GET(req: Request) {
     questions.forEach((row: any) => {
       const {
         question_id,
+        user_id,
         title,
         description,
         status,
         created_at,
         updated_at,
+        user_name,
+        user_email,
         answer_id,
         answer_user_id,
         answer,
@@ -54,6 +63,11 @@ export async function GET(req: Request) {
       if (!questionMapping[question_id]) {
         questionMapping[question_id] = {
           id: question_id,
+          user: {
+            id: user_id,
+            name: user_name,
+            email: user_email,
+          },
           title,
           description,
           status,
