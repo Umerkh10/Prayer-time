@@ -1,34 +1,20 @@
 "use client";
-
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import {Card,CardContent,CardFooter,CardHeader,} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import {Pagination,PaginationContent,PaginationItem,PaginationLink,PaginationNext,PaginationPrevious,} from "@/components/ui/pagination";
 import { urlSplitter } from "@/lib";
-import { mockAnswers, mockQuestions } from "@/lib/mock-data";
+import { refactorDate } from "@/lib/date";
+import { mockQuestions } from "@/lib/mock-data";
+import { getAllQuestions } from "@/services/forum";
 import { motion } from "framer-motion";
 import { MessageSquare, Plus, Search, ThumbsUp } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
-import UserDropdown from "./ui/user-dropdown";
-import { getAllQuestions } from "@/services/forum";
 import { toast } from "sonner";
-import { refactorDate } from "@/lib/date";
 import { Skeleton } from "./ui/skeleton";
+import UserDropdown from "./ui/user-dropdown";
 
 interface ForumPageProps {
   isLoggedIn: boolean;
@@ -87,7 +73,7 @@ export default function ForumPage({
       const response = await getAllQuestions();
 
       if (response.status === 200) {
-        setQuestions(response.data.questions)
+        setQuestions(response.data.questions.reverse())
       }
       console.log(response.data.questions);
     } catch (error: any) {
@@ -259,7 +245,7 @@ export default function ForumPage({
                             <span>{question.answers.length}</span>
                           </Button>
                         </div>
-                        <Link href={`/${lang}/forum/${question.slug}`}>
+                        <Link href={`/${lang}/forum/${question.title}`}>
                           <Button
                             variant="outline"
                             size="sm"

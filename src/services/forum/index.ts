@@ -46,10 +46,13 @@ export const getTitle = async (title: any) => {
 export const addQuestion = async (questionDetail: any) => {
 
     const {user_id,title,description} = questionDetail
+
+    // console.log("questionDetail", user_id);
+    
     
     try {
         const response = await axios.post('http://localhost:3000/api/add-question',{
-            user_id,
+            user_id:36,
             title,
             description
         });

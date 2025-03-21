@@ -14,59 +14,64 @@ import { ArrowLeft, Loader2, Send, HelpCircle, Info } from "lucide-react"
 import Link from "next/link"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { urlSplitter } from "@/lib"
+import { addQuestion } from "@/services/forum"
+import { toast } from "sonner"
 
 export default function AddQuestionPage() {
   const router = useRouter()
   const pathname = usePathname();
   const lang = urlSplitter(pathname)
   const [isLoading, setIsLoading] = useState(false)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [formData, setFormData] = useState({
-    title: "",  
-    content: "",
-  })
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
   const [titleCount, setTitleCount] = useState(0)
   const MAX_TITLE_LENGTH = 50
 
-    // useEffect(() => {
-    //   // Check if user is logged in
-    //   const userLoggedIn = localStorage.getItem("isLoggedIn") === "true"
-    //   if (!userLoggedIn) {
-    //     router.push("/forum")
-    //   } else {
-    //     setIsLoggedIn(true)
-    //   }
-    // }, [router])
+
+  useEffect(() => {
+    const user: any = localStorage.getItem("userData");
+    const parsedUser = JSON.parse(user);
+    setUserDetailsInLS(parsedUser);
+  }, []);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
     if (name === "title") {
       // Limit title to MAX_TITLE_LENGTH characters
       if (value.length <= MAX_TITLE_LENGTH) {
-        setFormData((prev) => ({ ...prev, [name]: value }))
-        setTitleCount(value.length)
+        setTitle(value);
+        setTitleCount(value.length);
       }
-    } else {
-      setFormData((prev) => ({ ...prev, [name]: value }))
+    } else if (name === "content") {
+      setDescription(value);
     }
-  }
+  };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
 
-    // Mock API call to submit question
-    setTimeout(() => {
-      setIsLoading(false)
-      // Show success message and redirect
-      router.push(`/${lang}/question-submitted`)
-    }, 1500)
-  }
 
-  // if (!isLoggedIn) {
-  //   return <div className="flex items-center justify-center min-h-screen">Redirecting...</div>
-  // }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const questionDetail = { user_id: userDetailsInLS?.id, title, description };
+
+    try {
+      const response = await addQuestion(questionDetail);
+
+      if (response.status === 201) {
+        toast.success(response.data.message);
+        router.push(`/${lang}/question-submitted`);
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   return (
     <div className="container max-w-3xl mx-auto py-8 px-4">
@@ -99,7 +104,7 @@ export default function AddQuestionPage() {
               <Input
                 id="title"
                 name="title"
-                value={formData.title}
+                value={title}
                 onChange={handleChange}
                 placeholder="e.g., How do I implement authentication in Next.js?"
                 className="border-primary/20 focus-visible:ring-primary/30"
@@ -113,7 +118,7 @@ export default function AddQuestionPage() {
               <Textarea
                 id="content"
                 name="content"
-                value={formData.content}
+                value={description}
                 onChange={handleChange}
                 placeholder="Describe your question in detail. Include code snippets, error messages, and what you've tried so far."
                 className="min-h-[200px] border-primary/20 focus-visible:ring-primary/30"

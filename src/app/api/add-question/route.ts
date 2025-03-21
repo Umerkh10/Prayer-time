@@ -7,6 +7,9 @@ export async function POST(req: Request) {
   try {
     const { user_id, title, description } = await req.json();
 
+    console.log({user_id, title, description});
+    
+
     if (!user_id || !title || !description) {
       return NextResponse.json(
         { message: "user_id, title, and description are required" },
