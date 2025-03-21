@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import {Pagination,PaginationContent,PaginationItem,PaginationLink,PaginationNext,PaginationPrevious,} from "@/components/ui/pagination";
 import { urlSplitter } from "@/lib";
 import { refactorDate } from "@/lib/date";
-import { mockQuestions } from "@/lib/mock-data";
 import { getAllQuestions } from "@/services/forum";
 import { motion } from "framer-motion";
 import { MessageSquare, Plus, Search, ThumbsUp } from "lucide-react";
@@ -35,52 +34,20 @@ export default function ForumPage({
   const [questions, setQuestions] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredQuestions, setFilteredQuestions] = useState(mockQuestions);
   const [currentPage, setCurrentPage] = useState(1);
-  const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
-  const [isVerified, setIsVerified] = useState(false);
-
-  useEffect(() => {
-    const user: any = localStorage.getItem("userData");
-    const parsedUser = JSON.parse(user);
-    if (parsedUser) {
-      setUserDetailsInLS(parsedUser);
-    }
-    if (parsedUser?.verification_status === 1) {
-      setIsVerified(true);
-    }
-  }, []);
-
   const questionsPerPage = 10;
 
 
-  const filterQuestions = useCallback(() => {
-    if (searchQuery.trim() === "") {
-      setFilteredQuestions(mockQuestions);
-    } else {
-      const lowercaseQuery = searchQuery.toLowerCase();
-      const filtered = mockQuestions.filter(
-        (question) =>
-          question.title.toLowerCase().includes(lowercaseQuery) ||
-          question.content.toLowerCase().includes(lowercaseQuery)
-      );
-      setFilteredQuestions(filtered);
-    }
-    setCurrentPage(1); // Reset to first page when search changes
-  }, [searchQuery]);
 
-  useEffect(() => {
-    filterQuestions();
-  }, [searchQuery, filterQuestions]);
 
   // Calculate pagination
   const indexOfLastQuestion = currentPage * questionsPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
-  const currentQuestions = filteredQuestions.slice(
+  const currentQuestions = questions.slice(
     indexOfFirstQuestion,
     indexOfLastQuestion
   );
-  const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
+  const totalPages = Math.ceil(questions.length / questionsPerPage);
 
   const fetchAllQuestions = async () => {
     try {
@@ -201,8 +168,8 @@ export default function ForumPage({
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">
                 Showing {indexOfFirstQuestion + 1}-
-                {Math.min(indexOfLastQuestion, filteredQuestions.length)} of{" "}
-                {filteredQuestions.length} questions
+                {Math.min(indexOfLastQuestion, questions.length)} of{" "}
+                {questions.length} questions
               </span>
             </div>
           </div>
