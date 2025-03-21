@@ -92,9 +92,8 @@ export default function ForumPage({
 
   const userFullname = userData?.fullname?.split(" ");
   const userAvatar = userFullname
-    ? `${userFullname[0]?.charAt(0)}${userFullname[1]?.charAt(0)}`
+    ? `${userFullname[0]?.charAt(0)}`
     : "";
-
   return (
     <div className="container mx-auto py-4 px-4">
       <div className="w-full rounded-lg my-2 text-center capitalize bg-orange-700 text-white">
@@ -128,7 +127,7 @@ export default function ForumPage({
             {isLoggedIn ? (
               <Link
                 href={`/${lang}/add-question`}
-                className="gap-2 bg-emerald-500 text-white hover:bg-emerald-600"
+                className="gap-2 flex py-3 px-4  rounded-xl bg-emerald-500 text-white hover:bg-emerald-600"
               >
                 <Plus className="h-5 w-5" />
                 Ask a Question
