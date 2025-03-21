@@ -27,15 +27,19 @@ export async function GET(req: Request) {
           q.status, 
           q.created_at, 
           q.updated_at,
-          u.fullname AS user_name, 
-          u.email AS user_email, 
+          qu.fullname AS question_user_name, 
+          qu.email AS question_user_email, 
           a.id AS answer_id,
           a.user_id AS answer_user_id,
           a.answer,
-          a.created_at AS answer_created_at
+          a.question_id,
+          a.created_at AS answer_created_at,
+          au.fullname AS answer_user_name, 
+          au.email AS answer_user_email
         FROM questions q
-        LEFT JOIN users u ON q.user_id = u.id
+        LEFT JOIN users qu ON q.user_id = qu.id  -- Fetch user details of the question poster
         LEFT JOIN answers a ON q.id = a.question_id
+        LEFT JOIN users au ON a.user_id = au.id  -- Fetch user details of the answer poster
         ORDER BY q.created_at DESC
         LIMIT ? OFFSET ?`,
       [pageSize, offset]
@@ -52,12 +56,13 @@ export async function GET(req: Request) {
         status,
         created_at,
         updated_at,
-        user_name,
-        user_email,
+        question_user_name, // ✅ Fix: Correct alias from SQL
+        question_user_email, // ✅ Fix: Correct alias from SQL
         answer_id,
         answer_user_id,
         answer,
         answer_created_at,
+        answer_user_name,
       } = row;
 
       if (!questionMapping[question_id]) {
@@ -65,8 +70,8 @@ export async function GET(req: Request) {
           id: question_id,
           user: {
             id: user_id,
-            name: user_name,
-            email: user_email,
+            name: question_user_name,
+            email: question_user_email,
           },
           title,
           description,
@@ -80,14 +85,18 @@ export async function GET(req: Request) {
       if (answer_id) {
         questionMapping[question_id].answers.push({
           id: answer_id,
-          user_id: answer_user_id,
+          user: {
+            id: answer_user_id,
+            name: answer_user_name,
+          },
           answer,
+          question_id,
           created_at: answer_created_at,
         });
       }
     });
 
-    const formattedQuestion = Object.values(questionMapping);
+    const formattedQuestions = Object.values(questionMapping);
 
     return NextResponse.json(
       {
@@ -97,7 +106,7 @@ export async function GET(req: Request) {
         currentPage: page,
         hasNextPage: page < totalPages,
         hasPreviousPage: page > 1,
-        questions: formattedQuestion,
+        questions: formattedQuestions,
       },
       { status: 200 }
     );
