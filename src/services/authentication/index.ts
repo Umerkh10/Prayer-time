@@ -94,18 +94,34 @@ export const verifyCode = async (userDetails: any) => {
   }
 };
 
-export const updateUserDetails = async (userDetails: any) => {
-  const { id, fullname, email, password } = userDetails;
-
+export const updateUserDetails = async (id: number, fullname: string) => {
   try {
     const response = await axios.put(`${BASE_URL}/user-details`, {
       id,
       fullname,
-      email,
-      password,
     });
 
-    console.log(response);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message || "An error occurred during sign-up"
+      );
+    } else {
+      console.error("Unexpected Error:", error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
+export const getUserById = async (id: any) => {
+  try {
+    console.log("id ==>", id);
+
+    const response = await axios.get(`${BASE_URL}/get-user-by-id`, {
+      params: { id },
+    });
     return response.data; // Corrected
   } catch (error) {
     if (axios.isAxiosError(error)) {

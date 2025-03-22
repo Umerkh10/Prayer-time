@@ -19,7 +19,7 @@ import { urlSplitter } from "@/lib";
 import { refactorDate } from "@/lib/date";
 import { getAllQuestions } from "@/services/forum";
 import { motion } from "framer-motion";
-import { MessageSquare, Plus, Search, ThumbsUp } from "lucide-react";
+import { MessageSquare, Plus, Search, ThumbsUp, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -148,11 +148,14 @@ export default function ForumPage({
             <div className="flex justify-between items-center mb-4">
               <h1 className="text-4xl font-bold ">Global Salah Forum</h1>
               {isLoggedIn ? (
-                <UserDropdown
-                  userName={userData?.fullname}
-                  userEmail={userData?.email}
-                  setIsLoggedIn={setIsLoggedIn}
-                />
+                <div className="flex items-center gap-1">
+                  <User />
+                  <UserDropdown
+                    userName={userData?.fullname}
+                    userEmail={userData?.email}
+                    setIsLoggedIn={setIsLoggedIn}
+                  />
+                </div>
               ) : (
                 <Button variant="outline" size="sm" onClick={onAddQuestion}>
                   Login / Sign Up
@@ -226,7 +229,7 @@ export default function ForumPage({
                   {filteredQuestions.map((question: any, index: any) => {
                     const firstAnswer = getFirstAnswer(question.id);
                     return (
-                      <div>
+                      <div key={question.id}>
                         <Link
                           className="space-y-4"
                           href={`/${lang}/forum/${question.title.replaceAll(
@@ -242,11 +245,11 @@ export default function ForumPage({
                           >
                             <Card className="overflow-hidden border-green-600/20 shadow-md hover:shadow-lg transition-shadow">
                               <CardHeader className="pb-3">
-                              <div className="flex justify-between items-center text-sm text-muted-foreground">
-                                <h2 className="text-xl font-bold ">
-                                  {question.title}
-                                </h2>
-                                <div className="flex items-center gap-4 text-xs">
+                                <div className="flex justify-between items-center text-sm text-muted-foreground">
+                                  <h2 className="text-xl font-bold ">
+                                    {question.title}
+                                  </h2>
+                                  <div className="flex items-center gap-4 text-xs">
                                     <UserAvatar userName={question.user.name} />
                                     <div className="flex flex-col">
                                       <span>{question.user.name}</span>
@@ -256,8 +259,6 @@ export default function ForumPage({
                                       </span>
                                     </div>
                                   </div>
-                                
-                              
                                 </div>
                               </CardHeader>
                               <CardContent>
@@ -288,13 +289,13 @@ export default function ForumPage({
                                     <p className="text-sm line-clamp-2">
                                       {firstAnswer.answer}
                                     </p>
-                                      <Button
-                                        variant="link"
-                                        size="sm"
-                                        className="mt-1 h-auto p-0 text-primary"
-                                      >
-                                        View more replies
-                                      </Button>
+                                    <Button
+                                      variant="link"
+                                      size="sm"
+                                      className="mt-1 h-auto p-0 text-primary"
+                                    >
+                                      View more replies
+                                    </Button>
                                   </div>
                                 )}
                               </CardContent>
