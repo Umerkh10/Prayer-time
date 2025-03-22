@@ -1,22 +1,13 @@
-import nodemailer from "nodemailer";
+<!DOCTYPE html>
+<html lang="en">
 
-export const sendAdminQAAlert = async (isAnswer?: boolean) => {
-  const transporter = nodemailer.createTransport({
-    host: "business76.web-hosting.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: "info@globalsalah.com",
-      pass: "amfh)+AWv$0C",
-    },
-  });
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-  const mailOptions = {
-    from: `Global Salah - <${process.env.MAILFROM}>`,
-    to: process.env.ADMINMAIL,
-    subject: `${isAnswer ? "Answer Alert" : "Question Alert"} | Global Salah`,
-    html: `
-  <body style="margin: 0; padding: 0; background-color: #f4eefd; font-family: 'Google-sans';">
+<body style="margin: 0; padding: 0; background-color: #f4eefd; font-family: 'Google-sans';">
     <div style="width: 100%; max-width: 600px; border-radius: 20px; margin: 20px auto; background-color: #ffffff; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
         <div style="text-align: center; padding: 20px; background-color: #000717; border-top-left-radius: 20px; border-top-right-radius: 20px;">
             <div style="display: flex; align-items: center; justify-content: center;">
@@ -41,8 +32,5 @@ export const sendAdminQAAlert = async (isAnswer?: boolean) => {
         </div>
     </div>
 </body>
-          `,
-  };
 
-  return await transporter.sendMail(mailOptions);
-};
+</html>

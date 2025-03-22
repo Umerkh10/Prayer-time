@@ -5,10 +5,12 @@ import Navbar from "./(Home)/Navbar";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import Footer from "./(Home)/Footer";
 import { Toaster } from "sonner";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AdminSidebar } from "@/components/admin-sidebar";
 
 const poppins = Poppins({
   subsets: ['latin'], // Specify character subsets
-  weight: ['300', '400','500','600', '700','800','900'], // Specify weights to preload
+  weight: ['300', '400', '500', '600', '700', '800', '900'], // Specify weights to preload
   variable: '--font-poppins-sans', // Define a custom CSS variable for the font
 });
 
@@ -45,7 +47,7 @@ export default function RootLayout({
   ></script>
 
   return (
-    <html  lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={`${poppins.variable}  antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -53,12 +55,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-
-          
           <Navbar />
           <Toaster richColors />
+   
           {children}
-          <Footer/>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
