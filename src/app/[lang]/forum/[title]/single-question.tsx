@@ -1,9 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useParams, usePathname } from "next/navigation";
-import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,21 +8,17 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Badge } from "@/components/ui/badge";
-import {
-  ArrowLeft,
-  MessageSquare,
-  ThumbsUp,
-  Share2,
-  BookmarkPlus,
-} from "lucide-react";
-import { motion } from "framer-motion";
-import { urlSplitter } from "@/lib";
-import { mockAnswers, mockQuestions } from "@/lib/mock-data";
-import { getQuestionByTitle } from "@/services/forum";
-import { toast } from "sonner";
-import { refactorDate } from "@/lib/date";
+import { Skeleton } from "@/components/ui/skeleton";
 import UserAvatar from "@/components/UserAvatar";
+import { urlSplitter } from "@/lib";
+import { refactorDate } from "@/lib/date";
+import { getQuestionByTitle } from "@/services/forum";
+import { motion } from "framer-motion";
+import { ArrowLeft, MessageSquare, Share2, ThumbsUp } from "lucide-react";
+import Link from "next/link";
+import { useParams, usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function QuestionPage() {
   const params = useParams();
@@ -34,8 +26,22 @@ export default function QuestionPage() {
   const lang = urlSplitter(pathname);
   const [question, setQuestion] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [url, setUrl] = useState("");
 
   const title = params?.title as string;
+
+  useEffect(() => {
+    setUrl(window.location.href);
+  }, [pathname]);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(url);
+      toast("URL copied to clipboard!");
+    } catch (error) {
+      console.error("Failed to copy URL:", error);
+    }
+  };
 
   const fetchQuestionByTitle = async () => {
     try {
@@ -68,16 +74,25 @@ export default function QuestionPage() {
   //   }
   // }, [title]);
 
-  if (!question) {
+  // if (!question) {
+  //   return (
+  //     <div className="container mx-auto py-8 px-4 text-center">
+  //       <h1 className="text-2xl font-bold mb-4">Question not found</h1>
+  //       <Link href={`/${lang}/forum`}>
+  //         <Button>
+  //           <ArrowLeft className="mr-2 h-4 w-4" />
+  //           Back to Forum
+  //         </Button>
+  //       </Link>
+  //     </div>
+  //   );
+  // }
+
+  if (isLoading) {
     return (
-      <div className="container mx-auto py-8 px-4 text-center">
-        <h1 className="text-2xl font-bold mb-4">Question not found</h1>
-        <Link href={`/${lang}/forum`}>
-          <Button>
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Forum
-          </Button>
-        </Link>
+      <div className="px-8 mt-4">
+        <Skeleton className="h-48 w-full" />
+        <Skeleton className="mt-3 h-screen rounded-lg w-full" />
       </div>
     );
   }
@@ -91,6 +106,7 @@ export default function QuestionPage() {
             Back to Forum
           </Button>
         </Link>
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -139,6 +155,7 @@ export default function QuestionPage() {
                   variant="ghost"
                   size="sm"
                   className="flex items-center gap-1"
+                  onClick={handleCopy}
                 >
                   <Share2 className="h-4 w-4" />
                   Share
@@ -169,7 +186,7 @@ export default function QuestionPage() {
                   <CardHeader className="pb-3 bg-muted/20">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-2">
-                        <UserAvatar userName={answer.user.fullname  } />
+                        <UserAvatar userName={answer.user.fullname} />
                         <span className="font-medium">
                           {answer.user.fullname}
                         </span>

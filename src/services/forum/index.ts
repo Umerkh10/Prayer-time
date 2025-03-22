@@ -49,7 +49,7 @@ export const addQuestion = async (questionDetail: any) => {
 
   try {
     const response = await axios.post(`${BASE_URL}/add-question`, {
-      user_id: 36,
+      user_id: user_id,
       title,
       description,
     });
