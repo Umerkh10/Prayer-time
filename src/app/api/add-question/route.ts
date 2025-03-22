@@ -21,6 +21,8 @@ export async function POST(req: Request) {
 
     // Checking if user already exists
 
+    console.log("user_id", user_id)
+
     const [rows] = await db.query("SELECT * FROM users WHERE id = ?", user_id);
     const user = rows[0];
 

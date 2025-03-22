@@ -135,7 +135,7 @@ export default function ForumPage({
         </div>
       ) : (
         <div className="container mx-auto py-4 px-4">
-          {!isVerified && userDetailsInLS.token && (
+          {!isVerified && userDetailsInLS?.token && (
             <div className="w-full rounded-lg my-2 text-center capitalize bg-orange-700 text-white">
               You are not verified click here{" "}
               <Link className="underline" href={`/${lang}/verify-email`}>
@@ -189,7 +189,7 @@ export default function ForumPage({
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
             <div className="md:col-span-1">
-              <div className="sticky top-4 space-y-6">
+              <div className="sticky top-20 space-y-6">
                 <Card className="overflow-hidden border-primary/20 shadow-md">
                   <CardHeader className="bg-primary/5 pb-3">
                     <h3 className="font-semibold text-lg">Search & Filters</h3>
@@ -226,105 +226,116 @@ export default function ForumPage({
                   {filteredQuestions.map((question: any, index: any) => {
                     const firstAnswer = getFirstAnswer(question.id);
                     return (
-                      <motion.div
-                        key={question.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
-                      >
-                        <Card className="overflow-hidden border-green-600/20 shadow-md hover:shadow-lg transition-shadow">
-                          <CardHeader className="pb-3">
-                            <Link href={`/}`} className="hover:underline">
-                              <h2 className="text-xl font-bold ">
-                                {question.title}
-                              </h2>
-                            </Link>
-                            <div className="flex justify-between items-center text-sm text-muted-foreground">
-                              <div className="flex items-center gap-2">
-                                <UserAvatar userName={question.user.name} />
-                                <span>{question.user.name}</span>
-                              </div>
-                              <span>
-                                Posted on {refactorDate(question.created_at)}
-                              </span>
-                            </div>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="line-clamp-3">
-                              {question.description}
-                            </p>
-                            {firstAnswer && (
-                              <div className="mt-4 pt-4 border-t border-primary/10 bg-muted/30 p-3 rounded-md">
-                                <div className="flex justify-between items-center mb-2 text-sm">
-                                  <div className="flex items-center gap-2">
-                                    {/* <Avatar className="h-5 w-5 border border-primary/20"> */}
-                                    {/* <AvatarImage
+                      <div>
+                        <Link
+                          className="space-y-4"
+                          href={`/${lang}/forum/${question.title.replaceAll(
+                            " ",
+                            "-"
+                          )}`}
+                        >
+                          <motion.div
+                            key={question.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: index * 0.05 }}
+                          >
+                            <Card className="overflow-hidden border-green-600/20 shadow-md hover:shadow-lg transition-shadow">
+                              <CardHeader className="pb-3">
+                              <div className="flex justify-between items-center text-sm text-muted-foreground">
+                                <h2 className="text-xl font-bold ">
+                                  {question.title}
+                                </h2>
+                                <div className="flex items-center gap-4 text-xs">
+                                    <UserAvatar userName={question.user.name} />
+                                    <div className="flex flex-col">
+                                      <span>{question.user.name}</span>
+                                      <span>
+                                        Posted on{" "}
+                                        {refactorDate(question.created_at)}
+                                      </span>
+                                    </div>
+                                  </div>
+                                
+                              
+                                </div>
+                              </CardHeader>
+                              <CardContent>
+                                <p className="line-clamp-3">
+                                  {question.description}
+                                </p>
+                                {firstAnswer && (
+                                  <div className="mt-4 pt-4 border-t border-primary/10 bg-muted/30 p-3 rounded-md">
+                                    <div className="flex justify-between items-center mb-2 text-sm">
+                                      <div className="flex items-center gap-2">
+                                        {/* <Avatar className="h-5 w-5 border border-primary/20"> */}
+                                        {/* <AvatarImage
                                         src={firstAnswer.user.avatar}
                                         alt={firstAnswer.author.name}
                                       /> */}
-                                    {/* <AvatarFallback className="bg-primary/10 text-primary">
+                                        {/* <AvatarFallback className="bg-primary/10 text-primary">
                                         {firstAnswer.author.initials}
                                       </AvatarFallback> */}
-                                    {/* </Avatar> */}
-                                    <span className="font-medium">
-                                      {firstAnswer.user.name}
-                                    </span>
+                                        {/* </Avatar> */}
+                                        <span className="font-medium">
+                                          {firstAnswer.user.name}
+                                        </span>
+                                      </div>
+                                      <span className="text-muted-foreground">
+                                        {refactorDate(firstAnswer.created_at)}
+                                      </span>
+                                    </div>
+                                    <p className="text-sm line-clamp-2">
+                                      {firstAnswer.answer}
+                                    </p>
+                                      <Button
+                                        variant="link"
+                                        size="sm"
+                                        className="mt-1 h-auto p-0 text-primary"
+                                      >
+                                        View more replies
+                                      </Button>
                                   </div>
-                                  <span className="text-muted-foreground">
-                                    {refactorDate(firstAnswer.created_at)}
-                                  </span>
-                                </div>
-                                <p className="text-sm line-clamp-2">
-                                  {firstAnswer.answer}
-                                </p>
-                                <Link href={`/question/${question.slug}`}>
+                                )}
+                              </CardContent>
+                              <CardFooter className="flex justify-between py-3 border-t bg-muted/20">
+                                <div className="flex gap-4">
                                   <Button
-                                    variant="link"
+                                    variant="ghost"
                                     size="sm"
-                                    className="mt-1 h-auto p-0 text-primary"
+                                    className="flex items-center gap-1"
                                   >
-                                    View more replies
+                                    <ThumbsUp className="h-4 w-4" />
+                                    {/* <span>{question.likes}</span> */}
+                                  </Button>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="flex items-center gap-1"
+                                  >
+                                    <MessageSquare className="h-4 w-4" />
+                                    <span>{question.answers.length}</span>
+                                  </Button>
+                                </div>
+                                <Link
+                                  href={`/${lang}/forum/${question.title.replaceAll(
+                                    " ",
+                                    "-"
+                                  )}`}
+                                >
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    className="border-primary/20 hover:bg-green-700/10"
+                                  >
+                                    View Question
                                   </Button>
                                 </Link>
-                              </div>
-                            )}
-                          </CardContent>
-                          <CardFooter className="flex justify-between py-3 border-t bg-muted/20">
-                            <div className="flex gap-4">
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="flex items-center gap-1"
-                              >
-                                <ThumbsUp className="h-4 w-4" />
-                                {/* <span>{question.likes}</span> */}
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="flex items-center gap-1"
-                              >
-                                <MessageSquare className="h-4 w-4" />
-                                <span>{question.answers.length}</span>
-                              </Button>
-                            </div>
-                            <Link
-                              href={`/${lang}/forum/${question.title.replaceAll(
-                                " ",
-                                "-"
-                              )}`}
-                            >
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="border-primary/20 hover:bg-green-700/10"
-                              >
-                                View Question
-                              </Button>
-                            </Link>
-                          </CardFooter>
-                        </Card>
-                      </motion.div>
+                              </CardFooter>
+                            </Card>
+                          </motion.div>
+                        </Link>
+                      </div>
                     );
                   })}
                 </div>
