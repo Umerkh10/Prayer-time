@@ -56,8 +56,8 @@ export async function GET(req: Request) {
         status,
         created_at,
         updated_at,
-        question_user_name, // ✅ Fix: Correct alias from SQL
-        question_user_email, // ✅ Fix: Correct alias from SQL
+        question_user_name,
+        question_user_email,
         answer_id,
         answer_user_id,
         answer,

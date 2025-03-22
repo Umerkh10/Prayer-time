@@ -14,19 +14,18 @@ import { Settings, LogOut, Bell } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import UserAvatar from "../UserAvatar";
 
 interface UserDropdownProps {
   userName: string;
   userEmail: string;
-  userAvatar?: string;
   setIsLoggedIn: (value: boolean) => void;
 }
 
 export default function UserDropdown({
   userName,
-  userAvatar,
   userEmail,
-  setIsLoggedIn
+  setIsLoggedIn,
 }: UserDropdownProps) {
   const [userDetails, setUserDetails] = useState<any>(null);
 
@@ -45,16 +44,14 @@ export default function UserDropdown({
       token: null,
     };
     localStorage.setItem("userData", JSON.stringify(updatedUserDetails));
-    setIsLoggedIn(false)
+    setIsLoggedIn(false);
   };
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="flex items-center justify-center h-8 w-8 border border-primary/20 cursor-pointer hover:ring-2 hover:ring-primary/20 transition-all">
-          <p className="font-bold">{userAvatar}</p>
-          {/* <AvatarImage src={userAvatar} alt={userName} /> */}
-          {/* <AvatarFallback className="bg-primary/10 text-primary">{userInitials}</AvatarFallback> */}
+          <UserAvatar userName={userName} />
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56 border-primary/20">

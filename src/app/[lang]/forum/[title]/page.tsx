@@ -1,16 +1,20 @@
-import React from 'react'
-import QuestionPage from './single-question'
+import React from "react";
+import QuestionPage from "./single-question";
 
 export async function generateMetadata({ params }: any) {
-  const lang = params.lang
-  const slug = params?.slug as string
-  const metaslug = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const lang = params.lang;
+  const title = params?.title as string;
+
+  const metaslug = title
+    ?.split("-")
+    ?.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 
   return {
     title: `${metaslug} – Global Salah Forum Discussion`,
     description: `Explore answers and join the discussion on ${metaslug} in the Global Salah Forum. Share your insights, ask follow-up questions, and connect with the community.`,
     alternates: {
-      canonical: `https://www.globalsalah.com/${lang}/forum/${slug}`,
+      canonical: `https://www.globalsalah.com/${lang}/forum/${title}`,
     },
     robots: {
       index: false,
@@ -33,7 +37,7 @@ function page() {
     <div>
       <QuestionPage />
     </div>
-  )
+  );
 }
 
-export default page
+export default page;
