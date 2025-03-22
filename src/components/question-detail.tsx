@@ -60,11 +60,11 @@ export function QuestionDetail({ question, answers }: QuestionDetailProps) {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "approved":
-        return <Badge className="bg-green-500">Approved</Badge>
+        return <Badge className="bg-green-500 text-white">Approved</Badge>
       case "rejected":
-        return <Badge className="bg-red-500">Rejected</Badge>
+        return <Badge className="bg-red-500 text-white">Rejected</Badge>
       default:
-        return <Badge className="bg-yellow-500">On Hold</Badge>
+        return <Badge className="bg-yellow-500 text-white">On Hold</Badge>
     }
   }
 

@@ -26,9 +26,6 @@ function DateTimingDisplay() {
   const [currentTime, setCurrentTime] = useState<Date>(new Date());
   const [selectedMadhab, setSelectedMadhab] = useState("Shafi");
 
-
-
-
   useEffect(() => {
     const fetchLocation = async () => {
       try {
@@ -49,14 +46,12 @@ function DateTimingDisplay() {
     fetchLocation();
   }, []);
 
-
-
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
 
-    return () => clearInterval(timer); // Cleanup on unmount
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -105,28 +100,24 @@ function DateTimingDisplay() {
     const fetchPrayerTimes = (date: Date) => {
       if (!location) return null;
 
-      // Dynamically determine the calculation method
-      const calculationMethod = getCalculationMethod(location.country); // Based on user's country
+      const calculationMethod = getCalculationMethod(location.country);
 
-      // Ensure madhab is selected correctly and pass it
       const madhab = selectedMadhab === "Shafi" ? Madhab.Shafi : Madhab.Hanafi;
       const nightPortions = () => {
         return {
-          fajr: 1.0,  // Adjust this value based on your logic
-          isha: 1.0,  // Adjust this value based on your logic
+          fajr: 1.0,
+          isha: 1.0,
         };
       };
 
-      // Ensure that nightPortions is included in the params
       const params: CalculationParameters = {
         ...calculationMethod,
         madhab,
-        nightPortions,  // Pass the function
+        nightPortions,
       };
 
       const prayerTimeObj = new PrayerTimes(location, date, params);
 
-      // Function to format time
       const formatTime = (time: Date, timeZone: string) =>
         time.toLocaleTimeString("en-US", {
           hour: "2-digit",
@@ -136,11 +127,10 @@ function DateTimingDisplay() {
         });
 
       const isArabic = window.location.pathname.includes("/ar");
-      // Define prayer times and icons
       const prayers = [
         {
           name: isArabic ? "الفجر" : "Fajr",
-          time: formatTime(prayerTimeObj.fajr, timeZone || "UTC"), // Fallback to UTC
+          time: formatTime(prayerTimeObj.fajr, timeZone || "UTC"),
           isActive: false,
           icon: <CloudSun className="w-5 h-5 " />,
         },
@@ -187,33 +177,33 @@ function DateTimingDisplay() {
       return {
         date: {
           gregorian: isArabic
-        ? date.toLocaleDateString("ar-EG", {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-        : date.toLocaleDateString("en-US", {
-          weekday: "long",
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        }),
+            ? date.toLocaleDateString("ar-EG", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+            : date.toLocaleDateString("en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }),
           hijri: isArabic
-        ? moment(subDays(date, 1)).locale("ar-SA").format("iD iMMMM, iYYYY")
-        : moment(subDays(date, 1)).locale("en").format("iD iMMMM, iYYYY"),
+            ? moment(subDays(date, 1)).locale("ar-SA").format("iD iMMMM, iYYYY")
+            : moment(subDays(date, 1)).locale("en").format("iD iMMMM, iYYYY"),
         },
         prayers,
         location: `Lat: ${location.latitude.toFixed(2)}, Lon: ${location.longitude.toFixed(2)}`,
         nextPrayer: nextPrayer
           ? {
-        name: nextPrayer.name,
-        time: nextPrayer.time,
-        countdown: () =>
-          differenceInSeconds(
-            new Date(`${date.toDateString()} ${nextPrayer.time}`),
-            new Date()
-          ),
+            name: nextPrayer.name,
+            time: nextPrayer.time,
+            countdown: () =>
+              differenceInSeconds(
+                new Date(`${date.toDateString()} ${nextPrayer.time}`),
+                new Date()
+              ),
           }
           : null,
       };
@@ -250,25 +240,22 @@ function DateTimingDisplay() {
     return () => clearInterval(interval);
   }, [prayerTimes, activeIndex]);
 
-  // Handle Swiper slide changes
   const handleSlideChange = (swiper: any) => {
-    const { activeIndex } = swiper;
+    const newIndex = swiper.activeIndex;
 
-    if (activeIndex === 0) {
-      setCurrentDate(subDays(currentDate, 1));
-      setTimeout(() => {
-        swiper.slideTo(1, 0);
-      }, 300);
-    } else if (activeIndex === 2) {
-      setCurrentDate(addDays(currentDate, 1));
-      setTimeout(() => {
-        swiper.slideTo(1, 0);
-      }, 300);
+    // Set the active index based on the slide change
+    setActiveIndex(newIndex);
+
+    // Update date based on active index
+    if (newIndex === 0) {
+      setCurrentDate(subDays(new Date(), 0));
+    } else if (newIndex === 1) {
+      setCurrentDate(new Date());
+    } else if (newIndex === 2) {
+      setCurrentDate(addDays(new Date(), 0));
     }
+  };
 
-    setActiveIndex(activeIndex);
-  }
-  
   const { t } = useTranslation("CurrentNamazTime")
 
   const gregorian = prayerTimes[activeIndex]?.date.gregorian;
@@ -301,64 +288,56 @@ function DateTimingDisplay() {
                 value="Shafi">{t("city.shafi")}</option>
             </select>
 
-
-            <div className="grid grid-cols-2 lg:gap-0 gap-3 ">
-              {/* Group 1: Yesterday and Today */}
+            <div className="grid grid-cols-2 lg:gap-0 gap-3">
               <div className="flex flex-col sm:flex-row gap-2">
-              <button
-               className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 0
-                ? "bg-[#1e8e67] text-white"
-                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-                }`}
-              onClick={() => {
-                setActiveIndex(0);
-                setCurrentDate(subDays(currentDate, 1));
-              }}
-              >
-                {t("CurrentNamazTime.yesterday")}
-              </button>
+                {/* Yesterday */}
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 0 ? "bg-[#1e8e67] text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(0);
+                    setCurrentDate(subDays(new Date(), 1));
+                  }}
+                >
+                  {t("CurrentNamazTime.yesterday")}
+                </button>
 
-              <button
-               className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 1
-              ? "bg-[#1e8e67] text-white"
-              : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-              }`}
-              onClick={() => {
-              setActiveIndex(1);
-              setCurrentDate(new Date());
-              }}
-              >
-                {t("CurrentNamazTime.today")}
-              </button>
-
+                {/* Today */}
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 1 ? "bg-[#1e8e67] text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(1);
+                    setCurrentDate(new Date());
+                  }}
+                >
+                  {t("CurrentNamazTime.today")}
+                </button>
               </div>
 
-              {/* Group 2: Tomorrow and Monthly */}
               <div className="flex flex-col sm:flex-row gap-2">
-              <button
-                className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 2
-                  ? "bg-[#1e8e67] text-white"
-                  : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-                  }`}
-                onClick={() => {
-                  setActiveIndex(2);
-                  setCurrentDate(addDays(currentDate, 0));
-                }}
-              >
-                {t("CurrentNamazTime.tomorrow")}
-              </button>
+                {/* Tomorrow */}
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 2 ? "bg-[#1e8e67] text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(2);
+                    setCurrentDate(addDays(new Date(), 1));
+                  }}
+                >
+                  {t("CurrentNamazTime.tomorrow")}
+                </button>
 
-              <button
-                className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3
-                ? "bg-[#1e8e67] text-white"
-                : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
-                }`}
-                onClick={() => {
-                setActiveIndex(3);
-                }}
-              >
-                {t("CurrentNamazTime.monthly")}
-              </button>
+                {/* Monthly */}
+                <button
+                  className={`w-full sm:w-auto px-4 py-2 rounded-lg ${activeIndex === 3 ? "bg-[#1e8e67] text-white" : "dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 text-zinc-50"
+                    }`}
+                  onClick={() => {
+                    setActiveIndex(3);
+                  }}
+                >
+                  {t("CurrentNamazTime.monthly")}
+                </button>
               </div>
             </div>
 
@@ -420,7 +399,6 @@ function DateTimingDisplay() {
                 </SwiperSlide>
               ))}
               <div className="flex justify-center items-center gap-2">
-                {/* Custom Navigation Arrows */}
                 <button className="z-10 p-2 bg-[#1e8e67] text-zinc-100 rounded-full shadow-lg transition"
                   id="prevBtn"> <FaArrowLeft size={24} /></button>
 

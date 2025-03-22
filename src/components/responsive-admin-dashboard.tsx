@@ -11,8 +11,7 @@ interface ResponsiveAdminDashboardProps {
 export function ResponsiveAdminDashboard({ children, title = "Admin Dashboard" }: ResponsiveAdminDashboardProps) {
   return (
     <div className="flex min-h-screen bg-background">
-      {/* Desktop Sidebar */}
-      <SheetSidebar className="w-64 hidden md:block" />
+
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
