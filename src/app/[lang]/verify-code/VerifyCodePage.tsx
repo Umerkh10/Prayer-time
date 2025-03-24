@@ -1,18 +1,10 @@
 "use client";
 
 import type React from "react";
-
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
 import { ArrowLeft, Loader2, KeyRound } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -80,7 +72,6 @@ export default function VerifyCodePage() {
         }
       }
     } catch (error: any) {
-      toast.error(error?.message);
     } finally {
       setIsLoading(false);
     }
@@ -140,7 +131,9 @@ export default function VerifyCodePage() {
                   </button>
                 </p>
               </div>
-              <CustomCaptcha setIsVerified={setIsVerified} />
+              <div className="flex justify-center items-center">
+                <CustomCaptcha setIsVerified={setIsVerified} />
+              </div>
 
               <Button
                 type="submit"

@@ -12,7 +12,7 @@ import { ArrowLeft, Loader2, Mail, Send, User2 } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { urlSplitter } from "@/lib"
-import { updateUserDetails} from "@/services/authentication"
+import { updateUserDetails } from "@/services/authentication"
 import { toast } from "sonner"
 import CustomCaptcha from "@/components/ui/common/CustomCaptcha"
 
@@ -47,11 +47,9 @@ export default function ResetPassword() {
             const response = await updateUserDetails(userId, newPassword);
 
             if (response) {
-                toast.success(response.message);
                 router.push(`/${lang}/forum`);
             }
         } catch (error: any) {
-            toast.error(error?.message);
         } finally {
             setIsLoading(false);
         }
@@ -86,7 +84,9 @@ export default function ResetPassword() {
                                 />
                                 {error && <p className="text-sm text-destructive">{error}</p>}
                             </div>
-                            <CustomCaptcha setIsVerified={setIsVerified} />
+                            <div className="flex justify-center items-center">
+                                <CustomCaptcha setIsVerified={setIsVerified} />
+                            </div>
                             <Button type="submit" className="w-full bg-emerald-500 hover:bg-emerald-600 text-zinc-50" disabled={isLoading}>
                                 {isLoading ? (
                                     <>

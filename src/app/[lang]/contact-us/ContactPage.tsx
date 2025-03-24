@@ -58,7 +58,6 @@ function ContactPage({ lang }: ContactPageProps) {
       }
     } catch (error) {
       console.error('Error submitting the form:', error);
-      toast.error("Something went wrong.");
     } finally {
       setPending(false);
     }

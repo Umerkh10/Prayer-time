@@ -74,7 +74,6 @@ export default function QuestionPage() {
         setQuestion(response.data.question);
       }
     } catch (error: any) {
-      toast.error(error?.message);
     } finally {
       setIsLoading(false);
     }
@@ -215,7 +214,8 @@ export default function QuestionPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-      <div className="flex flex-col md:flex-row  md:justify-end items-center text-sm text-muted-foreground mb-4">
+          <h1 className="text-3xl font-bold mb-2 ">{question.title}</h1>
+          <div className="flex flex-col md:flex-row  md:justify-end items-center text-sm text-muted-foreground mb-4">
             <div className="flex items-center gap-4 text-xs">
               <UserAvatar userName={question.user.fullname} />
               <div className="flex flex-col">
@@ -284,7 +284,7 @@ export default function QuestionPage() {
                 >
                   <Card className="overflow-hidden border-primary/20 shadow-md">
                     <CardHeader className="pb-3 bg-muted/20">
-                      <div className="flex justify-between items-center">
+                      <div className="flex flex-col md:flex-row md:justify-between items-center">
                         <div className="flex items-center gap-2">
                           <UserAvatar userName={answer.user.fullname} />
                           <span className="font-medium">

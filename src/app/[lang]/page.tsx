@@ -11,8 +11,8 @@ import { Metadata } from 'next';
 export async function generateMetadata({ params }: any) {
   const lang = params.lang
   return {
-    title: `Global Salah – Prayer Times, Duas & Islamic Calendar`,
-    description: `Get accurate daily and monthly prayer times with Global Salah. Access Islamic calendars, essential duas, and more to enhance your spiritual journey.`,
+    title: `Follow Global Salah to accomplish your religious intentions timely `,
+    description: `Welcome at Global Salah, investigate our services and expertise that is design to deliver you an update to perform religious practices on time across the world.`,
 alternates: {
   canonical: `https://www.globalsalah.com/${lang}`,
 },

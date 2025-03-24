@@ -6,8 +6,8 @@ import AboutUs from './AboutUs'
 export async function generateMetadata({ params }: any) {
   const lang = params.lang
   return {
-    title: `About Us – Global Salah`,
-    description: `Learn about Global Salah’s mission to provide accurate prayer times, monthly schedules, Islamic calendars, and essential duas. Dedicated to helping Muslims stay connected to their faith.`,
+    title: `Ultimate trusted prayer time portal by Muslims across the world`,
+    description: `Global Salah exist to guide Muslims globally to perform their religious practices on time. we offer accurate updates and send you reminders at exact prayer time`,
 alternates: {
   canonical: `https://www.globalsalah.com/${lang}/about-us`,
 },

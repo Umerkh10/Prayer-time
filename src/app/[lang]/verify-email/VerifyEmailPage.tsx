@@ -77,7 +77,10 @@ export default function VerifyEmailPage() {
                 />
                 {error && <p className="text-sm text-destructive">{error}</p>}
               </div>
+
+              <div className="flex justify-center items-center">
               <CustomCaptcha setIsVerified={setIsVerified} />
+              </div>
 
               <Button type="submit" className="w-full bg-emerald-500 hover:bg-emerald-600 text-zinc-50" disabled={isLoading}>
                 {isLoading ? (

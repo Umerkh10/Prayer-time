@@ -16,6 +16,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { urlSplitter } from "@/lib"
 import { addQuestion } from "@/services/forum"
 import { toast } from "sonner"
+import CustomCaptcha from "@/components/ui/common/CustomCaptcha"
 
 export default function AddQuestionPage() {
   const router = useRouter()
@@ -25,6 +26,7 @@ export default function AddQuestionPage() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
+  const [isVerified, setIsVerified] = useState(false);
   const [titleCount, setTitleCount] = useState(0)
   const MAX_TITLE_LENGTH = 50
 
@@ -53,6 +55,10 @@ export default function AddQuestionPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isVerified) {
+      toast.error("Please Verify the Captcha");
+      return;
+    }
     setIsLoading(true);
 
     const questionDetail = { user_id: userDetailsInLS?.id, title, description };
@@ -61,11 +67,9 @@ export default function AddQuestionPage() {
       const response = await addQuestion(questionDetail);
 
       if (response.status === 201) {
-        toast.success(response.data.message);
         router.push(`/${lang}/question-submitted`);
       }
     } catch (error: any) {
-      toast.error(error?.message);
     } finally {
       setIsLoading(false);
     }
@@ -141,6 +145,7 @@ export default function AddQuestionPage() {
           <Button variant="outline" onClick={() => router.push(`/${lang}/forum`)} className="border-primary/20">
             Cancel
           </Button>
+          <CustomCaptcha  setIsVerified={setIsVerified} />
 
           <Button onClick={handleSubmit} disabled={isLoading} className="gap-2 bg-emerald-600 hover:bg-emerald-800 text-white">
             {isLoading ? (

@@ -54,6 +54,8 @@ function Footer() {
             <h3 className="text-base font-semibold text-green-700 dark:text-green-400">
             {isLang ? t("Footer.companytitle") : "Company"} </h3>
             <ul className="mt-4 space-y-3 text-sm">
+                <li ><Link href={isLang ? `/${currentLang}/forum` : "/forum"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">{isLang ? t("navigation.forum") : "forum"}</Link></li>
+
                 <li ><Link href={isLang ? `/${currentLang}/countries` : "/countries"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">{isLang ? t("navigation.countries") : "countries"}</Link></li>
 
                 <li><Link href={isLang ? `/${currentLang}/about-us` : "/about-us"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize"> {isLang ? t("navigation.aboutUs") : "about Us"} </Link></li>
