@@ -67,11 +67,11 @@ export function UsersTable() {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    {/* {user.status !== "active" && (
+                    {user.status !== "active" && (
                       <DropdownMenuItem onClick={() => updateUserStatus(user.id, "active")}>
                         Activate User
                       </DropdownMenuItem>
-                    )} */}
+                    )}
                     {user.status !== "suspended" && (
                       <DropdownMenuItem onClick={() => updateUserStatus(user.id, "suspended")}>
                         Suspend User

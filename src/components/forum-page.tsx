@@ -56,9 +56,6 @@ export default function ForumPage({
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
   const [isVerified, setIsVerified] = useState(false);
 
-  console.log("userData", userData);
-  
-
   useEffect(() => {
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);
@@ -125,8 +122,9 @@ export default function ForumPage({
   }, []);
 
   const handleAddQuestionClick = () => {
-    if (isLoggedIn) {
-      router.push(`/${lang}/add-question`);
+    if (isLoggedIn && !isVerified) {
+      toast.error("Please verify your account first");
+      // router.push(`/${lang}/add-question`);
     } else {
       onAddQuestion();
     }
@@ -179,7 +177,7 @@ export default function ForumPage({
                 enhance your Salah journey.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                {isLoggedIn ? (
+                {isLoggedIn && isVerified ? (
                   <Link
                     href={`/${lang}/add-question`}
                     className="gap-2 flex py-3 px-4  rounded-xl bg-emerald-500 text-white hover:bg-emerald-600"

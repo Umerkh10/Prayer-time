@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
@@ -16,29 +16,39 @@ import { toast } from "sonner"
 import { addAnswer } from "@/services/forum"
 import CustomCaptcha from "./common/CustomCaptcha"
 
+
 interface AnswerModalProps {
-    questionId: string
-    onAnswerAdded: () => void
-    buttonVariant?: "default" | "outline" | "ghost"
-    buttonSize?: "default" | "sm" | "lg" | "icon"
-    buttonClassName?: string
-    buttonText?: string
+  questionId: string;
+  onAnswerAdded: () => void;
+  buttonVariant?: "default" | "outline" | "ghost";
+  buttonSize?: "default" | "sm" | "lg" | "icon";
+  buttonClassName?: string;
+  buttonText?: string;
+  isVerified: boolean;
 }
 
 export function AnswerModal({
-    questionId,
-    onAnswerAdded,
-    buttonVariant = "outline",
-    buttonSize = "sm",
-    buttonClassName = "",
-    buttonText = "Post an Answer",
+  questionId,
+  isVerified,
+  onAnswerAdded,
+  buttonVariant = "outline",
+  buttonSize = "sm",
+  buttonClassName = "",
+  buttonText = "Post an Answer",
 }: AnswerModalProps) {
     const [answer, setAnswer] = useState("")
     const [userId, setUserId] = useState<any>(null);
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const [isVerified, setIsVerified] = useState(false);
+    const [isCaptchaVerified, setIsCaptchaVerified] = useState(false);
     const [open, setOpen] = useState(false)
 
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      const parsedUserData = JSON.parse(storedUserData);
+      setUserId(parsedUserData.id);
+    }
+  }, []);
 
 
     useEffect(() => {
@@ -51,12 +61,10 @@ export function AnswerModal({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!isVerified) {
-            toast.error("Please Verify the Captcha");
+        if (!isCaptchaVerified) {
             return;
         }
         if (!answer.trim()) {
-            toast.error("Please enter your answer")
             return
         }
 
@@ -67,13 +75,11 @@ export function AnswerModal({
             const response = await addAnswer(answerDetail);
 
             if (response.status === 201) {
-                toast.success("Your answer has been posted!")
                 setAnswer("")
                 setOpen(false)
                 onAnswerAdded()
             }
         } catch (error: any) {
-            toast.error(error?.message || "Failed to post answer")
         } finally {
             setIsSubmitting(false)
         }
@@ -105,7 +111,7 @@ export function AnswerModal({
                     <Button variant="outline" onClick={() => setOpen(false)} disabled={isSubmitting}>
                         Cancel
                     </Button>
-                    <CustomCaptcha  setIsVerified={setIsVerified} />
+                    <CustomCaptcha  setIsVerified={setIsCaptchaVerified} />
 
                     <Button className="text-white bg-emerald-600 hover:bg-emerald-800" onClick={handleSubmit} disabled={isSubmitting}>
                         {isSubmitting ? "Posting..." : "Post Answer"}

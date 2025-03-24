@@ -47,11 +47,9 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
 
       if (response.status === 201) {
         localStorage.setItem("userData", JSON.stringify(response.data.user))
-        toast.success(response.data.message);
         router.push(`/${lang}/verify-code`);
       }
     } catch (error: any) {
-      toast.error(error?.message)
     } finally {
       setIsLoading(false);
     }

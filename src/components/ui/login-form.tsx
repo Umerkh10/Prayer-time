@@ -60,13 +60,11 @@ export default function LoginForm({
       if (response.status === 200) {
 
         localStorage.setItem("userData", JSON.stringify(response.data.user));
-        toast.success(response.data.message);
         setShowAuthModal(false);
         setIsLoggedIn(true);
         router.push(`/${lang}/forum`);
       }
     } catch (error: any) {
-      toast.error(error?.message);
     } finally {
       setIsLoading(false);
     }

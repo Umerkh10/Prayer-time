@@ -69,11 +69,9 @@ export default function AddQuestionPage() {
       const response = await addQuestion(questionDetail);
 
       if (response.status === 201) {
-        toast.success(response.data.message);
         router.push(`/${lang}/question-submitted`);
       }
     } catch (error: any) {
-      toast.error(error?.message);
     } finally {
       setIsLoading(false);
     }
