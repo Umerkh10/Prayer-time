@@ -15,7 +15,7 @@ import { urlSplitter } from "@/lib"
 import { verifyEmail } from "@/services/authentication"
 import { toast } from "sonner"
 
-export default function VerifyEmailPage() {
+export default function ResetPassword() {
   const router = useRouter()
   const pathname = usePathname();
   const lang = urlSplitter(pathname)
@@ -33,7 +33,7 @@ export default function VerifyEmailPage() {
 
       if (response.status === 200) {
         toast.success(response.data.message);
-        router.push(`/${lang}/reset-password`);
+        router.push(`/${lang}/forum`);
       }
     } catch (error: any) {
       toast.error(error?.message)
@@ -51,19 +51,19 @@ export default function VerifyEmailPage() {
             <div className="mx-auto w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mb-4">
               <Mail className="h-8 w-8 text-zinc-50" />
             </div>
-            <CardTitle className="text-2xl font-bold text-center">Verify Your Email</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">New Password</CardTitle>
             <CardDescription className="text-center">
-              Enter your email address to receive a verification code
+            Enter your new password below to reset your account.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address</Label>
+                <Label htmlFor="email">Confirm New Password</Label>
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="Enter your email"
+                  id="password"
+                  type="password"
+                  placeholder="Enter your New Password"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="border-primary/20 focus-visible:ring-primary/30"
@@ -80,7 +80,7 @@ export default function VerifyEmailPage() {
                 ) : (
                   <>
                     <Send className="mr-2 h-4 w-4" />
-                    Send Verification Code
+                    Confirm Password
                   </>
                 )}
               </Button>
