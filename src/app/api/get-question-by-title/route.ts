@@ -29,6 +29,7 @@ export async function GET(req: Request) {
          a.id AS answer_id,
          a.user_id AS answer_user_id,
          a.answer,
+         a.status,
          a.created_at AS answer_created_at, -- Added missing comma
          au.fullname AS answer_user_name, 
          au.email AS answer_user_email
@@ -68,6 +69,7 @@ export async function GET(req: Request) {
           id: row.answer_id,
           user_id: row.answer_user_id,
           answer: row.answer,
+          status: row.status,
           created_at: row.answer_created_at,
           user: {
             fullname: row.answer_user_name,

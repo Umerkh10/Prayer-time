@@ -1,72 +1,86 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Check, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { ConfirmationModal } from "./confirmation-modal"
-import { formatDistanceToNow } from "@/lib/formatDate"
+import { useState } from "react";
+import { Check, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { ConfirmationModal } from "./confirmation-modal";
+import { formatDistanceToNow } from "@/lib/formatDate";
+import { refactorDate } from "@/lib/date";
 
 interface Question {
-  id: number
-  title: string
-  content: string
-  status: string
-  username: string
-  createdAt: string
+  id: number;
+  title: string;
+  content: string;
+  status: string;
+  username: string;
+  createdAt: string;
 }
 
 interface Answer {
-  id: number
-  content: string
-  username: string
-  status: string
-  createdAt: string
+  id: number;
+  content: string;
+  username: string;
+  status: string;
+  createdAt: string;
 }
 
 interface QuestionDetailProps {
-  question: Question
-  answers: Answer[]
+  question: Question;
+  answers: Answer[];
 }
 
-export function QuestionDetail({ question, answers }: QuestionDetailProps) {
-  const [questionStatus, setQuestionStatus] = useState(question.status)
+export function QuestionDetail({ question, answers }: any) {
+  console.log("question", question);
+
+  const [questionStatus, setQuestionStatus] = useState(question.status);
   const [answerStatuses, setAnswerStatuses] = useState<Record<number, string>>(
-    answers.reduce((acc, answer) => ({ ...acc, [answer.id]: answer.status }), {}),
-  )
+    question.answers.reduce(
+      (acc: any, answer: any) => ({ ...acc, [answer.id]: answer.status }),
+      {}
+    )
+  );
 
   // Modal states
-  const [approveModalOpen, setApproveModalOpen] = useState(false)
-  const [declineModalOpen, setDeclineModalOpen] = useState(false)
-  const [answerApproveModalOpen, setAnswerApproveModalOpen] = useState<number | null>(null)
-  const [answerDeclineModalOpen, setAnswerDeclineModalOpen] = useState<number | null>(null)
+  const [approveModalOpen, setApproveModalOpen] = useState(false);
+  const [declineModalOpen, setDeclineModalOpen] = useState(false);
+  const [answerApproveModalOpen, setAnswerApproveModalOpen] = useState<
+    number | null
+  >(null);
+  const [answerDeclineModalOpen, setAnswerDeclineModalOpen] = useState<
+    number | null
+  >(null);
 
   const handleQuestionApprove = () => {
-    setQuestionStatus("approved")
+    setQuestionStatus("approved");
     // In a real app, you would make an API call here
-  }
+  };
 
   const handleQuestionReject = () => {
-    setQuestionStatus("rejected")
+    setQuestionStatus("rejected");
     // In a real app, you would make an API call here
-  }
+  };
 
   const handleAnswerStatusChange = (answerId: number, status: string) => {
-    setAnswerStatuses((prev) => ({ ...prev, [answerId]: status }))
+    setAnswerStatuses((prev) => ({ ...prev, [answerId]: status }));
     // In a real app, you would make an API call here
-  }
+  };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "approved":
-        return <Badge className="bg-green-500 text-white">Approved</Badge>
+        return <Badge className="bg-green-500 text-white">Approved</Badge>;
       case "rejected":
-        return <Badge className="bg-red-500 text-white">Rejected</Badge>
+        return <Badge className="bg-red-500 text-white">Rejected</Badge>;
       default:
-        return <Badge className="bg-yellow-500 text-white">On Hold</Badge>
+        return (
+          <Badge className="bg-gray-500 hover:bg-gray-500 text-white">
+            {status?.toLocaleUpperCase()}
+          </Badge>
+        );
     }
-  }
+  };
 
   return (
     <div className="space-y-8 ">
@@ -97,13 +111,18 @@ export function QuestionDetail({ question, answers }: QuestionDetailProps) {
           <div className="flex flex-col md:flex-row gap-4 justify-between">
             <div className="flex-1">
               <h1 className="text-2xl font-bold mb-4">{question.title}</h1>
-              <p className="text-gray-700 dark:text-gray-300">{question.content}</p>
+              <p className="text-gray-700 dark:text-gray-300">
+                {question.description}
+              </p>
             </div>
             <div className="md:w-48 space-y-2 flex flex-col items-start md:items-end">
               <div className="text-sm text-gray-500">
-                Posted by <span className="font-medium">{question.username}</span>
+                Posted by{" "}
+                <span className="font-medium">{question.user.fullname}</span>
               </div>
-              <div className="text-sm text-gray-500">{formatDistanceToNow(new Date(question.createdAt))} ago</div>
+              <div className="text-sm text-gray-500">
+                {refactorDate(question.created_at)}
+              </div>
               {getStatusBadge(questionStatus)}
             </div>
           </div>
@@ -139,13 +158,15 @@ export function QuestionDetail({ question, answers }: QuestionDetailProps) {
           <p className="text-muted-foreground">No answers yet.</p>
         ) : (
           <div className="space-y-4">
-            {answers.map((answer) => (
+            {question?.answers.map((answer: any) => (
               <Card key={answer.id}>
                 {/* Answer Approve Modal */}
                 <ConfirmationModal
                   isOpen={answerApproveModalOpen === answer.id}
                   onClose={() => setAnswerApproveModalOpen(null)}
-                  onConfirm={() => handleAnswerStatusChange(answer.id, "approved")}
+                  onConfirm={() =>
+                    handleAnswerStatusChange(answer.id, "approved")
+                  }
                   title="Approve Answer"
                   description="Are you sure you want to approve this answer? It will be visible to all users."
                   confirmText="Approve"
@@ -156,7 +177,9 @@ export function QuestionDetail({ question, answers }: QuestionDetailProps) {
                 <ConfirmationModal
                   isOpen={answerDeclineModalOpen === answer.id}
                   onClose={() => setAnswerDeclineModalOpen(null)}
-                  onConfirm={() => handleAnswerStatusChange(answer.id, "rejected")}
+                  onConfirm={() =>
+                    handleAnswerStatusChange(answer.id, "rejected")
+                  }
                   title="Decline Answer"
                   description="Are you sure you want to decline this answer? It will be hidden from users."
                   confirmText="Decline"
@@ -166,13 +189,20 @@ export function QuestionDetail({ question, answers }: QuestionDetailProps) {
                 <CardContent className="p-6">
                   <div className="flex flex-col md:flex-row gap-4 justify-between">
                     <div className="flex-1">
-                      <p className="text-gray-700 dark:text-gray-300">{answer.content}</p>
+                      <p className="text-gray-700 dark:text-gray-300">
+                        {answer?.answer}
+                      </p>
                     </div>
                     <div className="md:w-48 space-y-2 flex flex-col items-start md:items-end">
                       <div className="text-sm text-gray-500">
-                        Answered by <span className="font-medium">{answer.username}</span>
+                        Answered by{" "}
+                        <span className="font-medium">
+                          {answer?.user?.fullname}
+                        </span>
                       </div>
-                      <div className="text-sm text-gray-500">{formatDistanceToNow(new Date(answer.createdAt))} ago</div>
+                      <div className="text-sm text-gray-500">
+                        {refactorDate(answer?.created_at)}
+                      </div>
                       {getStatusBadge(answerStatuses[answer.id])}
                     </div>
                   </div>
@@ -205,6 +235,5 @@ export function QuestionDetail({ question, answers }: QuestionDetailProps) {
         )}
       </div>
     </div>
-  )
+  );
 }
-

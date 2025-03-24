@@ -5,14 +5,10 @@ import { Breadcrumbs } from "@/components/breadcrumbs"
 import { usePathname } from "next/navigation";
 import { urlSplitter } from "@/lib";
 
-export default function AdminResponsivePage({
-  searchParams,
-}: {
-  searchParams: { page?: string }
-}) {
+export default function AdminResponsivePage() {
   const pathname = usePathname();
   const lang = urlSplitter(pathname)
-  const currentPage = Number(searchParams.page) || 1
+  const currentPage = 1
 
   return (
     <ResponsiveAdminDashboard title="Questions">
