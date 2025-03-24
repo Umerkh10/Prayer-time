@@ -7,6 +7,8 @@ import Footer from "./(Home)/Footer";
 import { Toaster } from "sonner";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AdminSidebar } from "@/components/admin-sidebar";
+import Head from "next/head";
+import Script from "next/script";
 
 const poppins = Poppins({
   subsets: ['latin'], // Specify character subsets
@@ -41,13 +43,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  <script
-    src="https://cdn.jsdelivr.net/gh/manuelmhtr/countries-and-timezones@latest/dist/index.min.js"
-    type="text/javascript"
-  ></script>
+
+
+
 
   return (
     <html lang="en" suppressHydrationWarning>
+       <Head>
+        <Script
+          src="https://cdn.jsdelivr.net/gh/manuelmhtr/countries-and-timezones@latest/dist/index.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          id="cookieyes"
+          src="https://cdn-cookieyes.com/client_data/5dcbb80ae3d7d4ff3df3c423/script.js"
+          strategy="afterInteractive"
+        />
+      </Head>
       <body className={`${poppins.variable}  antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -57,7 +69,7 @@ export default function RootLayout({
         >
           <Navbar />
           <Toaster richColors />
-   
+
           {children}
           <Footer />
         </ThemeProvider>
