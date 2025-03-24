@@ -4,8 +4,8 @@ import TermsContent from './TermsContent'
 export async function generateMetadata({ params }: any) {
   const lang = params.lang
   return {
-    title: `Terms & Conditions – Global Salah`,
-    description: `Read the Terms & Conditions of Global Salah. Learn about our guidelines, usage policies, and legal information to ensure a smooth experience on our platform.`,
+    title: `Visitors read carefully terms and conditions before using services `,
+    description: `By using our global prayer time services, you have to agree on our terms and conditions. kindly read our privacy and policy to maintain respected environment`,
 alternates: {
   canonical: `https://www.globalsalah.com/${lang}/terms-and-conditions`,
 },

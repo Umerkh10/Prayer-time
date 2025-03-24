@@ -5,8 +5,8 @@ import PrivacyContent from './PrivacyContent'
 export async function generateMetadata({ params }: any) {
   const lang = params.lang
   return {
-    title: `Privacy Policy – Global Salah`,
-    description: `Read Global Salah’s Privacy Policy to understand how we collect, use, and protect your data. Your privacy and security are our top priorities.`,
+    title: `Global Salah provide you update while maintaining confidentiality `,
+    description: `Global Salah collect personal information of their users with maintaining strict privacy and policy. we do not share your data with anyone without your permission.`,
 alternates: {
   canonical: `https://www.globalsalah.com/${lang}/privacy-policy`,
 },

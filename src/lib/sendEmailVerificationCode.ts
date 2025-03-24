@@ -19,7 +19,7 @@ export const sendEmailVerificationCode = async (
     to: email,
     subject: `Verification Code | Global Salah`,
     html: `
- <body style="margin: 0; padding: 0; font-family: 'Google Sans'; background-color: #f5f5f5; color: #333333;">
+<body style="margin: 0; padding: 0; font-family: 'Google Sans'; background-color: #f5f5f5; color: #333333;">
     <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px; margin: 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); background-color: #ffffff;">
       <tr>
         <td style="background-color: #000717; padding: 20px 0; text-align: center; border-top-left-radius: 12px; border-top-right-radius: 12px;">
@@ -78,17 +78,23 @@ export const sendEmailVerificationCode = async (
         <td style="background-color: #f4eefd; padding: 20px; text-align: center; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;">
           <table cellpadding="0" cellspacing="0" border="0" width="100%">
             <tr>
-              <td style="text-align: center; padding-bottom: 15px;">
-                <a href="#" style="display: inline-block; margin: 0 8px; text-decoration: none;">
-                  <img src="/public/icons8-facebook-48.png" alt="Facebook" style="height: 24px; width: 24px;">
-                </a>
-                <a href="#" style="display: inline-block; margin: 0 8px; text-decoration: none;">
-                  <img src="/public/icons8-x-50.png" alt="Twitter" style="height: 24px; width: 24px;">
-                </a>
-                <a href="#" style="display: inline-block; margin: 0 8px; text-decoration: none;">
-                  <img src="/public/icons8-instagram-48.png" alt="Instagram" style="height: 24px; width: 24px;">
-                </a>
-              </td>
+                <td style="text-align: center; padding-bottom: 15px;">
+                    <a href="https://www.facebook.com/globalsalahofficial/" style="display: inline-block; margin: 0 8px; text-decoration: none;">
+                        <img src="https://muhammadumer.sirv.com/communication.png" alt="Facebook"
+                            style="height: 24px; width: 24px;">
+                    </a>
+                    <a href="https://x.com/globalsalah" style="display: inline-block; margin: 0 8px; text-decoration: none;">
+                        <img src="https://muhammadumer.sirv.com/twitter.png" alt="Twitter" style="height: 22px; width: 22px;">
+                    </a>
+                    <a href="https://www.instagram.com/globalsalah" style="display: inline-block; margin: 0 8px; text-decoration: none;">
+                        <img src="https://muhammadumer.sirv.com/social.png" alt="Instagram"
+                            style="height: 24px; width: 24px;">
+                    </a>
+                    <a href="https://www.pinterest.com/globalsalah/" style="display: inline-block; margin: 0 8px; text-decoration: none;">
+                        <img src="https://muhammadumer.sirv.com/icons8-pinterest-logo-48.png" alt="Instagram"
+                            style="height: 27px; width: 27px;">
+                    </a>
+                </td>
             </tr>
             <tr>
               <td style="text-align: center;">

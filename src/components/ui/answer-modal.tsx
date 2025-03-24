@@ -14,6 +14,7 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "sonner"
 import { addAnswer } from "@/services/forum"
+import CustomCaptcha from "./common/CustomCaptcha"
 
 interface AnswerModalProps {
     questionId: string
@@ -35,6 +36,7 @@ export function AnswerModal({
     const [answer, setAnswer] = useState("")
     const [userId, setUserId] = useState<any>(null);
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [isVerified, setIsVerified] = useState(false);
     const [open, setOpen] = useState(false)
 
 
@@ -47,7 +49,12 @@ export function AnswerModal({
         }
     }, []);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!isVerified) {
+            toast.error("Please Verify the Captcha");
+            return;
+        }
         if (!answer.trim()) {
             toast.error("Please enter your answer")
             return
@@ -98,6 +105,8 @@ export function AnswerModal({
                     <Button variant="outline" onClick={() => setOpen(false)} disabled={isSubmitting}>
                         Cancel
                     </Button>
+                    <CustomCaptcha  setIsVerified={setIsVerified} />
+
                     <Button className="text-white bg-emerald-600 hover:bg-emerald-800" onClick={handleSubmit} disabled={isSubmitting}>
                         {isSubmitting ? "Posting..." : "Post Answer"}
                     </Button>
