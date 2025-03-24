@@ -1,5 +1,6 @@
 "use client";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -56,7 +57,6 @@ export default function QuestionPage() {
       setIsLoading(false);
     }
   };
-  console.log("question", question);
   useEffect(() => {
     fetchQuestionByTitle();
   }, []);
@@ -100,25 +100,28 @@ export default function QuestionPage() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-6">
-        <Link href={`/${lang}/forum`}>
-          <Button variant="ghost" className="mb-4">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Forum
-          </Button>
-        </Link>
-        
+        <div className="flex items-center mb-4">
+          <Breadcrumbs
+            items={[
+              { label: "Forum", href: `/${lang}/forum` },
+              { label: "Question", href: `/${lang}/admin/questions` },
+            ]}
+          />
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
           <h1 className="text-3xl font-bold mb-2 ">{question.title}</h1>
-          <div className="flex justify-between items-center text-sm text-muted-foreground mb-4">
-            <div className="flex items-center gap-2">
+          <div className="flex justify-end items-center text-sm text-muted-foreground mb-4">
+            <div className="flex items-center gap-4 text-xs">
               <UserAvatar userName={question.user.fullname} />
-              <span>{question.user.fullname}</span>
+              <div className="flex flex-col">
+                <span>{question.user.fullname}</span>
+                <span>Posted on {refactorDate(question.created_at)}</span>
+              </div>
             </div>
-            <span>Posted on {refactorDate(question.created_at)}</span>
           </div>
           <Card className="overflow-hidden border-primary/20 shadow-md">
             <CardContent className="pt-6">
@@ -149,7 +152,7 @@ export default function QuestionPage() {
                   size="sm"
                   className="border-primary/20 hover:bg-primary/10"
                 >
-                  Reply
+                  Post an Answer
                 </Button>
                 <Button
                   variant="ghost"
