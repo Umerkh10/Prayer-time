@@ -22,6 +22,7 @@ import Link from "next/link";
 import { urlSplitter } from "@/lib";
 import { getUserById, updateUserDetails } from "@/services/authentication";
 import { toast } from "sonner";
+import UserAvatar from "@/components/UserAvatar";
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -116,7 +117,7 @@ export default function EditProfilePage() {
                 alt="John Doe"
               />
               <AvatarFallback className="bg-primary/10 text-primary">
-                JD
+               <UserAvatar userName={userDetails.fullname} />
               </AvatarFallback>
             </Avatar>
           </div>

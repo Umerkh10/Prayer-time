@@ -315,14 +315,6 @@ export default function ForumPage({
                                     size="sm"
                                     className="flex items-center gap-1"
                                   >
-                                    <ThumbsUp className="h-4 w-4" />
-                                    {/* <span>{question.likes}</span> */}
-                                  </Button>
-                                  <Button
-                                    variant="ghost"
-                                    size="sm"
-                                    className="flex items-center gap-1"
-                                  >
                                     <MessageSquare className="h-4 w-4" />
                                     <span>{question.answers.length}</span>
                                   </Button>

@@ -73,7 +73,11 @@ export default function VerifyCodePage() {
         };
         localStorage.setItem("userData", JSON.stringify(updatedUserDetails));
         toast.success(response.data.message);
-        router.push(`/${lang}/reset-password`);
+        if(userDetailsInLS.token) {
+          router.push(`/${lang}/reset-password`);
+        } else {
+          router.push(`/${lang}/forum`);
+        }
       }
     } catch (error: any) {
       toast.error(error?.message);

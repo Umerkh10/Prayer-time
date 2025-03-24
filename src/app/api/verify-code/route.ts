@@ -7,7 +7,7 @@ export async function POST(request: Request) {
 
     if (!email || !code) {
       return NextResponse.json(
-        { success: false, message: "Email and code are required" },
+        { success: false, message: "Fields are required" },
         { status: 400 }
       );
     }

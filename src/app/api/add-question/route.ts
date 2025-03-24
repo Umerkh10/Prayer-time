@@ -12,16 +12,12 @@ export async function POST(req: Request) {
 
     if (!user_id || !title || !description) {
       return NextResponse.json(
-        { message: "user_id, title, and description are required" },
+        { message: "Field are required" },
         { status: 400 }
       );
     }
 
     const db = await dbConnection();
-
-    // Checking if user already exists
-
-    console.log("user_id", user_id)
 
     const [rows] = await db.query("SELECT * FROM users WHERE id = ?", user_id);
     const user = rows[0];

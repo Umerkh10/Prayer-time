@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
     if (!fullname || !email || !password) {
       return NextResponse.json(
-        { message: "Fullname, email, and password are required" },
+        { message: "Fields are required" },
         { status: 400 }
       );
     }

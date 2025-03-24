@@ -37,6 +37,7 @@ export default function QuestionPage() {
   const [userId, setUserId] = useState<any>(null);
   const [likedAnswers, setLikedAnswers] = useState<number[]>([]);
   const [isVerified, setIsVerified] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const title = params?.title as string;
 
@@ -50,6 +51,9 @@ export default function QuestionPage() {
     if (parsedUser?.verification_status === 1) {
       setIsVerified(true);
     }
+    if (parsedUser?.token) {
+      setIsLoggedIn(true);
+    }
   }, []);
 
   const handleCopy = async () => {
@@ -60,6 +64,7 @@ export default function QuestionPage() {
       console.error("Failed to copy URL:", error);
     }
   };
+  console.log({isLoggedIn, isVerified})
 
   const fetchQuestionByTitle = async () => {
     try {
@@ -210,8 +215,7 @@ export default function QuestionPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-3xl font-bold mb-2 ">{question.title}</h1>
-          <div className="flex justify-end items-center text-sm text-muted-foreground mb-4">
+      <div className="flex flex-col md:flex-row  md:justify-end items-center text-sm text-muted-foreground mb-4">
             <div className="flex items-center gap-4 text-xs">
               <UserAvatar userName={question.user.fullname} />
               <div className="flex flex-col">
@@ -236,11 +240,14 @@ export default function QuestionPage() {
                 </Button>
               </div>
               <div className="flex gap-2">
-                <AnswerModal
-                  questionId={question.id}
-                  onAnswerAdded={fetchQuestionByTitle}
-                  isVerified={isVerified}
-                />
+                {/* {isLoggedIn || isVerified && ( */}
+                  <AnswerModal
+                    questionId={question.id}
+                    onAnswerAdded={fetchQuestionByTitle}
+                    isVerified={isVerified}
+                  />
+                {/* // )} */}
+
                 <Button
                   variant="ghost"
                   size="sm"

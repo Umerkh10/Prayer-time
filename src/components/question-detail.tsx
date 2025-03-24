@@ -182,7 +182,7 @@ export function QuestionDetail({ question, answers }: any) {
             size="sm"
             className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600"
             onClick={() => setDeclineModalOpen(true)}
-            // disabled={questionStatus === "rejected"}
+            disabled={questionStatus === "declined"}
           >
             <X className="h-4 w-4 mr-1" />
             Decline
@@ -192,7 +192,7 @@ export function QuestionDetail({ question, answers }: any) {
             size="sm"
             className="text-green-500 border-green-200 hover:bg-green-50 hover:text-green-600"
             onClick={() => setApproveModalOpen(true)}
-            // disabled={questionStatus === "approved"}
+            disabled={questionStatus === "approved"}
           >
             <Check className="h-4 w-4 mr-1" />
             Approve

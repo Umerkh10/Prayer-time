@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   try {
     if (!email || !password) {
       return NextResponse.json(
-        { message: "Email and password are required" },
+        { message: "Fields are required" },
         { status: 400 }
       );
     }

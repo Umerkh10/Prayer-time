@@ -7,7 +7,7 @@ export async function POST(req: Request) {
 
     if (!answer_id || !user_id) {
       return NextResponse.json(
-        { message: "Answer ID and User ID are required" },
+        { message: "Fields are required" },
         { status: 400 }
       );
     }

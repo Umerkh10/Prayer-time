@@ -15,13 +15,6 @@ export default function QuestionSubmit() {
   const pathname = usePathname();
   const lang = urlSplitter(pathname)
 
-  useEffect(() => {
-    const userLoggedIn = localStorage.getItem("isLoggedIn") === "true"
-    if (!userLoggedIn) {
-      router.push(`/${lang}/forum`)
-    }
-  }, [router])
-
   return (
     <div className="container max-w-md mx-auto py-16 px-4">
       <motion.div
