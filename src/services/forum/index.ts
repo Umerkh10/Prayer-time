@@ -69,12 +69,13 @@ export const addQuestion = async (questionDetail: any) => {
 };
 
 export const addAnswer = async (answerDetail: any) => {
-  const { user_id, question_id, answer } = answerDetail;
+  const { userId, questionId, answer } = answerDetail;
+  
 
   try {
     const response = await axios.post(`${BASE_URL}/add-answer`, {
-      user_id,
-      question_id,
+      user_id: userId,
+      question_id: questionId,
       answer,
     });
 

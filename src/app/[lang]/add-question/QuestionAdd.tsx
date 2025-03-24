@@ -55,6 +55,7 @@ export default function AddQuestionPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const questionDetail = { user_id: userDetailsInLS?.id, title, description };
 
@@ -142,6 +143,7 @@ export default function AddQuestionPage() {
           <Button variant="outline" onClick={() => router.push(`/${lang}/forum`)} className="border-primary/20">
             Cancel
           </Button>
+
           <Button onClick={handleSubmit} disabled={isLoading} className="gap-2 bg-emerald-600 hover:bg-emerald-800 text-white">
             {isLoading ? (
               <>
@@ -155,6 +157,7 @@ export default function AddQuestionPage() {
               </>
             )}
           </Button>
+
         </CardFooter>
       </Card>
     </div>

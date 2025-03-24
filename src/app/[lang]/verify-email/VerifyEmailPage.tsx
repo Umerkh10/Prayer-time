@@ -33,7 +33,7 @@ export default function VerifyEmailPage() {
 
       if (response.status === 200) {
         toast.success(response.data.message);
-        router.push(`/${lang}/reset-password`);
+        router.push(`/${lang}/verify-code`);
       }
     } catch (error: any) {
       toast.error(error?.message)

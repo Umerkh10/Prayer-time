@@ -6,6 +6,7 @@ import { sendUserQAAlert } from "@/lib/sendUserQAAlert";
 export async function POST(req: Request) {
   try {
     const { user_id, question_id, answer } = await req.json();
+    console.log({ user_id, question_id, answer})
 
     if (!user_id || !question_id || !answer) {
       return NextResponse.json(

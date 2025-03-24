@@ -52,6 +52,9 @@ export default function ForumPage({
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
   const [isVerified, setIsVerified] = useState(false);
 
+  console.log("userData", userData);
+  
+
   useEffect(() => {
     const user: any = localStorage.getItem("userData");
     const parsedUser = JSON.parse(user);

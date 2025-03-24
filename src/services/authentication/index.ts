@@ -135,3 +135,26 @@ export const getUserById = async (id: any) => {
     }
   }
 };
+
+
+
+export const updateUserPassword = async (id: number, newPassword: string) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/reset-password`, {
+      id,
+      newPassword,
+    });
+
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message || "An error occurred during sign-up"
+      );
+    } else {
+      console.error("Unexpected Error:", error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
