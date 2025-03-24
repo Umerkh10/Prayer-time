@@ -36,12 +36,21 @@ export default function QuestionPage() {
   const [url, setUrl] = useState("");
   const [userId, setUserId] = useState<any>(null);
   const [likedAnswers, setLikedAnswers] = useState<number[]>([]);
+  const [isVerified, setIsVerified] = useState(false);
 
   const title = params?.title as string;
 
   useEffect(() => {
     setUrl(window.location.href);
   }, [pathname]);
+
+  useEffect(() => {
+    const user: any = localStorage.getItem("userData");
+    const parsedUser = JSON.parse(user);
+    if (parsedUser?.verification_status === 1) {
+      setIsVerified(true);
+    }
+  }, []);
 
   const handleCopy = async () => {
     try {
@@ -230,6 +239,7 @@ export default function QuestionPage() {
                 <AnswerModal
                   questionId={question.id}
                   onAnswerAdded={fetchQuestionByTitle}
+                  isVerified={isVerified}
                 />
                 <Button
                   variant="ghost"
@@ -308,6 +318,7 @@ export default function QuestionPage() {
               No answers yet. Be the first to answer!
             </p>
             <AnswerModal
+              isVerified
               questionId={question.id}
               onAnswerAdded={fetchQuestionByTitle}
               buttonVariant="default"
