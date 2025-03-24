@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Dialog,
@@ -7,18 +7,19 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 interface ConfirmationModalProps {
-  isOpen: boolean
-  onClose: () => void
-  onConfirm: () => void
-  title: string
-  description: string
-  confirmText?: string
-  cancelText?: string
-  variant?: "default" | "destructive"
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  title: string;
+  description: string;
+  confirmText?: string;
+  cancelText?: string;
+  variant?: "default" | "destructive";
+  isSubmitting: boolean;
 }
 
 export function ConfirmationModal({
@@ -30,6 +31,7 @@ export function ConfirmationModal({
   confirmText = "Confirm",
   cancelText = "Cancel",
   variant = "default",
+  isSubmitting,
 }: ConfirmationModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -45,15 +47,14 @@ export function ConfirmationModal({
           <Button
             variant={variant}
             onClick={() => {
-              onConfirm()
-              onClose()
+              onConfirm();
+              // onClose()
             }}
           >
-            {confirmText}
+            {isSubmitting ? "Submitting..." : confirmText}
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
-

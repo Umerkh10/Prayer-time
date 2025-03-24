@@ -30,21 +30,25 @@ export async function PATCH(req: Request) {
       );
     }
 
-    // Update the question
-    await db.execute("UPDATE questions SET status = ? WHERE id = ?", [
-      status,
-      id,
-    ]);
-
     const { email, title } = question[0];
 
     await sendEmailQuestionAnswerStatus(email, title, status);
 
+    const [updateResult] = await db.execute(
+      "UPDATE questions SET status = ? WHERE id = ?",
+      [status, id]
+    );
+
+    // fetching the updated question
+    const [updatedRows]: any = await db.execute(
+      "SELECT * FROM questions WHERE id = ?",
+      [id]
+    );
+
+    const updatedQuestion = updatedRows[0];
+
     return NextResponse.json(
-      {
-        success: true,
-        message: `Question status updated successfully to ${status}`,
-      },
+      { message: "Status updated successfully", updatedQuestion },
       { status: 200 }
     );
   } catch (error: any) {
