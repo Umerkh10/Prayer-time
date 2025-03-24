@@ -1,20 +1,25 @@
 "use client"
 
-import { Breadcrumbs } from "@/components/breadcrumbs"
-import { AnswerModal } from "@/components/ui/answer-modal"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { Skeleton } from "@/components/ui/skeleton"
-import UserAvatar from "@/components/UserAvatar"
-import { urlSplitter } from "@/lib"
-import { refactorDate } from "@/lib/date"
-import { getQuestionByTitle } from "@/services/forum"
-import { motion } from "framer-motion"
-import { MessageSquare, Share2, ThumbsUp } from "lucide-react"
-import { useParams, usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
-import { toast } from "sonner"
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { AnswerModal } from "@/components/ui/answer-modal";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
+import UserAvatar from "@/components/UserAvatar";
+import { urlSplitter } from "@/lib";
+import { refactorDate } from "@/lib/date";
+import { getQuestionByTitle } from "@/services/forum";
+import { motion } from "framer-motion";
+import { MessageSquare, Share2, ThumbsUp } from "lucide-react";
+import { useParams, usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function QuestionPage() {
   const params = useParams()

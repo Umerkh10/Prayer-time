@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
     if (!isPassMatched) {
       return NextResponse.json(
-        { message: "Invalid credentials" },
+        { message: "Password not correct" },
         { status: 401 }
       );
     }

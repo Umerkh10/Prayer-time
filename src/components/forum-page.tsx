@@ -47,7 +47,11 @@ export default function ForumPage({
   const [questions, setQuestions] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredQuestions, setFilteredQuestions] = useState(questions);
+  const [filteredQuestions, setFilteredQuestions] = useState(() =>
+    questions
+      ? questions.filter((question: any) => question.status === "approved")
+      : []
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
   const [isVerified, setIsVerified] = useState(false);
@@ -86,8 +90,12 @@ export default function ForumPage({
   }, [searchQuery, filterQuestions]);
 
   useEffect(() => {
-    setFilteredQuestions(questions);
-  }, [questions]); // Sync state when `questions` changes
+    if (questions) {
+      setFilteredQuestions(
+        questions.filter((question: any) => question.status === "approved")
+      );
+    }
+  }, [questions]);
 
   // Calculate pagination
   const indexOfLastQuestion = currentPage * questionsPerPage;

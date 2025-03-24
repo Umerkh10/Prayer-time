@@ -47,7 +47,7 @@ export async function GET(req: Request) {
         { status: 404 }
       );
     }
-
+console.log('question[0]', question[0])
     const questionData = {
       id: question[0].question_id,
       user_id: question[0].user_id,

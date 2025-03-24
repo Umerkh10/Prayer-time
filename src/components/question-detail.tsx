@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +8,12 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { ConfirmationModal } from "./confirmation-modal";
 import { formatDistanceToNow } from "@/lib/formatDate";
 import { refactorDate } from "@/lib/date";
+import {
+  getQuestionByTitle,
+  updateAnswerStatus,
+  updateQuestionStatus,
+} from "@/services/forum";
+import { toast } from "sonner";
 
 interface Question {
   id: number;
@@ -26,21 +32,19 @@ interface Answer {
   createdAt: string;
 }
 
-interface QuestionDetailProps {
-  question: Question;
-  answers: Answer[];
-}
-
 export function QuestionDetail({ question, answers }: any) {
-  console.log("question", question);
-
-  const [questionStatus, setQuestionStatus] = useState(question.status);
+  const [questionStatus, setQuestionStatus] = useState(question?.status);
   const [answerStatuses, setAnswerStatuses] = useState<Record<number, string>>(
     question.answers.reduce(
       (acc: any, answer: any) => ({ ...acc, [answer.id]: answer.status }),
       {}
     )
   );
+
+  console.log("question", question);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Modal states
   const [approveModalOpen, setApproveModalOpen] = useState(false);
@@ -52,19 +56,62 @@ export function QuestionDetail({ question, answers }: any) {
     number | null
   >(null);
 
-  const handleQuestionApprove = () => {
-    setQuestionStatus("approved");
-    // In a real app, you would make an API call here
+  const handleQuestionApprove = async (id: number) => {
+    setIsSubmitting(true);
+    try {
+      const response = await updateQuestionStatus(id, "approved");
+
+      if (response.status === 200) {
+        console.log("response", setQuestionStatus);
+        setQuestionStatus(response.data.updatedQuestion.status);
+        toast.success(response.data.message);
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
+    } finally {
+      setIsLoading(false);
+      setIsSubmitting(false);
+      setApproveModalOpen(false);
+    }
   };
 
-  const handleQuestionReject = () => {
-    setQuestionStatus("rejected");
-    // In a real app, you would make an API call here
+  const handleQuestionReject = async (id: any) => {
+    setIsSubmitting(true);
+    try {
+      const response = await updateQuestionStatus(id, "declined");
+
+      if (response.status === 200) {
+        // setQuestionStatus("approved");
+        toast.success(response.data.message);
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
+    } finally {
+      setIsLoading(false);
+      setIsSubmitting(false);
+      setApproveModalOpen(false);
+    }
+    // setQuestionStatus("rejected");
   };
 
-  const handleAnswerStatusChange = (answerId: number, status: string) => {
-    setAnswerStatuses((prev) => ({ ...prev, [answerId]: status }));
-    // In a real app, you would make an API call here
+  const handleAnswerStatusChange = async (answerId: number, status: string) => {
+    setIsSubmitting(true);
+    try {
+      const response = await updateAnswerStatus(answerId, status);
+
+      if (response.status === 200) {
+        console.log("response", setQuestionStatus);
+        setAnswerStatuses((prev) => ({ ...prev, [answerId]: status }));
+        toast.success(response.data.message);
+        // setAnswerApproveModalOpen(false)
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
+    } finally {
+      setIsLoading(false);
+      setIsSubmitting(false);
+      setApproveModalOpen(false);
+    }
   };
 
   const getStatusBadge = (status: string) => {
@@ -76,7 +123,7 @@ export function QuestionDetail({ question, answers }: any) {
       default:
         return (
           <Badge className="bg-gray-500 hover:bg-gray-500 text-white">
-            {status?.toLocaleUpperCase()}
+            {status?.toUpperCase()}
           </Badge>
         );
     }
@@ -88,18 +135,20 @@ export function QuestionDetail({ question, answers }: any) {
       <ConfirmationModal
         isOpen={approveModalOpen}
         onClose={() => setApproveModalOpen(false)}
-        onConfirm={handleQuestionApprove}
+        onConfirm={() => handleQuestionApprove(question?.id)}
         title="Approve Question"
         description="Are you sure you want to approve this question? It will be visible to all users."
         confirmText="Approve"
         variant="default"
+        isSubmitting={isSubmitting}
       />
 
       {/* Question Decline Modal */}
       <ConfirmationModal
+        isSubmitting={isSubmitting}
         isOpen={declineModalOpen}
         onClose={() => setDeclineModalOpen(false)}
-        onConfirm={handleQuestionReject}
+        onConfirm={() => handleQuestionReject(question?.id)}
         title="Decline Question"
         description="Are you sure you want to decline this question? It will be hidden from users."
         confirmText="Decline"
@@ -133,7 +182,7 @@ export function QuestionDetail({ question, answers }: any) {
             size="sm"
             className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600"
             onClick={() => setDeclineModalOpen(true)}
-            disabled={questionStatus === "rejected"}
+            // disabled={questionStatus === "rejected"}
           >
             <X className="h-4 w-4 mr-1" />
             Decline
@@ -143,7 +192,7 @@ export function QuestionDetail({ question, answers }: any) {
             size="sm"
             className="text-green-500 border-green-200 hover:bg-green-50 hover:text-green-600"
             onClick={() => setApproveModalOpen(true)}
-            disabled={questionStatus === "approved"}
+            // disabled={questionStatus === "approved"}
           >
             <Check className="h-4 w-4 mr-1" />
             Approve
@@ -162,6 +211,7 @@ export function QuestionDetail({ question, answers }: any) {
               <Card key={answer.id}>
                 {/* Answer Approve Modal */}
                 <ConfirmationModal
+                  isSubmitting={isSubmitting}
                   isOpen={answerApproveModalOpen === answer.id}
                   onClose={() => setAnswerApproveModalOpen(null)}
                   onConfirm={() =>
@@ -175,6 +225,7 @@ export function QuestionDetail({ question, answers }: any) {
 
                 {/* Answer Decline Modal */}
                 <ConfirmationModal
+                  isSubmitting={isSubmitting}
                   isOpen={answerDeclineModalOpen === answer.id}
                   onClose={() => setAnswerDeclineModalOpen(null)}
                   onConfirm={() =>
