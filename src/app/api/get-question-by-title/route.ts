@@ -14,7 +14,6 @@ export async function GET(req: Request) {
     //   [title]
     // );
 
-
     const [question]: any = await db.execute(
       `SELECT 
          q.id AS question_id, 
@@ -30,14 +29,17 @@ export async function GET(req: Request) {
          a.user_id AS answer_user_id,
          a.answer,
          a.status,
-         a.created_at AS answer_created_at, -- Added missing comma
+         a.created_at AS answer_created_at, 
          au.fullname AS answer_user_name, 
-         au.email AS answer_user_email
-            FROM questions q
-            LEFT JOIN users qu ON q.user_id = qu.id -- Join for question uploader
-            LEFT JOIN answers a ON q.id = a.question_id
-            LEFT JOIN users au ON a.user_id = au.id -- Join for answer uploader
-            WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?)`,
+         au.email AS answer_user_email,
+         COUNT(al.id) AS like_count -- Count likes for each answer
+       FROM questions q
+       LEFT JOIN users qu ON q.user_id = qu.id -- Join for question uploader
+       LEFT JOIN answers a ON q.id = a.question_id
+       LEFT JOIN users au ON a.user_id = au.id -- Join for answer uploader
+       LEFT JOIN answer_likes al ON a.id = al.answer_id -- Join to count likes
+       WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?)
+       GROUP BY a.id;`,
       [title]
     );
 
@@ -47,7 +49,7 @@ export async function GET(req: Request) {
         { status: 404 }
       );
     }
-console.log('question[0]', question[0])
+    console.log("question[0]", question[0]);
     const questionData = {
       id: question[0].question_id,
       user_id: question[0].user_id,
@@ -71,6 +73,7 @@ console.log('question[0]', question[0])
           answer: row.answer,
           status: row.status,
           created_at: row.answer_created_at,
+          like_count: row.like_count,
           user: {
             fullname: row.answer_user_name,
             email: row.answer_user_email,

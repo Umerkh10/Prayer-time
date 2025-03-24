@@ -70,7 +70,6 @@ export const addQuestion = async (questionDetail: any) => {
 
 export const addAnswer = async (answerDetail: any) => {
   const { userId, questionId, answer } = answerDetail;
-  
 
   try {
     const response = await axios.post(`${BASE_URL}/add-answer`, {
@@ -154,11 +153,51 @@ export const updateQuestionStatus = async (id: number, status: string) => {
 };
 
 export const updateAnswerStatus = async (id: number, status: string) => {
-
   try {
     const response = await axios.patch(`${BASE_URL}/update-answer-status`, {
       id,
       status,
+    });
+
+    return response; // Corrected
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message || "An error occurred during sign-up"
+      );
+    } else {
+      console.error("Unexpected Error:", error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
+export const addAnswerLike = async (id: number, userId: number) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/add-answer-likes`, {
+      answer_id: id,
+      user_id: userId,
+    });
+
+    return response; // Corrected
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message || "An error occurred during sign-up"
+      );
+    } else {
+      console.error("Unexpected Error:", error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
+export const getAnswerLikeCount = async (id: number) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/get-answer-like-count`, {
+      params: { id },
     });
 
     return response; // Corrected
