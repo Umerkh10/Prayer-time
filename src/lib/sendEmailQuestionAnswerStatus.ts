@@ -31,7 +31,7 @@ export const sendEmailQuestionAnswerStatus = async (
                 <table border="0" cellspacing="0" cellpadding="0">
                   <tr>
                     <td>
-                      <img src="/public//logo.webp" alt="Global Salah Logo" style="display: inline-block; margin-right: 10px; vertical-align: middle; height: 50px; width: auto; border-radius: 8px;">
+                      <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah Logo" style="display: inline-block; margin-right: 10px; vertical-align: middle; height: 50px; width: auto; border-radius: 8px;">
                     </td>
                     <td>
                       <p style="display: inline-block; vertical-align: middle; margin: 0; font-size: 24px; font-weight: 600; color: whitesmoke;">Global Salah</p>

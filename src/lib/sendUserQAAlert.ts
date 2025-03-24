@@ -33,7 +33,7 @@ export const sendUserQAAlert = async (
                 <table cellpadding="0" cellspacing="0" border="0" width="100%">
                     <tr>
                         <td style="text-align: center;">
-                            <img src="/public/logo.webp" alt="Global Salah Logo"
+                            <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah Logo"
                                 style="display: inline-block; height: 50px; width: auto; vertical-align: middle; margin-right: 10px;">
                             <span
                                 style="display: inline-block; vertical-align: middle; font-size: 28px; font-weight: 600; color: whitesmoke;">Global

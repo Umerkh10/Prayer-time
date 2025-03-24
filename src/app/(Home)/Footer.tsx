@@ -5,7 +5,7 @@ import { Facebook, Instagram, Twitter } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
-import { FaXTwitter,FaFacebook  } from "react-icons/fa6";
+import { FaXTwitter,FaFacebook, FaPinterest  } from "react-icons/fa6";
 
 function Footer() {
     const pathname = usePathname()
@@ -83,17 +83,21 @@ function Footer() {
             {isLang ? t("Footer.rightsdesc") : "All Rights Reserved © 2025 Global Salah"}
             </p>
             <div className="flex md:justify-start justify-center md:mt-0 mt-3 space-x-6">
-              <Link href="https://www.facebook.com/" className="text-gray-400 hover:text-gray-500">
+              <Link href="https://www.facebook.com/globalsalahofficial/" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Facebook</span>
                 <FaFacebook className="h-6 w-6" />
               </Link>
-              <Link href="https://x.com/?lang=en" className="text-gray-400 hover:text-gray-500">
+              <Link href="https://x.com/globalsalah" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Twitter</span>
                 <FaXTwitter className="h-6 w-6" />
               </Link>
-              <Link href="https://www.instagram.com/" className="text-gray-400 hover:text-gray-500">
+              {/* <Link href="https://www.instagram.com/" className="text-gray-400 hover:text-gray-500">
                 <span className="sr-only">Instagram</span>
                 <Instagram className="h-6 w-6" />
+              </Link> */}
+              <Link href="https://www.pinterest.com/globalsalah/" className="text-gray-400 hover:text-gray-500">
+                <span className="sr-only">Pintrest</span>
+                <FaPinterest className="h-6 w-6" />
               </Link>
             </div>
           </div>

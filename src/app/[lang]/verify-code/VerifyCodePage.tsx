@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/input-otp";
 import { verifyCode } from "@/services/authentication";
 import { toast } from "sonner";
+import CustomCaptcha from "@/components/ui/common/CustomCaptcha";
 
 export default function VerifyCodePage() {
   const router = useRouter();
@@ -32,6 +33,7 @@ export default function VerifyCodePage() {
   const lang = urlSplitter(pathname);
   const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
+  const [isVerified, setIsVerified] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
@@ -54,6 +56,10 @@ export default function VerifyCodePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isVerified) {
+      toast.error("Please Verify the Captcha");
+      return;
+    }
     setIsLoading(true);
 
     try {
@@ -130,6 +136,8 @@ export default function VerifyCodePage() {
                   </button>
                 </p>
               </div>
+              <CustomCaptcha setIsVerified={setIsVerified} />
+
               <Button
                 type="submit"
                 className="w-full bg-emerald-500 hover:bg-emerald-600 text-zinc-50"

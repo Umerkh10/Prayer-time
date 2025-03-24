@@ -14,6 +14,7 @@ import { motion } from "framer-motion"
 import { urlSplitter } from "@/lib"
 import { verifyEmail } from "@/services/authentication"
 import { toast } from "sonner"
+import CustomCaptcha from "@/components/ui/common/CustomCaptcha"
 
 export default function VerifyEmailPage() {
   const router = useRouter()
@@ -21,10 +22,15 @@ export default function VerifyEmailPage() {
   const lang = urlSplitter(pathname)
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [isVerified, setIsVerified] = useState(false);
   const [error, setError] = useState("")
 
- const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isVerified) {
+      toast.error("Please Verify the Captcha");
+      return;
+    }
     setIsLoading(true);
 
     try {
@@ -41,7 +47,7 @@ export default function VerifyEmailPage() {
       setIsLoading(false);
     }
   }
-  
+
 
   return (
     <div className="container max-w-md mx-auto py-16 px-4">
@@ -71,6 +77,8 @@ export default function VerifyEmailPage() {
                 />
                 {error && <p className="text-sm text-destructive">{error}</p>}
               </div>
+              <CustomCaptcha setIsVerified={setIsVerified} />
+
               <Button type="submit" className="w-full bg-emerald-500 hover:bg-emerald-600 text-zinc-50" disabled={isLoading}>
                 {isLoading ? (
                   <>

@@ -12,8 +12,9 @@ import { ArrowLeft, Loader2, Mail, Send, User2 } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { urlSplitter } from "@/lib"
-import { updateUserDetails, updateUserPassword, verifyEmail } from "@/services/authentication"
+import { updateUserDetails} from "@/services/authentication"
 import { toast } from "sonner"
+import CustomCaptcha from "@/components/ui/common/CustomCaptcha"
 
 export default function ResetPassword() {
     const router = useRouter()
@@ -22,6 +23,7 @@ export default function ResetPassword() {
     const [newPassword, setNewPassword] = useState("")
     const [userId, setUserId] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false)
+    const [isVerified, setIsVerified] = useState(false);
     const [error, setError] = useState("")
 
 
@@ -35,6 +37,10 @@ export default function ResetPassword() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (!isVerified) {
+            toast.error("Please Verify the Captcha");
+            return;
+        }
         setIsLoading(true);
 
         try {
@@ -80,6 +86,7 @@ export default function ResetPassword() {
                                 />
                                 {error && <p className="text-sm text-destructive">{error}</p>}
                             </div>
+                            <CustomCaptcha setIsVerified={setIsVerified} />
                             <Button type="submit" className="w-full bg-emerald-500 hover:bg-emerald-600 text-zinc-50" disabled={isLoading}>
                                 {isLoading ? (
                                     <>
