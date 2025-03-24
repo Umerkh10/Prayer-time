@@ -14,6 +14,7 @@ import { urlSplitter } from "@/lib";
 import { login } from "@/services/authentication";
 import Link from "next/link";
 import { toast } from "sonner";
+import CustomCaptcha from "./common/CustomCaptcha";
 
 interface LoginFormProps {
   onSignUpClick: () => void;
@@ -33,6 +34,7 @@ export default function LoginForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
 
   useEffect(() => {
@@ -43,15 +45,20 @@ export default function LoginForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isVerified) {
+      toast.error("Please Verify the Captcha");
+      return;
+    }
+
     setIsLoading(true);
 
     const userDetails = { email, password };
 
     try {
       const response = await login(userDetails);
-      
+
       if (response.status === 200) {
-        
+
         localStorage.setItem("userData", JSON.stringify(response.data.user));
         toast.success(response.data.message);
         setShowAuthModal(false);
@@ -112,6 +119,7 @@ export default function LoginForm({
                 required
               />
             </div>
+             <CustomCaptcha  setIsVerified={setIsVerified} />
             <Button
               type="submit"
               className="w-full bg-emerald-600 hover:bg-emerald-800 text-white"

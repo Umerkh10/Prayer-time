@@ -1,6 +1,10 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { formatDate } from "@/lib/formatDate"
+import { useState } from "react"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
+import { Button } from "./ui/button"
+import { MoreHorizontal } from "lucide-react"
 
 // Mock data for users
 const mockUsers = Array.from({ length: 50 }).map((_, i) => ({
@@ -12,6 +16,17 @@ const mockUsers = Array.from({ length: 50 }).map((_, i) => ({
 }))
 
 export function UsersTable() {
+  const initialUsers = mockUsers;
+  const [users, setUsers] = useState<typeof mockUsers>(initialUsers);
+
+  const updateUserStatus = (userId: number, newStatus: string) => {
+    setUsers((prevUsers: typeof mockUsers) =>
+      prevUsers.map((user: typeof mockUsers[number]) =>
+        user.id === userId ? { ...user, status: newStatus } : user
+      )
+    );
+  }
+
   return (
     <div className="rounded-md border">
       <Table>
@@ -31,7 +46,7 @@ export function UsersTable() {
               <TableCell className="font-medium">{user.username}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>
-                <Badge
+              <Badge
                   className={
                     user.status === "active"
                       ? "bg-green-500"
@@ -44,6 +59,26 @@ export function UsersTable() {
                 </Badge>
               </TableCell>
               <TableCell>{formatDate(new Date(user.createdAt))}</TableCell>
+              <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="h-8 w-8 p-0">
+                      <span className="sr-only">Open menu</span>
+                      <MoreHorizontal className="h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    {/* {user.status !== "active" && (
+                      <DropdownMenuItem onClick={() => updateUserStatus(user.id, "active")}>
+                        Activate User
+                      </DropdownMenuItem>
+                    )} */}
+                    {user.status !== "suspended" && (
+                      <DropdownMenuItem onClick={() => updateUserStatus(user.id, "suspended")}>
+                        Suspend User
+                      </DropdownMenuItem>
+                    )}
+                  </DropdownMenuContent>
+                </DropdownMenu>
             </TableRow>
           ))}
         </TableBody>

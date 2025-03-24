@@ -14,6 +14,7 @@ import { toast } from "sonner"
 import { usePathname, useRouter } from "next/navigation"
 import { urlSplitter } from "@/lib"
 import axios from "axios"
+import CustomCaptcha from "./common/CustomCaptcha"
 
 interface SignupFormProps {
   onLoginClick: () => void
@@ -25,6 +26,7 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [isVerified, setIsVerified] = useState(false);
   const pathname = usePathname();
   const lang = urlSplitter(pathname)
 
@@ -32,6 +34,10 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isVerified) {
+      toast.error("Please Verify the Captcha");
+      return;
+    }
     setIsLoading(true);
 
     const userDetails = { fullname, email, password };
@@ -40,7 +46,7 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
       const response = await signUp(userDetails);
 
       if (response.status === 201) {
-        localStorage.setItem("userData",JSON.stringify(response.data.user))
+        localStorage.setItem("userData", JSON.stringify(response.data.user))
         toast.success(response.data.message);
         router.push(`/${lang}/verify-code`);
       }
@@ -101,6 +107,7 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
               />
               <p className="text-xs text-muted-foreground">Password must be at least 8 characters long</p>
             </div>
+            <CustomCaptcha  setIsVerified={setIsVerified} />
 
             <Button type="submit" className="w-full bg-emerald-600 hover:bg-emerald-800 text-white" disabled={isLoading}>
               {isLoading ? (

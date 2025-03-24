@@ -125,9 +125,9 @@ export default function QuestionPage() {
             </CardContent>
             <CardFooter className="flex justify-between py-3 border-t bg-muted/20">
               <div className="flex gap-4">
-                <Button variant="ghost" size="sm" className="flex items-center gap-1">
+                {/* <Button variant="ghost" size="sm" className="flex items-center gap-1">
                   <ThumbsUp className="h-4 w-4" />
-                </Button>
+                </Button> */}
                 <Button variant="ghost" size="sm" className="flex items-center gap-1">
                   <MessageSquare className="h-4 w-4" />
                   <span>{question.answers.length}</span>

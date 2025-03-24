@@ -20,7 +20,7 @@ export const sendAdminQAAlert = async (isAnswer?: boolean) => {
     <div style="width: 100%; max-width: 600px; border-radius: 20px; margin: 20px auto; background-color: #ffffff; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">
         <div style="text-align: center; padding: 20px; background-color: #000717; border-top-left-radius: 20px; border-top-right-radius: 20px;">
             <div style="display: flex; align-items: center; justify-content: center;">
-                <img src="/public/logo.webp" alt="Global Salah" style="height: 50px; width: auto; margin-right: 10px;">
+                <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah" style="height: 50px; width: auto; margin-right: 10px;">
                 <p style="margin: 0; font-size: 24px; font-weight: 600; color: whitesmoke;">Global Salah</p>
             </div>
         </div>

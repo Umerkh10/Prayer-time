@@ -11,16 +11,14 @@ import Head from "next/head";
 import Script from "next/script";
 
 const poppins = Poppins({
-  subsets: ['latin'], // Specify character subsets
-  weight: ['300', '400', '500', '600', '700', '800', '900'], // Specify weights to preload
-  variable: '--font-poppins-sans', // Define a custom CSS variable for the font
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins-sans',
 });
-
-
 
 export const metadata: Metadata = {
   title: "Global Salah",
-  description: "Global Salah is a platform that helps you find the most accurate prayer times  for your location.",
+  description: "Global Salah is a platform that helps you find the most accurate prayer times for your location.",
   robots: {
     index: false,
     follow: false,
@@ -34,7 +32,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-
 };
 
 export default function RootLayout({
@@ -42,25 +39,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-
-
-
-
   return (
     <html lang="en" suppressHydrationWarning>
-       <Head>
-        <Script
-          src="https://cdn.jsdelivr.net/gh/manuelmhtr/countries-and-timezones@latest/dist/index.min.js"
-          strategy="beforeInteractive"
-        />
-        <Script
-          id="cookieyes"
-          src="https://cdn-cookieyes.com/client_data/5dcbb80ae3d7d4ff3df3c423/script.js"
-          strategy="afterInteractive"
-        />
-      </Head>
-      <body className={`${poppins.variable}  antialiased`}>
+        <meta name="google-site-verification" content="0likJSP3-if8goGabTQOnxr1vNU8eh-XAd8JWDk3ZyU" />
+
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-KVK6TX0YCX"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-KVK6TX0YCX');
+        `}
+      </Script>
+
+      <Script
+        src="https://cdn.jsdelivr.net/gh/manuelmhtr/countries-and-timezones@latest/dist/index.min.js"
+        strategy="beforeInteractive"
+      />
+      <Script
+        id="cookieyes"
+        src="https://cdn-cookieyes.com/client_data/5dcbb80ae3d7d4ff3df3c423/script.js"
+        strategy="afterInteractive"
+      />
+
+      <body className={`${poppins.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -69,7 +76,6 @@ export default function RootLayout({
         >
           <Navbar />
           <Toaster richColors />
-
           {children}
           <Footer />
         </ThemeProvider>
