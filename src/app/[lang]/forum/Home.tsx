@@ -8,7 +8,6 @@ export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [activeTab, setActiveTab] = useState<"login" | "signup">("login");
-  const [isLoading, setIsLoading] = useState(true);
   const [userDetails, setUserDetails] = useState<any>(null);
 
   useEffect(() => {
