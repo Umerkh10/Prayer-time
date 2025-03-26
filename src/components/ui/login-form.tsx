@@ -45,10 +45,10 @@ export default function LoginForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isVerified) {
-      toast.error("Please Verify the Captcha");
-      return;
-    }
+    // if (!isVerified) {
+    //   toast.error("Please Verify the Captcha");
+    //   return;
+    // }
 
     setIsLoading(true);
 
@@ -65,14 +65,14 @@ export default function LoginForm({
         } else {
           localStorage.setItem("userData", JSON.stringify(response.data.user));
         }
-          
+
         setShowAuthModal(false);
         setIsLoggedIn(true);
         router.push(`/${lang}/forum`);
       }
     } catch (error: any) {
-      toast.error(error.message)
-      console.log(error.message)
+      toast.error(error.message);
+      console.log(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -125,7 +125,9 @@ export default function LoginForm({
                 required
               />
             </div>
-            <CustomCaptcha setIsVerified={setIsVerified} />
+            <div className="">
+              {/* <CustomCaptcha setIsVerified={setIsVerified} /> */}
+            </div>
             <Button
               type="submit"
               className="w-full bg-emerald-600 hover:bg-emerald-800 text-white"

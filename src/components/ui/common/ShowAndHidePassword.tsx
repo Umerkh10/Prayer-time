@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-function CustomCaptcha({ setIsVerified }: any) {
+function ShowAndHidePassword({ setIsVerified }: any) {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   async function handleCaptchaSubmission(token: string | null) {
@@ -40,4 +40,4 @@ function CustomCaptcha({ setIsVerified }: any) {
   );
 }
 
-export default CustomCaptcha;
+export default ShowAndHidePassword;
