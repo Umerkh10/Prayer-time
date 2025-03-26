@@ -4,7 +4,14 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ArrowLeft, Loader2, KeyRound } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -23,6 +30,7 @@ export default function VerifyCodePage() {
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+
   const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [isVerified, setIsVerified] = useState(false);
@@ -65,13 +73,15 @@ export default function VerifyCodePage() {
         };
         localStorage.setItem("userData", JSON.stringify(updatedUserDetails));
         toast.success(response.data.message);
-        if(userDetailsInLS.token) {
-          router.push(`/${lang}/reset-password`);
-        } else {
+        if (userDetailsInLS.isSignedUp) {
           router.push(`/${lang}/forum`);
+        } else {
+          router.push(`/${lang}/reset-password`);
         }
       }
     } catch (error: any) {
+           toast.error(error.message)
+            console.log(error.message)
     } finally {
       setIsLoading(false);
     }

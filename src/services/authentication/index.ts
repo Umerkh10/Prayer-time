@@ -115,10 +115,30 @@ export const updateUserDetails = async (id: number, fullname: string) => {
   }
 };
 
+export const updateUserAccountStatus = async (id: number, status: string) => {
+  try {
+    const response = await axios.patch(`${BASE_URL}/update-user-account-type`, {
+      id,
+      status,
+    });
+
+    return response;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message ||
+          "An error occurred updating user account type"
+      );
+    } else {
+      console.error("Unexpected Error:", error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
 export const getUserById = async (id: any) => {
   try {
-    console.log("id ==>", id);
-
     const response = await axios.get(`${BASE_URL}/get-user-by-id`, {
       params: { id },
     });
@@ -136,7 +156,23 @@ export const getUserById = async (id: any) => {
   }
 };
 
-
+export const getAllUsers = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/get-all-users`);
+    return response;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message ||
+          "An error occurred during fetching users"
+      );
+    } else {
+      console.error("Unexpected Error:", error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
 
 export const updateUserPassword = async (id: number, newPassword: string) => {
   try {
@@ -150,7 +186,8 @@ export const updateUserPassword = async (id: number, newPassword: string) => {
     if (axios.isAxiosError(error)) {
       console.error("Axios Error:", error.response?.data || error.message);
       throw new Error(
-        error.response?.data?.message || "An error occurred during sign-up"
+        error.response?.data?.message ||
+          "An error occurred during updatin password"
       );
     } else {
       console.error("Unexpected Error:", error);

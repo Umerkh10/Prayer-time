@@ -124,7 +124,6 @@ export default function ForumPage({
   const handleAddQuestionClick = () => {
     if (isLoggedIn && !isVerified) {
       toast.error("Please verify your account first");
-      // router.push(`/${lang}/add-question`);
     } else {
       onAddQuestion();
     }
@@ -349,10 +348,24 @@ export default function ForumPage({
                   <p className="text-muted-foreground mb-4">
                     Try adjusting your search or ask a new question
                   </p>
-                  <Button onClick={handleAddQuestionClick} className="mx-auto">
-                    <Plus className="mr-2 h-4 w-4" />
-                    Add Question
-                  </Button>
+                  {isLoggedIn && isVerified ? (
+                    <Link
+                      href={`/${lang}/add-question`}
+                      className="gap-2 w-[50%]  mx-auto flex py-3 px-4 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600"
+                    >
+                      <Plus className="h-5 w-5" />
+                      Ask a Question
+                    </Link>
+                  ) : (
+                    <Button
+                      onClick={handleAddQuestionClick}
+                      size="lg"
+                      className="gap-2 bg-emerald-500 text-white hover:bg-emerald-600"
+                    >
+                      <Plus className="h-5 w-5" />
+                      Add Question
+                    </Button>
+                  )}
                 </Card>
               )}
 

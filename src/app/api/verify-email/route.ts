@@ -52,8 +52,10 @@ export async function POST(req: Request) {
   
     }
 
+    const user = existingUser[0]
+
     return NextResponse.json(
-      { message: `Email has been sent to ${email} please verify` },
+      { message: `Email has been sent to ${email} please verify`, user },
       { status: 200 }
     );
   } catch (error: any) {

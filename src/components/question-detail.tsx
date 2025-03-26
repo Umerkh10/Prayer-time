@@ -41,8 +41,6 @@ export function QuestionDetail({ question, answers }: any) {
     )
   );
 
-  console.log("question", question);
-
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
