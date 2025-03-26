@@ -34,10 +34,10 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isVerified) {
-      toast.error("Please Verify the Captcha");
-      return;
-    }
+    // if (!isVerified) {
+    //   toast.error("Please Verify the Captcha");
+    //   return;
+    // }
     setIsLoading(true);
 
     const userDetails = { fullname, email, password };
@@ -124,7 +124,7 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
                 Password must be at least 8 characters long
               </p>
             </div>
-            <CustomCaptcha setIsVerified={setIsVerified} />
+            {/* <CustomCaptcha setIsVerified={setIsVerified} /> */}
 
             <Button
               type="submit"
