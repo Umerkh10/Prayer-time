@@ -92,7 +92,7 @@ export function AnswerModal({
                     {buttonText}
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px]">
+            <DialogContent className="sm:max-w-[600px]">
                 <DialogHeader>
                     <DialogTitle>Post Your Answer</DialogTitle>
                     <DialogDescription>
@@ -108,15 +108,19 @@ export function AnswerModal({
                     />
                 </div>
                 <DialogFooter>
+                <CustomCaptcha  setIsVerified={setIsCaptchaVerified} />
+                </DialogFooter>
+                
+                <div className='flex justify-end items-end gap-3'>
                     <Button variant="outline" onClick={() => setOpen(false)} disabled={isSubmitting}>
                         Cancel
                     </Button>
-                    <CustomCaptcha  setIsVerified={setIsCaptchaVerified} />
-
+                   
                     <Button className="text-white bg-emerald-600 hover:bg-emerald-800" onClick={handleSubmit} disabled={isSubmitting}>
                         {isSubmitting ? "Posting..." : "Post Answer"}
                     </Button>
-                </DialogFooter>
+                    </div>
+      
             </DialogContent>
         </Dialog>
     )
