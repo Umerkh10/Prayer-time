@@ -31,7 +31,7 @@ export default function AuthModal({
 }: AuthModalProps) {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] border-primary/20 shadow-lg scale-90">
+      <DialogContent className="sm:max-w-[425px]  border-primary/20 shadow-lg md:scale-90 scale-75">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

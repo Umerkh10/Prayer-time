@@ -254,11 +254,11 @@ export default function ForumPage({
                           >
                             <Card className="overflow-hidden border-green-600/20 shadow-md hover:shadow-lg transition-shadow">
                               <CardHeader className="pb-3">
-                                <div className="flex justify-between items-center text-sm text-muted-foreground">
+                                <div className="flex flex-col items-start md:flex-row md:justify-between md:items-center text-sm text-muted-foreground ">
                                   <h2 className="text-xl font-bold ">
                                     {question.title}
                                   </h2>
-                                  <div className="flex items-center gap-4 text-xs">
+                                  <div className="flex items-center gap-4 mt-3 md:mt-0 text-xs">
                                     <UserAvatar userName={question.user.name} />
                                     <div className="flex flex-col">
                                       <span>{question.user.name}</span>
