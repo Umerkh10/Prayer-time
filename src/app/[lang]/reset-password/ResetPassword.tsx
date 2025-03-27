@@ -22,6 +22,7 @@ import { urlSplitter } from "@/lib";
 import { updateUserDetails } from "@/services/authentication";
 import { toast } from "sonner";
 import CustomCaptcha from "@/components/ui/common/CustomCaptcha";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 export default function ResetPassword() {
   const router = useRouter();
@@ -32,6 +33,7 @@ export default function ResetPassword() {
   const [userId, setUserId] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const [viewPassword, setViewPassword] = useState(false)
   const [error, setError] = useState("");
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
 
@@ -106,15 +108,18 @@ export default function ResetPassword() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Confirm New Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Enter your New Password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  className="border-primary/20 focus-visible:ring-primary/30"
-                  required
-                />
+                <div className="flex items-center border border-primary/20 focus-visible:ring-primary/30 px-2 rounded-lg">
+                  <Input
+                    id="password"
+                    type={!viewPassword ? "password" : "text"}
+                    placeholder="Enter your password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="border-none"
+                    required
+                  />
+                  {viewPassword ? <FaEye onClick={() => setViewPassword(false)} /> : <FaEyeSlash onClick={() => setViewPassword(true)} />}
+                </div>
                 {error && <p className="text-sm text-destructive">{error}</p>}
               </div>
               <div className="flex justify-center items-center">

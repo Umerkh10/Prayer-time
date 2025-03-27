@@ -15,6 +15,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { urlSplitter } from "@/lib";
 import axios from "axios";
 import CustomCaptcha from "./common/CustomCaptcha";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 interface SignupFormProps {
   onLoginClick: () => void;
@@ -25,6 +26,7 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [viewPassword, setViewPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const pathname = usePathname();
@@ -58,8 +60,8 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
         router.push(`/${lang}/verify-code`);
       }
     } catch (error: any) {
-           toast.error(error.message)
-            console.log(error.message)
+      toast.error(error.message)
+      console.log(error.message)
     } finally {
       setIsLoading(false);
     }
@@ -111,15 +113,18 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
                 <Lock className="h-4 w-4 text-muted-foreground" />
                 Password
               </Label>
-              <Input
-                id="password-signup"
-                type="password"
-                placeholder="Create a password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="border-primary/20 focus-visible:ring-primary/30"
-                required
-              />
+              <div className="flex items-center border border-primary/20 focus-visible:ring-primary/30 px-2 rounded-lg">
+                <Input
+                  id="password"
+                  type={!viewPassword ? "password" : "text"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="border-none"
+                  required
+                />
+                {viewPassword ? <FaEye onClick={() => setViewPassword(false)} /> : <FaEyeSlash onClick={() => setViewPassword(true)} />}
+              </div>
               <p className="text-xs text-muted-foreground">
                 Password must be at least 8 characters long
               </p>
