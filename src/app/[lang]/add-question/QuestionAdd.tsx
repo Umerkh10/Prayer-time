@@ -35,7 +35,7 @@ export default function AddQuestionPage() {
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
   const [isVerified, setIsVerified] = useState(false);
   const [titleCount, setTitleCount] = useState(0);
-  const MAX_TITLE_LENGTH = 50;
+  const MAX_TITLE_LENGTH = 100;
 
   useEffect(() => {
     const user: any = localStorage.getItem("userData");
@@ -97,7 +97,7 @@ export default function AddQuestionPage() {
             Ask a Question
           </CardTitle>
           <CardDescription>
-            Share your question with the developer community
+            Share your question with the Islamic community
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -120,7 +120,7 @@ export default function AddQuestionPage() {
                 name="title"
                 value={title}
                 onChange={handleChange}
-                placeholder="e.g., How do I implement authentication in Next.js?"
+                placeholder="e.g., What are the conditions of Salah?"
                 className="border-primary/20 focus-visible:ring-primary/30"
                 required
               />
@@ -136,7 +136,7 @@ export default function AddQuestionPage() {
                 name="content"
                 value={description}
                 onChange={handleChange}
-                placeholder="Describe your question in detail. Include code snippets, error messages, and what you've tried so far."
+                placeholder="Describe your question in detail. Include references from the Quran, Hadith, or scholarly opinions if applicable."
                 className="min-h-[200px] border-primary/20 focus-visible:ring-primary/30"
                 required
               />

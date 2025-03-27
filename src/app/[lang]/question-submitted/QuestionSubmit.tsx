@@ -38,7 +38,7 @@ export default function QuestionSubmit() {
             <Alert className="bg-muted/50 border-primary/20">
               <Info className="h-4 w-4" />
               <AlertDescription className="text-sm text-left">
-              You'll receive a notification on you email once your question is published.
+              You'll receive a notification on your email once your question is published.
               </AlertDescription>
             </Alert>
    
