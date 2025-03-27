@@ -15,6 +15,7 @@ import { login } from "@/services/authentication";
 import Link from "next/link";
 import { toast } from "sonner";
 import CustomCaptcha from "./common/CustomCaptcha";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 interface LoginFormProps {
   onSignUpClick: () => void;
@@ -34,6 +35,7 @@ export default function LoginForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [viewPassword, setViewPassword] = useState(false)
   const [isVerified, setIsVerified] = useState(false);
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
 
@@ -115,15 +117,19 @@ export default function LoginForm({
                   Forgot password?
                 </Link>
               </div>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="border-primary/20 focus-visible:ring-primary/30"
-                required
-              />
+              <div className="flex items-center border border-primary/20 focus-visible:ring-primary/30 px-2 rounded-lg">
+                <Input
+                  id="password"
+                  type={!viewPassword ? "password":"text"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="border-none"
+                  required
+                />
+                {viewPassword ? <FaEye onClick={()=>setViewPassword(false)} />:<FaEyeSlash onClick={()=>setViewPassword(true)} />}
+              </div>
+
             </div>
             <div className="">
               {/* <CustomCaptcha setIsVerified={setIsVerified} /> */}
