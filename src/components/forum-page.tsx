@@ -71,11 +71,15 @@ export default function ForumPage({
 
   const filterQuestions = useCallback(() => {
     if (searchQuery.trim() === "") {
-      setFilteredQuestions(questions);
+      setFilteredQuestions(
+        questions.filter((question: any) => question.status === "approved")
+      );
     } else {
       const lowercaseQuery = searchQuery.toLowerCase();
-      const filtered = questions.filter((question: any) =>
-        question.title.toLowerCase().includes(lowercaseQuery)
+      const filtered = questions.filter(
+        (question: any) =>
+          question.status === "approved" &&
+          question.title.toLowerCase().includes(lowercaseQuery)
       );
       setFilteredQuestions(filtered);
     }

@@ -72,13 +72,13 @@ export default function UserDropdown({
             <span>Edit Profile</span>
           </DropdownMenuItem>
         </Link>
-        {/* <Link href={`/${lang}/notifications`}>
+        <Link href={`/${lang}/notifications`}>
           <DropdownMenuItem className="cursor-pointer">
             <Bell className="mr-2 h-4 w-4" />
             <span>Notifications</span>
           
           </DropdownMenuItem>
-        </Link> */}
+        </Link>
         <DropdownMenuItem
           onClick={onLogout}
           className="cursor-pointer text-destructive focus:text-destructive"

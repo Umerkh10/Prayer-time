@@ -64,7 +64,6 @@ export default function QuestionPage() {
       console.error("Failed to copy URL:", error);
     }
   };
-  console.log({isLoggedIn, isVerified})
 
   const fetchQuestionByTitle = async () => {
     try {
@@ -161,33 +160,6 @@ export default function QuestionPage() {
       setUserId(parsedUserData.id);
     }
   }, []);
-
-  // useEffect(() => {
-  //   // Find the question based on the slug
-  //   const foundQuestion = mockQuestions.find((q) => q.slug === slug);
-  //   if (foundQuestion) {
-  //     setQuestion(foundQuestion);
-  //     // Get all answers for this question
-  //     const questionAnswers = mockAnswers.filter(
-  //       (a) => a.questionId === foundQuestion.id
-  //     );
-  //     setAnswers(questionAnswers);
-  //   }
-  // }, [title]);
-
-  // if (!question) {
-  //   return (
-  //     <div className="container mx-auto py-8 px-4 text-center">
-  //       <h1 className="text-2xl font-bold mb-4">Question not found</h1>
-  //       <Link href={`/${lang}/forum`}>
-  //         <Button>
-  //           <ArrowLeft className="mr-2 h-4 w-4" />
-  //           Back to Forum
-  //         </Button>
-  //       </Link>
-  //     </div>
-  //   );
-  // }
 
   if (isLoading) {
     return (

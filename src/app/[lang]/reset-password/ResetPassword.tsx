@@ -19,7 +19,7 @@ import { ArrowLeft, Loader2, Mail, Send, User2 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { urlSplitter } from "@/lib";
-import { updateUserDetails } from "@/services/authentication";
+import { resetPassword, updateUserDetails } from "@/services/authentication";
 import { toast } from "sonner";
 import CustomCaptcha from "@/components/ui/common/CustomCaptcha";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
@@ -55,7 +55,7 @@ export default function ResetPassword() {
     setIsLoading(true);
 
     try {
-      const response = await updateUserDetails(userId, newPassword);
+      const response = await resetPassword(userId, newPassword);
 
       if (response.success) {
         if (userDetailsInLS.email === "hammadurrehman1954@gmail.com") {
