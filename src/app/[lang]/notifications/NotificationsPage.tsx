@@ -34,12 +34,12 @@ import {
   BellOff,
 } from "lucide-react";
 import {
-  mockNotifications,
   type Notification,
   type NotificationType,
 } from "@/lib/mock-notification";
 import { urlSplitter } from "@/lib";
 import { getUserNotifications } from "@/services/notifications";
+import { refactorDate } from "@/lib/date";
 
 export default function NotificationsPage() {
   const router = useRouter();
@@ -57,7 +57,7 @@ export default function NotificationsPage() {
 
       if (response.status === 200) {
         console.log("notifation ==>", response.data.notifications);
-        // setQuestion(response.data.question);
+        setNotifications(response.data.notifications);
       }
     } catch (error: any) {
     } finally {
@@ -125,22 +125,6 @@ export default function NotificationsPage() {
         return <CheckCircle className="h-4 w-4 text-emerald-500" />;
       default:
         return <Bell className="h-4 w-4 text-primary" />;
-    }
-  };
-
-  const formatDate = (dateString: string) => {
-    const date = parseISO(dateString);
-    const now = new Date();
-    const diffInDays = Math.floor(
-      (now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24)
-    );
-
-    if (diffInDays < 1) {
-      return formatDistanceToNow(date, { addSuffix: true });
-    } else if (diffInDays < 7) {
-      return format(date, "EEEE") + " at " + format(date, "h:mm a");
-    } else {
-      return format(date, "MMM d, yyyy") + " at " + format(date, "h:mm a");
     }
   };
 
@@ -233,7 +217,6 @@ export default function NotificationsPage() {
               // markAsRead={markAsRead}
               // deleteNotification={deleteNotification}
               getNotificationIcon={getNotificationIcon}
-              formatDate={formatDate}
             />
           </TabsContent>
 
@@ -243,7 +226,6 @@ export default function NotificationsPage() {
               // markAsRead={markAsRead}
               // deleteNotification={deleteNotification}
               getNotificationIcon={getNotificationIcon}
-              formatDate={formatDate}
             />
           </TabsContent>
 
@@ -253,7 +235,6 @@ export default function NotificationsPage() {
               // markAsRead={markAsRead}
               // deleteNotification={deleteNotification}
               getNotificationIcon={getNotificationIcon}
-              formatDate={formatDate}
             />
           </TabsContent>
         </Tabs>
@@ -301,11 +282,10 @@ export default function NotificationsPage() {
 }
 
 interface NotificationListProps {
-  notifications: Notification[];
+  notifications: any[];
   markAsRead?: (id: string) => void;
   deleteNotification?: (id: string) => void;
   getNotificationIcon: (type: NotificationType) => React.ReactNode;
-  formatDate: (dateString: string) => string;
 }
 
 function NotificationList({
@@ -313,7 +293,6 @@ function NotificationList({
   markAsRead,
   deleteNotification,
   getNotificationIcon,
-  formatDate,
 }: NotificationListProps) {
   return (
     <div className="divide-y divide-border">
@@ -329,20 +308,21 @@ function NotificationList({
           >
             <div
               className={`p-6 hover:bg-muted/30 transition-colors ${
-                !notification.read ? "bg-emerald-600/5" : ""
+                !notification.is_read ? "bg-emerald-600/5" : ""
               }`}
             >
               <div className="flex gap-4">
                 {notification.sender ? (
-                  <Avatar className="h-10 w-10 border border-primary/20">
-                    <AvatarImage
-                      src={notification.sender.avatar}
-                      alt={notification.sender.name}
-                    />
-                    <AvatarFallback className="bg-emerald-600/10 ">
-                      {notification.sender.initials}
-                    </AvatarFallback>
-                  </Avatar>
+                  null
+                  // <Avatar className="h-10 w-10 border border-primary/20">
+                  //   <AvatarImage
+                  //     src={notification.sender.avatar}
+                  //     alt={notification.sender.name}
+                  //   />
+                  //   <AvatarFallback className="bg-emerald-600/10 ">
+                  //     {notification.sender.initials}
+                  //   </AvatarFallback>
+                  // </Avatar>
                 ) : (
                   <div className="h-10 w-10 bg-muted/50 rounded-full flex items-center justify-center">
                     {getNotificationIcon(notification.type)}
@@ -354,12 +334,12 @@ function NotificationList({
                     <p className="font-medium text-sm flex items-center gap-2">
                       {getNotificationIcon(notification.type)}
                       {notification.title}
-                      {!notification.read && (
+                      {!notification.is_read && (
                         <span className="h-2 w-2 rounded-full bg-emerald-600 inline-block"></span>
                       )}
                     </p>
                     <span className="text-xs text-muted-foreground">
-                      {formatDate(notification.createdAt)}
+                      {refactorDate(notification.createdAt)}
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground">
