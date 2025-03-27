@@ -34,6 +34,7 @@ interface Answer {
 
 export function QuestionDetail({ question, answers }: any) {
   const [questionStatus, setQuestionStatus] = useState(question?.status);
+
   const [answerStatuses, setAnswerStatuses] = useState<Record<number, string>>(
     question.answers.reduce(
       (acc: any, answer: any) => ({ ...acc, [answer.id]: answer.status }),
@@ -113,6 +114,7 @@ export function QuestionDetail({ question, answers }: any) {
   };
 
   const getStatusBadge = (status: string) => {
+    console.log("status", status);
     switch (status) {
       case "approved":
         return <Badge className="bg-green-500 text-white">Approved</Badge>;

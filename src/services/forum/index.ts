@@ -45,8 +45,6 @@ export const getQuestionByTitle = async (title: any) => {
 export const addQuestion = async (questionDetail: any) => {
   const { user_id, title, description } = questionDetail;
 
-  // console.log("questionDetail", user_id);
-
   try {
     const response = await axios.post(`${BASE_URL}/add-question`, {
       user_id: user_id,

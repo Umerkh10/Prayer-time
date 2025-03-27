@@ -14,32 +14,62 @@ export async function GET(req: Request) {
     //   [title]
     // );
 
+    // const [question]: any = await db.execute(
+    //   `SELECT
+    //      q.id AS question_id,
+    //      q.user_id,
+    //      q.title,
+    //      q.description,
+    //      q.status,
+    //      q.created_at,
+    //      q.updated_at,
+    //      qu.fullname AS question_user_name,
+    //      qu.email AS question_user_email,
+    //      a.id AS answer_id,
+    //      a.user_id AS answer_user_id,
+    //      a.answer,
+    //      a.status,
+    //      a.created_at AS answer_created_at,
+    //      au.fullname AS answer_user_name,
+    //      au.email AS answer_user_email,
+    //      COUNT(al.id) AS like_count -- Count likes for each answer
+    //    FROM questions q
+    //    LEFT JOIN users qu ON q.user_id = qu.id -- Join for question uploader
+    //    LEFT JOIN answers a ON q.id = a.question_id
+    //    LEFT JOIN users au ON a.user_id = au.id -- Join for answer uploader
+    //    LEFT JOIN answer_likes al ON a.id = al.answer_id -- Join to count likes
+    //    WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?)
+    //    GROUP BY a.id;`,
+    //   [title]
+    // );
+
     const [question]: any = await db.execute(
       `SELECT 
-         q.id AS question_id, 
-         q.user_id,
-         q.title, 
-         q.description, 
-         q.status, 
-         q.created_at, 
-         q.updated_at,
-         qu.fullname AS question_user_name, 
-         qu.email AS question_user_email, 
-         a.id AS answer_id,
-         a.user_id AS answer_user_id,
-         a.answer,
-         a.status,
-         a.created_at AS answer_created_at, 
-         au.fullname AS answer_user_name, 
-         au.email AS answer_user_email,
-         COUNT(al.id) AS like_count -- Count likes for each answer
-       FROM questions q
-       LEFT JOIN users qu ON q.user_id = qu.id -- Join for question uploader
-       LEFT JOIN answers a ON q.id = a.question_id
-       LEFT JOIN users au ON a.user_id = au.id -- Join for answer uploader
-       LEFT JOIN answer_likes al ON a.id = al.answer_id -- Join to count likes
-       WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?)
-       GROUP BY a.id;`,
+    q.id AS question_id, 
+    q.user_id,
+    q.title, 
+    q.description, 
+    q.status AS question_status, -- Ensure question status is retrieved correctly
+    q.created_at, 
+    q.updated_at,
+    qu.fullname AS question_user_name, 
+    qu.email AS question_user_email, 
+    a.id AS answer_id,
+    a.user_id AS answer_user_id,
+    a.answer,
+    COALESCE(a.status, 'pending') AS answer_status, -- Handle NULL status
+    a.created_at AS answer_created_at, 
+    au.fullname AS answer_user_name, 
+    au.email AS answer_user_email,
+    COUNT(al.id) AS like_count -- Count likes for each answer
+FROM questions q
+LEFT JOIN users qu ON q.user_id = qu.id -- Join for question uploader
+LEFT JOIN answers a ON q.id = a.question_id
+LEFT JOIN users au ON a.user_id = au.id -- Join for answer uploader
+LEFT JOIN answer_likes al ON a.id = al.answer_id -- Join to count likes
+WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?)
+GROUP BY q.id, a.id, qu.fullname, qu.email, au.fullname, au.email;
+`,
       [title]
     );
 
@@ -55,7 +85,7 @@ export async function GET(req: Request) {
       user_id: question[0].user_id,
       title: question[0].title,
       description: question[0].description,
-      status: question[0].status,
+      status: question[0].question_status,
       created_at: question[0].created_at,
       updated_at: question[0].updated_at,
       user: {
