@@ -27,6 +27,7 @@ import { toast } from "sonner";
 import { Skeleton } from "./ui/skeleton";
 import UserDropdown from "./ui/user-dropdown";
 import UserAvatar from "./UserAvatar";
+import { getUserNotifications } from "@/services/notifications";
 
 interface ForumPageProps {
   isLoggedIn: boolean;
@@ -55,6 +56,7 @@ export default function ForumPage({
   const [currentPage, setCurrentPage] = useState(1);
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
   const [isVerified, setIsVerified] = useState(false);
+  const [anyUnreadNotification, setAnyUnreadNotification] = useState(false);
 
   useEffect(() => {
     const user: any = localStorage.getItem("userData");
@@ -135,10 +137,31 @@ export default function ForumPage({
 
   const getFirstAnswer = (questionId: number) => {
     const question = questions?.find((q: any) => q.id === questionId);
-    return (
-      question?.answers[0]
-    );
+    return question?.answers[0];
   };
+
+  const fetchUserNotifications = async () => {
+    try {
+      const response = await getUserNotifications(userDetailsInLS.id);
+
+      if (response.status === 200) {
+        const isUnread = response.data.notifications.some(
+          (notification: any) => notification.is_read === 0
+        );
+
+        setAnyUnreadNotification(isUnread);
+      }
+    } catch (error: any) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (userDetailsInLS) {
+      fetchUserNotifications();
+    }
+  }, [userDetailsInLS]);
 
   return (
     <>
@@ -160,15 +183,23 @@ export default function ForumPage({
           )}
           <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-600/5 to-background rounded-xl p-8 mb-8 shadow-md">
             <div className="flex justify-between items-center mb-4">
-              <h1 className="md:text-4xl text-2xl font-bold ">Global Salah Forum</h1>
+              <h1 className="md:text-4xl text-2xl font-bold ">
+                Global Salah Forum
+              </h1>
               {isLoggedIn ? (
                 <div className="flex items-center gap-1">
                   <User />
-                  <UserDropdown
-                    userName={userData?.fullname}
-                    userEmail={userData?.email}
-                    setIsLoggedIn={setIsLoggedIn}
-                  />
+                  <div className="relative">
+                    <UserDropdown
+                      userName={userData?.fullname}
+                      userEmail={userData?.email}
+                      setIsLoggedIn={setIsLoggedIn}
+                      anyUnreadNotification={anyUnreadNotification}
+                    />
+                    {anyUnreadNotification && (
+                      <span className="bg-red-600 w-2 h-2 rounded-full absolute right-0 top-0" />
+                    )}
+                  </div>
                 </div>
               ) : (
                 <Button variant="outline" size="sm" onClick={onAddQuestion}>
@@ -321,7 +352,14 @@ export default function ForumPage({
                                     className="flex items-center gap-1"
                                   >
                                     <MessageSquare className="h-4 w-4" />
-                                    <span>{question.answers.filter((answer:any) => answer.status === "approved").length}</span>
+                                    <span>
+                                      {
+                                        question.answers.filter(
+                                          (answer: any) =>
+                                            answer.status === "approved"
+                                        ).length
+                                      }
+                                    </span>
                                   </Button>
                                 </div>
                                 <Link

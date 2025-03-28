@@ -25,7 +25,8 @@ export default function QuestionPage() {
       const response = await getQuestionByTitle(title);
 
       if (response.status === 200) {
-        setQuestion(response.data.question);
+        console.log("response ==>", response.data)
+        setQuestion(response.data);
       }
     } catch (error: any) {
       toast.error(error?.message);
@@ -49,7 +50,7 @@ export default function QuestionPage() {
   }
 
   return (
-    <ResponsiveAdminDashboard title={`Question #${question.id}`}>
+    <ResponsiveAdminDashboard title={`Question #${question?.id}`}>
       <div className="space-y-4 md:space-y-6">
         <Breadcrumbs
           items={[

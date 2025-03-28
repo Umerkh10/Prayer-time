@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: any) {
     const response = await getQuestionByTitle(title);
 
     if (response.status === 200) {
-      const question = response.data.question;
+      const question = response.data;
 
       return {
         title: `${question?.title} – Global Salah Forum Discussion`,

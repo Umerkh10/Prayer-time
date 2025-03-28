@@ -158,12 +158,56 @@ export const updateUserAccountStatus = async (id: number, status: string) => {
   }
 };
 
+export const updateAdmin = async (
+  fullname: string,
+  email: string,
+  password: string
+) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/update-admin`, {
+      fullname,
+      email,
+      password,
+    });
+
+    return response;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message ||
+          "An error occurred updating user account type"
+      );
+    } else {
+      console.error("Unexpected Error:", error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
 export const getUserById = async (id: any) => {
   try {
     const response = await axios.get(`${BASE_URL}/get-user-by-id`, {
       params: { id },
     });
     return response.data; // Corrected
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios Error:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message || "An error occurred during sign-up"
+      );
+    } else {
+      console.error("Unexpected Error:", error);
+      throw new Error("Something went wrong");
+    }
+  }
+};
+
+export const getAdmin = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/get-admin`);
+    return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error("Axios Error:", error.response?.data || error.message);

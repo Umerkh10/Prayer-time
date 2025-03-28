@@ -15,25 +15,9 @@ import {
 } from "@/services/forum";
 import { toast } from "sonner";
 
-interface Question {
-  id: number;
-  title: string;
-  content: string;
-  status: string;
-  username: string;
-  createdAt: string;
-}
-
-interface Answer {
-  id: number;
-  content: string;
-  username: string;
-  status: string;
-  createdAt: string;
-}
-
 export function QuestionDetail({ question, answers }: any) {
   const [questionStatus, setQuestionStatus] = useState(question?.status);
+  const [isVerified, setIsVerified] = useState(false);
 
   const [answerStatuses, setAnswerStatuses] = useState<Record<number, string>>(
     question.answers.reduce(
@@ -58,10 +42,13 @@ export function QuestionDetail({ question, answers }: any) {
   const handleQuestionApprove = async (id: number) => {
     setIsSubmitting(true);
     try {
-      const response = await updateQuestionStatus(id, "approved");
+      const response = await updateQuestionStatus(
+        question.user_id,
+        id,
+        "approved"
+      );
 
       if (response.status === 200) {
-        console.log("response", setQuestionStatus);
         setQuestionStatus(response.data.updatedQuestion.status);
         toast.success(response.data.message);
       }
@@ -77,10 +64,14 @@ export function QuestionDetail({ question, answers }: any) {
   const handleQuestionReject = async (id: any) => {
     setIsSubmitting(true);
     try {
-      const response = await updateQuestionStatus(id, "declined");
+      const response = await updateQuestionStatus(
+        question.user_id,
+        id,
+        "declined"
+      );
 
       if (response.status === 200) {
-        // setQuestionStatus("approved");
+        setQuestionStatus(response.data.updatedQuestion.status);
         toast.success(response.data.message);
       }
     } catch (error: any) {
@@ -88,38 +79,35 @@ export function QuestionDetail({ question, answers }: any) {
     } finally {
       setIsLoading(false);
       setIsSubmitting(false);
-      setApproveModalOpen(false);
+      setDeclineModalOpen(false);
     }
-    // setQuestionStatus("rejected");
   };
 
-  const handleAnswerStatusChange = async (answerId: number, status: string) => {
+  const handleAnswerStatusChange = async (answer: any, status: string) => {
     setIsSubmitting(true);
     try {
-      const response = await updateAnswerStatus(answerId, status);
+      const response = await updateAnswerStatus(answer.id, answer.user_id, status);
 
       if (response.status === 200) {
-        console.log("response", setQuestionStatus);
-        setAnswerStatuses((prev) => ({ ...prev, [answerId]: status }));
+        setAnswerStatuses((prev) => ({ ...prev, [answer.id]: status }));
         toast.success(response.data.message);
-        // setAnswerApproveModalOpen(false)
       }
     } catch (error: any) {
       toast.error(error?.message);
     } finally {
       setIsLoading(false);
       setIsSubmitting(false);
-      setApproveModalOpen(false);
+      setAnswerApproveModalOpen(null);
+      setAnswerDeclineModalOpen(null);
     }
   };
 
   const getStatusBadge = (status: string) => {
-    console.log("status", status);
     switch (status) {
       case "approved":
         return <Badge className="bg-green-500 text-white">Approved</Badge>;
-      case "rejected":
-        return <Badge className="bg-red-500 text-white">Rejected</Badge>;
+      case "declined":
+        return <Badge className="bg-red-500 text-white">Declined</Badge>;
       default:
         return (
           <Badge className="bg-gray-500 hover:bg-gray-500 text-white">
@@ -215,7 +203,7 @@ export function QuestionDetail({ question, answers }: any) {
                   isOpen={answerApproveModalOpen === answer.id}
                   onClose={() => setAnswerApproveModalOpen(null)}
                   onConfirm={() =>
-                    handleAnswerStatusChange(answer.id, "approved")
+                    handleAnswerStatusChange(answer, "approved")
                   }
                   title="Approve Answer"
                   description="Are you sure you want to approve this answer? It will be visible to all users."

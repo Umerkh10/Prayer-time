@@ -16,17 +16,12 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import UserAvatar from "../UserAvatar";
 
-interface UserDropdownProps {
-  userName: string;
-  userEmail: string;
-  setIsLoggedIn: (value: boolean) => void;
-}
-
 export default function UserDropdown({
   userName,
   userEmail,
   setIsLoggedIn,
-}: UserDropdownProps) {
+  anyUnreadNotification,
+}: any) {
   const [userDetails, setUserDetails] = useState<any>(null);
 
   const pathname = usePathname();
@@ -74,9 +69,13 @@ export default function UserDropdown({
         </Link>
         <Link href={`/${lang}/notifications`}>
           <DropdownMenuItem className="cursor-pointer">
-            <Bell className="mr-2 h-4 w-4" />
+            <div className="relative">
+              <Bell className="mr-2 h-4 w-4" />
+              {anyUnreadNotification && (
+                <span className="bg-red-600 w-2 h-2 rounded-full absolute right-1 top-0" />
+              )}
+            </div>
             <span>Notifications</span>
-          
           </DropdownMenuItem>
         </Link>
         <DropdownMenuItem

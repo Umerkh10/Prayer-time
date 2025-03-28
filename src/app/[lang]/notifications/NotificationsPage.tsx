@@ -38,7 +38,7 @@ import {
   type NotificationType,
 } from "@/lib/mock-notification";
 import { urlSplitter } from "@/lib";
-import { getUserNotifications } from "@/services/notifications";
+import { deleteNotifications, getUserNotifications } from "@/services/notifications";
 import { refactorDate } from "@/lib/date";
 
 export default function NotificationsPage() {
@@ -103,11 +103,18 @@ export default function NotificationsPage() {
   //   );
   // };
 
-  // const deleteNotification = (id: string) => {
-  //   setNotifications((prev) =>
-  //     prev.filter((notification) => notification.id !== id)
-  //   );
-  // };
+  const handleDeleteNotification = async (id: string) => {
+    try {
+      const response = await deleteNotifications(id);
+
+      if (response.status === 200) {
+        setNotifications(response.data.notifications);
+      }
+    } catch (error: any) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const getNotificationIcon = (type: NotificationType) => {
     switch (type) {
@@ -187,7 +194,7 @@ export default function NotificationsPage() {
           onValueChange={(value) => setActiveTab(value as any)}
         >
           <div className="px-6">
-            <TabsList className="grid w-full grid-cols-3 mb-4">
+            <TabsList className="grid w-full grid-cols-2 mb-4">
               <TabsTrigger
                 value="all"
                 className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
@@ -200,12 +207,7 @@ export default function NotificationsPage() {
               >
                 Unread
               </TabsTrigger>
-              <TabsTrigger
-                value="read"
-                className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
-              >
-                Read
-              </TabsTrigger>
+              
             </TabsList>
           </div>
 
@@ -214,6 +216,7 @@ export default function NotificationsPage() {
           <TabsContent value="all" className="m-0">
             <NotificationList
               notifications={notifications}
+              handleDeleteNotification={handleDeleteNotification}
               // markAsRead={markAsRead}
               // deleteNotification={deleteNotification}
               getNotificationIcon={getNotificationIcon}
@@ -223,6 +226,7 @@ export default function NotificationsPage() {
           <TabsContent value="unread" className="m-0">
             <NotificationList
               notifications={notifications}
+              handleDeleteNotification={handleDeleteNotification}
               // markAsRead={markAsRead}
               // deleteNotification={deleteNotification}
               getNotificationIcon={getNotificationIcon}
@@ -232,6 +236,7 @@ export default function NotificationsPage() {
           <TabsContent value="read" className="m-0">
             <NotificationList
               notifications={notifications}
+              handleDeleteNotification={handleDeleteNotification}
               // markAsRead={markAsRead}
               // deleteNotification={deleteNotification}
               getNotificationIcon={getNotificationIcon}
@@ -260,7 +265,7 @@ export default function NotificationsPage() {
           </div>
         )}
 
-        {notifications.length > 0 && (
+        {/* {notifications.length > 0 && (
           <CardFooter className="flex justify-between border-t p-6">
             <Button
               variant="outline"
@@ -275,29 +280,24 @@ export default function NotificationsPage() {
               notifications
             </p>
           </CardFooter>
-        )}
+        )} */}
       </Card>
     </div>
   );
 }
 
-interface NotificationListProps {
-  notifications: any[];
-  markAsRead?: (id: string) => void;
-  deleteNotification?: (id: string) => void;
-  getNotificationIcon: (type: NotificationType) => React.ReactNode;
-}
 
 function NotificationList({
   notifications,
+  handleDeleteNotification,
   markAsRead,
   deleteNotification,
   getNotificationIcon,
-}: NotificationListProps) {
+}: any) {
   return (
     <div className="divide-y divide-border">
       <AnimatePresence initial={false}>
-        {notifications.map((notification) => (
+      {[...notifications].reverse().map((notification) => (
           <motion.div
             key={notification.id}
             initial={{ opacity: 0, height: 0 }}
@@ -369,14 +369,13 @@ function NotificationList({
                           // onClick={() => markAsRead(notification.id)}
                           className="h-8 px-2"
                         >
-                          <Check className="h-4 w-4" />
                           <span className="sr-only">Mark as read</span>
                         </Button>
                       )}
                       <Button
                         variant="ghost"
                         size="sm"
-                        // onClick={() => deleteNotification(notification.id)}
+                        onClick={() => handleDeleteNotification(notification.id)}
                         className="h-8 px-2 text-red-500 hover:text-destructive"
                       >
                         <Trash2 className="h-4 w-4" />

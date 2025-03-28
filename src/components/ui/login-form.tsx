@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import { Mail, Lock, Loader2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { urlSplitter } from "@/lib";
-import { login } from "@/services/authentication";
+import { getAdmin, login } from "@/services/authentication";
 import Link from "next/link";
 import { toast } from "sonner";
 import CustomCaptcha from "./common/CustomCaptcha";
@@ -33,11 +33,28 @@ export default function LoginForm({
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
   const [email, setEmail] = useState("");
+  const [adminEmail, setAdminEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [viewPassword, setViewPassword] = useState(false)
+  const [viewPassword, setViewPassword] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
+
+  const fetchAdmin = async () => {
+    try {
+      const response = await getAdmin();
+      if (response) {
+        setAdminEmail(response.admin.email);
+      }
+    } catch (error: any) {
+      toast.error(error?.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchAdmin();
+  }, []);
 
   useEffect(() => {
     const user: any = localStorage.getItem("userData");
@@ -60,15 +77,14 @@ export default function LoginForm({
       const response = await login(userDetails);
 
       if (response.status === 200) {
-        if (email === "hammadurrehman1954@gmail.com") {
+        if (email === adminEmail) {
           const user = response.data.user;
           const updatedDetails = { ...user, role: "admin" };
           localStorage.setItem("userData", JSON.stringify(updatedDetails));
           router.push(`/${lang}/admin`);
         } else {
           localStorage.setItem("userData", JSON.stringify(response.data.user));
-        router.push(`/${lang}/forum`);
-
+          router.push(`/${lang}/forum`);
         }
 
         setShowAuthModal(false);
@@ -122,16 +138,19 @@ export default function LoginForm({
               <div className="flex items-center border border-primary/20 focus-visible:ring-primary/30 px-2 rounded-lg">
                 <Input
                   id="password"
-                  type={!viewPassword ? "password":"text"}
+                  type={!viewPassword ? "password" : "text"}
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="border-none"
                   required
                 />
-                {viewPassword ? <FaEye onClick={()=>setViewPassword(false)} />:<FaEyeSlash onClick={()=>setViewPassword(true)} />}
+                {viewPassword ? (
+                  <FaEye onClick={() => setViewPassword(false)} />
+                ) : (
+                  <FaEyeSlash onClick={() => setViewPassword(true)} />
+                )}
               </div>
-
             </div>
             <div className="">
               {/* <CustomCaptcha setIsVerified={setIsVerified} /> */}

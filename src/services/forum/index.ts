@@ -129,9 +129,14 @@ export const deleteAnswer = async (id: any) => {
   }
 };
 
-export const updateQuestionStatus = async (id: number, status: string) => {
+export const updateQuestionStatus = async (
+  user_id: number,
+  id: number,
+  status: string
+) => {
   try {
     const response = await axios.patch(`${BASE_URL}/update-question-status`, {
+      user_id,
       id,
       status,
     });
@@ -150,9 +155,14 @@ export const updateQuestionStatus = async (id: number, status: string) => {
   }
 };
 
-export const updateAnswerStatus = async (id: number, status: string) => {
+export const updateAnswerStatus = async (
+  user_id: number,
+  id: number,
+  status: string
+) => {
   try {
     const response = await axios.patch(`${BASE_URL}/update-answer-status`, {
+      user_id,
       id,
       status,
     });

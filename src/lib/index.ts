@@ -5,9 +5,6 @@ export const checkIsPathnameIsEqualToLang = (pathname:string) => {
 
 }
 
-
-
-
 export const urlSplitter = (url:string) => {
     const splitUrl = url?.split("/")[1]
     return splitUrl

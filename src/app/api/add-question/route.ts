@@ -7,8 +7,7 @@ export async function POST(req: Request) {
   try {
     const { user_id, title, description } = await req.json();
 
-    console.log({user_id, title, description});
-    
+    console.log({ user_id, title, description });
 
     if (!user_id || !title || !description) {
       return NextResponse.json(
@@ -33,6 +32,13 @@ export async function POST(req: Request) {
 
     await sendAdminQAAlert();
     await sendUserQAAlert(false, user.email, undefined, title);
+
+    const message = `You have added a question ${title} please wait until approved`;
+
+    await db.execute(
+      "INSERT INTO notifications (user_id, message, type, is_read) VALUES (?, ?, ?, ?)",
+      [user_id, message, "question_posted", 0]
+    );
 
     return NextResponse.json(
       { message: "Question added successfully" },

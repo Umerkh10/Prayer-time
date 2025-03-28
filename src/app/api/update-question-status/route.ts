@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function PATCH(req: Request) {
   try {
-    const { id, status } = await req.json();
+    const { user_id, id, status } = await req.json();
 
     if (!id || !status) {
       return NextResponse.json(
@@ -43,6 +43,13 @@ export async function PATCH(req: Request) {
     const [updatedRows]: any = await db.execute(
       "SELECT * FROM questions WHERE id = ?",
       [id]
+    );
+
+    const message = `Your question ${title} has been ${status} you can go and check!`;
+
+    await db.execute(
+      "INSERT INTO notifications (user_id, message, type, is_read) VALUES (?, ?, ?, ?)",
+      [user_id, message, "question_approved", 0]
     );
 
     const updatedQuestion = updatedRows[0];

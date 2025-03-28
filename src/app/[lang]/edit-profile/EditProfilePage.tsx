@@ -2,11 +2,8 @@
 
 import type React from "react";
 
-import { useState, useEffect } from "react";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Card,
   CardContent,
@@ -15,19 +12,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { ArrowLeft, Loader2, User, Mail, Lock, Save } from "lucide-react";
-import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import UserAvatar from "@/components/UserAvatar";
 import { urlSplitter } from "@/lib";
 import { getUserById, updateUserDetails } from "@/services/authentication";
+import { ArrowLeft, Loader2, Mail, Save, User } from "lucide-react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import UserAvatar from "@/components/UserAvatar";
 
 export default function EditProfilePage() {
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fullname, setFullname] = useState("");
@@ -85,7 +85,7 @@ export default function EditProfilePage() {
         const updatedUserData = {
           ...userDetails,
           fullname,
-          token: 'sadsa'
+          token: "sadsa",
         };
         localStorage.setItem("userData", JSON.stringify(updatedUserData));
         toast.success(response.message);
@@ -117,7 +117,7 @@ export default function EditProfilePage() {
                 alt="John Doe"
               />
               <AvatarFallback className="bg-primary/10 text-primary">
-               <UserAvatar userName={userDetails?.fullname} />
+                <UserAvatar userName={userDetails?.fullname} />
               </AvatarFallback>
             </Avatar>
           </div>

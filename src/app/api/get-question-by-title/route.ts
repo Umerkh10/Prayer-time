@@ -45,30 +45,30 @@ export async function GET(req: Request) {
 
     const [question]: any = await db.execute(
       `SELECT 
-    q.id AS question_id, 
-    q.user_id,
-    q.title, 
-    q.description, 
-    q.status AS question_status,
-    q.created_at, 
-    q.updated_at,
-    qu.fullname AS question_user_name, 
-    qu.email AS question_user_email, 
-    a.id AS answer_id,
-    a.user_id AS answer_user_id,
-    a.answer,
-    a.status AS answer_status,
-    a.created_at AS answer_created_at, 
-    au.fullname AS answer_user_name, 
-    au.email AS answer_user_email,
-    al.user_id AS liked_user_id, -- Fetch liked user_id individually
-    (SELECT COUNT(*) FROM answer_likes WHERE answer_likes.answer_id = a.id) AS like_count
-FROM questions q
-LEFT JOIN users qu ON q.user_id = qu.id
-LEFT JOIN answers a ON q.id = a.question_id
-LEFT JOIN users au ON a.user_id = au.id
-LEFT JOIN answer_likes al ON a.id = al.answer_id
-WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?);
+        q.id AS question_id, 
+        q.user_id,
+        q.title, 
+        q.description, 
+        q.status AS question_status,
+        q.created_at, 
+        q.updated_at,
+        qu.fullname AS question_user_name, 
+        qu.email AS question_user_email, 
+        a.id AS answer_id,
+        a.user_id AS answer_user_id,
+        a.answer,
+        a.status AS answer_status,
+        a.created_at AS answer_created_at, 
+        au.fullname AS answer_user_name, 
+        au.email AS answer_user_email,
+        al.user_id AS liked_user_id, -- Fetch liked user_id individually
+        (SELECT COUNT(*) FROM answer_likes WHERE answer_likes.answer_id = a.id) AS like_count
+        FROM questions q
+        LEFT JOIN users qu ON q.user_id = qu.id
+        LEFT JOIN answers a ON q.id = a.question_id
+        LEFT JOIN users au ON a.user_id = au.id
+        LEFT JOIN answer_likes al ON a.id = al.answer_id
+        WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?);
       `,
       [title]
     );
