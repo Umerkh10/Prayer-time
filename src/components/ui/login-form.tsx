@@ -64,13 +64,15 @@ export default function LoginForm({
           const user = response.data.user;
           const updatedDetails = { ...user, role: "admin" };
           localStorage.setItem("userData", JSON.stringify(updatedDetails));
+          router.push(`/${lang}/admin`);
         } else {
           localStorage.setItem("userData", JSON.stringify(response.data.user));
+        router.push(`/${lang}/forum`);
+
         }
 
         setShowAuthModal(false);
         setIsLoggedIn(true);
-        router.push(`/${lang}/forum`);
       }
     } catch (error: any) {
       toast.error(error.message);

@@ -57,18 +57,18 @@ export async function GET(req: Request) {
     a.id AS answer_id,
     a.user_id AS answer_user_id,
     a.answer,
-    COALESCE(a.status, 'pending') AS answer_status, -- Handle NULL status
+    a.status AS answer_status, -- Ensure question status is retrieved correctly
     a.created_at AS answer_created_at, 
     au.fullname AS answer_user_name, 
     au.email AS answer_user_email,
     COUNT(al.id) AS like_count -- Count likes for each answer
-FROM questions q
-LEFT JOIN users qu ON q.user_id = qu.id -- Join for question uploader
-LEFT JOIN answers a ON q.id = a.question_id
-LEFT JOIN users au ON a.user_id = au.id -- Join for answer uploader
-LEFT JOIN answer_likes al ON a.id = al.answer_id -- Join to count likes
-WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?)
-GROUP BY q.id, a.id, qu.fullname, qu.email, au.fullname, au.email;
+    FROM questions q
+    LEFT JOIN users qu ON q.user_id = qu.id -- Join for question uploader
+    LEFT JOIN answers a ON q.id = a.question_id
+    LEFT JOIN users au ON a.user_id = au.id -- Join for answer uploader
+    LEFT JOIN answer_likes al ON a.id = al.answer_id -- Join to count likes
+    WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?)
+    GROUP BY q.id, a.id, qu.fullname, qu.email, au.fullname, au.email;
 `,
       [title]
     );
@@ -101,7 +101,7 @@ GROUP BY q.id, a.id, qu.fullname, qu.email, au.fullname, au.email;
           id: row.answer_id,
           user_id: row.answer_user_id,
           answer: row.answer,
-          status: row.status,
+          status: row.answer_status,
           created_at: row.answer_created_at,
           like_count: row.like_count,
           user: {

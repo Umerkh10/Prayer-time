@@ -83,7 +83,7 @@ export default function ForumPage({
       );
       setFilteredQuestions(filtered);
     }
-    setCurrentPage(1); // Reset to first page when search changes
+    setCurrentPage(1);
   }, [searchQuery]);
 
   useEffect(() => {
@@ -135,7 +135,10 @@ export default function ForumPage({
 
   const getFirstAnswer = (questionId: number) => {
     const question = questions?.find((q: any) => q.id === questionId);
-    return question?.answers?.[0] || null;
+    return (
+      question?.answers?.find((answer: any) => answer.status === "approved") ||
+      null
+    );
   };
 
   return (

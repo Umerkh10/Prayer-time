@@ -12,9 +12,13 @@ const AuthenticatedRoute = ({ children }: { children: React.ReactNode }) => {
     const user = localStorage.getItem("userData");
     const parsedUser = user ? JSON.parse(user) : null;
 
+    if(!parsedUser?.token) {
+      router.push(`/${lang}/forum`);
+    }
     if (parsedUser?.role !== "admin") {
       router.push(`/${lang}/forum`);
     }
+    
   }, [router, pathname]);
 
   return <>{children}</>;

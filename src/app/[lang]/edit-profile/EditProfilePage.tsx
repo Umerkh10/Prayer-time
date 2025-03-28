@@ -117,7 +117,7 @@ export default function EditProfilePage() {
                 alt="John Doe"
               />
               <AvatarFallback className="bg-primary/10 text-primary">
-               <UserAvatar userName={userDetails.fullname} />
+               <UserAvatar userName={userDetails?.fullname} />
               </AvatarFallback>
             </Avatar>
           </div>

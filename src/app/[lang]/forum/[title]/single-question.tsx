@@ -31,6 +31,7 @@ export default function QuestionPage() {
   const params = useParams();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+
   const [question, setQuestion] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState("");
@@ -38,23 +39,14 @@ export default function QuestionPage() {
   const [likedAnswers, setLikedAnswers] = useState<number[]>([]);
   const [isVerified, setIsVerified] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState<any>(null);
+  const [isQuestionOwner, setIsQuestionOwner] = useState(false);
 
   const title = params?.title as string;
 
   useEffect(() => {
     setUrl(window.location.href);
   }, [pathname]);
-
-  useEffect(() => {
-    const user: any = localStorage.getItem("userData");
-    const parsedUser = JSON.parse(user);
-    if (parsedUser?.verification_status === 1) {
-      setIsVerified(true);
-    }
-    if (parsedUser?.token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
 
   const handleCopy = async () => {
     try {
@@ -65,6 +57,26 @@ export default function QuestionPage() {
     }
   };
 
+  useEffect(() => {
+    const user = localStorage.getItem("userData");
+    if (user) {
+      const parsedUser = JSON.parse(user);
+      if (parsedUser?.verification_status === 1) {
+        setIsVerified(true);
+      }
+      if (parsedUser?.token) {
+        setIsLoggedIn(true);
+      }
+      setUserData(parsedUser);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (userData) {
+      fetchQuestionByTitle();
+    }
+  }, [userData]);
+
   const fetchQuestionByTitle = async () => {
     try {
       const response = await getQuestionByTitle(title);
@@ -72,15 +84,19 @@ export default function QuestionPage() {
       if (response.status === 200) {
         setQuestion(response.data.question);
       }
+
+      if (userData && response?.data?.question?.user?.email) {
+        if (response.data.question.user.email === userData.email) {
+          setIsQuestionOwner(true);
+        }
+      }
     } catch (error: any) {
+      toast.error(error.message);
+      console.log(error.message);
     } finally {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchQuestionByTitle();
-  }, []);
 
   useEffect(() => {
     const storedLikes = JSON.parse(
@@ -208,16 +224,25 @@ export default function QuestionPage() {
                   className="flex items-center gap-1"
                 >
                   <MessageSquare className="h-4 w-4" />
-                  <span>{question.answers.length}</span>
+                  <span>
+                    {
+                      question.answers.filter(
+                        (answer: any) => answer.status === "approved"
+                      ).length
+                    }
+                  </span>
                 </Button>
               </div>
               <div className="flex gap-2">
                 {/* {isLoggedIn || isVerified && ( */}
+                {!isQuestionOwner && (
                   <AnswerModal
                     questionId={question.id}
                     onAnswerAdded={fetchQuestionByTitle}
                     isVerified={isVerified}
                   />
+                )}
+
                 {/* // )} */}
 
                 <Button
@@ -238,7 +263,12 @@ export default function QuestionPage() {
       <div className="mb-6">
         <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
           <MessageSquare className="h-5 w-5 " />
-          {question.answers.length} Answers
+          {
+            question.answers.filter(
+              (answer: any) => answer.status === "approved"
+            ).length
+          }{" "}
+          Answers
         </h2>
         <Separator className="mb-6" />
 
@@ -247,6 +277,7 @@ export default function QuestionPage() {
             {question.answers
               .slice()
               .reverse()
+              .filter((answer: any) => answer.status === "approved")
               .map((answer: any, index: any) => (
                 <motion.div
                   key={answer.id}
@@ -283,7 +314,7 @@ export default function QuestionPage() {
                         ) : (
                           <AiOutlineLike className="h-4 w-4 text-blue-500" /> // Filled color when liked
                         )}
-                        <span>{answer.like_count}</span>
+                       <span>{Math.max(answer.like_count, 0)}</span>
                       </Button>
                     </CardFooter>
                   </Card>
