@@ -26,7 +26,7 @@ export const sendEmailVerificationCode = async (
           <table cellpadding="0" cellspacing="0" border="0" width="100%">
             <tr>
               <td style="text-align: center;">
-                <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah Logo" style="height: 50px; width: auto; vertical-align: middle;">
+                <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah Logo" style="height: 50px; width: auto; vertical-align: middle; border: 0px; border-radius: 10px">
                 <span style="display: inline-block; vertical-align: middle; margin-left: 10px; font-size: 28px; font-weight: 700; color: #ffffff;">Global Salah</span>
               </td>
             </tr>
