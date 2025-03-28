@@ -136,8 +136,7 @@ export default function ForumPage({
   const getFirstAnswer = (questionId: number) => {
     const question = questions?.find((q: any) => q.id === questionId);
     return (
-      question?.answers?.find((answer: any) => answer.status === "approved") ||
-      null
+      question?.answers[0]
     );
   };
 
@@ -161,7 +160,7 @@ export default function ForumPage({
           )}
           <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-600/5 to-background rounded-xl p-8 mb-8 shadow-md">
             <div className="flex justify-between items-center mb-4">
-              <h1 className="text-4xl font-bold ">Global Salah Forum</h1>
+              <h1 className="md:text-4xl text-2xl font-bold ">Global Salah Forum</h1>
               {isLoggedIn ? (
                 <div className="flex items-center gap-1">
                   <User />
@@ -178,7 +177,7 @@ export default function ForumPage({
               )}
             </div>
             <div className="max-w-3xl">
-              <p className="text-muted-foreground text-lg mb-6">
+              <p className="text-muted-foreground md:text-lg text-sm md:text-left text-center mb-6">
                 Connect with fellow believers, discuss Islamic insights, and
                 enhance your Salah journey.
               </p>
@@ -186,7 +185,7 @@ export default function ForumPage({
                 {isLoggedIn && isVerified ? (
                   <Link
                     href={`/${lang}/add-question`}
-                    className="gap-2 flex py-3 px-4  rounded-xl bg-emerald-500 text-white hover:bg-emerald-600"
+                    className="gap-2 flex md:justify-start justify-center py-3 px-4  rounded-xl bg-emerald-500 text-white hover:bg-emerald-600"
                   >
                     <Plus className="h-5 w-5" />
                     Ask a Question
@@ -282,7 +281,7 @@ export default function ForumPage({
                                 </p>
                                 {firstAnswer && (
                                   <div className="mt-4 pt-4 border-t border-primary/10 bg-muted/30 p-3 rounded-md">
-                                    <div className="flex justify-between items-center mb-2 text-sm">
+                                    <div className="flex flex-col justify-start md:flex-row md:justify-between md:items-center items-start  mb-2 text-sm">
                                       <div className="flex items-center gap-2">
                                         {/* <Avatar className="h-5 w-5 border border-primary/20"> */}
                                         {/* <AvatarImage
@@ -322,7 +321,7 @@ export default function ForumPage({
                                     className="flex items-center gap-1"
                                   >
                                     <MessageSquare className="h-4 w-4" />
-                                    <span>{question.answers.length}</span>
+                                    <span>{question.answers.filter((answer:any) => answer.status === "approved").length}</span>
                                   </Button>
                                 </div>
                                 <Link
