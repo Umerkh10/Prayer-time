@@ -59,9 +59,9 @@ export function AnswerModal({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // if (!isCaptchaVerified) {
-    //   return;
-    // }
+    if (!isCaptchaVerified) {
+      return;
+    }
     if (!answer.trim()) {
       return;
     }
@@ -111,7 +111,7 @@ export function AnswerModal({
           />
         </div>
         <DialogFooter>
-          {/* <CustomCaptcha setIsVerified={setIsCaptchaVerified} /> */}
+          <CustomCaptcha setIsVerified={setIsCaptchaVerified} />
         </DialogFooter>
 
         <div className="flex justify-end items-end gap-3">
