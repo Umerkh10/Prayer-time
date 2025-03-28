@@ -2,11 +2,24 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+      
     remotePatterns: [
       {
         protocol: "https",
         hostname: "hebbkx1anhila5yf.public.blob.vercel-storage.com",
         pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "blogs.globalsalah.com",
+        port: "",
+        pathname: "/wp-content/uploads/**",
+      },
+      {
+        protocol: "https",
+        hostname: "secure.gravatar.com",
+        port: "",
+        pathname: "/avatar/**",
       },
     ],
   },

@@ -16,19 +16,15 @@ export function MainNav() {
   const { t } = useTranslation("navigation")
   const isLang = checkIsPathnameIsEqualToLang(currentLang)
 
-  // Helper function to create link paths
   const createPath = (path: string) => (isLang ? `/${currentLang}${path}` : path)
 
-  // Helper function to check if a path is active
   const isActive = (path: string) => pathname === path
 
-  // Helper function to get translated text
   const getText = (key: string) => (isLang ? t(`navigation.${key}`) : key)
 
   return (
     <nav className="hidden space-x-6 md:flex items-center">
       {/* ===== REGULAR LINKS ===== */}
-      {/* You can freely change the order of these links by cutting and pasting them */}
 
       {/* Home Link */}
       <NavLink href={createPath("/")} isActive={isActive(createPath("/"))} text={getText("home")} />
@@ -91,7 +87,10 @@ export function MainNav() {
       {/* Forum Link */}
       <NavLink href={createPath("/forum")} isActive={isActive(createPath("/forum"))} text={getText("forum")} />
 
-      {/* Forum Link */}
+      {/* Blogs Link */}
+      <NavLink href={createPath("/blogs")} isActive={isActive(createPath("/blogs"))} text={getText("blogs")} />
+
+      {/* Contact Link */}
       <NavLink href={createPath("/contact-us")} isActive={isActive(createPath("/contact-us"))} text={getText("contactUs")} />
 
       {/* ===== END OF LINKS ===== */}

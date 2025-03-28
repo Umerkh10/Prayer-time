@@ -15,6 +15,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { addAnswer } from "@/services/forum";
 import CustomCaptcha from "./common/CustomCaptcha";
+import { usePathname, useRouter } from "next/navigation";
+import { urlSplitter } from "@/lib";
 
 interface AnswerModalProps {
   questionId: string;
@@ -35,6 +37,9 @@ export function AnswerModal({
   buttonClassName = "",
   buttonText = "Post an Answer",
 }: AnswerModalProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const lang = urlSplitter(pathname);
   const [answer, setAnswer] = useState("");
   const [userId, setUserId] = useState<any>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,6 +81,7 @@ export function AnswerModal({
         setAnswer("");
         setOpen(false);
         onAnswerAdded();
+        router.push(`/${lang}/answer-submitted`);
       }
     } catch (error: any) {
     } finally {
