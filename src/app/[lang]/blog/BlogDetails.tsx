@@ -43,14 +43,14 @@ const BlogDetails = ({ blog }: { blog: any }) => {
       <meta property="og:image" content={blog?.blog_featured_image_url} />
       <meta
         property="og:url"
-        content={`https://gogrades-testing.eduresearchers.com/blog/${blog?.blog_slug}`}
+        content={`https://globalsalah.com/en/blog/${blog?.blog_slug}`}
       />
       <meta property="og:title" content={blog?.blog_title} />
       <meta property="og:description" content={blog?.blog_description} />
       <meta property="og:image" content={blog?.blog_featured_image_url} />
       <meta
         property="og:url"
-        content={`https://gogrades-testing.eduresearchers.com/blog/${blog?.blog_slug}`}
+        content={`https://globalsalah.com/en/blog/${blog?.blog_slug}`}
       />
 
       <h1 className="text-lg lg:text-2xl font-extrabold pt-12 text-center">
