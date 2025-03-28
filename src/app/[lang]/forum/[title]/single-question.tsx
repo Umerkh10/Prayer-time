@@ -41,6 +41,7 @@ export default function QuestionPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState<any>(null);
   const [isQuestionOwner, setIsQuestionOwner] = useState(false);
+  const [isAnswerLiked, setIsAnswerLiked] = useState(false);
 
   const title = params?.title as string;
 
@@ -82,7 +83,20 @@ export default function QuestionPage() {
       const response = await getQuestionByTitle(title);
 
       if (response.status === 200) {
-        setQuestion(response.data.question);
+        console.log("response", response.data);
+        setQuestion(response.data);
+      }
+
+      const answers = response.data.answers.map((answer: any) => answer);
+
+      const answerLikes = answers.flatMap(
+        (answer: any) => answer.liked_user_ids || []
+      );
+
+      const hasLiked = answerLikes.some((like: any) => like === userData.id);
+
+      if (hasLiked) {
+        setIsAnswerLiked(true);
       }
 
       if (userData && response?.data?.question?.user?.email) {
@@ -105,66 +119,124 @@ export default function QuestionPage() {
     setLikedAnswers(storedLikes);
   }, []);
 
+  // const handleAddAnswerLike = async (answerId: number) => {
+  //   if (!userId) {
+  //     toast.error("User not found");
+  //     return;
+  //   }
+
+  //   // Optimistically update UI
+  //   setQuestion((prevQuestion: any) => ({
+  //     ...prevQuestion,
+  //     answers: prevQuestion.answers.map((answer: any) =>
+  //       answer.id === answerId
+  //         ? {
+  //             ...answer,
+  //             like_count:
+  //               (answer.like_count || 0) +
+  //               (likedAnswers.includes(answerId) ? -1 : 1),
+  //           }
+  //         : answer
+  //     ),
+  //   }));
+
+  //   // Toggle liked state
+  //   setLikedAnswers(
+  //     (prev) =>
+  //       prev.includes(answerId)
+  //         ? prev.filter((id) => id !== answerId) // Remove like
+  //         : [...prev, answerId] // Add like
+  //   );
+
+  //   try {
+  //     const response = await addAnswerLike(answerId, userId);
+
+  //     if (response.status === 201) {
+  //       // Save liked answers to local storage (optional)
+  //       localStorage.setItem("likedAnswers", JSON.stringify(likedAnswers));
+  //     }
+  //   } catch (error: any) {
+  //     toast.error(error?.message);
+
+  //     // Rollback UI if API fails
+  //     setQuestion((prevQuestion: any) => ({
+  //       ...prevQuestion,
+  //       answers: prevQuestion.answers.map((answer: any) =>
+  //         answer.id === answerId
+  //           ? {
+  //               ...answer,
+  //               like_count:
+  //                 (answer.like_count || 0) +
+  //                 (likedAnswers.includes(answerId) ? 1 : -1),
+  //             }
+  //           : answer
+  //       ),
+  //     }));
+
+  //     // Revert liked state
+  //     setLikedAnswers(
+  //       (prev) =>
+  //         prev.includes(answerId)
+  //           ? [...prev, answerId] // Restore like
+  //           : prev.filter((id) => id !== answerId) // Remove like
+  //     );
+  //   }
+  // };
+
   const handleAddAnswerLike = async (answerId: number) => {
     if (!userId) {
       toast.error("User not found");
       return;
     }
 
-    // Optimistically update UI
+    // Determine if the user has already liked the answer
+    const isLiked = likedAnswers.includes(answerId);
+
+    // Optimistically update UI based on the current like state
     setQuestion((prevQuestion: any) => ({
       ...prevQuestion,
       answers: prevQuestion.answers.map((answer: any) =>
         answer.id === answerId
           ? {
               ...answer,
-              like_count:
-                (answer.like_count || 0) +
-                (likedAnswers.includes(answerId) ? -1 : 1),
+              like_count: answer.like_count + (isLiked ? -1 : 1),
             }
           : answer
       ),
     }));
 
-    // Toggle liked state
-    setLikedAnswers(
-      (prev) =>
-        prev.includes(answerId)
-          ? prev.filter((id) => id !== answerId) // Remove like
-          : [...prev, answerId] // Add like
+    setLikedAnswers((prev) =>
+      isLiked ? prev.filter((id) => id !== answerId) : [...prev, answerId]
     );
 
     try {
       const response = await addAnswerLike(answerId, userId);
 
       if (response.status === 201) {
-        // Save liked answers to local storage (optional)
-        localStorage.setItem("likedAnswers", JSON.stringify(likedAnswers));
+        setIsAnswerLiked(true);
+        setLikedAnswers((prev) => [...prev, answerId]); // Add to liked list
+      } else if (response.status === 200) {
+        setIsAnswerLiked(false);
+        setLikedAnswers((prev) => prev.filter((id) => id !== answerId)); // Remove from liked list
       }
     } catch (error: any) {
       toast.error(error?.message);
 
-      // Rollback UI if API fails
       setQuestion((prevQuestion: any) => ({
         ...prevQuestion,
         answers: prevQuestion.answers.map((answer: any) =>
           answer.id === answerId
             ? {
                 ...answer,
-                like_count:
-                  (answer.like_count || 0) +
-                  (likedAnswers.includes(answerId) ? 1 : -1),
+                like_count: answer.like_count + (isLiked ? 1 : -1),
               }
             : answer
         ),
       }));
 
       // Revert liked state
-      setLikedAnswers(
-        (prev) =>
-          prev.includes(answerId)
-            ? [...prev, answerId] // Restore like
-            : prev.filter((id) => id !== answerId) // Remove like
+      setLikedAnswers((prev) =>
+        isLiked ? [...prev, answerId] : prev.filter((id) => id !== answerId)
       );
     }
   };
@@ -202,19 +274,19 @@ export default function QuestionPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <h1 className="text-3xl font-bold mb-2 ">{question.title}</h1>
+          <h1 className="text-3xl font-bold mb-2 ">{question?.title}</h1>
           <div className="flex flex-col md:flex-row  md:justify-end items-center text-sm text-muted-foreground mb-4">
             <div className="flex items-center gap-4 text-xs">
-              <UserAvatar userName={question.user.fullname} />
+              <UserAvatar userName={question?.user?.fullname} />
               <div className="flex flex-col">
-                <span>{question.user.fullname}</span>
-                <span>Posted on {refactorDate(question.created_at)}</span>
+                <span>{question?.user?.fullname}</span>
+                <span>Posted on {refactorDate(question?.created_at)}</span>
               </div>
             </div>
           </div>
           <Card className="overflow-hidden border-primary/20 shadow-md">
             <CardContent className="pt-6">
-              <p className="whitespace-pre-line">{question.description}</p>
+              <p className="whitespace-pre-line">{question?.description}</p>
             </CardContent>
             <CardFooter className="flex justify-between py-3 border-t bg-muted/20">
               <div className="flex gap-4">
@@ -226,7 +298,7 @@ export default function QuestionPage() {
                   <MessageSquare className="h-4 w-4" />
                   <span>
                     {
-                      question.answers.filter(
+                      question?.answers?.filter(
                         (answer: any) => answer.status === "approved"
                       ).length
                     }
@@ -237,7 +309,7 @@ export default function QuestionPage() {
                 {/* {isLoggedIn || isVerified && ( */}
                 {!isQuestionOwner && (
                   <AnswerModal
-                    questionId={question.id}
+                    questionId={question?.id}
                     onAnswerAdded={fetchQuestionByTitle}
                     isVerified={isVerified}
                   />
@@ -264,7 +336,7 @@ export default function QuestionPage() {
         <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
           <MessageSquare className="h-5 w-5 " />
           {
-            question.answers.filter(
+            question?.answers?.filter(
               (answer: any) => answer.status === "approved"
             ).length
           }{" "}
@@ -272,9 +344,9 @@ export default function QuestionPage() {
         </h2>
         <Separator className="mb-6" />
 
-        {question.answers.length > 0 ? (
+        {question?.answers?.length > 0 ? (
           <div className="space-y-6">
-            {question.answers
+            {question?.answers
               .slice()
               .reverse()
               .filter((answer: any) => answer.status === "approved")
@@ -289,32 +361,32 @@ export default function QuestionPage() {
                     <CardHeader className="pb-3 bg-muted/20">
                       <div className="flex flex-col md:flex-row md:justify-between items-center">
                         <div className="flex items-center gap-2">
-                          <UserAvatar userName={answer.user.fullname} />
+                          <UserAvatar userName={answer?.user?.fullname} />
                           <span className="font-medium">
-                            {answer.user.fullname}
+                            {answer?.user?.fullname}
                           </span>
                         </div>
                         <span className="text-sm text-muted-foreground">
-                          {refactorDate(answer.created_at)}
+                          {refactorDate(answer?.created_at)}
                         </span>
                       </div>
                     </CardHeader>
                     <CardContent className="pt-4">
-                      <p className="whitespace-pre-line">{answer.answer}</p>
+                      <p className="whitespace-pre-line">{answer?.answer}</p>
                     </CardContent>
                     <CardFooter className="flex justify-between py-3 border-t bg-muted/20">
                       <Button
                         variant="ghost"
                         size="sm"
                         className="flex items-center gap-1"
-                        onClick={() => handleAddAnswerLike(answer.id)}
+                        onClick={() => handleAddAnswerLike(answer?.id)}
                       >
-                        {likedAnswers.includes(answer.id) ? (
+                        {isAnswerLiked ? (
                           <AiFillLike className="h-4 w-4 text-blue-500" /> // Outline when not liked
                         ) : (
                           <AiOutlineLike className="h-4 w-4 text-blue-500" /> // Filled color when liked
                         )}
-                       <span>{Math.max(answer.like_count, 0)}</span>
+                        <span>{Math.max(answer.like_count, 0)}</span>
                       </Button>
                     </CardFooter>
                   </Card>
@@ -329,7 +401,7 @@ export default function QuestionPage() {
             </p>
             <AnswerModal
               isVerified
-              questionId={question.id}
+              questionId={question?.id}
               onAnswerAdded={fetchQuestionByTitle}
               buttonVariant="default"
               buttonSize="default"
