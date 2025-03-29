@@ -32,6 +32,7 @@ export async function GET(req: Request) {
           a.id AS answer_id,
           a.user_id AS answer_user_id,
           a.answer,
+          a.status,
           a.question_id,
           a.created_at AS answer_created_at,
           au.fullname AS answer_user_name, 
@@ -90,6 +91,7 @@ export async function GET(req: Request) {
             name: answer_user_name,
           },
           answer,
+          status,
           question_id,
           created_at: answer_created_at,
         });

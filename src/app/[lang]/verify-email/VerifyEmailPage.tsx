@@ -45,7 +45,7 @@ export default function VerifyEmailPage() {
 
       if (response.status === 200) {
         const user = response.data.user;
-        console.log(user);
+
         const updatedDetails = { ...user, isSignedUp: false };
         localStorage.setItem("userData", JSON.stringify(updatedDetails));
         toast.success(response.data.message);

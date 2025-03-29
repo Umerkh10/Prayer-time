@@ -60,7 +60,7 @@ export default function NotificationsPage() {
       const response = await getUserNotifications(userId);
 
       if (response.status === 200) {
-        console.log("notifation ==>", response.data.notifications);
+ 
         setNotifications(response.data.notifications);
       }
     } catch (error: any) {

@@ -6,8 +6,7 @@ export const sendUserQAAlert = async (
   answer?: string,
   question?: string
 ) => {
-  console.log("email", email);
-  // console.log('email', email)
+
   const transporter = nodemailer.createTransport({
     host: "business76.web-hosting.com",
     port: 587,

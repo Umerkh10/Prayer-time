@@ -187,15 +187,15 @@ export default function QuestionPage() {
       toast.error("User not found");
       return;
     }
-  
+
     // Load liked answers from local storage to maintain state after refresh
-    const storedLikedAnswers = JSON.parse(localStorage.getItem("likedAnswers") || "[]");
-  
+    const storedLikedAnswers = JSON.parse(
+      localStorage.getItem("likedAnswers") || "[]"
+    );
+
     // Determine if the answer is already liked
     const isLiked = storedLikedAnswers.includes(answerId);
-  
-    console.log("isLiked:", isLiked);
-  
+
     // Optimistically update UI
     setQuestion((prevQuestion: any) => ({
       ...prevQuestion,
@@ -205,18 +205,18 @@ export default function QuestionPage() {
           : answer
       ),
     }));
-  
+
     // Toggle liked state
     const updatedLikedAnswers = isLiked
       ? storedLikedAnswers.filter((id: number) => id !== answerId)
       : [...storedLikedAnswers, answerId];
-  
+
     setLikedAnswers(updatedLikedAnswers);
     localStorage.setItem("likedAnswers", JSON.stringify(updatedLikedAnswers));
-  
+
     try {
       const response = await addAnswerLike(answerId, userId);
-  
+
       if (response.status === 201) {
         setIsAnswerLiked(true);
       } else if (response.status === 200) {
@@ -224,7 +224,7 @@ export default function QuestionPage() {
       }
     } catch (error: any) {
       toast.error(error?.message);
-  
+
       // Rollback UI on error
       setQuestion((prevQuestion: any) => ({
         ...prevQuestion,
@@ -234,13 +234,12 @@ export default function QuestionPage() {
             : answer
         ),
       }));
-  
+
       // Restore previous liked state
       setLikedAnswers(storedLikedAnswers);
       localStorage.setItem("likedAnswers", JSON.stringify(storedLikedAnswers));
     }
   };
-  
 
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");

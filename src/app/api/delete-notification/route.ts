@@ -5,8 +5,6 @@ export async function DELETE(req: Request) {
   try {
     const { id } = await req.json();
 
-    console.log("id ==>", id)
-
     if (!id) {
       return NextResponse.json(
         { success: false, message: "Id is required" },

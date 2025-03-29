@@ -29,9 +29,6 @@ export async function POST(request: Request) {
 
     const { id, verification_code, verification_code_expires } = user[0];
 
-    console.log({id, verification_code, verification_code_expires});
-    
-
     // Check if the verification code is correct
     const isCodeValid = verification_code === code;
     const isCodeNotExpired = new Date(verification_code_expires) > new Date();

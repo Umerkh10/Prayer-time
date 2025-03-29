@@ -81,7 +81,7 @@ export default function EditProfilePage() {
       const response = await updateUserDetails(userId, fullname);
 
       if (response) {
-        console.log(response);
+       
         const updatedUserData = {
           ...userDetails,
           fullname,

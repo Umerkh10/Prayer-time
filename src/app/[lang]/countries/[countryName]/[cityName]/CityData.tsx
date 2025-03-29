@@ -73,7 +73,6 @@ function CityData() {
     const cityDetails: any = localStorage.getItem("cityDetails");
     const parsedCityDetails = cityDetails ? JSON.parse(cityDetails) : null;
     const countryData: any = localStorage.getItem("countryData");
-    console.log("countryData", countryData)
 
     if (parsedCityDetails) {
       setCountryLink(countryData ? (JSON.parse(countryData) as any).name : null);

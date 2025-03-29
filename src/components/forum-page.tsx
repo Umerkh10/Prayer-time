@@ -137,7 +137,10 @@ export default function ForumPage({
 
   const getFirstAnswer = (questionId: number) => {
     const question = questions?.find((q: any) => q.id === questionId);
-    return question?.answers[0];
+
+    return question?.answers.find(
+      (answer: any) => answer.status === "approved"
+    );
   };
 
   const fetchUserNotifications = async () => {
@@ -276,6 +279,7 @@ export default function ForumPage({
                 <div className="space-y-4">
                   {filteredQuestions.map((question: any, index: any) => {
                     const firstAnswer = getFirstAnswer(question.id);
+                   
                     return (
                       <div key={question.id}>
                         <Link

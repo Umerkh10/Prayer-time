@@ -21,7 +21,6 @@ const CustomAccordion = ({ title, description }: Props) => {
     }
 
   }, []);
-  console.log("description", description);
 
   return (
     <Accordion type="single" collapsible className="w-full">

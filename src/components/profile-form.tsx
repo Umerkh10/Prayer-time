@@ -35,7 +35,6 @@ export function ProfileForm() {
   const fetchAdmin = async () => {
     try {
       const response = await getAdmin();
-      console.log("response", response);
       if (response) {
         // setAdminDetails(response.admin);
         setFullname(response.admin.fullname);
@@ -60,7 +59,7 @@ export function ProfileForm() {
 
       if (response) {
         const data = response.data.admin;
-        console.log(response);
+       
         const updatedUserData = {
           ...data,
           fullname,

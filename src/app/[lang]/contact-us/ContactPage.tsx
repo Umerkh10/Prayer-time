@@ -46,8 +46,6 @@ function ContactPage({ lang }: ContactPageProps) {
     try {
       // Send the FormData to the EmailAction2 function
       const result = await EmailAction2(null, formData);
-      console.log("rewrwer",result);
-      
 
       // Check for success or error in the response
       if (result.success) {
