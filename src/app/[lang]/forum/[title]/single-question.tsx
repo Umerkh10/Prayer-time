@@ -307,7 +307,7 @@ export default function QuestionPage() {
               </div>
               <div className="flex gap-2">
                 {/* {isLoggedIn || isVerified && ( */}
-                {!isQuestionOwner && (
+                {!isQuestionOwner && isLoggedIn && (
                   <AnswerModal
                     questionId={question?.id}
                     onAnswerAdded={fetchQuestionByTitle}
