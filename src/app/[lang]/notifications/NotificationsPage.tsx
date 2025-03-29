@@ -38,7 +38,11 @@ import {
   type NotificationType,
 } from "@/lib/mock-notification";
 import { urlSplitter } from "@/lib";
-import { deleteNotifications, getUserNotifications } from "@/services/notifications";
+import {
+  deleteAllNotifications,
+  deleteNotifications,
+  getUserNotifications,
+} from "@/services/notifications";
 import { refactorDate } from "@/lib/date";
 
 export default function NotificationsPage() {
@@ -116,6 +120,21 @@ export default function NotificationsPage() {
     }
   };
 
+  const handleDeleteAllNotification = async () => {
+    try {
+      const response = await deleteAllNotifications(userId);
+
+      if (response.status === 200) {
+        setNotifications(response.data.notifications);
+      }
+    } catch (error: any) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  
+
   const getNotificationIcon = (type: NotificationType) => {
     switch (type) {
       case "answer":
@@ -154,9 +173,7 @@ export default function NotificationsPage() {
             variant="outline"
             size="sm"
             className="border-primary/20"
-            // onClick={markAllAsRead}
-            onClick={() => console.log("")}
-            // disabled={unreadCount === 0}
+            onClick={handleDeleteAllNotification}
           >
             <Check className="mr-2 h-4 w-4" />
             Mark all as read
@@ -193,24 +210,6 @@ export default function NotificationsPage() {
           value={activeTab}
           onValueChange={(value) => setActiveTab(value as any)}
         >
-          <div className="px-6">
-            <TabsList className="grid w-full grid-cols-2 mb-4">
-              <TabsTrigger
-                value="all"
-                className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
-              >
-                All
-              </TabsTrigger>
-              <TabsTrigger
-                value="unread"
-                className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white"
-              >
-                Unread
-              </TabsTrigger>
-              
-            </TabsList>
-          </div>
-
           <Separator />
 
           <TabsContent value="all" className="m-0">
@@ -286,7 +285,6 @@ export default function NotificationsPage() {
   );
 }
 
-
 function NotificationList({
   notifications,
   handleDeleteNotification,
@@ -297,7 +295,7 @@ function NotificationList({
   return (
     <div className="divide-y divide-border">
       <AnimatePresence initial={false}>
-      {[...notifications].reverse().map((notification) => (
+        {[...notifications].reverse().map((notification) => (
           <motion.div
             key={notification.id}
             initial={{ opacity: 0, height: 0 }}
@@ -312,8 +310,7 @@ function NotificationList({
               }`}
             >
               <div className="flex gap-4">
-                {notification.sender ? (
-                  null
+                {notification.sender ? null : (
                   // <Avatar className="h-10 w-10 border border-primary/20">
                   //   <AvatarImage
                   //     src={notification.sender.avatar}
@@ -323,7 +320,6 @@ function NotificationList({
                   //     {notification.sender.initials}
                   //   </AvatarFallback>
                   // </Avatar>
-                ) : (
                   <div className="h-10 w-10 bg-muted/50 rounded-full flex items-center justify-center">
                     {getNotificationIcon(notification.type)}
                   </div>
@@ -375,7 +371,9 @@ function NotificationList({
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => handleDeleteNotification(notification.id)}
+                        onClick={() =>
+                          handleDeleteNotification(notification.id)
+                        }
                         className="h-8 px-2 text-red-500 hover:text-destructive"
                       >
                         <Trash2 className="h-4 w-4" />

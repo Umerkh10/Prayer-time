@@ -187,18 +187,21 @@ export default function ForumPage({
                 Global Salah Forum
               </h1>
               {isLoggedIn ? (
-                <div className="flex items-center gap-1">
-                  <User />
-                  <div className="relative">
-                    <UserDropdown
-                      userName={userData?.fullname}
-                      userEmail={userData?.email}
-                      setIsLoggedIn={setIsLoggedIn}
-                      anyUnreadNotification={anyUnreadNotification}
-                    />
-                    {anyUnreadNotification && (
-                      <span className="bg-red-600 w-2 h-2 rounded-full absolute right-0 top-0" />
-                    )}
+                <div className="font-semibold text-lg">
+                  My Account
+                  <div className="flex items-center gap-1 scale-110 justify-center mt-3">
+                    <User />
+                    <div className="relative">
+                      <UserDropdown
+                        userName={userData?.fullname}
+                        userEmail={userData?.email}
+                        setIsLoggedIn={setIsLoggedIn}
+                        anyUnreadNotification={anyUnreadNotification}
+                      />
+                      {anyUnreadNotification && (
+                        <span className="bg-red-600 w-2 h-2 rounded-full absolute right-0 top-0" />
+                      )}
+                    </div>
                   </div>
                 </div>
               ) : (

@@ -1,19 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Check, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { ConfirmationModal } from "./confirmation-modal";
-import { formatDistanceToNow } from "@/lib/formatDate";
 import { refactorDate } from "@/lib/date";
-import {
-  getQuestionByTitle,
-  updateAnswerStatus,
-  updateQuestionStatus,
-} from "@/services/forum";
+import { updateAnswerStatus, updateQuestionStatus } from "@/services/forum";
+import { Check, X } from "lucide-react";
+import { useState } from "react";
 import { toast } from "sonner";
+import { ConfirmationModal } from "./confirmation-modal";
 
 export function QuestionDetail({ question, answers }: any) {
   const [questionStatus, setQuestionStatus] = useState(question?.status);
@@ -86,7 +81,12 @@ export function QuestionDetail({ question, answers }: any) {
   const handleAnswerStatusChange = async (answer: any, status: string) => {
     setIsSubmitting(true);
     try {
-      const response = await updateAnswerStatus(answer.id, answer.user_id, status);
+
+      const response = await updateAnswerStatus(
+        answer.id,
+        answer.user_id,
+        status
+      );
 
       if (response.status === 200) {
         setAnswerStatuses((prev) => ({ ...prev, [answer.id]: status }));
@@ -202,9 +202,7 @@ export function QuestionDetail({ question, answers }: any) {
                   isSubmitting={isSubmitting}
                   isOpen={answerApproveModalOpen === answer.id}
                   onClose={() => setAnswerApproveModalOpen(null)}
-                  onConfirm={() =>
-                    handleAnswerStatusChange(answer, "approved")
-                  }
+                  onConfirm={() => handleAnswerStatusChange(answer, "approved")}
                   title="Approve Answer"
                   description="Are you sure you want to approve this answer? It will be visible to all users."
                   confirmText="Approve"

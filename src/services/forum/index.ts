@@ -156,14 +156,14 @@ export const updateQuestionStatus = async (
 };
 
 export const updateAnswerStatus = async (
-  user_id: number,
   id: number,
+  user_id: number,
   status: string
 ) => {
   try {
     const response = await axios.patch(`${BASE_URL}/update-answer-status`, {
-      user_id,
       id,
+      user_id,
       status,
     });
 

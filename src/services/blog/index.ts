@@ -1,4 +1,4 @@
-const BASE_URL =
+export const BASE_URL =
   "https://blogs.globalsalah.com/wp-json/custom-blog-api/v1";
 
 const TOKEN =

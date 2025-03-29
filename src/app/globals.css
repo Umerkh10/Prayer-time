@@ -6,7 +6,6 @@ body {
   font-family: var(--font-poppins-sans), sans-serif;
 }
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -80,7 +79,6 @@ body {
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
@@ -90,13 +88,11 @@ body {
   }
 }
 
-
 .prayer-times-container {
   background-color: #f0f0f0;
   font-size: 16px;
   color: #333;
 }
-
 
 @keyframes float {
   0% {
@@ -151,16 +147,15 @@ body {
 }
 
 .icon {
-  width: 1.5rem;  /* Equivalent to w-7 in Tailwind */
+  width: 1.5rem; /* Equivalent to w-7 in Tailwind */
   height: 1.5rem; /* Equivalent to h-7 in Tailwind */
-  color: #111111ec;     /* Default to black */
+  color: #111111ec; /* Default to black */
   transition: color 0.3s ease; /* Smooth transition for color change */
 }
 
 .icon:active {
   color: white; /* Change color to white when active */
   transition: color 0.3s ease; /* Smooth transition for color change */
-
 }
 
 .scrollbar-hide {
@@ -185,7 +180,7 @@ body {
 @keyframes slide-right {
   from {
     transform: translateX(-100%);
-    
+
     opacity: 0;
   }
   to {
@@ -203,9 +198,9 @@ body {
   animation: slide-right 0.3s ease-out;
 }
 
-.sticky-namaz{
+.sticky-namaz {
   position: sticky;
-    top: 65px;
+  top: 65px;
 }
 
 @keyframes fadeIn {
@@ -237,11 +232,25 @@ body {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-
 span.swiper-pagination-bullet.swiper-pagination-bullet-active {
   background: green;
 }
 
 span.swiper-pagination-bullet {
   background: gray;
+}
+
+.blogs-banner {
+  background: none;
+  background-image: url(https://static.vecteezy.com/system/resources/previews/020/562/652/non_2x/silhouette-landscape-of-mosque-with-shiny-purple-sky-for-ramadan-design-graphic-in-muslim-culture-and-islam-religion-illustration-of-background-mosque-in-the-night-for-islamic-wallpaper-design-vector.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  background-color: #003422;
+  background-attachment: fixed;
+}
+
+.cky-btn-revisit-wrapper.cky-revisit-bottom-left {
+  display: none;
 }

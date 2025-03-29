@@ -8,7 +8,7 @@ export const generateMetadata = async ({
   params: { slug: string };
 }): Promise<Metadata> => {
   const response = await fetch(
-    `https://blogs.takingmyclassesonline.com/wp-json/custom-blog-api/v1/blog/${params.slug}`,
+    `https://blogs.globalsalah.com/wp-json/custom-blog-api/v1/blog/${params.slug}`,
     {
       headers: {
         Authorization: `Bearer 347f7627d6c4765cf911391a34a3319e2140859fbc723ebefeb4f2f39d8a1d67`,

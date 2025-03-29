@@ -83,7 +83,6 @@ export default function QuestionPage() {
       const response = await getQuestionByTitle(title);
 
       if (response.status === 200) {
-        console.log("response", response.data);
         setQuestion(response.data);
       }
 
@@ -188,58 +187,60 @@ export default function QuestionPage() {
       toast.error("User not found");
       return;
     }
-
-    // Determine if the user has already liked the answer
-    const isLiked = likedAnswers.includes(answerId);
-
-    // Optimistically update UI based on the current like state
+  
+    // Load liked answers from local storage to maintain state after refresh
+    const storedLikedAnswers = JSON.parse(localStorage.getItem("likedAnswers") || "[]");
+  
+    // Determine if the answer is already liked
+    const isLiked = storedLikedAnswers.includes(answerId);
+  
+    console.log("isLiked:", isLiked);
+  
+    // Optimistically update UI
     setQuestion((prevQuestion: any) => ({
       ...prevQuestion,
       answers: prevQuestion.answers.map((answer: any) =>
         answer.id === answerId
-          ? {
-              ...answer,
-              like_count: answer.like_count + (isLiked ? -1 : 1),
-            }
+          ? { ...answer, like_count: answer.like_count + (isLiked ? -1 : 1) }
           : answer
       ),
     }));
-
-    setLikedAnswers((prev) =>
-      isLiked ? prev.filter((id) => id !== answerId) : [...prev, answerId]
-    );
-
+  
+    // Toggle liked state
+    const updatedLikedAnswers = isLiked
+      ? storedLikedAnswers.filter((id: number) => id !== answerId)
+      : [...storedLikedAnswers, answerId];
+  
+    setLikedAnswers(updatedLikedAnswers);
+    localStorage.setItem("likedAnswers", JSON.stringify(updatedLikedAnswers));
+  
     try {
       const response = await addAnswerLike(answerId, userId);
-
+  
       if (response.status === 201) {
         setIsAnswerLiked(true);
-        setLikedAnswers((prev) => [...prev, answerId]); // Add to liked list
       } else if (response.status === 200) {
         setIsAnswerLiked(false);
-        setLikedAnswers((prev) => prev.filter((id) => id !== answerId)); // Remove from liked list
       }
     } catch (error: any) {
       toast.error(error?.message);
-
+  
+      // Rollback UI on error
       setQuestion((prevQuestion: any) => ({
         ...prevQuestion,
         answers: prevQuestion.answers.map((answer: any) =>
           answer.id === answerId
-            ? {
-                ...answer,
-                like_count: answer.like_count + (isLiked ? 1 : -1),
-              }
+            ? { ...answer, like_count: answer.like_count + (isLiked ? 1 : -1) }
             : answer
         ),
       }));
-
-      // Revert liked state
-      setLikedAnswers((prev) =>
-        isLiked ? [...prev, answerId] : prev.filter((id) => id !== answerId)
-      );
+  
+      // Restore previous liked state
+      setLikedAnswers(storedLikedAnswers);
+      localStorage.setItem("likedAnswers", JSON.stringify(storedLikedAnswers));
     }
   };
+  
 
   useEffect(() => {
     const storedUserData = localStorage.getItem("userData");
@@ -265,7 +266,7 @@ export default function QuestionPage() {
           <Breadcrumbs
             items={[
               { label: "Forum", href: `/${lang}/forum` },
-              { label: "Question", href: `/${lang}/admin/questions` },
+              { label: question?.title, href: `/${lang}/admin/questions` },
             ]}
           />
         </div>
@@ -315,8 +316,6 @@ export default function QuestionPage() {
                   />
                 )}
 
-                {/* // )} */}
-
                 <Button
                   variant="ghost"
                   size="sm"
@@ -332,8 +331,8 @@ export default function QuestionPage() {
         </motion.div>
       </div>
 
-      <div className="mb-6">
-        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+      <div className="mb-6 ">
+        <h2 className="text-xl font-bold mb-4 flex items-center gap-2 w-[90%] ml-auto">
           <MessageSquare className="h-5 w-5 " />
           {
             question?.answers?.filter(
@@ -342,7 +341,7 @@ export default function QuestionPage() {
           }{" "}
           Answers
         </h2>
-        <Separator className="mb-6" />
+        <Separator className="mb-6 w-[90%] ml-auto" />
 
         {question?.answers?.length > 0 ? (
           <div className="space-y-6">
@@ -357,7 +356,7 @@ export default function QuestionPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                 >
-                  <Card className="overflow-hidden border-primary/20 shadow-md">
+                  <Card className="overflow-hidden border-primary/20 shadow-md w-[90%] ml-auto">
                     <CardHeader className="pb-3 bg-muted/20">
                       <div className="flex flex-col md:flex-row md:justify-between items-center">
                         <div className="flex items-center gap-2">

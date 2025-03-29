@@ -11,14 +11,14 @@ interface Props {
 }
 const BlogCard = ({ blog }: Props) => {
   const pathname = usePathname();
-  const lang = urlSplitter(pathname)
+  const lang = urlSplitter(pathname);
   const short_description = `${blog?.blog_description.slice(0, 150)}...`;
 
   return (
     <Link href={`/${lang}/blog/${blog.blog_slug}`}>
       <Card className="cursor-pointer pb-4">
         <Image
-          className="m-auto h-[399px] object-cover"
+          className="m-auto h-full w-full object-cover"
           src={blog.blog_featured_image_url}
           alt={blog.blog_featured_image_alt}
           height={400}

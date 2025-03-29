@@ -81,12 +81,13 @@ const BlogDetails = ({ blog }: { blog: any }) => {
         height={1000}
         width={1000}
         priority={true}
-
       />
-      <span
-        className="mt-4 p-5 text-md font-normal text-center lg:text-left blog-description"
-        dangerouslySetInnerHTML={{ __html: blog?.blog_description }}
-      ></span>
+      <div className="w-[1000px] mx-auto">
+        <span
+          className="mt-4  p-5 text-md font-normal text-center lg:text-left blog-description"
+          dangerouslySetInnerHTML={{ __html: blog?.blog_description }}
+        ></span>
+      </div>
       <div className="block lg:flex items-center gap-2 mt-4">
         <p className="text-center">Tags:</p>
         <div className="grid grid-cols-2 lg:grid-cols-4 pt-3 lg:pt-0 lg:px-3">

@@ -2,20 +2,19 @@
 
 import type React from "react";
 
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { motion } from "framer-motion";
-import { Mail, Lock, Loader2 } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
 import { urlSplitter } from "@/lib";
 import { getAdmin, login } from "@/services/authentication";
+import { motion } from "framer-motion";
+import { Loader2, Lock, Mail } from "lucide-react";
 import Link from "next/link";
-import { toast } from "sonner";
-import CustomCaptcha from "./common/CustomCaptcha";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { toast } from "sonner";
 
 interface LoginFormProps {
   onSignUpClick: () => void;
