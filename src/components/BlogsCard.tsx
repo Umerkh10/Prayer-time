@@ -16,13 +16,13 @@ const BlogCard = ({ blog }: Props) => {
 
   return (
     <Link href={`/${lang}/blog/${blog.blog_slug}`}>
-      <Card className="cursor-pointer pb-4">
+      <Card className="cursor-pointer pb-4 hover:scale-105 transition-all duration-150 delay-150 shadow-sm shadow-black rounded-md">
         <Image
-          className="m-auto h-full w-full object-cover"
+          className="m-auto h-[300px] w-full object-cover rounded-md"
           src={blog.blog_featured_image_url}
           alt={blog.blog_featured_image_alt}
-          height={400}
-          width={400}
+          height={300}
+          width={300}
           priority={true}
         />
         <CardHeader>
