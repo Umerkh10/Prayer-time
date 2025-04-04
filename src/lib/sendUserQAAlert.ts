@@ -20,7 +20,7 @@ export const sendUserQAAlert = async (
   const mailOptions = {
     from: `Global Salah - <${process.env.MAILFROM}>`,
     to: email,
-    subject: `${isAnswer ? "Answer Added" : "Question Added"} | Global Salah`,
+    subject: `${isAnswer ? "Your Answer is Under Review and Awaiting Admin Approval" : "Your Question is Under Review and Awaiting Admin Approval"} | Global Salah® Alert`,
     html: `
    <body
 style="margin: 0; padding: 0; font-family: 'Google-Sans', 'Helvetica Neue', sans-serif; background-color: #f5f5f5; color: #333333;">
