@@ -25,7 +25,6 @@ export default function QuestionPage() {
       const response = await getQuestionByTitle(title);
 
       if (response.status === 200) {
-     
         setQuestion(response.data);
       }
     } catch (error: any) {

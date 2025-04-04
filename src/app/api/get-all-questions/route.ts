@@ -24,7 +24,7 @@ export async function GET(req: Request) {
           q.user_id,
           q.title, 
           q.description, 
-          q.status, 
+          q.status AS question_status,       
           q.created_at, 
           q.updated_at,
           qu.fullname AS question_user_name, 
@@ -32,15 +32,15 @@ export async function GET(req: Request) {
           a.id AS answer_id,
           a.user_id AS answer_user_id,
           a.answer,
-          a.status,
-          a.question_id,
+          a.status AS answer_status,         
+          a.question_id AS answer_question_id, 
           a.created_at AS answer_created_at,
           au.fullname AS answer_user_name, 
           au.email AS answer_user_email
         FROM questions q
-        LEFT JOIN users qu ON q.user_id = qu.id  -- Fetch user details of the question poster
+        LEFT JOIN users qu ON q.user_id = qu.id
         LEFT JOIN answers a ON q.id = a.question_id
-        LEFT JOIN users au ON a.user_id = au.id  -- Fetch user details of the answer poster
+        LEFT JOIN users au ON a.user_id = au.id
         ORDER BY q.created_at DESC
         LIMIT ? OFFSET ?`,
       [pageSize, offset]
@@ -54,7 +54,7 @@ export async function GET(req: Request) {
         user_id,
         title,
         description,
-        status,
+        question_status,
         created_at,
         updated_at,
         question_user_name,
@@ -62,6 +62,7 @@ export async function GET(req: Request) {
         answer_id,
         answer_user_id,
         answer,
+        answer_status,
         answer_created_at,
         answer_user_name,
       } = row;
@@ -76,7 +77,7 @@ export async function GET(req: Request) {
           },
           title,
           description,
-          status,
+          question_status,
           created_at,
           updated_at,
           answers: [],
@@ -91,7 +92,7 @@ export async function GET(req: Request) {
             name: answer_user_name,
           },
           answer,
-          status,
+          answer_status,
           question_id,
           created_at: answer_created_at,
         });

@@ -96,6 +96,9 @@ export function QuestionsTable({ currentPage }: QuestionsTableProps) {
                       href={`/${lang}/admin/questions/${question.title.replaceAll(
                         " ",
                         "-"
+                      ).replaceAll(
+                        "?",
+                        ""
                       )}`}
                     >
                       <Eye className="h-4 w-4 mr-1" />

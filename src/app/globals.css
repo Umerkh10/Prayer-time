@@ -254,3 +254,13 @@ span.swiper-pagination-bullet {
 .cky-btn-revisit-wrapper.cky-revisit-bottom-left {
   display: none;
 }
+
+.alert-bar {
+  background: #d76363;
+  padding: 10px;
+  border-left: 4px solid #003422;
+  position: sticky;
+  top: 68px;
+  display: block;
+  z-index: 9;
+}

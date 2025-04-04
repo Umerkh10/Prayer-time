@@ -9,40 +9,6 @@ export async function GET(req: Request) {
 
     const db = await dbConnection();
 
-    // const [question]: any = await db.execute(
-    //   "SELECT * from questions WHERE title = ?",
-    //   [title]
-    // );
-
-    // const [question]: any = await db.execute(
-    //   `SELECT
-    //      q.id AS question_id,
-    //      q.user_id,
-    //      q.title,
-    //      q.description,
-    //      q.status,
-    //      q.created_at,
-    //      q.updated_at,
-    //      qu.fullname AS question_user_name,
-    //      qu.email AS question_user_email,
-    //      a.id AS answer_id,
-    //      a.user_id AS answer_user_id,
-    //      a.answer,
-    //      a.status,
-    //      a.created_at AS answer_created_at,
-    //      au.fullname AS answer_user_name,
-    //      au.email AS answer_user_email,
-    //      COUNT(al.id) AS like_count -- Count likes for each answer
-    //    FROM questions q
-    //    LEFT JOIN users qu ON q.user_id = qu.id -- Join for question uploader
-    //    LEFT JOIN answers a ON q.id = a.question_id
-    //    LEFT JOIN users au ON a.user_id = au.id -- Join for answer uploader
-    //    LEFT JOIN answer_likes al ON a.id = al.answer_id -- Join to count likes
-    //    WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?)
-    //    GROUP BY a.id;`,
-    //   [title]
-    // );
-
     const [question]: any = await db.execute(
       `SELECT 
         q.id AS question_id, 
@@ -68,7 +34,7 @@ export async function GET(req: Request) {
         LEFT JOIN answers a ON q.id = a.question_id
         LEFT JOIN users au ON a.user_id = au.id
         LEFT JOIN answer_likes al ON a.id = al.answer_id
-        WHERE LOWER(REPLACE(q.title, ' ', '-')) = LOWER(?);
+        WHERE LOWER(REPLACE(REPLACE(q.title, '?', ''), ' ', '-')) = LOWER(?);
       `,
       [title]
     );
@@ -79,7 +45,7 @@ export async function GET(req: Request) {
       );
     }
 
-    const questionData:any = {
+    const questionData: any = {
       id: question[0].question_id,
       user_id: question[0].user_id,
       title: question[0].title,
@@ -93,13 +59,13 @@ export async function GET(req: Request) {
       },
       answers: [],
     };
-    
+
     // Group answers manually
     const answerMap = new Map();
-    
+
     question.forEach((row: any) => {
       if (!row.answer_id) return;
-    
+
       if (!answerMap.has(row.answer_id)) {
         answerMap.set(row.answer_id, {
           id: row.answer_id,
@@ -115,16 +81,16 @@ export async function GET(req: Request) {
           },
         });
       }
-    
+
       // Add liked user ID if available
       if (row.liked_user_id) {
         answerMap.get(row.answer_id).liked_user_ids.push(row.liked_user_id);
       }
     });
-    
+
     // Convert map values to array
     questionData.answers = Array.from(answerMap.values());
-    
+
     return NextResponse.json(questionData, { status: 200 });
 
     // return NextResponse.json(

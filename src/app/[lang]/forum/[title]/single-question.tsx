@@ -26,6 +26,8 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { AiFillLike } from "react-icons/ai";
 import { AiOutlineLike } from "react-icons/ai";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default function QuestionPage() {
   const params = useParams();
@@ -188,6 +190,11 @@ export default function QuestionPage() {
       return;
     }
 
+    if (!isLoggedIn) {
+      toast.error("Please login first to like this answer");
+      return;
+    }
+
     // Load liked answers from local storage to maintain state after refresh
     const storedLikedAnswers = JSON.parse(
       localStorage.getItem("likedAnswers") || "[]"
@@ -307,12 +314,18 @@ export default function QuestionPage() {
               </div>
               <div className="flex gap-2">
                 {/* {isLoggedIn || isVerified && ( */}
-                {!isQuestionOwner && isLoggedIn && (
+                {!isQuestionOwner && isLoggedIn ? (
                   <AnswerModal
                     questionId={question?.id}
                     onAnswerAdded={fetchQuestionByTitle}
                     isVerified={isVerified}
                   />
+                ) : (
+                  <Link href={`/${lang}/forum`}> 
+                  <Badge className="bg-red-700 hover:bg-red-600 text-white capitalize py-2">
+                    Please Login First to post an answers
+                  </Badge>
+                  </Link>
                 )}
 
                 <Button

@@ -28,6 +28,7 @@ import { Skeleton } from "./ui/skeleton";
 import UserDropdown from "./ui/user-dropdown";
 import UserAvatar from "./UserAvatar";
 import { getUserNotifications } from "@/services/notifications";
+import { verifyEmail } from "@/services/authentication";
 
 interface ForumPageProps {
   isLoggedIn: boolean;
@@ -50,7 +51,9 @@ export default function ForumPage({
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredQuestions, setFilteredQuestions] = useState(() =>
     questions
-      ? questions.filter((question: any) => question.status === "approved")
+      ? questions.filter(
+          (question: any) => question.question_status === "approved"
+        )
       : []
   );
   const [currentPage, setCurrentPage] = useState(1);
@@ -74,13 +77,15 @@ export default function ForumPage({
   const filterQuestions = useCallback(() => {
     if (searchQuery.trim() === "") {
       setFilteredQuestions(
-        questions.filter((question: any) => question.status === "approved")
+        questions.filter(
+          (question: any) => question.question_status === "approved"
+        )
       );
     } else {
       const lowercaseQuery = searchQuery.toLowerCase();
       const filtered = questions.filter(
         (question: any) =>
-          question.status === "approved" &&
+          question.question_status === "approved" &&
           question.title.toLowerCase().includes(lowercaseQuery)
       );
       setFilteredQuestions(filtered);
@@ -95,7 +100,9 @@ export default function ForumPage({
   useEffect(() => {
     if (questions) {
       setFilteredQuestions(
-        questions.filter((question: any) => question.status === "approved")
+        questions.filter(
+          (question: any) => question.question_status === "approved"
+        )
       );
     }
   }, [questions]);
@@ -139,7 +146,7 @@ export default function ForumPage({
     const question = questions?.find((q: any) => q.id === questionId);
 
     return question?.answers.find(
-      (answer: any) => answer.status === "approved"
+      (answer: any) => answer.answer_status === "approved"
     );
   };
 
@@ -166,6 +173,27 @@ export default function ForumPage({
     }
   }, [userDetailsInLS]);
 
+  const sendVerificationCode = async () => {
+    try {
+      const response = await verifyEmail(userDetailsInLS?.email);
+      console.log("response.status", response.status);
+      if (response.status === 200) {
+        const user = response.data.user;
+
+        // const updatedDetails = { ...user, isSignedUp: true };
+        // localStorage.setItem("userData", JSON.stringify(updatedDetails));
+        toast.success(response.data.message);
+
+        router.push(`/${lang}/verify-code`);
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
       {isLoading ? (
@@ -176,11 +204,14 @@ export default function ForumPage({
       ) : (
         <div className="container mx-auto py-4 px-4">
           {!isVerified && userDetailsInLS?.token && (
-            <div className="w-full rounded-lg my-2 text-center capitalize bg-orange-700 text-white">
+            <div className="alert-bar w-full rounded-lg text-center capitalize  text-white">
               You are not verified click here{" "}
-              <Link className="underline" href={`/${lang}/verify-email`}>
+              <Button
+                className="!bg-inherit text-white px-0 capitalize pr-1 underline"
+                onClick={sendVerificationCode}
+              >
                 email link
-              </Link>{" "}
+              </Button>
               to verify your account
             </div>
           )}
@@ -279,7 +310,7 @@ export default function ForumPage({
                 <div className="space-y-4">
                   {filteredQuestions.map((question: any, index: any) => {
                     const firstAnswer = getFirstAnswer(question.id);
-                   
+
                     return (
                       <div key={question.id}>
                         <Link
@@ -363,7 +394,7 @@ export default function ForumPage({
                                       {
                                         question.answers.filter(
                                           (answer: any) =>
-                                            answer.status === "approved"
+                                            answer.answer_status === "approved"
                                         ).length
                                       }
                                     </span>
