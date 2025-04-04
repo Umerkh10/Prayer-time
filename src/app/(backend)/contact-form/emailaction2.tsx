@@ -42,14 +42,14 @@ export default async function EmailAction2(state: any, formData: FormData) {
            <!-- Header with Gradient -->
            <tr>
              <td align="center" valign="top">
-               <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background: linear-gradient(135deg, #0d4b3a 0%, #1a7f64 100%); padding: 35px 0 30px 0; border-top-left-radius: 16px; border-top-right-radius: 16px;">
+               <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background: linear-gradient(135deg, #0d4b3a 0%, #1a7f64 100%); padding: 35px 0 30px 0; border-top-left-radius: 16px; border-top-right-radius: 16px;border-bottom-left-radius: 200px; border-bottom-right-radius: 196px;">
                  <tr>
                    <td align="center" valign="middle" style="padding-bottom: 20px;">
                      <table cellpadding="0" cellspacing="0" border="0">
                        <tr>
                          <td align="center" valign="middle" style="padding: 0 10px;">
                            <div style="width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; ;">
-                             <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah Logo" style="width: 60px; height: auto; display: block; margin: 0 auto;">
+                             <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah Logo" style="width: 90px; height: 90px; border-radius: 10px; display: block; margin: 0 auto;">
                            </div>
                          </td>
                        </tr>
@@ -109,7 +109,7 @@ export default async function EmailAction2(state: any, formData: FormData) {
                              <tr>
                                <td valign="middle" width="60">
                                  <div style="width: 50px; height: 50px; background-color: rgba(26,127,100,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-                                   <img src="https://muhammadumer.sirv.com/ticket-salah-icon.png" alt="Ticket" style="width: 24px; height: 24px;">
+                                   <img src="https://muhammadumer.sirv.com/ticket-salah-icon.png" alt="Ticket" style="width: 24px; height: 24px; margin: auto;">
                                  </div>
                                </td>
                                <td valign="middle" style="padding-left: 15px;">
@@ -214,7 +214,7 @@ export default async function EmailAction2(state: any, formData: FormData) {
                              <tr>
                                <td valign="middle" width="40">
                                  <div style="width: 30px; height: 30px; background-color: rgba(230,126,34,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
-                                   <img src="https://muhammadumer.sirv.com/high-priority-salah-icon.png" alt="Urgent" style="width: 16px; height: 16px;">
+                                   <img src="https://muhammadumer.sirv.com/high-priority-salah-icon.png" alt="Urgent" style="width: 16px; height: 16px; margin:auto;">
                                  </div>
                                </td>
                                <td valign="middle" style="padding-left: 15px;">
@@ -318,7 +318,7 @@ export default async function EmailAction2(state: any, formData: FormData) {
                          <td align="center" valign="top" style="padding: 0 8px;">
                            <a href="https://www.facebook.com/globalsalahofficial/" style="display: inline-block; text-decoration: none;">
                              <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                               <img src="https://muhammadumer.sirv.com/social-link-salah-fb.png" alt="Facebook" style="width: 18px; height: 18px;">
+                               <img src="https://muhammadumer.sirv.com/social-link-salah-fb.png" alt="Facebook" style="width: 20px; height: 20px; vertical-align: middle; margin: auto;">
                              </div>
                            </a>
                          </td>
@@ -327,7 +327,7 @@ export default async function EmailAction2(state: any, formData: FormData) {
                          <td align="center" valign="top" style="padding: 0 8px;">
                            <a href="https://x.com/globalsalah" style="display: inline-block; text-decoration: none;">
                              <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                              <img src="https://muhammadumer.sirv.com/social-link-salah-x.png" alt="Twitter" style="width: 18px; height: 18px;">
+                              <img src="https://muhammadumer.sirv.com/social-link-salah-x.png" alt="Twitter" style="width: 20px; height: 20px; vertical-align: middle; margin: auto;">
                              </div>
                            </a>
                          </td>
@@ -336,24 +336,17 @@ export default async function EmailAction2(state: any, formData: FormData) {
                          <td align="center" valign="top" style="padding: 0 8px;">
                            <a href="https://www.instagram.com/globalsalah" style="display: inline-block; text-decoration: none;">
                              <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                              <img src="https://muhammadumer.sirv.com/social-link-salah-insta.png" alt="Twitter" style="width: 18px; height: 18px;">
+                              <img src="https://muhammadumer.sirv.com/social-link-salah-insta.png" alt="Twitter" style="width: 20px; height: 20px; vertical-align: middle; margin: auto;">
                              </div>
                            </a>
                          </td>
-                         <!-- Instagram -->
-                         <td align="center" valign="top" style="padding: 0 8px;">
-                           <a href="https://www.instagram.com/globalsalah" style="display: inline-block; text-decoration: none;">
-                             <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                              <img src="https://muhammadumer.sirv.com/social-link-salah-insta.png" alt="Twitter" style="width: 18px; height: 18px;">
-                             </div>
-                           </a>
-                         </td>
+             
 
                          <!-- Pintrest -->
                          <td align="center" valign="top" style="padding: 0 8px;">
                            <a href="https://www.pinterest.com/globalsalah/" style="display: inline-block; text-decoration: none;">
                              <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                              <img src="https://muhammadumer.sirv.com/social-link-salah-pintrest.png" alt="Twitter" style="width: 18px; height: 18px;">
+                              <img src="https://muhammadumer.sirv.com/social-link-salah-pintrest.png" alt="Twitter" style="width: 20px; height: 20px; vertical-align: middle; margin: auto;">
                              </div>
                            </a>
                          </td>
@@ -388,8 +381,7 @@ export default async function EmailAction2(state: any, formData: FormData) {
 </div>
 </div>
 </body>
-      `,
-    };
+`,};
 
     // Mail options for support
     const supportMailOptions = {
