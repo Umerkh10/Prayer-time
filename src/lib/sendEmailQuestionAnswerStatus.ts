@@ -19,7 +19,7 @@ export const sendEmailQuestionAnswerStatus = async (
   const mailOptions = {
     from: `Global Salah - <${process.env.MAILFROM}>`,
     to: email,
-    subject: `Question status`,
+    subject: `${isAnswer ? "Answer" : "Question"} Status Update from Global Salah® `,
     html: `
   <body style="margin: 0; padding: 0; background-color: #f5f5f5; font-family:'Google-sans'">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -49,7 +49,7 @@ export const sendEmailQuestionAnswerStatus = async (
                       <h2 style="font-size: 18px; text-align: center; color: #000717; margin-top: 0; margin-bottom: 15px; font-weight: 700;">Notification Update</h2>
                       <p style="font-size: 16px; text-align: center; color: #555555; font-weight: 600; line-height: 1.5; margin: 0;">
                         Your <span style="color: #000717;">${isAnswer ? "answer" : "question"
-                        } ${title}</span>" has been <span style="color: #10b981; font-weight: 700;">${status}</span>
+      } ${title}</span>" has been <span style="color: #10b981; font-weight: 700;">${status}</span>
                       </p>
                     </td>
                   </tr>
@@ -58,7 +58,7 @@ export const sendEmailQuestionAnswerStatus = async (
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 25px 0;">
                   <tr>
                     <td align="center">
-                      <a href="https://globalsalah.com/forum" style="display: inline-block; background-color: #000717; color: white; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">View ${isAnswer ?"answer" : "question"} </a>
+                      <a href="https://globalsalah.com/forum" style="display: inline-block; background-color: #000717; color: white; padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">View ${isAnswer ? "answer" : "question"} </a>
                     </td>
                   </tr>
                 </table>

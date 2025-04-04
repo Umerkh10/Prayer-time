@@ -14,7 +14,7 @@ export const sendAdminQAAlert = async (isAnswer?: boolean) => {
   const mailOptions = {
     from: `Global Salah - <${process.env.MAILFROM}>`,
     to: process.env.ADMINMAIL,
-    subject: `${isAnswer ? "Answer Alert" : "Question Alert"} | Global Salah`,
+    subject: `Approval Pending for Your Recent ${isAnswer ? 'Answer' : 'Question'} | Global Salah® Alert`,
     html: `
   <body style="margin: 0; padding: 0; background-color: #f4eefd; font-family: 'Google-sans';">
     <div style="width: 100%; max-width: 600px; border-radius: 20px; margin: 20px auto; background-color: #ffffff; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);">

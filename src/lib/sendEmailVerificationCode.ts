@@ -17,7 +17,7 @@ export const sendEmailVerificationCode = async (
   const mailOptions = {
     from: `Global Salah - <${process.env.MAILFROM}>`,
     to: email,
-    subject: `Verification Code | Global Salah`,
+    subject: `Complete Your Verification with This Code | Global Salah®`,
     html: `
 <body style="margin: 0; padding: 0; font-family: 'Google Sans'; background-color: #f5f5f5; color: #333333;">
     <table cellpadding="0" cellspacing="0" border="0" width="100%" style="max-width: 600px; margin: 20px auto; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); background-color: #ffffff;">
