@@ -89,9 +89,9 @@ export function ProfileForm() {
                 <AvatarImage src={formData.avatar} alt={formData.name} />
                 <AvatarFallback>{formData.name.charAt(0)}</AvatarFallback>
               </Avatar> */}
-              <Button variant="outline" size="sm" type="button">
+              {/* <Button variant="outline" size="sm" type="button">
                 Change Avatar
-              </Button>
+              </Button> */}
             </div>
 
             <div className="flex-1 space-y-4">
