@@ -85,8 +85,6 @@ export default function ForumPage({
     }
   }, [userDetailsInLS]);
 
-
-
   const questionsPerPage = 10;
 
   const filterQuestions = useCallback(() => {
@@ -218,18 +216,18 @@ export default function ForumPage({
         </div>
       ) : (
         <div className="container mx-auto py-4 px-4">
-            {!isVerified &&  userDetailsInLS?.token && (
-              <div className="alert-bar w-full rounded-lg text-center capitalize  text-white">
-                You are not verified click here{" "}
-                <Button
-                  className="!bg-inherit text-white px-0 capitalize pr-1 underline"
-                  onClick={sendVerificationCode}
-                >
-                  email link
-                </Button>
-                to verify your account
-              </div>
-            )}
+          {!isVerified && userDetailsInLS?.token && (
+            <div className="alert-bar w-full rounded-lg text-center capitalize  text-white">
+              You are not verified click here{" "}
+              <Button
+                className="!bg-inherit text-white px-0 capitalize pr-1 underline"
+                onClick={sendVerificationCode}
+              >
+                email link
+              </Button>
+              to verify your account
+            </div>
+          )}
           <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-600/5 to-background rounded-xl p-8 mb-8 shadow-md">
             <div className="flex justify-between items-center mb-4">
               <h1 className="md:text-4xl text-2xl font-bold ">
@@ -252,8 +250,14 @@ export default function ForumPage({
                       )}
                     </div>
                   </div>
-                  <Link className="bg-emerald-700 py-1 px-4 text-sm font-medium mt-6 text-white rounded-lg" href={`/${lang}/admin`}>
-                 Go to Panel</Link>
+                  {userDetailsInLS?.role === "admin" && (
+                    <Link
+                      className="bg-emerald-700 py-1 px-4 text-sm font-medium mt-6 text-white rounded-lg"
+                      href={`/${lang}/admin`}
+                    >
+                      Go to Panel
+                    </Link>
+                  )}
                 </div>
               ) : (
                 <Button variant="outline" size="sm" onClick={onAddQuestion}>
