@@ -252,6 +252,8 @@ export default function ForumPage({
                       )}
                     </div>
                   </div>
+                  <Link className="bg-emerald-700 py-1 px-4 text-sm font-medium mt-6 text-white rounded-lg" href={`/${lang}/admin`}>
+                 Go to Panel</Link>
                 </div>
               ) : (
                 <Button variant="outline" size="sm" onClick={onAddQuestion}>
