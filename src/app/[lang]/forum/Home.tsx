@@ -11,16 +11,22 @@ export default function Home() {
   const [userDetails, setUserDetails] = useState<any>(null);
 
   useEffect(() => {
-    const user: any = localStorage.getItem("userData");
-    const parsedUser = JSON.parse(user);
-    if (parsedUser?.token) {
-      setIsLoggedIn(true);
-      setUserDetails(parsedUser);
+    const userData = localStorage.getItem("userData");
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      if (parsedUser?.token) {
+        setIsLoggedIn(true);
+        setUserDetails(parsedUser);
+      } else {
+        setShowAuthModal(true);
+      }
     } else {
-      setShowAuthModal(true)
+      // If no userData is in localStorage, set it to an empty object
+      localStorage.setItem("userData", JSON.stringify({}));
+      setShowAuthModal(true);
     }
   }, []);
-
+  
   // const handleLogin = () => {
   //   localStorage.setItem("isLoggedIn", "true");
   //   setIsLoggedIn(true);
@@ -33,8 +39,8 @@ export default function Home() {
   // };
 
   const handleAddQuestion = () => {
-      setShowAuthModal(true);
-      setActiveTab("login");
+    setShowAuthModal(true);
+    setActiveTab("login");
   };
 
   // if (isLoading) {

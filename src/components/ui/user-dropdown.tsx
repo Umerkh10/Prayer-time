@@ -22,16 +22,19 @@ export default function UserDropdown({
   setIsLoggedIn,
   anyUnreadNotification,
 }: any) {
-  const [userDetails, setUserDetails] = useState<any>(null);
+  const [userDetails, setUserDetails] = useState(() => {
+    const stored = localStorage.getItem("userData");
+    return stored ? JSON.parse(stored) : null;
+  });
 
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
 
-  useEffect(() => {
-    const user: any = localStorage.getItem("userData");
-    const parsedUser = JSON.parse(user);
-    setUserDetails(parsedUser);
-  }, []);
+  // useEffect(() => {
+  //   const user: any = localStorage.getItem("userData");
+  //   const parsedUser = JSON.parse(user);
+  //   setUserDetails(parsedUser);
+  // }, []);
 
   const onLogout = () => {
     const updatedUserDetails = {
@@ -46,14 +49,14 @@ export default function UserDropdown({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="flex items-center justify-center h-8 w-8 border border-primary/20 cursor-pointer hover:ring-2 hover:ring-primary/20 transition-all">
-          <UserAvatar userName={userName} />
+          <UserAvatar userName={userDetails.fullname} />
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56 border-primary/20">
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none text-center">
-              {userName}
+              {userDetails.fullname}
             </p>
             {/* <p className="text-xs leading-none text-muted-foreground">
               {userEmail}

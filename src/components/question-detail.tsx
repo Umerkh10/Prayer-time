@@ -81,7 +81,6 @@ export function QuestionDetail({ question, answers }: any) {
   const handleAnswerStatusChange = async (answer: any, status: string) => {
     setIsSubmitting(true);
     try {
-
       const response = await updateAnswerStatus(
         answer.id,
         answer.user_id,
@@ -215,7 +214,7 @@ export function QuestionDetail({ question, answers }: any) {
                   isOpen={answerDeclineModalOpen === answer.id}
                   onClose={() => setAnswerDeclineModalOpen(null)}
                   onConfirm={() =>
-                    handleAnswerStatusChange(answer.id, "rejected")
+                    handleAnswerStatusChange(answer, "declined")
                   }
                   title="Decline Answer"
                   description="Are you sure you want to decline this answer? It will be hidden from users."
@@ -250,7 +249,7 @@ export function QuestionDetail({ question, answers }: any) {
                     size="sm"
                     className="text-red-500 border-red-200 hover:bg-red-50 hover:text-red-600"
                     onClick={() => setAnswerDeclineModalOpen(answer.id)}
-                    disabled={answerStatuses[answer.id] === "rejected"}
+                    disabled={answerStatuses[answer.id] === "declined"}
                   >
                     <X className="h-4 w-4 mr-1" />
                     Decline

@@ -22,7 +22,7 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { verifyCode } from "@/services/authentication";
+import { verifyCode, verifyEmail } from "@/services/authentication";
 import { toast } from "sonner";
 import CustomCaptcha from "@/components/ui/common/CustomCaptcha";
 
@@ -37,6 +37,7 @@ export default function VerifyCodePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
+  const [disableButton, setDisableButton] = useState<boolean>(false);
 
   useEffect(() => {
     const user: any = localStorage.getItem("userData");
@@ -80,12 +81,37 @@ export default function VerifyCodePage() {
         }
       }
     } catch (error: any) {
-           toast.error(error.message)
-            console.log(error.message)
+      toast.error(error.message);
+      console.log(error.message);
     } finally {
       setIsLoading(false);
     }
   };
+
+  const sendVerificationCode = async () => {
+    try {
+      if (isVerified) {
+        const response = await verifyEmail(userDetailsInLS?.email);
+
+        if (response.status === 200) {
+          const user = response.data.user;
+
+          // const updatedDetails = { ...user, isSignedUp: true };
+          // localStorage.setItem("userData", JSON.stringify(updatedDetails));
+          toast.success(response.data.message);
+          setDisableButton(true);
+        }
+      } else {
+        toast.error("Please verify the captcha first");
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="container max-w-md mx-auto py-16 px-4">
       <motion.div
@@ -134,8 +160,10 @@ export default function VerifyCodePage() {
                 <p className="text-xs text-muted-foreground text-center">
                   Didn't receive a code?{" "}
                   <button
+                    disabled={disableButton}
+                    onClick={sendVerificationCode}
                     type="button"
-                    className="text-green-500 hover:underline"
+                    className={disableButton ? 'text-gray-300' : 'text-green-500 hover:underline'}
                   >
                     Resend
                   </button>
@@ -162,12 +190,16 @@ export default function VerifyCodePage() {
             </form>
           </CardContent>
           <CardFooter className="flex justify-center border-t pt-4">
-            <Link href={`/${lang}/verify-email`}>
-              <Button variant="ghost" size="sm" className="gap-1">
+            {/* <Link href={`/${lang}/verify-email`}>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1"
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Email Verification
               </Button>
-            </Link>
+            </Link> */}
           </CardFooter>
         </Card>
       </motion.div>

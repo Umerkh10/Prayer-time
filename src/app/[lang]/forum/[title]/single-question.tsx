@@ -2,6 +2,7 @@
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { AnswerModal } from "@/components/ui/answer-modal";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -14,25 +15,21 @@ import { Skeleton } from "@/components/ui/skeleton";
 import UserAvatar from "@/components/UserAvatar";
 import { urlSplitter } from "@/lib";
 import { refactorDate } from "@/lib/date";
-import {
-  addAnswerLike,
-  getAnswerLikeCount,
-  getQuestionByTitle,
-} from "@/services/forum";
+import { verifyEmail } from "@/services/authentication";
+import { addAnswerLike, getQuestionByTitle } from "@/services/forum";
 import { motion } from "framer-motion";
-import { MessageSquare, Share2, ThumbsUp } from "lucide-react";
-import { useParams, usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
-import { AiFillLike } from "react-icons/ai";
-import { AiOutlineLike } from "react-icons/ai";
-import { Badge } from "@/components/ui/badge";
+import { MessageSquare, Share2 } from "lucide-react";
 import Link from "next/link";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { toast } from "sonner";
 
 export default function QuestionPage() {
   const params = useParams();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const router = useRouter();
 
   const [question, setQuestion] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -62,8 +59,10 @@ export default function QuestionPage() {
 
   useEffect(() => {
     const user = localStorage.getItem("userData");
+
     if (user) {
       const parsedUser = JSON.parse(user);
+
       if (parsedUser?.verification_status === 1) {
         setIsVerified(true);
       }
@@ -94,16 +93,14 @@ export default function QuestionPage() {
         (answer: any) => answer.liked_user_ids || []
       );
 
-      const hasLiked = answerLikes.some((like: any) => like === userData.id);
+      const hasLiked = answerLikes.some((like: any) => like === userData?.id);
 
       if (hasLiked) {
         setIsAnswerLiked(true);
       }
 
-      if (userData && response?.data?.question?.user?.email) {
-        if (response.data.question.user.email === userData.email) {
-          setIsQuestionOwner(true);
-        }
+      if (response?.data?.user?.email === userData?.email) {
+        setIsQuestionOwner(true);
       }
     } catch (error: any) {
       toast.error(error.message);
@@ -120,78 +117,14 @@ export default function QuestionPage() {
     setLikedAnswers(storedLikes);
   }, []);
 
-  // const handleAddAnswerLike = async (answerId: number) => {
-  //   if (!userId) {
-  //     toast.error("User not found");
-  //     return;
-  //   }
-
-  //   // Optimistically update UI
-  //   setQuestion((prevQuestion: any) => ({
-  //     ...prevQuestion,
-  //     answers: prevQuestion.answers.map((answer: any) =>
-  //       answer.id === answerId
-  //         ? {
-  //             ...answer,
-  //             like_count:
-  //               (answer.like_count || 0) +
-  //               (likedAnswers.includes(answerId) ? -1 : 1),
-  //           }
-  //         : answer
-  //     ),
-  //   }));
-
-  //   // Toggle liked state
-  //   setLikedAnswers(
-  //     (prev) =>
-  //       prev.includes(answerId)
-  //         ? prev.filter((id) => id !== answerId) // Remove like
-  //         : [...prev, answerId] // Add like
-  //   );
-
-  //   try {
-  //     const response = await addAnswerLike(answerId, userId);
-
-  //     if (response.status === 201) {
-  //       // Save liked answers to local storage (optional)
-  //       localStorage.setItem("likedAnswers", JSON.stringify(likedAnswers));
-  //     }
-  //   } catch (error: any) {
-  //     toast.error(error?.message);
-
-  //     // Rollback UI if API fails
-  //     setQuestion((prevQuestion: any) => ({
-  //       ...prevQuestion,
-  //       answers: prevQuestion.answers.map((answer: any) =>
-  //         answer.id === answerId
-  //           ? {
-  //               ...answer,
-  //               like_count:
-  //                 (answer.like_count || 0) +
-  //                 (likedAnswers.includes(answerId) ? 1 : -1),
-  //             }
-  //           : answer
-  //       ),
-  //     }));
-
-  //     // Revert liked state
-  //     setLikedAnswers(
-  //       (prev) =>
-  //         prev.includes(answerId)
-  //           ? [...prev, answerId] // Restore like
-  //           : prev.filter((id) => id !== answerId) // Remove like
-  //     );
-  //   }
-  // };
-
   const handleAddAnswerLike = async (answerId: number) => {
-    if (!userId) {
-      toast.error("User not found");
+    if (!isLoggedIn) {
+      toast.error("Please login first to like this answer");
       return;
     }
 
-    if (!isLoggedIn) {
-      toast.error("Please login first to like this answer");
+    if (!userId) {
+      toast.error("User not found");
       return;
     }
 
@@ -265,6 +198,27 @@ export default function QuestionPage() {
     );
   }
 
+  const sendVerificationCode = async () => {
+    try {
+      const response = await verifyEmail(userData?.email);
+
+      if (response.status === 200) {
+        const user = response.data.user;
+
+        // const updatedDetails = { ...user, isSignedUp: true };
+        // localStorage.setItem("userData", JSON.stringify(updatedDetails));
+        toast.success(response.data.message);
+
+        router.push(`/${lang}/verify-code`);
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+      console.log(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="mb-6">
@@ -313,18 +267,26 @@ export default function QuestionPage() {
                 </Button>
               </div>
               <div className="flex gap-2">
-                {/* {isLoggedIn || isVerified && ( */}
-                {!isQuestionOwner && isLoggedIn ? (
-                  <AnswerModal
-                    questionId={question?.id}
-                    onAnswerAdded={fetchQuestionByTitle}
-                    isVerified={isVerified}
-                  />
+                {isLoggedIn ? (
+                  isQuestionOwner ? null : isVerified ? (
+                    <AnswerModal
+                      questionId={question?.id}
+                      onAnswerAdded={fetchQuestionByTitle}
+                      isVerified={isVerified}
+                    />
+                  ) : (
+                    <Button
+                      onClick={sendVerificationCode}
+                      className="bg-yellow-600 hover:bg-yellow-500 text-white capitalize py-2"
+                    >
+                      Please verify your account to post an answer
+                    </Button>
+                  )
                 ) : (
-                  <Link href={`/${lang}/forum`}> 
-                  <Badge className="bg-red-700 hover:bg-red-600 text-white capitalize py-2">
-                    Please Login First to post an answers
-                  </Badge>
+                  <Link href={`/${lang}/forum`}>
+                    <Badge className="bg-red-700 hover:bg-red-600 text-white capitalize py-2">
+                      Please login first to post an answer
+                    </Badge>
                   </Link>
                 )}
 
@@ -406,18 +368,22 @@ export default function QuestionPage() {
           </div>
         ) : (
           <div className="text-center py-8 bg-muted/20 rounded-lg border border-primary/10">
-            <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-            <p className="text-muted-foreground mb-2">
-              No answers yet. Be the first to answer!
-            </p>
-            <AnswerModal
-              isVerified
-              questionId={question?.id}
-              onAnswerAdded={fetchQuestionByTitle}
-              buttonVariant="default"
-              buttonSize="default"
-              buttonClassName="text-zinc-50"
-            />
+            {!isQuestionOwner && (
+              <>
+                <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />{" "}
+                <p className="text-muted-foreground mb-2">
+                  No answers yet. Be the first to answer!
+                </p>
+                <AnswerModal
+                  isVerified
+                  questionId={question?.id}
+                  onAnswerAdded={fetchQuestionByTitle}
+                  buttonVariant="default"
+                  buttonSize="default"
+                  buttonClassName="text-zinc-50"
+                />
+              </>
+            )}
           </div>
         )}
       </div>

@@ -57,7 +57,12 @@ export default function ForumPage({
       : []
   );
   const [currentPage, setCurrentPage] = useState(1);
-  const [userDetailsInLS, setUserDetailsInLS] = useState<any>(null);
+
+  const [userDetailsInLS, setUserDetailsInLS] = useState(() => {
+    const stored = localStorage.getItem("userData");
+    return stored ? JSON.parse(stored) : null;
+  });
+
   const [isVerified, setIsVerified] = useState(false);
   const [anyUnreadNotification, setAnyUnreadNotification] = useState(false);
 
@@ -66,11 +71,21 @@ export default function ForumPage({
     const parsedUser = JSON.parse(user);
     if (parsedUser) {
       setUserDetailsInLS(parsedUser);
-    }
-    if (parsedUser?.verification_status === 1) {
-      setIsVerified(true);
+      if (userDetailsInLS.verification_status === 1 && userDetailsInLS.token) {
+        setIsVerified(true);
+      }
     }
   }, []);
+
+  useEffect(() => {
+    if (userDetailsInLS?.verification_status === 1 && userDetailsInLS?.token) {
+      setIsVerified(true);
+    } else {
+      setIsVerified(false);
+    }
+  }, [userDetailsInLS]);
+
+
 
   const questionsPerPage = 10;
 
@@ -176,7 +191,7 @@ export default function ForumPage({
   const sendVerificationCode = async () => {
     try {
       const response = await verifyEmail(userDetailsInLS?.email);
-      console.log("response.status", response.status);
+
       if (response.status === 200) {
         const user = response.data.user;
 
@@ -203,18 +218,18 @@ export default function ForumPage({
         </div>
       ) : (
         <div className="container mx-auto py-4 px-4">
-          {!isVerified && userDetailsInLS?.token && (
-            <div className="alert-bar w-full rounded-lg text-center capitalize  text-white">
-              You are not verified click here{" "}
-              <Button
-                className="!bg-inherit text-white px-0 capitalize pr-1 underline"
-                onClick={sendVerificationCode}
-              >
-                email link
-              </Button>
-              to verify your account
-            </div>
-          )}
+            {!isVerified &&  userDetailsInLS?.token && (
+              <div className="alert-bar w-full rounded-lg text-center capitalize  text-white">
+                You are not verified click here{" "}
+                <Button
+                  className="!bg-inherit text-white px-0 capitalize pr-1 underline"
+                  onClick={sendVerificationCode}
+                >
+                  email link
+                </Button>
+                to verify your account
+              </div>
+            )}
           <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-600/5 to-background rounded-xl p-8 mb-8 shadow-md">
             <div className="flex justify-between items-center mb-4">
               <h1 className="md:text-4xl text-2xl font-bold ">

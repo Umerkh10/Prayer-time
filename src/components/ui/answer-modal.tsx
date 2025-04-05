@@ -61,7 +61,7 @@ export function AnswerModal({
       setUserId(parsedUserData.id);
     }
   }, []);
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isCaptchaVerified) {
