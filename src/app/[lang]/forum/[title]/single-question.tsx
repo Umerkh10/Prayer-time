@@ -35,7 +35,9 @@ export default function QuestionPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState("");
   const [userId, setUserId] = useState<any>(null);
-  const [likedAnswers, setLikedAnswers] = useState<number[]>([]);
+  const [likedAnswers, setLikedAnswers] = useState<{ [key: string]: boolean }>(
+    {}
+  );
   const [isVerified, setIsVerified] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState<any>(null);
@@ -354,7 +356,7 @@ export default function QuestionPage() {
                         className="flex items-center gap-1"
                         onClick={() => handleAddAnswerLike(answer?.id)}
                       >
-                        {isAnswerLiked ? (
+                        {likedAnswers[answer.id] ? (
                           <AiFillLike className="h-4 w-4 text-blue-500" /> // Outline when not liked
                         ) : (
                           <AiOutlineLike className="h-4 w-4 text-blue-500" /> // Filled color when liked

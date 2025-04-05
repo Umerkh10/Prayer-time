@@ -96,8 +96,8 @@ export default function VerifyCodePage() {
         if (response.status === 200) {
           const user = response.data.user;
 
-          // const updatedDetails = { ...user, isSignedUp: true };
-          // localStorage.setItem("userData", JSON.stringify(updatedDetails));
+          const updatedDetails = { ...user, isSignedUp: true };
+          localStorage.setItem("userData", JSON.stringify(updatedDetails));
           toast.success(response.data.message);
           setDisableButton(true);
         }
