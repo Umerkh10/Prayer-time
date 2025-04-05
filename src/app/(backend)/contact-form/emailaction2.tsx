@@ -39,7 +39,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
          <!-- Main Container -->
          <table cellpadding="0" cellspacing="0" border="0" width="600" style="max-width: 600px; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 12px 24px rgba(0,0,0,0.08);">
            
-           <!-- Header with Gradient -->
            <tr>
              <td align="center" valign="top">
                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background: linear-gradient(135deg, #0d4b3a 0%, #1a7f64 100%); padding: 35px 0 30px 0; border-top-left-radius: 16px; border-top-right-radius: 16px;border-bottom-left-radius: 200px; border-bottom-right-radius: 196px;">
@@ -68,7 +67,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
              </td>
            </tr>
            
-           <!-- Decorative Wave Divider -->
            <tr>
              <td align="center" valign="top">
                <div style="width: 100%; height: 30px; background-color: #ffffff; position: relative; margin-top: -1px;">
@@ -79,7 +77,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
              </td>
            </tr>
            
-           <!-- Main Content -->
            <tr>
              <td align="center" valign="top" style="padding: 10px 50px 40px 50px;">
                <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -90,7 +87,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                    </td>
                  </tr>
                  
-                 <!-- Intro Text -->
                  <tr>
                    <td align="center" valign="top" style="padding-bottom: 35px;">
                      <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #505050; font-size: 16px; line-height: 1.6; margin: 0; text-align: center;">
@@ -99,7 +95,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                    </td>
                  </tr>
                  
-                 <!-- Ticket Information Box -->
                  <tr>
                    <td align="center" valign="top" style="padding-bottom: 35px;">
                      <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background: linear-gradient(to right, #f9fcfb, #edf7f4); border-radius: 12px; border-left: 5px solid #1a7f64; box-shadow: 0 4px 12px rgba(26,127,100,0.08);">
@@ -127,13 +122,11 @@ export default async function EmailAction2(state: any, formData: FormData) {
                    </td>
                  </tr>
                  
-                 <!-- Process Steps -->
                  <tr>
                    <td align="center" valign="top" style="padding-bottom: 35px;">
                      <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0d4b3a; font-size: 20px; font-weight: 600; margin: 0 0 25px 0; text-align: center;">What Happens Next</h3>
                      
                      <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                       <!-- Step 1 -->
                        <tr>
                          <td valign="top" style="padding-bottom: 20px;">
                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -150,7 +143,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                          </td>
                        </tr>
                        
-                       <!-- Step 2 -->
                        <tr>
                          <td valign="top" style="padding-bottom: 20px;">
                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -167,7 +159,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                          </td>
                        </tr>
                        
-                       <!-- Step 3 -->
                        <tr>
                          <td valign="top" style="padding-bottom: 20px;">
                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -184,7 +175,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                          </td>
                        </tr>
                        
-                       <!-- Step 4 -->
                        <tr>
                          <td valign="top">
                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -204,7 +194,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                    </td>
                  </tr>
                  
-                 <!-- Urgent Notice -->
                  <tr>
                    <td align="center" valign="top" style="padding-bottom: 35px;">
                      <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #fff8f0; border-radius: 12px; border-left: 5px solid #e67e22; box-shadow: 0 4px 12px rgba(230,126,34,0.08);">
@@ -229,7 +218,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                    </td>
                  </tr>
                  
-                 <!-- Support Hours Banner -->
                  <tr>
                    <td align="center" valign="top" style="padding-bottom: 35px;">
                      <a href="mailto:support@globalsalah.com">
@@ -256,7 +244,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
              </td>
            </tr>
            
-           <!-- Contact Information Section -->
            <tr>
              <td align="center" valign="top" style="background-color: #f9fcfb; border-bottom-left-radius: 16px; border-bottom-right-radius: 16px; padding: 35px 50px;">
                <table cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -288,7 +275,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                        </tr>
 
           
-                       <!-- Website -->
                        <tr>
                          <td align="center" valign="top">
                            <table cellpadding="0" cellspacing="0" border="0">
@@ -309,12 +295,10 @@ export default async function EmailAction2(state: any, formData: FormData) {
                    </td>
                  </tr>
                  
-                 <!-- Social Media Icons -->
                  <tr>
                    <td align="center" valign="top" style="padding: 30px 0 25px 0;">
                      <table cellpadding="0" cellspacing="0" border="0">
                        <tr>
-                         <!-- Facebook -->
                          <td align="center" valign="top" style="padding: 0 8px;">
                            <a href="https://www.facebook.com/globalsalahofficial/" style="display: inline-block; text-decoration: none;">
                              <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -323,7 +307,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                            </a>
                          </td>
                          
-                         <!-- Twitter -->
                          <td align="center" valign="top" style="padding: 0 8px;">
                            <a href="https://x.com/globalsalah" style="display: inline-block; text-decoration: none;">
                              <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -332,7 +315,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                            </a>
                          </td>
                          
-                         <!-- Instagram -->
                          <td align="center" valign="top" style="padding: 0 8px;">
                            <a href="https://www.instagram.com/globalsalah" style="display: inline-block; text-decoration: none;">
                              <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -342,7 +324,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                          </td>
              
 
-                         <!-- Pintrest -->
                          <td align="center" valign="top" style="padding: 0 8px;">
                            <a href="https://www.pinterest.com/globalsalah/" style="display: inline-block; text-decoration: none;">
                              <div style="width: 36px; height: 36px; background-color: #1a7f64; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -357,7 +338,6 @@ export default async function EmailAction2(state: any, formData: FormData) {
                    </td>
                  </tr>
                  
-                 <!-- Footer Text -->
                  <tr>
                    <td align="center" valign="top" style="padding-top: 10px; border-top: 1px solid #e0e0e0;">
                      <p style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #707070; font-size: 13px; margin: 0 0 5px 0; text-align: center;">
