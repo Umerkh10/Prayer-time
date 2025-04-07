@@ -4,28 +4,44 @@ import CountriesList from './CountriesList';
 
 
 export async function generateMetadata({ params }: any) {
-  const lang = params.lang
+  const lang = params.lang;
 
+  let title = '';
+  let description = '';
+
+  switch (lang) {
+    case 'fr':
+      title = `Horaires de prière dans le monde – Global Salah`;
+      description = `Découvrez les horaires de prière pour les pays du monde entier avec Global Salah. Trouvez des horaires quotidiens et mensuels précis pour rester régulier dans vos prières partout.`;
+      break;
+    case 'ar':
+      title = `مواقيت الصلاة حول العالم – جلوبال صلاح`;
+      description = `استكشف مواقيت الصلاة في مختلف البلدان مع جلوبال صلاح. احصل على جداول يومية وشهرية دقيقة لتلتزم بصلواتك في أي مكان.`;
+      break;
+    default:
+      title = `Prayer Timings Worldwide – Global Salah`;
+      description = `Explore prayer timings for countries across the globe with Global Salah. Find accurate daily and monthly schedules to stay consistent with your prayers anywhere.`;
+  }
 
   return {
-    title: `Prayer Timings Worldwide – Global Salah`,
-    description: `Explore prayer timings for countries across the globe with Global Salah. Find accurate daily and monthly schedules to stay consistent with your prayers anywhere.`,
-alternates: {
-  canonical: `https://www.globalsalah.com/${lang}/countries`,
-},
-robots: {
-  index: false,
-  follow: false,
-  nocache: true,
-  googleBot: {
-    index: false,
-    follow: false,
-    noimageindex: false,
-    "max-video-preview": -1,
-    "max-image-preview": "large",
-    "max-snippet": -1,
-  },
-},
+    title,
+    description,
+    alternates: {
+      canonical: `https://www.globalsalah.com/${lang}/countries`,
+    },
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 

@@ -44,7 +44,8 @@ export default function IslamicCalendar() {
   const isArabic = pathname.split("/")[1]
   const [slideDirection, setSlideDirection] = useState<"left" | "right" | null>(null)
 
-  const hijriDate = moment(date).locale(pathname.includes("/ar") ? "ar" : "en").format("iD iMMMM iYYYY")
+  const hijriDate = moment(date).subtract(1, "day").locale(pathname.includes("/ar") ? "ar" : "en").format("iD iMMMM iYYYY")
+  
   const [hijriDay, hijriMonth, hijriYear] = hijriDate.split(" ")
 
   const nextMonth = () => {

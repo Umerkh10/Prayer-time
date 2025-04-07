@@ -2,13 +2,34 @@ import { Metadata } from "next";
 import Head from "next/head";
 import Blogs from "./Blogs";
 
-export const metadata: Metadata = {
-  title: "Blogs",
-  description: `All Blogs`,
-  alternates: {
-    canonical: "https://www.takingmyclassesonline.com/blogs",
-  },
-};
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  const lang = params.lang;
+
+  let title = '';
+  let description = '';
+
+  switch (lang) {
+    case 'fr':
+      title = 'Blogues';
+      description = 'Tous les blogues';
+      break;
+    case 'ar':
+      title = 'المدونات';
+      description = 'جميع المدونات';
+      break;
+    default:
+      title = 'Blogs';
+      description = 'All Blogs';
+  }
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `https://globalsalah.com/${lang}/blogs`,
+    },
+  };
+}
 
 const Page = () => {
   <Head>
@@ -25,16 +46,16 @@ const Page = () => {
         <meta property="og:description" content="All Blogs" />
         <meta
           property="og:url"
-          content="https://takingmyclassesonline.com/blogs"
+          content="https://globalsalah.com/en/blogs"
         />
-        <meta property="og:site_name" content="Takingmyclassesonline" />
+        <meta property="og:site_name" content="GlobalSalah" />
         <meta
           property="og:image"
-          content="https://takingmyclassesonline.com/assets/weblogo.png"
+          content="https://globalsalah.com/en/assets/weblogo.png"
         />
         <meta
           property="og:image:secure_url"
-          content="https://takingmyclassesonline.com/assets/popupModal.webp"
+          content="https://globalsalah.com/en/assets/popupModal.webp"
         />
         <meta property="og:image:width" content="1050" />
         <meta property="og:image:height" content="600" />
@@ -50,7 +71,7 @@ const Page = () => {
         />
         <meta
           property="article:author"
-          content="https://www.facebook.com/takingmyclassesonline/"
+          content="https://www.facebook.com/globalsalahofficial/"
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Blogs" />
@@ -58,7 +79,7 @@ const Page = () => {
         <meta name="twitter:creator" content="@takemyclas19231" />
         <meta
           name="twitter:image"
-          content="https://takingmyclassesonline.com/assets/weblogo.png"
+          content="https://globalsalah.com/en/assets/weblogo.png"
         />
         <meta name="twitter:label1" content="Time to read" />
         <meta name="twitter:data1" content="51 minutes" />

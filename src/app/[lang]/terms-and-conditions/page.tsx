@@ -2,14 +2,32 @@ import React from 'react'
 import TermsContent from './TermsContent'
 
 export async function generateMetadata({ params }: any) {
-  const lang = params.lang
+  const lang = params.lang;
+
+  let title = '';
+  let description = '';
+
+  switch (lang) {
+    case 'fr':
+      title = `Visiteurs, veuillez lire attentivement les conditions générales avant d'utiliser nos services`;
+      description = `En utilisant nos services de prière mondiale, vous acceptez nos conditions générales. Veuillez lire notre politique de confidentialité pour préserver un environnement respectueux.`;
+      break;
+    case 'ar':
+      title = `يرجى من الزوار قراءة الشروط والأحكام بعناية قبل استخدام الخدمات`;
+      description = `باستخدامك لخدمات مواعيد الصلاة العالمية، فإنك توافق على الشروط والأحكام الخاصة بنا. نرجو قراءة سياسة الخصوصية للحفاظ على بيئة محترمة.`;
+      break;
+    default:
+      title = `Visitors read carefully terms and conditions before using services`;
+      description = `By using our global prayer time services, you have to agree on our terms and conditions. Kindly read our privacy and policy to maintain respected environment.`;
+  }
+
   return {
-    title: `Visitors read carefully terms and conditions before using services `,
-    description: `By using our global prayer time services, you have to agree on our terms and conditions. kindly read our privacy and policy to maintain respected environment`,
-alternates: {
-  canonical: `https://www.globalsalah.com/${lang}/terms-and-conditions`,
-},
-robots: {
+    title,
+    description,
+    alternates: {
+      canonical: `https://www.globalsalah.com/${lang}/terms-and-conditions`,
+    },
+    robots: {
       index: false,
       follow: false,
       nocache: true,

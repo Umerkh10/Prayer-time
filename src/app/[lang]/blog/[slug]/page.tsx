@@ -21,13 +21,13 @@ export const generateMetadata = async ({
     title: blog.blog_title || "Blog",
     description: blog.blog_meta_description || "Read this amazing blog!",
     alternates: {
-      canonical: `https://www.takingmyclassesonline.com/blog/${blog.blog_slug}`,
+      canonical: `https://globalsalah.com/en/blog/${blog.blog_slug}`,
     },
     openGraph: {
       title: blog.blog_meta_title,
       description: blog.blog_meta_description,
       images: [blog.blog_featured_image_url],
-      url: `https://www.takingmyclassesonline.com/blog/${blog.blog_slug}`,
+      url: `https://globalsalah.com/en/blog/${blog.blog_slug}`,
     },
   };
 };

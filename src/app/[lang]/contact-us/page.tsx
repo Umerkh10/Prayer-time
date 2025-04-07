@@ -2,15 +2,33 @@ import React from 'react'
 import ContactPage from './ContactPage'
 
 
-export  async function generateMetadata({ params }: any) {
-  const lang = params.lang
+export async function generateMetadata({ params }: any) {
+  const lang = params.lang;
+
+  let title = '';
+  let description = '';
+
+  switch (lang) {
+    case 'fr':
+      title = `Contactez-nous – Global Salah`;
+      description = `Vous avez des questions ou besoin d’aide ? Contactez Global Salah pour toute demande concernant les horaires de prière, les calendriers islamiques et plus encore. Nous sommes là pour vous aider !`;
+      break;
+    case 'ar':
+      title = `اتصل بنا – جلوبال صلاح`;
+      description = `هل لديك أسئلة أو تحتاج إلى مساعدة؟ تواصل مع جلوبال صلاح للاستفسارات حول أوقات الصلاة والتقويمات الإسلامية والمزيد. نحن هنا لمساعدتك!`;
+      break;
+    default:
+      title = `Contact Us – Global Salah`;
+      description = `Have questions or need assistance? Get in touch with Global Salah for inquiries about prayer times, Islamic calendars, and more. We’re here to help!`;
+  }
+
   return {
-    title: `Contact Us – Global Salah`,
-    description: `Have questions or need assistance? Get in touch with Global Salah for inquiries about prayer times, Islamic calendars, and more. We’re here to help!`,
-alternates: {
-  canonical: `https://www.globalsalah.com/${lang}/contact-us`,
-},
-robots: {
+    title,
+    description,
+    alternates: {
+      canonical: `https://www.globalsalah.com/${lang}/contact-us`,
+    },
+    robots: {
       index: false,
       follow: false,
       nocache: true,

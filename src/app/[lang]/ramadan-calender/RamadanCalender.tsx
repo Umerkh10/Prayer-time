@@ -94,7 +94,7 @@ const RamadanCalender = () => {
     return CalculationMethod.MuslimWorldLeague() // Default
   }
 
-  const calculateMonthlyTimings = async () => {
+  const calculateRamadanTimings = async () => {
     const coordinates = await fetchLocation()
     if (!coordinates) return
 
@@ -104,20 +104,20 @@ const RamadanCalender = () => {
 
     const now = new Date()
     const year = now.getFullYear()
-    const month = now.getMonth()
 
-    const daysInMonth = new Date(year, month + 1, 0).getDate()
+    const ramadanStart = moment(`${year}-03-02`, "YYYY-MM-DD") // Start of Ramadan in March
+    const ramadanEnd = moment(ramadanStart).add(29, "days") // Ramadan lasts 29 or 30 days
+
     const newTimings: NamazTiming[] = []
 
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(year, month, day)
+    for (let day = 0; day <= 29; day++) {
+      const date = moment(ramadanStart).add(day, "days").toDate()
 
       const prayerTimes = new PrayerTimes(new Coordinates(lat, lon), date, calculationMethod)
 
       calculationMethod.madhab = madhab
-      if (day === now.getDate()) {
+      if (day === 0) {
         const hijri = moment(date)
-          .subtract(1, "days")
           .locale(isArabic === "ar" ? "ar-SA" : "en")
           .format(isArabic === "ar" ? "iD iMMMM iYYYY" : "iD iMMMM iYYYY")
         setHijriDate(hijri)
@@ -153,7 +153,7 @@ const RamadanCalender = () => {
 
   useEffect(() => {
     setLoading(true)
-    calculateMonthlyTimings()
+    calculateRamadanTimings()
   }, [school])
 
   const renderSkeletonRow = () => (
@@ -193,7 +193,7 @@ const RamadanCalender = () => {
             </p>
           </motion.div>
         )}
-
+{/* 
         {hijriDate && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -207,7 +207,7 @@ const RamadanCalender = () => {
                 : `${t("CurrentNamazTime.hijridate")} ${hijriDate}`}
             </p>
           </motion.div>
-        )}
+        )} */}
       </CardHeader>
 
       <CardContent>
