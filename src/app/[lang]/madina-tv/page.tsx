@@ -27,6 +27,10 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/madina-tv`,
+      en: `https://www.globalsalah.com/en/madina-tv`,
+      fr: `https://www.globalsalah.com/fr/madina-tv`,
+      ar: `https://www.globalsalah.com/ar/madina-tv`,
+      'x-default': `https://www.globalsalah.com/en/madina-tv`,
     },
     robots: {
       index: false,

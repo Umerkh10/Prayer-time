@@ -7,9 +7,13 @@ export async function generateMetadata({ params }: any) {
     return {
       title: `Global Salah Forum – Connect, Discuss & Share Islamic Knowledge`,
       description: `Join the Global Salah Forum to connect with fellow Muslims, discuss Islamic topics, and share knowledge on prayer, faith, and community. Engage in meaningful conversations today!`,
-  alternates: {
-    canonical: `https://www.globalsalah.com/${lang}/forum`,
-  },
+      alternates: {
+        canonical: `https://www.globalsalah.com/${lang}/forum`,
+        en: `https://www.globalsalah.com/en/forum`,
+        fr: `https://www.globalsalah.com/fr/forum`,
+        ar: `https://www.globalsalah.com/ar/forum`,
+        'x-default': `https://www.globalsalah.com/en/forum`,
+      },
   robots: {
         index: false,
         follow: false,

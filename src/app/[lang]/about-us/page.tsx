@@ -28,6 +28,12 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/about-us`,
+      languages: {
+        en: 'https://www.globalsalah.com/en/about-us',
+        fr: 'https://www.globalsalah.com/fr/about-us',
+        ar: 'https://www.globalsalah.com/ar/about-us',
+        'x-default': 'https://www.globalsalah.com/en/about-us',
+      },
     },
     robots: {
       index: false,
@@ -44,6 +50,7 @@ export async function generateMetadata({ params }: any) {
     },
   };
 }
+
 
 
 function page() {

@@ -8,6 +8,10 @@ export async function generateMetadata({ params }: any) {
     description: `Get real-time updates with Global Salah notifications. Stay informed on prayer times, community events, and important announcements. Never miss an update!`,
 alternates: {
   canonical: `https://www.globalsalah.com/${lang}/notifications`,
+  en: `https://www.globalsalah.com/en/notifications`,
+  fr: `https://www.globalsalah.com/fr/notifications`,
+  ar: `https://www.globalsalah.com/ar/notifications`,
+  'x-default': `https://www.globalsalah.com/en/notifications`,
 },
 robots: {
       index: false,

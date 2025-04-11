@@ -26,6 +26,10 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/duas`,
+      en: `https://www.globalsalah.com/en/duas`,
+      fr: `https://www.globalsalah.com/fr/duas`,
+      ar: `https://www.globalsalah.com/ar/duas`,
+      'x-default': `https://www.globalsalah.com/en/duas`,
     },
     robots: {
       index: false,

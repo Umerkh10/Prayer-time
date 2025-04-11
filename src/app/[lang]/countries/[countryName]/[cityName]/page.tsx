@@ -3,10 +3,11 @@ import CityData from './CityData'
 
 export async function generateMetadata({ params }: any) {
   const lang = params.lang;
-  const country = await params.countryName;
-  const city = await params.cityName;
+  const country = params.countryName;
+  const city = params.cityName;
+  
   const cityName = city.charAt(0).toUpperCase() + city.slice(1);
-
+  
   let title = '';
   let description = '';
 
@@ -29,9 +30,26 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/countries/${country}/${city}`,
+      fr: `https://www.globalsalah.com/fr/countries/${country}/${city}`,
+      ar: `https://www.globalsalah.com/ar/countries/${country}/${city}`,
+      'x-default': `https://www.globalsalah.com/en/countries/${country}/${city}`,
+    },
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
   };
 }
+
 
 
 function page() {

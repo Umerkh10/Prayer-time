@@ -27,6 +27,10 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/ramadan-calender`,
+      en: `https://www.globalsalah.com/en/ramadan-calender`,
+      fr: `https://www.globalsalah.com/fr/ramadan-calender`,
+      ar: `https://www.globalsalah.com/ar/ramadan-calender`,
+      'x-default': `https://www.globalsalah.com/en/ramadan-calender`,
     },
     robots: {
       index: false,

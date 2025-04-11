@@ -29,6 +29,10 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/thank-you-for-contact`,
+      en: `https://www.globalsalah.com/en/thank-you-for-contact`,
+      fr: `https://www.globalsalah.com/fr/thank-you-for-contact`,
+      ar: `https://www.globalsalah.com/ar/thank-you-for-contact`,
+      'x-default': `https://www.globalsalah.com/en/thank-you-for-contact`,
     },
     robots: {
       index: false,

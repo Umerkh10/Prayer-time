@@ -8,6 +8,10 @@ export async function generateMetadata({ params }: any) {
     description: ` Your question has been successfully submitted on Global Salah. Our community will review and respond soon. Stay tuned for insightful discussions and answers!`,
 alternates: {
   canonical: `https://www.globalsalah.com/${lang}/question-submitted`,
+  en: `https://www.globalsalah.com/en/question-submitted`,
+  fr: `https://www.globalsalah.com/fr/question-submitted`,
+  ar: `https://www.globalsalah.com/ar/question-submitted`,
+  'x-default': `https://www.globalsalah.com/en/question-submitted`,
 },
 robots: {
       index: false,

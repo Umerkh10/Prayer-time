@@ -27,6 +27,12 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/contact-us`,
+      languages: {
+        en: 'https://www.globalsalah.com/en/contact-us',
+        fr: 'https://www.globalsalah.com/fr/contact-us',
+        ar: 'https://www.globalsalah.com/ar/contact-us',
+        'x-default': 'https://www.globalsalah.com/en/contact-us',
+      },
     },
     robots: {
       index: false,
@@ -43,6 +49,7 @@ export async function generateMetadata({ params }: any) {
     },
   };
 }
+
 
 
 function Page({ params }: { params: { lang: string } }) {

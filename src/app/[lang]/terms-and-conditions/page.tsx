@@ -26,6 +26,10 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/terms-and-conditions`,
+      en: `https://www.globalsalah.com/en/terms-and-conditions`,
+      fr: `https://www.globalsalah.com/fr/terms-and-conditions`,
+      ar: `https://www.globalsalah.com/ar/terms-and-conditions`,
+      'x-default': `https://www.globalsalah.com/en/terms-and-conditions`,
     },
     robots: {
       index: false,

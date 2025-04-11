@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 export async function generateMetadata({ params }: any) {
   const lang = params.lang;
-  const country = await params.countryName;
+  const country = params.countryName;
   const countryName = country.charAt(0).toUpperCase() + country.slice(1);
 
   let title = '';
@@ -28,10 +28,30 @@ export async function generateMetadata({ params }: any) {
     title,
     description,
     alternates: {
-      canonical: `https://www.globalsalah.com/${lang}/countries/${params.countryName}`,
+      canonical: `https://www.globalsalah.com/${lang}/countries/${country}`,
+      languages: {
+        en: `https://www.globalsalah.com/en/countries/${country}`,
+        fr: `https://www.globalsalah.com/fr/countries/${country}`,
+        ar: `https://www.globalsalah.com/ar/countries/${country}`,
+        'x-default': `https://www.globalsalah.com/en/countries/${country}`,
+      },
+    },
+    robots: {
+      index: false,
+      follow: false,
+      nocache: true,
+      googleBot: {
+        index: false,
+        follow: false,
+        noimageindex: false,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
   };
 }
+
 
 function page({ params }: any) {
 

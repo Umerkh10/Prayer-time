@@ -27,6 +27,10 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/makkah-tv`,
+      en: `https://www.globalsalah.com/en/makkah-tv`,
+      fr: `https://www.globalsalah.com/fr/makkah-tv`,
+      ar: `https://www.globalsalah.com/ar/makkah-tv`,
+      'x-default': `https://www.globalsalah.com/en/makkah-tv`,
     },
     robots: {
       index: false,

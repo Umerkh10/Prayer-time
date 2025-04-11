@@ -28,6 +28,10 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/islamic-calender`,
+      en: `https://www.globalsalah.com/en/islamic-calender`,
+      fr: `https://www.globalsalah.com/fr/islamic-calender`,
+      ar: `https://www.globalsalah.com/ar/islamic-calender`,
+      'x-default': `https://www.globalsalah.com/en/islamic-calender`,
     },
     robots: {
       index: false,

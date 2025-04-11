@@ -27,6 +27,10 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/privacy-policy`,
+      en: `https://www.globalsalah.com/en/privacy-policy`,
+      fr: `https://www.globalsalah.com/fr/privacy-policy`,
+      ar: `https://www.globalsalah.com/ar/privacy-policy`,
+      'x-default': `https://www.globalsalah.com/en/privacy-policy`,
     },
     robots: {
       index: false,

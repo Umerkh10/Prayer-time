@@ -27,6 +27,12 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/99-names-of-allah`,
+      languages: {
+        en: 'https://www.globalsalah.com/en/99-names-of-allah',
+        fr: 'https://www.globalsalah.com/fr/99-names-of-allah',
+        ar: 'https://www.globalsalah.com/ar/99-names-of-allah',
+        'x-default': 'https://www.globalsalah.com/en/99-names-of-allah',
+      },
     },
     robots: {
       index: false,
@@ -36,13 +42,14 @@ export async function generateMetadata({ params }: any) {
         index: false,
         follow: false,
         noimageindex: false,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
     },
   };
 }
+
 
 function page() {
   return (

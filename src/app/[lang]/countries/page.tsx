@@ -28,6 +28,12 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/countries`,
+      languages: {
+        en: 'https://www.globalsalah.com/en/countries',
+        fr: 'https://www.globalsalah.com/fr/countries',
+        ar: 'https://www.globalsalah.com/ar/countries',
+        'x-default': 'https://www.globalsalah.com/en/countries',
+      },
     },
     robots: {
       index: false,
@@ -44,6 +50,7 @@ export async function generateMetadata({ params }: any) {
     },
   };
 }
+
 
 
 

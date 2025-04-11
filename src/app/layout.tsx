@@ -1,14 +1,12 @@
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
-import Navbar from "./(Home)/Navbar";
-import { ThemeProvider } from "@/components/ui/theme-provider";
-import Footer from "./(Home)/Footer";
-import { Toaster } from "sonner";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AdminSidebar } from "@/components/admin-sidebar";
-import Head from "next/head";
 import Script from "next/script";
+import { Toaster } from "sonner";
+import Footer from "./(Home)/Footer";
+import Navbar from "./(Home)/Navbar";
+import "./globals.css";
+import HtmlLangSetter from "@/components/HtmlLangSetter";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -42,6 +40,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
         <meta name="google-site-verification" content="0likJSP3-if8goGabTQOnxr1vNU8eh-XAd8JWDk3ZyU" />
+        <link rel="alternate" hrefLang="fr" href="https://www.globalsalah.com/fr" />
+        <link rel="alternate" hrefLang="ar" href="https://www.globalsalah.com/ar" />
 
       <Script
         async
@@ -74,6 +74,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <HtmlLangSetter />
           <Navbar />
           <Toaster richColors />
           {children}

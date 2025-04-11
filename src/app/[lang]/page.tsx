@@ -33,6 +33,11 @@ export async function generateMetadata({ params }: any) {
     description,
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}`,
+      languages: {
+        en: 'https://www.globalsalah.com/en',
+        fr: 'https://www.globalsalah.com/fr',
+        ar: 'https://www.globalsalah.com/ar',
+      },
     },
     robots: {
       index: false,
@@ -42,9 +47,9 @@ export async function generateMetadata({ params }: any) {
         index: false,
         follow: false,
         noimageindex: false,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
     },
   };
