@@ -67,10 +67,10 @@ function ContactPage({ lang }: ContactPageProps) {
 
     const timer = setTimeout(() => {
       localStorage.setItem("loading", "false");
-      setIsLoading(false); // This will now execute AFTER 2 seconds
+      setIsLoading(false); 
     }, 800);
 
-    return () => clearTimeout(timer); // Cleanup timeout on unmount
+    return () => clearTimeout(timer); 
   }, []);
 
 

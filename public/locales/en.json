@@ -15,6 +15,12 @@
     "calender":"Calender",
     "livetv":"Live TV",
     "forum":"Forum",
+    "hadees":"Hadith",
+    "sahihbukhari":"Sahih-Bukhari",
+    "sahihmuslim":"Sahih-Muslim",
+    "jamiatirmazi":"Jamia-Tirmazi",
+    "sunanabudawood":"Sunan-Abu-Dawud",
+    "sunannisai":"Sunan-Nisai",
     "blogs":"Blogs"
   },
   "banner": {
@@ -716,5 +722,31 @@
     "heading":"The 99 Names of Allah",
     "paragraph":"Asma ul-Husna - The Beautiful Names of Allah with Meanings and Pronunciation",
     "subparagraph":" The 99 Names of Allah, or Asma'ul Husna, reflect His mercy, wisdom, and greatness. Each name carries a special meaning, guiding believers toward faith and inner peace."
+  },
+  "bukharipage":{
+    "title":"Sahih al-Bukhari",
+    "desc":"The most authentic collection of Hadith compiled by Imam Muhammad al-Bukhari",
+    "heading-2":"Sahih al-Bukhari Collection"
+  },
+  "muslimpage":{
+    "title":"Sahih Muslim",
+    "desc":"The most authentic collection of Hadith compiled by Imam Muslim ibn al-Hajjaj",
+    "heading-2":"Sahih Muslim Collection"
+  },
+  "jamiapage":{
+    "title":"Jamia Tirmazi",
+    "desc":"A renowned collection of Hadith compiled by Imam Abu Isa al-Tirmidhi",
+    "heading-2":"Jamia Tirmazi Collection"
+  },
+  "sunanpage":{
+    "title":"sunan abu  Dawud",
+    "desc":" A renowned collection of Hadith compiled by Imam Abu Dawud",
+    "heading-2":"sunan abu Dawud Collection"
+  },
+  "nisaipage":{
+    "title":"sunan nisai",
+    "desc":"A renowned collection of Hadith compiled by Imam An-Nasa'i",
+    "heading-2":"sunan abu Dawud Collection"
   }
+  
 }

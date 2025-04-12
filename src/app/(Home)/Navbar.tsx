@@ -10,6 +10,7 @@ import { useTranslation } from "@/hooks/useTranslation"
 import { usePathname } from "next/navigation"
 import { checkIsPathnameIsEqualToLang, urlSplitter } from "@/lib"
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher"
+import { SidebarButton } from "@/components/sidebar-button"
 
 function Navbar() {
   const { t } = useTranslation("navigation")
@@ -22,7 +23,7 @@ function Navbar() {
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="sticky top-0 z-[999999] border-b border-white/10 bg-[#003422] backdrop-blur dark:supports-[backdrop-filter]:bg-[#000717]"
+      className="sticky top-0 z-[999] border-b border-white/10 bg-[#003422] backdrop-blur dark:supports-[backdrop-filter]:bg-[#000717]"
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
@@ -41,8 +42,11 @@ function Navbar() {
         </div>
 
         <MainNav />
-
+   
         <div className="flex items-center md:gap-5 gap-2 ">
+        <div className="lg:block hidden">
+        <SidebarButton />
+        </div>
           <LanguageSwitcher />
           <ModeToggle />
 

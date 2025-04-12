@@ -11,101 +11,107 @@
     "makkahTv": "Makkah Tv",
     "madinaTv": "Madina Tv",
     "ramadan": "Calendrier du Ramadan",
-    "namesallah":"99 noms d'Allah",
-    "forum":"Forum",
-    "calender":"Calendrier",
-    "livetv":"Télévision en direct",
-    "blogs":"Blogs"
+    "namesallah": "99 noms d'Allah",
+    "forum": "Forum",
+    "calender": "Calendrier",
+    "livetv": "Télévision en direct",
+    "hadees": "Hadith",
+    "sahihbukhari": "Sahih-Bukhari",
+    "sahihmuslim": "Sahih-Muslim",
+    "jamiatirmazi":"Jamia-Tirmazi",
+    "sunanabudawood":"Sunan-Abu-Dawud",
+    "sunannisai":"Sunan-Nisai",
+    "blogs": "Blogs"
   },
   "banner": {
     "title": "Bienvenue sur Global Salah",
     "hadithofday": "Hadith du Jour",
     "ayatofday": "Ayat du Jour",
-    "titlehadith":"Hadith",
-    "titleayat":"Ayat",
+    "titlehadith": "Hadith",
+    "titleayat": "Ayat",
     "next": "Suivant",
-      "hadiths": [
-        {
-          "arabic": "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى...",
-          "translation": "Le Messager d'Allah (ﷺ) a dit : « Les actions sont jugées par les intentions, et chacun sera récompensé selon ce qu'il a voulu ».",
-          "refrence": "Sahih Bukhari - 1"
-        },
-        {
-          "arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ...",
-          "translation": "Le Prophète (ﷺ) a dit : « Quiconque croit en Allah et au Jour dernier doit dire du bien ou se taire ».",
-          "refrence": "Sahih Bukhari - 6136"
-        },
-        {
-          "arabic": "اللَّهُمَّ اغْفِرْ لِي خَطِيئَتِي وَجَهْلِي وَإِسْرَافِي فِي أَمْرِي...",
-          "translation": "Ô Allah, pardonne mes erreurs, mon ignorance et mes excès dans mes affaires...",
-          "refrence": "Sahih Muslim - 2719"
-        },
-        {
-          "arabic": "إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا...",
-          "translation": "Les meilleurs d'entre vous sont ceux qui ont le meilleur caractère.",
-          "refrence": "Sahih Bukhari - 3559"
-        },
-        {
-          "arabic": "إِذَا مَرِضَ الْعَبْدُ أَوْ سَافَرَ كُتِبَ لَهُ مَا كَانَ يَعْمَلُ صَحِيحًا مُقِيمًا...",
-          "translation": "Lorsqu'un serviteur d'Allah tombe malade ou voyage, il est récompensé pour les actes qu'il accomplirait normalement s'il était en bonne santé ou chez lui.",
-          "refrence": "Sahih Bukhari - 2996"
-        },
-        {
-          "arabic": "إِنَّ الدُّعَاءَ هُوَ الْعِبَادَةُ...",
-          "translation": "En effet, la supplication est une adoration.",
-          "refrence": "Sunan Abi Dawood - 1479"
-        },
-        {
-          "arabic": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ...",
-          "translation": "Aucun de vous ne croit vraiment tant qu'il n'aime pas pour son frère ce qu'il aime pour lui-même.",
-          "refrence": "Sahih Bukhari - 13"
-        },
-        {
-          "arabic": "إِنَّ الرِّزْقَ لَيَطْلُبُ الْعَبْدَ أَكْثَرَ مِمَّا يَطْلُبُهُ أَجَلُهُ...",
-          "translation": "En effet, la subsistance recherche un serviteur plus que l'heure de sa mort.",
-          "refrence": "Sunan Ibn Majah - 2144"
-        },
-        {
-          "arabic": "إِنَّ اللَّهَ جَمِيلٌ يُحِبُّ الْجَمَالَ...",
-          "translation": "En effet, Allah est beau et Il aime la beauté.",
-          "refrence": "Sahih Muslim - 91"
-        },
-        {
-          "arabic": "اتَّقُوا الظُّلْمَ فَإِنَّ الظُّلْمَ ظُلُمَاتٌ يَوْمَ الْقِيَامَةِ...",
-          "translation": "Méfiez-vous de l'oppression, car l'oppression sera ténèbres au jour du jugement.",
-          "refrence": "Sahih Muslim - 2578"
-        },
-        {
-          "arabic": "الرَّاحِمُونَ يَرْحَمُهُمُ الرَّحْمَٰنُ...",
-          "translation": "Les miséricordieux reçoivent la miséricorde des miséricordieux. Soyez miséricordieux sur la terre, et vous serez miséricordieux en haut.",
-          "refrence": "Sunan At-Tirmidhi - 1924"
-        },
-        {
-          "arabic": "خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ...",
-          "translation": "Les meilleures personnes sont celles qui sont les plus bénéfiques pour les autres.",
-          "refrence": "Sunan al-Mu’jam al-Awsat - 5787"
-        },
-        {
-          "arabic": "يَدُ اللَّهِ مَعَ الْجَمَاعَةِ...",
-          "translation": "La main d'Allah est avec le groupe.",
-          "refrence": "Sunan At-Tirmidhi - 2166"
-        },
-        {
-          "arabic": "مَنْ دَلَّ عَلَى خَيْرٍ فَلَهُ مِثْلُ أَجْرِ فَاعِلِهِ...",
-          "translation": "Celui qui guide quelqu'un vers le bien aura une récompense comme celui qui le fait.",
-          "refrence": "Sahih Muslim - 1893"
-        },
-        {
-          "arabic": "سِبَابُ الْمُسْلِمِ فُسُوقٌ وَقِتَالُهُ كُفْرٌ...",
-          "translation": "Maltraiter un musulman est un mal, et le combattre est de l'incrédulité.",
-          "refrence": "Sahih Bukhari - 48"
-        },
-        {
-          "arabic": "إِنَّ اللَّهَ يُحِبُّ إِذَا عَمِلَ أَحَدُكُمْ عَمَلًا أَنْ يُتْقِنَهُ...",
-          "translation": "En effet, Allah aime que lorsque l'un d'entre vous fait un travail, il le perfectionne.",
-          "refrence": "Sunan al-Bayhaqi - 5315"
-        }
-      ],
+    "hadiths": [
+      {
+        "arabic": "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى...",
+        "translation": "Le Messager d'Allah (ﷺ) a dit : « Les actions sont jugées par les intentions, et chacun sera récompensé selon ce qu'il a voulu ».",
+        "refrence": "Sahih Bukhari - 1"
+      },
+      {
+        "arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ...",
+        "translation": "Le Prophète (ﷺ) a dit : « Quiconque croit en Allah et au Jour dernier doit dire du bien ou se taire ».",
+        "refrence": "Sahih Bukhari - 6136"
+      },
+      {
+        "arabic": "اللَّهُمَّ اغْفِرْ لِي خَطِيئَتِي وَجَهْلِي وَإِسْرَافِي فِي أَمْرِي...",
+        "translation": "Ô Allah, pardonne mes erreurs, mon ignorance et mes excès dans mes affaires...",
+        "refrence": "Sahih Muslim - 2719"
+      },
+      {
+        "arabic": "إِنَّ مِنْ خِيَارِكُمْ أَحْسَنَكُمْ أَخْلَاقًا...",
+        "translation": "Les meilleurs d'entre vous sont ceux qui ont le meilleur caractère.",
+        "refrence": "Sahih Bukhari - 3559"
+      },
+      {
+        "arabic": "إِذَا مَرِضَ الْعَبْدُ أَوْ سَافَرَ كُتِبَ لَهُ مَا كَانَ يَعْمَلُ صَحِيحًا مُقِيمًا...",
+        "translation": "Lorsqu'un serviteur d'Allah tombe malade ou voyage, il est récompensé pour les actes qu'il accomplirait normalement s'il était en bonne santé ou chez lui.",
+        "refrence": "Sahih Bukhari - 2996"
+      },
+      {
+        "arabic": "إِنَّ الدُّعَاءَ هُوَ الْعِبَادَةُ...",
+        "translation": "En effet, la supplication est une adoration.",
+        "refrence": "Sunan Abi Dawood - 1479"
+      },
+      {
+        "arabic": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ...",
+        "translation": "Aucun de vous ne croit vraiment tant qu'il n'aime pas pour son frère ce qu'il aime pour lui-même.",
+        "refrence": "Sahih Bukhari - 13"
+      },
+      {
+        "arabic": "إِنَّ الرِّزْقَ لَيَطْلُبُ الْعَبْدَ أَكْثَرَ مِمَّا يَطْلُبُهُ أَجَلُهُ...",
+        "translation": "En effet, la subsistance recherche un serviteur plus que l'heure de sa mort.",
+        "refrence": "Sunan Ibn Majah - 2144"
+      },
+      {
+        "arabic": "إِنَّ اللَّهَ جَمِيلٌ يُحِبُّ الْجَمَالَ...",
+        "translation": "En effet, Allah est beau et Il aime la beauté.",
+        "refrence": "Sahih Muslim - 91"
+      },
+      {
+        "arabic": "اتَّقُوا الظُّلْمَ فَإِنَّ الظُّلْمَ ظُلُمَاتٌ يَوْمَ الْقِيَامَةِ...",
+        "translation": "Méfiez-vous de l'oppression, car l'oppression sera ténèbres au jour du jugement.",
+        "refrence": "Sahih Muslim - 2578"
+      },
+      {
+        "arabic": "الرَّاحِمُونَ يَرْحَمُهُمُ الرَّحْمَٰنُ...",
+        "translation": "Les miséricordieux reçoivent la miséricorde des miséricordieux. Soyez miséricordieux sur la terre, et vous serez miséricordieux en haut.",
+        "refrence": "Sunan At-Tirmidhi - 1924"
+      },
+      {
+        "arabic": "خَيْرُ النَّاسِ أَنْفَعُهُمْ لِلنَّاسِ...",
+        "translation": "Les meilleures personnes sont celles qui sont les plus bénéfiques pour les autres.",
+        "refrence": "Sunan al-Mu’jam al-Awsat - 5787"
+      },
+      {
+        "arabic": "يَدُ اللَّهِ مَعَ الْجَمَاعَةِ...",
+        "translation": "La main d'Allah est avec le groupe.",
+        "refrence": "Sunan At-Tirmidhi - 2166"
+      },
+      {
+        "arabic": "مَنْ دَلَّ عَلَى خَيْرٍ فَلَهُ مِثْلُ أَجْرِ فَاعِلِهِ...",
+        "translation": "Celui qui guide quelqu'un vers le bien aura une récompense comme celui qui le fait.",
+        "refrence": "Sahih Muslim - 1893"
+      },
+      {
+        "arabic": "سِبَابُ الْمُسْلِمِ فُسُوقٌ وَقِتَالُهُ كُفْرٌ...",
+        "translation": "Maltraiter un musulman est un mal, et le combattre est de l'incrédulité.",
+        "refrence": "Sahih Bukhari - 48"
+      },
+      {
+        "arabic": "إِنَّ اللَّهَ يُحِبُّ إِذَا عَمِلَ أَحَدُكُمْ عَمَلًا أَنْ يُتْقِنَهُ...",
+        "translation": "En effet, Allah aime que lorsque l'un d'entre vous fait un travail, il le perfectionne.",
+        "refrence": "Sunan al-Bayhaqi - 5315"
+      }
+    ],
     "ayats": [
       {
         "text": "وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ ۖ فَلْيَسْتَجِيبُوا لِي وَلْيُؤْمِنُوا بِي لَعَلَّهُمْ يَرْشُدُونَ",
@@ -260,15 +266,15 @@
     "tomorrow": "Demain",
     "monthly": "Mensuel",
     "monthlynamaztitle": "Horaires du Namaz mensuel",
-    "hijridate":"Hijri Date:",
+    "hijridate": "Hijri Date:",
     "currentdate": "Date actuelle",
-    "date":"Date",
-    "namazfajr":"Fajr",
-    "sunrise":"Sunrise",
-    "namazdhuhr":"Dhuhr",
-    "namazasr":"Asr",
-    "namazmaghrib":"Maghrib",
-    "namazisha":"Isha",
+    "date": "Date",
+    "namazfajr": "Fajr",
+    "sunrise": "Sunrise",
+    "namazdhuhr": "Dhuhr",
+    "namazasr": "Asr",
+    "namazmaghrib": "Maghrib",
+    "namazisha": "Isha",
     "months": {
       "Jan": "Janvier",
       "Feb": "Février",
@@ -301,7 +307,7 @@
   "HijriDivider": {
     "dividertitle": "Connaître la date et l'heure actuelles !",
     "currenttime": "Heure actuelle",
-    "hijrititle":"Hijri Date",
+    "hijrititle": "Hijri Date",
     "currentdate": "Date actuelle"
   },
   "Footer": {
@@ -582,7 +588,7 @@
     "title": "A propos de nous",
     "desc": "Global Salah a été fondé par une équipe musulmane et dévouée qui fournit des informations islamiques précises à ses clients. Notre équipe est composée d'experts, d'Alims, de Muftees et de Quran Hafiz, qui travaillent ensemble avec dévouement pour fournir des informations fiables.",
     "mission": "Notre mission",
-    "missionparagraph":"À Global Salah, notre mission est de guider les musulmans dans les aspects essentiels de l'islam. Nous aidons les musulmans à se connecter honnêtement aux instructions religieuses, où qu'ils soient dans le monde.  Notre site web est authentique et facile à utiliser.",
+    "missionparagraph": "À Global Salah, notre mission est de guider les musulmans dans les aspects essentiels de l'islam. Nous aidons les musulmans à se connecter honnêtement aux instructions religieuses, où qu'ils soient dans le monde.  Notre site web est authentique et facile à utiliser.",
     "coretitle": "Nos valeurs fondamentales",
     "coredesc": "Nous sommes guidés par l'authenticité, la fiabilité, le respect et les révolutions. Notre site Web vise à fournir des informations mieux organisées et plus fiables, telles que la direction de la qibla, la prière du namaz et d'autres éléments essentiels. Nous respectons sincèrement la diversité des musulmans dans le monde et essayons de développer progressivement des innovations. ",
     "visiontitle": "Nos visions",
@@ -625,7 +631,6 @@
     "infotitle": "Informations sur le contact",
     "infophone": "Téléphone"
   },
-
   "terms": {
     "title": "Conditions générales d'utilisation",
     "lastupdated": "Dernière mise à jour : 18 mars 2025",
@@ -640,9 +645,7 @@
     "subheading_5": "Clause de non-responsabilité",
     "subparagraph_5": " Bienvenue à Global Salah ! Notre site Web fournit des mises à jour précises concernant les heures de prières islamiques, les Ahadith, les Ayat, les Duas, et d'autres informations islamiques. Nous avons aidé de nombreux musulmans dans le monde entier à rester en contact avec leurs pratiques islamiques à temps. Vous pouvez accéder facilement à notre mise à jour de Global Salah depuis n'importe où.",
     "footertext": "Si vous avez des questions concernant les présentes conditions générales, veuillez nous contacter."
-},
-
-
+  },
   "privacy": {
     "title": "Politique de confidentialité",
     "subheading_1": "Informations acquises",
@@ -660,71 +663,89 @@
     "subheading_7": "Nous contacter ",
     "subparagraph_7": "Si vous avez des questions concernant quoi que ce soit, nous sommes là pour vous répondre. Vous pouvez nous contacter par courrier électronique à l'adresse support@globalsalah.com."
   },
-  "country":{
-    "title":"Heures de prière pour les villes en",
-    "subheading_1":"Découvrir",
-    "subparagraph_1":"Découvrez une histoire riche, une culture diversifiée et des paysages époustouflants. Des villes animées aux escapades paisibles, il y en a pour tous les goûts. Savourez les saveurs locales, découvrez des joyaux cachés et créez des souvenirs inoubliables. L'aventure, la détente et la culture vous attendent !",
-
-    "subheading_2":"Culture et charme",
-    "subparagraph_2":"Découvrez un mélange de riches traditions, de patrimoine vibrant et d'hospitalité chaleureuse. Des monuments historiques aux merveilles modernes, chaque coin de rue raconte une histoire. Laissez-vous tenter par les saveurs locales, explorez les expressions artistiques et imprégnez-vous du charme unique de la destination.",
-
-    "subheading_3":"Nature et biodiversité",
-    "subparagraph_3":"Découvrez des paysages à couper le souffle, des écosystèmes diversifiés et une faune abondante. Des forêts luxuriantes aux côtes sereines, la nature s'épanouit à chaque coin de rue. Explorez des sentiers pittoresques, rencontrez des espèces uniques et découvrez la beauté du monde naturel.",
-
-    "subheading_4":"Économie florissante et croissance",
-    "subparagraph_4":" Un pôle d'innovation, d'opportunités et de progrès. Avec un paysage commercial dynamique et une base économique solide, la croissance et le développement sont omniprésents. Des industries émergentes au commerce mondial, l'avenir se construit sur l'ambition et la résilience.",
-
-    "subheading_5":"Un mode de vie décontracté",
-    "subparagraph_5":" Adoptez un rythme détendu où la simplicité et l'équilibre définissent la vie de tous les jours. Des paysages pittoresques à un fort sentiment d'appartenance à la communauté, profitez d'une atmosphère sans stress qui encourage les loisirs, les relations et le bien-être."
+  "country": {
+    "title": "Heures de prière pour les villes en",
+    "subheading_1": "Découvrir",
+    "subparagraph_1": "Découvrez une histoire riche, une culture diversifiée et des paysages époustouflants. Des villes animées aux escapades paisibles, il y en a pour tous les goûts. Savourez les saveurs locales, découvrez des joyaux cachés et créez des souvenirs inoubliables. L'aventure, la détente et la culture vous attendent !",
+    "subheading_2": "Culture et charme",
+    "subparagraph_2": "Découvrez un mélange de riches traditions, de patrimoine vibrant et d'hospitalité chaleureuse. Des monuments historiques aux merveilles modernes, chaque coin de rue raconte une histoire. Laissez-vous tenter par les saveurs locales, explorez les expressions artistiques et imprégnez-vous du charme unique de la destination.",
+    "subheading_3": "Nature et biodiversité",
+    "subparagraph_3": "Découvrez des paysages à couper le souffle, des écosystèmes diversifiés et une faune abondante. Des forêts luxuriantes aux côtes sereines, la nature s'épanouit à chaque coin de rue. Explorez des sentiers pittoresques, rencontrez des espèces uniques et découvrez la beauté du monde naturel.",
+    "subheading_4": "Économie florissante et croissance",
+    "subparagraph_4": " Un pôle d'innovation, d'opportunités et de progrès. Avec un paysage commercial dynamique et une base économique solide, la croissance et le développement sont omniprésents. Des industries émergentes au commerce mondial, l'avenir se construit sur l'ambition et la résilience.",
+    "subheading_5": "Un mode de vie décontracté",
+    "subparagraph_5": " Adoptez un rythme détendu où la simplicité et l'équilibre définissent la vie de tous les jours. Des paysages pittoresques à un fort sentiment d'appartenance à la communauté, profitez d'une atmosphère sans stress qui encourage les loisirs, les relations et le bien-être."
   },
-  "city":{
-    "school":"Sélectionner l'école de pensée :",
-    "hanafi":"Hanafi",
-    "cities":"Villes",
-    "placeholdersearch":"Recherche de villes...",
-    "shafi":"Shafi/Maliki/Hanbali",
-    "monthlytitle":"Heures de prière mensuelles",
-    "selecttimezone":"Sélectionnez le fuseau horaire :"
-
+  "city": {
+    "school": "Sélectionner l'école de pensée :",
+    "hanafi": "Hanafi",
+    "cities": "Villes",
+    "placeholdersearch": "Recherche de villes...",
+    "shafi": "Shafi/Maliki/Hanbali",
+    "monthlytitle": "Heures de prière mensuelles",
+    "selecttimezone": "Sélectionnez le fuseau horaire :"
   },
-  "thankyou":{
-    "badge-text":"Merci de tendre la main !",
-    "heading":"Nous apprécions votre message",
+  "thankyou": {
+    "badge-text": "Merci de tendre la main !",
+    "heading": "Nous apprécions votre message",
     "paragraph": " Nous vous remercions d'avoir pris contact avec Global Salah. Votre message est important pour nous et nous vous répondrons dès que possible. En attendant, découvrez les heures de prière exactes, le calendrier islamique et des ressources utiles pour rester en contact avec votre foi. JazakAllah Khair !",
-    "sub-heading":"Vous avez d'autres questions ?",
-    "sub-paragraph":"N'hésitez pas à nous envoyer un courriel et nous vous répondrons dans les plus brefs délais.",
-    "buttontext":"Envoyez-nous un courriel à"
+    "sub-heading": "Vous avez d'autres questions ?",
+    "sub-paragraph": "N'hésitez pas à nous envoyer un courriel et nous vous répondrons dans les plus brefs délais.",
+    "buttontext": "Envoyez-nous un courriel à"
   },
-  "makkahtv":{
-    "mainheading":"Makkah TV",
-    "mainparagraph":"Faites l'expérience d'un voyage spirituel grâce aux retransmissions en direct de la Sainte Mosquée - regardez en temps réel et sentez-vous connecté.",
-    "videotitle":"EN DIRECT : Masjid Al-Haram",
-    "subheading":"À propos de l'émission",
-    "subparagraph":"Découvrez l'atmosphère spirituelle du site le plus sacré de l'Islam, assistez au Tawaf autour de la Kaaba et participez à la prière depuis n'importe où dans le monde.",
-    "footertext":"Ce flux est fourni à des fins éducatives et spirituelles."
+  "makkahtv": {
+    "mainheading": "Makkah TV",
+    "mainparagraph": "Faites l'expérience d'un voyage spirituel grâce aux retransmissions en direct de la Sainte Mosquée - regardez en temps réel et sentez-vous connecté.",
+    "videotitle": "EN DIRECT : Masjid Al-Haram",
+    "subheading": "À propos de l'émission",
+    "subparagraph": "Découvrez l'atmosphère spirituelle du site le plus sacré de l'Islam, assistez au Tawaf autour de la Kaaba et participez à la prière depuis n'importe où dans le monde.",
+    "footertext": "Ce flux est fourni à des fins éducatives et spirituelles."
   },
-  "madinatv":{
-    "mainheading":"Madina TV",
-    "mainparagraph":"Faites l'expérience d'un voyage spirituel grâce aux retransmissions en direct de la mosquée du prophète - regardez en temps réel et sentez-vous connecté.",
-    "videotitle":"EN DIRECT : Al-Masjid an-Nabawi",
-    "subheading":"À propos de l'émission",
-    "subparagraph":"Cette retransmission en direct, 24 heures sur 24 et 7 jours sur 7, permet aux téléspectateurs du monde entier de se rendre à la mosquée du prophète à Médine. Plongez dans l'atmosphère sereine du deuxième site le plus sacré de l'islam, assistez aux prières et faites l'expérience de la tranquillité spirituelle depuis n'importe quel endroit du monde.",
-    "footertext":"Cette filière est proposée à des fins d'apprentissage et d'enrichissement spirituel."
+  "madinatv": {
+    "mainheading": "Madina TV",
+    "mainparagraph": "Faites l'expérience d'un voyage spirituel grâce aux retransmissions en direct de la mosquée du prophète - regardez en temps réel et sentez-vous connecté.",
+    "videotitle": "EN DIRECT : Al-Masjid an-Nabawi",
+    "subheading": "À propos de l'émission",
+    "subparagraph": "Cette retransmission en direct, 24 heures sur 24 et 7 jours sur 7, permet aux téléspectateurs du monde entier de se rendre à la mosquée du prophète à Médine. Plongez dans l'atmosphère sereine du deuxième site le plus sacré de l'islam, assistez aux prières et faites l'expérience de la tranquillité spirituelle depuis n'importe quel endroit du monde.",
+    "footertext": "Cette filière est proposée à des fins d'apprentissage et d'enrichissement spirituel."
   },
-  "ramadanpage":{
-    "hijri":"1446 Hijri",
-    "heading":"Calendrier du Ramadan 2025",
-    "suhoor":"Suhoor (Fajr)",
-    "iftar":"Iftar (Maghrib)",
-    "suhoorends":"Fin du Suhoor",
-    "iftartime":"Heure de l'Iftar",
-    "footertext":"Suhoor se termine à l'heure de Fajr - Iftar commence à l'heure de Maghrib"
+  "ramadanpage": {
+    "hijri": "1446 Hijri",
+    "heading": "Calendrier du Ramadan 2025",
+    "suhoor": "Suhoor (Fajr)",
+    "iftar": "Iftar (Maghrib)",
+    "suhoorends": "Fin du Suhoor",
+    "iftartime": "Heure de l'Iftar",
+    "footertext": "Suhoor se termine à l'heure de Fajr - Iftar commence à l'heure de Maghrib"
   },
-  "namesofallah":{
-    "heading":"Les 99 noms d'Allah",
-    "paragraph":"Asma ul-Husna - Les beaux noms d'Allah avec leur signification et leur prononciation",
-    "subparagraph":"Les 99 noms d'Allah, ou Asma'ul Husna, reflètent sa miséricorde, sa sagesse et sa grandeur. Chaque nom a une signification particulière, guidant les croyants vers la foi et la paix intérieure."
+  "namesofallah": {
+    "heading": "Les 99 noms d'Allah",
+    "paragraph": "Asma ul-Husna - Les beaux noms d'Allah avec leur signification et leur prononciation",
+    "subparagraph": "Les 99 noms d'Allah, ou Asma'ul Husna, reflètent sa miséricorde, sa sagesse et sa grandeur. Chaque nom a une signification particulière, guidant les croyants vers la foi et la paix intérieure."
+  },
+  "bukharipage": {
+    "title": "Sahih al-Bukhari",
+    "desc": "La collection de Hadiths la plus authentique compilée par l'Imam Muhammad al-Bukhari",
+    "heading-2": "Collection Sahih al-Bukhari"
+  },
+  "muslimpage": {
+    "title": "Sahih Muslim",
+    "desc": "La collection de Hadiths la plus authentique compilée par l'Imam Muslim ibn al-Hajjaj",
+    "heading-2": "Collection Sahih Muslim"
+  },
+  "jamiapage": {
+    "title": "Jamia Tirmazi",
+    "desc": "Une collection renommée de Hadiths compilée par l'Imam Abu Isa al-Tirmidhi",
+    "heading-2": "Collection Jamia Tirmazi"
+  },
+  "sunanpage": {
+    "title": "Sunan Abu Dawud",
+    "desc": "Une collection renommée de Hadiths compilée par l'Imam Abu Dawud",
+    "heading-2": "Collection Sunan Abu Dawud"
+  },
+  "nisaipage": {
+    "title": "Sunan An-Nasa'i",
+    "desc": "Une collection renommée de Hadiths compilée par l'Imam An-Nasa'i",
+    "heading-2": "Collection Sunan An-Nasa'i"
   }
-
-  
 }

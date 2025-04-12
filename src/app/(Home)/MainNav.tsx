@@ -1,104 +1,63 @@
 "use client"
-
 import type React from "react"
-
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Calendar, Tv, ChevronDown } from "lucide-react"
 import { useTranslation } from "@/hooks/useTranslation"
 import { checkIsPathnameIsEqualToLang, urlSplitter } from "@/lib"
-import { Calendar, Tv, ChevronDown } from "lucide-react"
 
 export function MainNav() {
   const pathname = usePathname()
   const currentLang = urlSplitter(pathname)
-
   const { t } = useTranslation("navigation")
   const isLang = checkIsPathnameIsEqualToLang(currentLang)
 
   const createPath = (path: string) => (isLang ? `/${currentLang}${path}` : path)
-
   const isActive = (path: string) => pathname === path
-
   const getText = (key: string) => (isLang ? t(`navigation.${key}`) : key)
 
   return (
-    <nav className="hidden space-x-6 md:flex items-center">
-      {/* ===== REGULAR LINKS ===== */}
+    <div className="flex items-center space-x-6">
+      <nav className="hidden space-x-6 md:flex items-center">
+        {/* Home Link */}
+        <NavLink href={createPath("/")} isActive={isActive(createPath("/"))} text={getText("home")} />
 
-      {/* Home Link */}
-      <NavLink href={createPath("/")} isActive={isActive(createPath("/"))} text={getText("home")} />
-
-      {/* About Us Link */}
-      <NavLink href={createPath("/about-us")} isActive={isActive(createPath("/about-us"))} text={getText("aboutUs")} />
-
-      {/* Countries Link */}
-      <NavLink
-        href={createPath("/countries")}
-        isActive={isActive(createPath("/countries"))}
-        text={getText("countries")}
-      />
-
-      {/* Calendar Dropdown */}
-      <NavDropdown
-        icon={<Calendar className="h-3 w-3 transition-transform group-hover:scale-110 duration-200" />}
-        text={getText("calender")}
-        isActive={isActive(createPath("/islamic-calender")) || isActive(createPath("/ramadan-calender"))}
-      >
-        {/* Islamic Calendar Link */}
-        <DropdownLink
-          href={createPath("/islamic-calender")}
-          isActive={isActive(createPath("/islamic-calender"))}
-          text={getText("islamicCalender")}
+        {/* About Us Link */}
+        <NavLink
+          href={createPath("/about-us")}
+          isActive={isActive(createPath("/about-us"))}
+          text={getText("aboutUs")}
         />
 
-        {/* Ramadan Calendar Link */}
-        <DropdownLink
-          href={createPath("/ramadan-calender")}
-          isActive={isActive(createPath("/ramadan-calender"))}
-          text={getText("ramadan")}
-        />
-      </NavDropdown>
-
-      <NavLink href={createPath("/duas")} isActive={isActive(createPath("/duas"))} text={getText("duas")} />
-      {/* Live TV Dropdown */}
-      <NavDropdown
-        icon={<Tv className="h-3 w-3 transition-transform group-hover:scale-110 duration-200" />}
-        text={getText("livetv")}
-        isActive={isActive(createPath("/makkah-tv")) || isActive(createPath("/madina-tv"))}
-      >
-        {/* Makkah TV Link */}
-        <DropdownLink
-          href={createPath("/makkah-tv")}
-          isActive={isActive(createPath("/makkah-tv"))}
-          text={getText("makkahTv")}
+        {/* Countries Link */}
+        <NavLink
+          href={createPath("/countries")}
+          isActive={isActive(createPath("/countries"))}
+          text={getText("countries")}
         />
 
-        {/* Madina TV Link */}
-        <DropdownLink
-          href={createPath("/madina-tv")}
-          isActive={isActive(createPath("/madina-tv"))}
-          text={getText("madinaTv")}
+
+        {/* Forum Link */}
+        <NavLink href={createPath("/forum")} isActive={isActive(createPath("/forum"))} text={getText("forum")} />
+
+        {/* Blogs Link */}
+        <NavLink href={createPath("/blogs")} isActive={isActive(createPath("/blogs"))} text={getText("blogs")} />
+
+        {/* Contact Link */}
+        <NavLink
+          href={createPath("/contact-us")}
+          isActive={isActive(createPath("/contact-us"))}
+          text={getText("contactUs")}
         />
-      </NavDropdown>
 
-      {/* Duas Link */}
+     
+      </nav>
 
-      {/* Forum Link */}
-      <NavLink href={createPath("/forum")} isActive={isActive(createPath("/forum"))} text={getText("forum")} />
-
-      {/* Blogs Link */}
-      <NavLink href={createPath("/blogs")} isActive={isActive(createPath("/blogs"))} text={getText("blogs")} />
-
-      {/* Contact Link */}
-      <NavLink href={createPath("/contact-us")} isActive={isActive(createPath("/contact-us"))} text={getText("contactUs")} />
-
-      {/* ===== END OF LINKS ===== */}
-    </nav>
+    </div>
   )
 }
 
-// Regular navigation link component
 function NavLink({ href, isActive, text }: { href: string; isActive: boolean; text: string }) {
   return (
     <Link
@@ -119,7 +78,6 @@ function NavLink({ href, isActive, text }: { href: string; isActive: boolean; te
   )
 }
 
-// Dropdown navigation component
 function NavDropdown({
   icon,
   text,
@@ -146,7 +104,6 @@ function NavDropdown({
         )}
       </button>
 
-      {/* Dropdown content */}
       <div className="absolute left-1/2 -translate-x-1/2 mt-1 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out z-50 transform origin-top scale-95 group-hover:scale-100">
         <div className="py-1 rounded-md shadow-lg bg-gradient-to-b from-slate-800 to-slate-900 border border-slate-700 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 opacity-50"></div>
@@ -157,7 +114,6 @@ function NavDropdown({
   )
 }
 
-// Dropdown link component
 function DropdownLink({ href, isActive, text }: { href: string; isActive: boolean; text: string }) {
   return (
     <Link
@@ -169,4 +125,3 @@ function DropdownLink({ href, isActive, text }: { href: string; isActive: boolea
     </Link>
   )
 }
-
