@@ -34,7 +34,7 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
         <SheetHeader className="border-b border-slate-700 pb-4">
           <div className="flex items-center justify-between">
             <SheetTitle className=" font-bold">{getText("title")}</SheetTitle>
-            <button onClick={onClose} className="rounded-full p-1 hover:bg-slate-700 transition-colors">
+            <button onClick={onClose} className="rounded-full p-1 hover:bg-emerald-700 transitio text-whiten-colors">
             </button>
           </div>
         </SheetHeader>
@@ -44,13 +44,13 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
           <Link
             href={createPath("/duas")}
             className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
-              isActive(createPath("/duas")) ? "bg-slate-700" : ""
+              isActive(createPath("/duas")) ? "bg-emerald-700 text-white" : ""
             }`}
             onClick={onClose}
           >
             <Book className="h-4 w-4" />
             <span>{getText("duas")}</span>
-            {isActive(createPath("/duas")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-primary"></span>}
+            {isActive(createPath("/duas")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
           </Link>
 
           {/* Calendar Dropdown */}
@@ -159,7 +159,7 @@ function SidebarDropdown({
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="relative">
       <CollapsibleTrigger
         className={`flex items-center justify-between w-full px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
-          isActive ? "bg-slate-700" : ""
+          isActive ? "bg-emerald-700 text-white" : ""
         }`}
       >
         <div className="flex items-center gap-2">
@@ -167,7 +167,7 @@ function SidebarDropdown({
           <span>{title}</span>
         </div>
         <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
-        {isActive && <span className="absolute left-0 top-0 bottom-0 w-1 bg-primary"></span>}
+        {isActive && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
       </CollapsibleTrigger>
       <CollapsibleContent className="pl-10 pr-2 py-1 space-y-1">{children}</CollapsibleContent>
     </Collapsible>
@@ -189,7 +189,7 @@ function SidebarLink({
     <Link
       href={href}
       className={`block px-4 py-2 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors relative ${
-        isActive ? "bg-slate-700 font-medium " : ""
+        isActive ? "bg-emerald-700 text-white  " : ""
       }`}
       onClick={onClick}
     >
@@ -197,7 +197,7 @@ function SidebarLink({
       {isActive && (
         <motion.div
           layoutId="activeSidebarLink"
-          className="absolute left-0 top-0 bottom-0 w-1 bg-primary"
+          className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"
           transition={{ type: "spring", stiffness: 380, damping: 30 }}
         />
       )}
