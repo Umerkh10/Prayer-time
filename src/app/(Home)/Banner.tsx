@@ -31,11 +31,11 @@ function Banner() {
 
         const timer = setTimeout(() => {
             localStorage.setItem("loading", "false");
-            setIsLoading(false); // This will now execute AFTER 2 seconds
+            setIsLoading(false); 
         }, 1000);
 
-        return () => clearTimeout(timer); // Cleanup timeout on unmount
-    }, []);
+        return () => clearTimeout(timer); 
+    }, [])
 
 
 
