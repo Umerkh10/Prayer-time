@@ -18,10 +18,11 @@
     "hadees": "Hadith",
     "sahihbukhari": "Sahih-Bukhari",
     "sahihmuslim": "Sahih-Muslim",
-    "jamiatirmazi":"Jamia-Tirmazi",
-    "sunanabudawood":"Sunan-Abu-Dawud",
-    "sunannisai":"Sunan-Nisai",
-    "blogs": "Blogs"
+    "jamiatirmazi": "Jamia-Tirmazi",
+    "sunanabudawood": "Sunan-Abu-Dawud",
+    "sunannisai": "Sunan-Nisai",
+    "blogs": "Blogs",
+    "qaza-namaz-calculator": "Qaza Namaz Calculator"
   },
   "banner": {
     "title": "Bienvenue sur Global Salah",
@@ -748,8 +749,60 @@
     "desc": "Une collection renommée de Hadiths compilée par l'Imam An-Nasa'i",
     "heading-2": "Collection Sunan An-Nasa'i"
   },
-  "blog":{
-    "title":"Articles de blog et réflexions",
-    "desc":"Global Salah est votre plateforme de référence pour les temps de prière exacts dans le monde entier, ainsi qu'une riche collection de fonctionnalités pour améliorer votre voyage spirituel. Des calendriers de prière et des duas essentiels aux forums communautaires et aux émissions en direct, nous fournissons un contenu fiable, perspicace et engageant pour soutenir et inspirer les musulmans du monde entier."
-  }
+  "blog": {
+    "title": "Articles de blog et réflexions",
+    "desc": "Global Salah est votre plateforme de référence pour les temps de prière exacts dans le monde entier, ainsi qu'une riche collection de fonctionnalités pour améliorer votre voyage spirituel. Des calendriers de prière et des duas essentiels aux forums communautaires et aux émissions en direct, nous fournissons un contenu fiable, perspicace et engageant pour soutenir et inspirer les musulmans du monde entier."
+  },
+  "qazanamaz": {
+  "heading": "Calculateur de Prières Qaza",
+  "paragraph": "Calculez vos prières manquées depuis l'âge de la maturité",
+  "title": "Programme des 5 prières obligatoires à effectuer chaque jour",
+  "rakat": "Rakats",
+  "dailytotal": "Total Quotidien",
+  "rakatdistribute": "Répartition des Rakats",
+  "title2": "CALCUL DES PRIÈRES QAZA",
+  "desc2": "Veuillez remplir toutes les informations requises ci-dessous",
+  "todaydate": "Date d’aujourd’hui",
+  "dob": "Date de naissance",
+  "gender": "Genre",
+  "male": "Homme",
+  "female": "Femme",
+  "maturity": "Âge de la Maturité (Baligh)",
+  "years": "ans",
+  "default": "Par défaut",
+  "yearsfor": "ans pour",
+  "periodtitle": "Jours moyens de menstruation par mois",
+  "fromdays": "3 jours",
+  "enddays": "10 jours",
+  "selected": "Sélectionné :",
+  "days": "jours",
+  "perioddesc": "En Islam, les femmes ne doivent pas rattraper les prières manquées pendant leurs règles.",
+  "title3": "Cela dépend de votre intention — c’est entre vous et Allah. Si vous n’êtes pas sûr(e), il est permis de ne pas les rattraper.",
+  "point1": "a. Moins de jours complets où les 5 prières ont été accomplies uniquement pendant le Ramadan (soyez spécifique)",
+  "formula": "29 jours/an de Ramadan × nombre d'années",
+  "point2": "b. Moins de jours complets où les 5 prières ont été accomplies (hors Ramadan) dans votre vie passée",
+  "tentatively": "Approximativement",
+  "calculate": "Calculer les Prières Qaza",
+  "title4": "Résultats de vos Prières Qaza",
+  "months": "mois",
+  "todayage": "Votre âge aujourd’hui",
+  "misseddays": "Jours de prières manquées",
+  "misseddaysdesc": "Jours de prières manquées que vous devez encore effectuer",
+  "calculationdetail": "Détails du calcul",
+  "lessdays": "Moins de jours pendant les 10 premières années de votre vie",
+  "fixeddays": "Fixé à 365 j/an + 3 j max. pour les années bissextiles",
+  "pointstitle": "Cela dépend de votre intention — c’est entre vous et Allah. Si vous n’êtes pas sûr(e), il est permis de ne pas les rattraper.",
+  "pointsi": "(I) Il n'y a eu que quelques jours complets durant le Ramadan où les 5 prières quotidiennes ont été accomplies.",
+  "pointsidesc": "29 jours/an × années",
+  "pointsii": "(II) Il y a eu peu de jours dans ma vie passée (hors Ramadan) où j’ai accompli les 5 prières quotidiennes.",
+  "pointsiii": "(III) Périodes menstruelles plus courtes",
+  "pointsiiidesc1": "jours/mois ×",
+  "pointsiiidesc2": "mois",
+  "pending": "Prières en attente (manquées après l'âge de 10 ans)",
+  "note": "Note Importante",
+  "notedesc": "Qu'Allah me donne la force de rattraper toutes mes prières manquées (Qaza Namaz) et me bénisse pour que je prie à l’heure à l’avenir. Ce calculateur donne une estimation générale. Pour des conseils détaillés, veuillez consulter un érudit islamique qualifié qui pourra vous guider selon votre situation et votre école de pensée.",
+  "notedesc2": "Aameen, je demande humblement vos prières.",
+  "recalculate": "Recalculer les Prières Qaza"
+}
+
 }

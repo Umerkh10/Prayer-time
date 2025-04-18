@@ -21,7 +21,8 @@
     "jamiatirmazi":"Jamia-Tirmazi",
     "sunanabudawood":"Sunan-Abu-Dawud",
     "sunannisai":"Sunan-Nisai",
-    "blogs":"Blogs"
+    "blogs":"Blogs",
+    "qaza-namaz-calculator":"Qaza Namaz Calculator"
   },
   "banner": {
     "title": "Welcome to Global Salah",
@@ -751,6 +752,59 @@
   "blog":{
     "title":"Blog Articles & Insights",
     "desc":"Global Salah is your go-to platform for accurate prayer times worldwide, along with a rich collection of features to enhance your spiritual journey. From prayer calendars and essential duas to community forums and live broadcasts, we provide reliable, insightful, and engaging content to support and inspire Muslims around the globe."
+  },
+  "qazanamaz":{
+    "heading":"Qaza Namaz Calculator",
+    "paragraph":"Calculate your missed prayers from the age of maturity",
+    "title":"Namaz Schedule of 5 Farz Namaz to be offered daily",
+    "rakat":"Rakats",
+    "dailytotal":"Daily Total",
+    "rakatdistribute":"Rakat Distribution",
+    "title2":"CALCULATION FOR QAZA NAMAZ",
+    "desc2":"Please fill in all required information below",
+    "todaydate":"Date today",
+    "dob":"Date Of Birth",
+    "gender":"Gender",
+    "male":"Male",
+    "female":"Female",
+    "maturity":"Age of Maturity (Baligh)",
+    "years":"years",
+    "default":"Default",
+    "yearsfor":"years for",
+    "periodtitle":"Average Period Days Per Month",
+    "fromdays":"3 days",
+    "enddays":"10 days",
+    "selected":"Selected:",
+    "days":"days",
+    "perioddesc":"In Islam, women do not have to make up the prayers they missed while they were on their period.",
+    "title3":"It depends on your intention—it's between you and Allah. If you're not sure, it's okay to skip it.",
+    "point1":"a. Less, full days of all 5 Namaz offered in Ramzan only (be specific)",
+    "formula":"29 days/yr of Ramzan × no. of years",
+    "point2":" b. Less full days of all 5 Namaz offered (other than Ramzan) in past life",
+    "tentatively":"Tentatively",
+    "calculate":"Calculate Qaza Namaz",
+    "title4":"Your Qaza Namaz Results",
+    "months":"months",
+    "todayage":"Your Age Today",
+    "misseddays":"Missed Prayer Days",
+    "misseddaysdesc":"Days of missed prayers you still need to offer",
+    "calculationdetail":"Calculation Details",
+    "lessdays":"Less days of 1st 10 yrs of your life",
+    "fixeddays":"Fixed 365 d/yr + 3d max. for leap yr ",
+    "pointstitle":"It depends on your intention—it's between you and Allah. If you're not sure, it's okay to skip it.",
+    "pointsi":"(I) There were only a few complete days during Ramadan when all 5 daily prayers (Namaz) were performed.",
+    "pointsidesc":"29 days/yr × years",
+    "pointsii":"(II) There were fewer days in my past (outside of Ramadan) when I prayed all 5 daily Namaz.",
+    "pointsiii":"(III) Shorter menstrual periods",
+    "pointsiiidesc1":"days/month ×",
+    "pointsiiidesc2":"months",
+    "pending":"Pending Prayers (Missed after age 10)",
+    "note":"Important Note",
+    "notedesc":"May Allah give me the strength to make up all my missed prayers (Qaza Namaz) and bless me to pray on time in the future. This calculator gives a general estimate. For detailed advice, please speak to a qualified Islamic scholar who can guide you based on your situation and the school of thought you follow.",
+    "notedesc2":"Aameen, I kindly ask for your prayers.",
+    "recalculate":"Recalculate Qaza Namaz"
+
+
   }
   
 }

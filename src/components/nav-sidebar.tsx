@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation"
 import Link from "next/link"
 import { ChevronDown, Calendar, Tv, Book, X } from "lucide-react"
 import { motion } from "framer-motion"
-
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { useTranslation } from "@/hooks/useTranslation"
@@ -29,7 +28,7 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent
         side="right"
-        className="w-80 z-[99999] bg-gradient-to-b from-slate-100 to-slate-200 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border-l border-slate-700 "
+        className="w-80 z-[9999999999999] bg-gradient-to-b from-slate-100 to-slate-200 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border-l border-slate-700 "
       >
         <SheetHeader className="border-b border-slate-700 pb-4">
           <div className="flex items-center justify-between">
@@ -51,6 +50,18 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
             <Book className="h-4 w-4" />
             <span>{getText("duas")}</span>
             {isActive(createPath("/duas")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/qaza-namaz-calculator")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
+              isActive(createPath("/qaza-namaz-calculator")) ? "bg-emerald-700 text-white" : ""
+            }`}
+            onClick={onClose}
+          >
+            <Book className="h-4 w-4" />
+            <span>{getText("qaza-namaz-calculator")}</span>
+            {isActive(createPath("/qaza-namaz-calculator")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
           </Link>
 
           {/* Calendar Dropdown */}

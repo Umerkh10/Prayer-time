@@ -63,7 +63,7 @@ function MadinaPage() {
             <div className="relative pb-[56.25%] h-0 overflow-hidden">
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/Kt7hKHlArl8?si=O93eIjgscDnOV2uc"
+                src="https://www.youtube.com/embed/yWw0DWJQVtU?si=g1UpXeDP4j_9ioTT"
                 title="Madina TV Live Stream"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"

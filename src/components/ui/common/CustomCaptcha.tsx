@@ -35,7 +35,7 @@ function CustomCaptcha({ setIsVerified }: any) {
       ref={recaptchaRef}
       onChange={handleChange}
       onExpired={handleExpired}
-      style={{ zIndex: 1002, position: "relative" }}
+      style={{ zIndex: 9999999, position: "relative" }}
     />
   );
 }

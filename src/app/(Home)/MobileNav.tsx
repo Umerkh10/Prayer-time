@@ -97,6 +97,13 @@ const pathname = usePathname()
               {isLang ? t("navigation.blogs") : "Blogs"} 
             </Link>
             <Link
+              href={ isLang ? `/${currentLang}/qaza-namaz-calculator` : "/qaza-namaz-calculator"}
+              onClick={() => setOpen(false)}
+              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
+            >
+              {isLang ? t("navigation.qaza-namaz-calculator") : "Qaza Namaz Calculator"} 
+            </Link>
+            <Link
               href={ isLang ? `/${currentLang}/sahih-bukhari` : "/sahih-bukhari"}
               onClick={() => setOpen(false)}
               className="block text-base font-semibold text-white hover:text-gray-200 capitalize "

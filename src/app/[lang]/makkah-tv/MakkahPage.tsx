@@ -62,7 +62,7 @@ function MakkahPage() {
                 <div className="relative pb-[56.25%] h-0 overflow-hidden">
                   <iframe
                     className="absolute top-0 left-0 w-full h-full"
-                    src="https://www.youtube.com/embed/tko4c06NJeA?si=y2uqr5Q6_1M836ju"
+                    src="https://www.youtube.com/embed/2Gub8-cSH9c?si=hPtS4OS4RGIRdD9I"
                     title="Makkah TV Live Stream"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
