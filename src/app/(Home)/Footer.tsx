@@ -160,19 +160,30 @@ function Footer() {
                 </Link>
               </li>
 
-              <li>
-                {" "}
-                <Link
-                  href={
-                    isLang
-                      ? `/${currentLang}/99-names-of-allah`
-                      : "/99-names-of-allah"
-                  }
+              <li>{" "}
+                <Link href={isLang ? `/${currentLang}/99-names-of-allah` : "/99-names-of-allah"}
                   className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
                 >
                   {isLang ? t("navigation.namesallah") : "99-Names-Of-Allah"}{" "}
                 </Link>
               </li>
+
+              <li>{" "}
+                <Link href={isLang ? `/${currentLang}/qaza-namaz-calculator` : "/qaza-namaz-calculator"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
+                >
+                  {isLang ? t("navigation.qaza-namaz-calculator") : "qaza-namaz-calculator"}{" "}
+                </Link>
+              </li>
+
+              <li>{" "}
+                <Link href={isLang ? `/${currentLang}/qibla-finder` : "/qibla-finder"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
+                >
+                  {isLang ? t("navigation.qiblafinder") : "qiblafinder"}{" "}
+                </Link>
+              </li>
+
             </ul>
           </div>
 

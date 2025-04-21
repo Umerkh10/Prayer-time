@@ -2,7 +2,7 @@
 import * as React from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { ChevronDown, Calendar, Tv, Book, X } from "lucide-react"
+import { ChevronDown, Calendar, Tv, Book, X, Calculator, CompassIcon } from "lucide-react"
 import { motion } from "framer-motion"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -59,9 +59,21 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
             }`}
             onClick={onClose}
           >
-            <Book className="h-4 w-4" />
+            <Calculator className="h-4 w-4" />
             <span>{getText("qaza-namaz-calculator")}</span>
             {isActive(createPath("/qaza-namaz-calculator")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/qibla-finder")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
+              isActive(createPath("/qibla-finder")) ? "bg-emerald-700 text-white" : ""
+            }`}
+            onClick={onClose}
+          >
+            <CompassIcon className="h-4 w-4" />
+            <span>{getText("qiblafinder")}</span>
+            {isActive(createPath("/qibla-finder")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
           </Link>
 
           {/* Calendar Dropdown */}

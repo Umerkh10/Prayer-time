@@ -22,7 +22,8 @@
     "sunanabudawood":"Sunan-Abu-Dawud",
     "sunannisai":"Sunan-Nisai",
     "blogs":"Blogs",
-    "qaza-namaz-calculator":"Qaza Namaz Calculator"
+    "qaza-namaz-calculator":"Qaza Namaz Calculator",
+    "qiblafinder":"Qibla Finder"
   },
   "banner": {
     "title": "Welcome to Global Salah",
@@ -315,7 +316,7 @@
     "footertitle": "Global Salah",
     "footerdesc": "Global Salah is a website dedicated to providing accurate and convenient Islamic prayer time information to Muslims around the world.",
     "quicklinkstitle": "Quick links",
-    "companytitle": "Quick links",
+    "companytitle": "Featured Links",
     "otherlinktitle": "Policies",
     "termslink": "Terms and conditions",
     "privacylink": "Privacy policy",
@@ -803,8 +804,56 @@
     "notedesc":"May Allah give me the strength to make up all my missed prayers (Qaza Namaz) and bless me to pray on time in the future. This calculator gives a general estimate. For detailed advice, please speak to a qualified Islamic scholar who can guide you based on your situation and the school of thought you follow.",
     "notedesc2":"Aameen, I kindly ask for your prayers.",
     "recalculate":"Recalculate Qaza Namaz"
-
-
+  },
+  
+  "qibla":{
+    "tab1":"Compass",
+    "tab2":"Information",
+    "title":"Qibla Direction",
+    "desc":"How to Use the Qibla Compass",
+    "point1":"Hold your device flat with the screen facing up",
+    "point2":"The green arrow points to the Qibla direction",
+    "point3":"Rotate your body until the green arrow points forward (to the top of your screen)",
+    "point4":"When the compass glows green, you're facing the Qibla direction",
+    "point5":"For best results, calibrate your compass by moving your device in a figure-8 pattern",
+    "point6":"If compass is not available, use the manual rotation buttons",
+    "qiblais":"Qibla is",
+    "fromnorth":"from North",
+    "distancetokaaba":"Distance to Kaaba:",
+    "location":"Getting your location...",
+    "calibration":"Compass needs calibration",
+    "instructions":"Move your device in a figure-8 pattern...",
+    "N":"N",
+    "S":"S",
+    "E":"E",
+    "W":"W",
+    "qibla1":"Qibla",
+    "devicepoint":"Your device is pointing:",
+    "qibladirection":"You are facing the Qibla direction!",
+    "compassnot":" Compass not available. Use manual rotation below.",
+    "currenthead":"Current heading:",
+    "iospermission":"iOS requires permission to use the compass.",
+    "enablecompass":"Enable Compass",
+    "button1":"Refresh Location ",
+    "button2":"Calibrate",
+    "tip1":"For best results, hold your device flat and use outdoors.",
+    "tip":"Tip:",
+    "tip2":"Compass is not available on Desktop and Laptops also If the compass seems inaccurate, try calibrating it by moving your device in a figure-8 pattern.",
+    "aboutqibla":"About Qibla Direction",
+    "aboutqibladesc":"Information about the Qibla and how to find it",
+    "question1":"What is the Qibla?",
+    "answer1":"The Qibla is the direction that Muslims face during prayer. It points toward the Kaaba, a sacred building located in Mecca, Saudi Arabia. Muslims around the world face this direction during their five daily prayers.",
+    "question2":"How is Qibla Direction Calculated? ",
+    "answer2":"The Qibla direction is calculated using spherical trigonometry, taking into account your current location's latitude and longitude, and the coordinates of the Kaaba in Mecca (21.4225° N, 39.8262° E).",
+    "distancetomecca":"Your Distance to Mecca ",
+    "distanceline1":"You are approximately",
+    "distanceline2":"away from the Kaaba in Mecca.",
+    "locationbased":" Based on your location in ",
+    "readinghead":"Tips for Accurate Readings",
+    "reading1":"Hold your device flat with the screen facing up  ",
+    "reading2":"Use outdoors away from magnetic interference ",
+    "reading3":"Calibrate your compass regularly",
+    "reading4":"Allow location and compass permissions when prompted  "
   }
   
 }

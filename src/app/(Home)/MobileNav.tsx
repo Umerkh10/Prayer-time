@@ -1,154 +1,277 @@
 "use client"
-
-import { Menu, X } from 'lucide-react'
+import React, { useState } from "react"
+import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { useState } from "react"
-
+import { ChevronDown, Calendar, Tv, Book, X, Calculator, CompassIcon, Menu, Home, Globe2 } from "lucide-react"
+import { MdOutlineForum } from "react-icons/md";
+import { IoNewspaperSharp } from "react-icons/io5";
+import { motion } from "framer-motion"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+import { useTranslation } from "@/hooks/useTranslation"
+import { checkIsPathnameIsEqualToLang, urlSplitter } from "@/lib"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { useTranslation } from '@/hooks/useTranslation'
-import { usePathname } from 'next/navigation'
-import { checkIsPathnameIsEqualToLang, urlSplitter } from '@/lib'
+
+
 
 export function MobileNav() {
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
-const pathname = usePathname()
   const currentLang = urlSplitter(pathname)
-
-  
   const { t } = useTranslation("navigation")
   const isLang = checkIsPathnameIsEqualToLang(currentLang)
+
+  const createPath = (path: string) => (isLang ? `/${currentLang}${path}` : path)
+  const isActive = (path: string) => pathname === path
+  const getText = (key: string) => (isLang ? t(`navigation.${key}`) : key)
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" className="px-2 text-white hover:bg-white/10">
+        <Button variant="ghost" className="px-2 text-white hover:bg-white/10 hover:text-zinc-50">
           <Menu className="h-6 w-6" />
           <span className="sr-only">Toggle menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-72 bg-[#003422] p-0 z-[99999]">
-        <ScrollArea className="h-full px-6">
-          <div className="mt-6 space-y-5">
-            <Link
-              href={isLang ? `/${currentLang}` : "/"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize"
-            >
-           {isLang ? t("navigation.home") : "Home"}
-            </Link>
-
-            <Link
-              href={isLang ? `/${currentLang}/countries` : "/countries"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize"
-            >
-             {isLang ? t("navigation.countries") : "countries"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/islamic-calender` : "/islamic-calender"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize"
-            >
-              {isLang ? t("navigation.islamicCalender") : "islamicCalender"}  
-            </Link>
-            <Link
-              href={isLang ? `/${currentLang}/duas` : "/duas"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize"
-            >
-              {isLang ? t("navigation.duas") : "duas"}  
-            </Link>
-
-            <Link
-              href={ isLang ? `/${currentLang}/makkah-tv` : "/makkah-tv"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.makkahTv") : "makkahTv"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/madina-tv` : "/madina-tv"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.madinaTv") : "madinaTv"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/ramadan-calender` : "/ramadan-calender"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.ramadan") : "ramadan"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/forum` : "/forum"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.forum") : "Forum"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/blogs` : "/blogs"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.blogs") : "Blogs"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/qaza-namaz-calculator` : "/qaza-namaz-calculator"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.qaza-namaz-calculator") : "Qaza Namaz Calculator"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/sahih-bukhari` : "/sahih-bukhari"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.sahihbukhari") : "sahihbukhari"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/sahih-muslim` : "/sahih-muslim"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.sahihmuslim") : "sahihmuslim"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/jamia-tirmazi` : "/jamia-tirmazi"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.jamiatirmazi") : "jamiatirmazi"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/sunan-abu-dawood` : "/sunan-abu-dawood"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.sunanabudawood") : "sunanabudawood"} 
-            </Link>
-            <Link
-              href={ isLang ? `/${currentLang}/sunan-nisai` : "/sunan-nisai"}
-              onClick={() => setOpen(false)}
-              className="block text-base font-semibold text-white hover:text-gray-200 capitalize "
-            >
-              {isLang ? t("navigation.sunannisai") : "sunannisai"} 
-            </Link>
-
+      <SheetContent
+        side="right"
+        className="w-80 z-[9999999999999] bg-gradient-to-b from-slate-100 to-slate-200 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border-l border-slate-700 overflow-y-auto"
+      >
+        <SheetHeader className="border-b border-slate-700 pb-4">
+          <div className="flex items-center justify-between">
+            <SheetTitle className=" font-bold">{getText("title")}</SheetTitle>
+            <button onClick={() => setOpen(false)} className="rounded-full p-1 hover:bg-emerald-700 transitio text-whiten-colors">
+            </button>
           </div>
-        </ScrollArea>
-        <Button
-          variant="ghost"
-          className=" absolute right-4 top-4 text-white hover:bg-white/10"
-          onClick={() => setOpen(false)}
-        >
-        </Button>
+        </SheetHeader>
+
+        <div className="mt-6 space-y-2">
+          {/* Duas Link */}
+          <Link
+            href={createPath("/")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${isActive(createPath("/")) ? "bg-emerald-700 text-white" : ""
+              }`}
+
+          >
+            <Home className="h-4 w-4" />
+            <span>{getText("home")}</span>
+            {isActive(createPath("/")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/countries")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${isActive(createPath("/countries")) ? "bg-emerald-700 text-white" : ""
+              }`}
+
+          >
+            <Globe2 className="h-4 w-4" />
+            <span>{getText("countries")}</span>
+            {isActive(createPath("/countries")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/duas")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${isActive(createPath("/duas")) ? "bg-emerald-700 text-white" : ""
+              }`}
+
+          >
+            <Book className="h-4 w-4" />
+            <span>{getText("duas")}</span>
+            {isActive(createPath("/duas")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+
+          <Link
+            href={createPath("/forum")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${isActive(createPath("/forum")) ? "bg-emerald-700 text-white" : ""
+              }`}
+
+          >
+            <MdOutlineForum  className="h-4 w-4" />
+            <span>{getText("forum")}</span>
+            {isActive(createPath("/forum")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/blogs")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${isActive(createPath("/blogs")) ? "bg-emerald-700 text-white" : ""
+              }`}
+
+          >
+            <IoNewspaperSharp  className="h-4 w-4" />
+            <span>{getText("blogs")}</span>
+            {isActive(createPath("/blogs")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/qaza-namaz-calculator")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${isActive(createPath("/qaza-namaz-calculator")) ? "bg-emerald-700 text-white" : ""
+              }`}
+
+          >
+            <Calculator className="h-4 w-4" />
+            <span>{getText("qaza-namaz-calculator")}</span>
+            {isActive(createPath("/qaza-namaz-calculator")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/qibla-finder")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${isActive(createPath("/qibla-finder")) ? "bg-emerald-700 text-white" : ""
+              }`}
+
+          >
+            <CompassIcon className="h-4 w-4" />
+            <span>{getText("qiblafinder")}</span>
+            {isActive(createPath("/qibla-finder")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          {/* Calendar Dropdown */}
+          <SidebarDropdown
+            icon={<Calendar className="h-4 w-4" />}
+            title={getText("calender")}
+            isActive={isActive(createPath("/islamic-calender")) || isActive(createPath("/ramadan-calender"))}
+          >
+            <SidebarLink
+              href={createPath("/islamic-calender")}
+              isActive={isActive(createPath("/islamic-calender"))}
+              text={getText("islamicCalender")}
+
+            />
+            <SidebarLink
+              href={createPath("/ramadan-calender")}
+              isActive={isActive(createPath("/ramadan-calender"))}
+              text={getText("ramadan")}
+
+            />
+          </SidebarDropdown>
+
+          {/* Live TV Dropdown */}
+          <SidebarDropdown
+            icon={<Tv className="h-4 w-4" />}
+            title={getText("livetv")}
+            isActive={isActive(createPath("/makkah-tv")) || isActive(createPath("/madina-tv"))}
+          >
+            <SidebarLink
+              href={createPath("/makkah-tv")}
+              isActive={isActive(createPath("/makkah-tv"))}
+              text={getText("makkahTv")}
+
+            />
+            <SidebarLink
+              href={createPath("/madina-tv")}
+              isActive={isActive(createPath("/madina-tv"))}
+              text={getText("madinaTv")}
+
+            />
+          </SidebarDropdown>
+
+          {/* Hadees Dropdown */}
+          <SidebarDropdown
+            icon={<Book className="h-4 w-4" />}
+            title={getText("hadees")}
+            isActive={
+              isActive(createPath("/sahih-bukhari")) ||
+              isActive(createPath("/sahih-muslim")) ||
+              isActive(createPath("/jamia-tirmazi")) ||
+              isActive(createPath("/sunan-abu-dawood")) ||
+              isActive(createPath("/sunan-nisai"))
+            }
+          >
+            <SidebarLink
+              href={createPath("/sahih-bukhari")}
+              isActive={isActive(createPath("/sahih-bukhari"))}
+              text={getText("sahihbukhari")}
+
+            />
+            <SidebarLink
+              href={createPath("/sahih-muslim")}
+              isActive={isActive(createPath("/sahih-muslim"))}
+              text={getText("sahihmuslim")}
+
+            />
+            <SidebarLink
+              href={createPath("/jamia-tirmazi")}
+              isActive={isActive(createPath("/jamia-tirmazi"))}
+              text={getText("jamiatirmazi")}
+
+            />
+            <SidebarLink
+              href={createPath("/sunan-abu-dawood")}
+              isActive={isActive(createPath("/sunan-abu-dawood"))}
+              text={getText("sunanabudawood")}
+
+            />
+            <SidebarLink
+              href={createPath("/sunan-nisai")}
+              isActive={isActive(createPath("/sunan-nisai"))}
+              text={getText("sunannisai")}
+
+            />
+          </SidebarDropdown>
+        </div>
       </SheetContent>
     </Sheet>
+  )
+}
+
+function SidebarDropdown({
+  icon,
+  title,
+  isActive,
+  children,
+}: {
+  icon: React.ReactNode
+  title: string
+  isActive: boolean
+  children: React.ReactNode
+}) {
+  const [isOpen, setIsOpen] = useState(isActive)
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen} className="relative">
+      <CollapsibleTrigger
+        className={`flex items-center justify-between w-full px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${isActive ? "bg-emerald-700 text-white" : ""
+          }`}
+      >
+        <div className="flex items-center gap-2">
+          {icon}
+          <span>{title}</span>
+        </div>
+        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+        {isActive && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+      </CollapsibleTrigger>
+      <CollapsibleContent className="pl-10 pr-2 py-1 space-y-1">{children}</CollapsibleContent>
+    </Collapsible>
+  )
+}
+
+function SidebarLink({
+  href,
+  isActive,
+  text,
+  onClick,
+}: {
+  href: string
+  isActive: boolean
+  text: string
+  onClick?: () => void
+}) {
+  return (
+    <Link
+      href={href}
+      className={`block px-4 py-2 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors relative ${isActive ? "bg-emerald-700 text-white  " : ""
+        }`}
+      onClick={onClick}
+    >
+      {text}
+      {isActive && (
+        <motion.div
+          layoutId="activeSidebarLink"
+          className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"
+          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+        />
+      )}
+    </Link>
   )
 }
 
