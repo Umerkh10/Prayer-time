@@ -35,81 +35,25 @@ function Footer() {
               {isLang ? t("Footer.quicklinkstitle") : "Quick links"}{" "}
             </h3>
             <ul className="mt-4 space-y-3 text-sm">
-              <li>
-                {" "}
-                <Link
-                  href={isLang ? `/${currentLang}` : "/"}
-                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
-                >
+             
+              <li> {" "}
+                <Link href={isLang ? `/${currentLang}` : "/"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize">
                   {" "}
                   {isLang ? t("navigation.home") : "home"}{" "}
                 </Link>
               </li>
-              <li>
-                {" "}
-                <Link
-                  href="./#namaz-time"
-                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
-                >
-                  {isLang ? t("navigation.namazTime") : "namaz Time"}{" "}
-                </Link>
-              </li>
-
-              <li>
-                {" "}
-                <Link
-                  href={
-                    isLang
-                      ? `/${currentLang}/islamic-calender`
-                      : "/islamic-calender"
-                  }
-                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
-                >
-                  {isLang
-                    ? t("navigation.islamicCalender")
-                    : "islamic Calender"}{" "}
-                </Link>
-              </li>
-
-              <li>
-                {" "}
-                <Link
-                  href={isLang ? `/${currentLang}/duas` : "/duas"}
-                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
-                >
-                  {isLang ? t("navigation.duas") : "duas"}{" "}
-                </Link>
-              </li>
-
-              <li>
-                {" "}
-                <Link
-                  href={isLang ? `/${currentLang}/makkah-tv` : "/makkah-tv"}
-                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
-                >
-                  {isLang ? t("navigation.makkahTv") : "Makkah Tv"}{" "}
-                </Link>
-              </li>
-
-              <li>
-                {" "}
-                <Link
-                  href={isLang ? `/${currentLang}/madina-tv` : "/madina-tv"}
-                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
-                >
-                  {isLang ? t("navigation.madinaTv") : "Madina-Tv"}{" "}
-                </Link>
-              </li>
 
            
-            </ul>
-          </div>
+              <li>
+                <Link
+                  href={isLang ? `/${currentLang}/countries` : "/countries"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
+                >
+                  {isLang ? t("navigation.countries") : "countries"}
+                </Link>
+              </li>
 
-          <div className="lg:col-span-1">
-            <h3 className="text-base font-semibold text-green-700 dark:text-green-400">
-              {isLang ? t("Footer.companytitle") : "Company"}{" "}
-            </h3>
-            <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <Link
                   href={isLang ? `/${currentLang}/forum` : "/forum"}
@@ -121,12 +65,22 @@ function Footer() {
 
               <li>
                 <Link
-                  href={isLang ? `/${currentLang}/countries` : "/countries"}
+                  href={isLang ? `/${currentLang}/blogs` : "/blogs"}
                   className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
                 >
-                  {isLang ? t("navigation.countries") : "countries"}
+                  {isLang ? t("navigation.blogs") : "blogs"}
                 </Link>
               </li>
+
+
+              <li>{" "}
+                <Link href={isLang ? `/${currentLang}/qibla-finder` : "/qibla-finder"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
+                >
+                  {isLang ? t("navigation.qiblafinder") : "qiblafinder"}{" "}
+                </Link>
+              </li>
+
 
               <li>
                 <Link
@@ -146,16 +100,48 @@ function Footer() {
                   {isLang ? t("navigation.contactUs") : "contact Us"}{" "}
                 </Link>
               </li>
-              <li>
-                {" "}
-                <Link
-                  href={
-                    isLang
-                      ? `/${currentLang}/ramadan-calender`
-                      : "/ramadan-calender"
-                  }
-                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
-                >
+
+           
+            </ul>
+          </div>
+
+          <div className="lg:col-span-1">
+            <h3 className="text-base font-semibold text-green-700 dark:text-green-400">
+              {isLang ? t("Footer.companytitle") : "Company"}{" "}
+            </h3>
+            <ul className="mt-4 space-y-3 text-sm">
+
+              <li>{" "}
+                <Link href={isLang ? `/${currentLang}/duas` : "/duas"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize">
+                  {isLang ? t("navigation.duas") : "duas"}{" "}
+                </Link>
+              </li>
+           
+              <li>{" "}
+                <Link href={ isLang? `/${currentLang}/islamic-calender` : "/islamic-calender"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize">
+                  {isLang ? t("navigation.islamicCalender") : "islamic Calender"}{" "}
+                </Link>
+              </li>
+
+              <li>{" "}
+                <Link href={isLang ? `/${currentLang}/inheritance-calculator` : "/inheritance-calculator"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize">
+                  {isLang ? t("navigation.inheritance") : "inheritance"}{" "}
+                </Link>
+              </li>
+
+              <li>{" "}
+                <Link href={isLang ? `/${currentLang}/zakat-calculator` : "/zakat-calculator"} className=" hover:text-green-700 dark:hover:text-green-400 capitalize">
+                  {isLang ? t("navigation.zakatcalculator") : "zakatcalculator"}{" "}
+                </Link>
+              </li>
+
+
+              <li>{" "}
+                <Link href={isLang? `/${currentLang}/ramadan-calender`: "/ramadan-calender"}
+                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize">
                   {isLang ? t("navigation.ramadan") : "Ramadan-Calender"}{" "}
                 </Link>
               </li>
@@ -176,13 +162,7 @@ function Footer() {
                 </Link>
               </li>
 
-              <li>{" "}
-                <Link href={isLang ? `/${currentLang}/qibla-finder` : "/qibla-finder"}
-                  className=" hover:text-green-700 dark:hover:text-green-400 capitalize"
-                >
-                  {isLang ? t("navigation.qiblafinder") : "qiblafinder"}{" "}
-                </Link>
-              </li>
+       
 
             </ul>
           </div>

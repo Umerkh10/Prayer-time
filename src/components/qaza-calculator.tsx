@@ -178,7 +178,6 @@ export default function QazaCalculator() {
 
   return (
     <div className="space-y-8">
-      <PrayerScheduleTable />
 
       <div ref={calculatorFormRef}>
         {/* Use the key prop to force remount when formKey changes */}
@@ -188,6 +187,7 @@ export default function QazaCalculator() {
       {calculationResult && (
         <CalculationResults result={calculationResult} dateOfBirth={dateOfBirth} onRecalculate={handleRecalculate} />
       )}
+      <PrayerScheduleTable />
     </div>
   )
 }

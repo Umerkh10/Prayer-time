@@ -65,6 +65,30 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
           </Link>
 
           <Link
+            href={createPath("/zakat-calculator")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
+              isActive(createPath("/zakat-calculator")) ? "bg-emerald-700 text-white" : ""
+            }`}
+            onClick={onClose}
+          >
+            <Calculator className="h-4 w-4" />
+            <span>{getText("zakatcalculator")}</span>
+            {isActive(createPath("/zakat-calculator")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/inheritance-calculator")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
+              isActive(createPath("/inheritance-calculator")) ? "bg-emerald-700 text-white" : ""
+            }`}
+            onClick={onClose}
+          >
+            <Calculator className="h-4 w-4" />
+            <span>{getText("inheritance")}</span>
+            {isActive(createPath("/inheritance-calculator")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
             href={createPath("/qibla-finder")}
             className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
               isActive(createPath("/qibla-finder")) ? "bg-emerald-700 text-white" : ""
