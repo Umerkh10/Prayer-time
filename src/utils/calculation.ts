@@ -110,7 +110,7 @@ export const calculateInheritance = (data: InheritanceFormData): CalculationResu
   
   // Calculate final amounts
   shares.forEach(item => {
-    item.amount = item.share * valuePerShare[item.recipient as keyof typeof valuePerShare];
+    item.amount = item.count * valuePerShare[item.recipient as keyof typeof valuePerShare];
   });
   
   return {
