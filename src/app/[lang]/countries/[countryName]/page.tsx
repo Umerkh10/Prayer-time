@@ -7,6 +7,18 @@ export async function generateMetadata({ params }: any) {
   const country = params.countryName;
   const countryName = country.charAt(0).toUpperCase() + country.slice(1);
 
+  const keywords = [
+    `prayer times in ${countryName} `,
+    `prayer times ${countryName} `,
+    `salah times in ${countryName}`,
+    `adhan times for ${countryName}`,
+    `namaz time in ${countryName}`,
+    `${countryName} prayer schedule`,
+    `daily prayer times in ${countryName}`,
+    `weekly prayer times in ${countryName}`,
+    `monthly prayer schedule ${countryName}`,
+  ];
+
   let title = '';
   let description = '';
 
@@ -27,6 +39,7 @@ export async function generateMetadata({ params }: any) {
   return {
     title,
     description,
+    keywords: keywords.join(', '), 
     alternates: {
       canonical: `https://www.globalsalah.com/${lang}/countries/${country}`,
       languages: {
