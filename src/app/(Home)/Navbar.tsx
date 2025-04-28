@@ -28,12 +28,12 @@ function Navbar() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <Link href={isLang ? `/${currentLang}` : "/"} className="flex items-center gap-2">
-            <div className="relative h-8 w-8 overflow-hidden rounded">
+            <div className="relative h-8 w-8 overflow-hidden rounded-lg">
               <Image
-                src="/logo.webp"
-                alt="Athan Pro Logo"
-                width={160}
-                height={160}
+                src="/global-logo.png"
+                alt="Global Salah Logo"
+                width={200}
+                height={200}
                 priority
               />
             </div>

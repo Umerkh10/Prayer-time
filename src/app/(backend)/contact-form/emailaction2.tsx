@@ -48,7 +48,7 @@ export default async function EmailAction2(state: any, formData: FormData) {
                        <tr>
                          <td align="center" valign="middle" style="padding: 0 10px;">
                            <div style="width: 90px; height: 90px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto; ;">
-                             <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah Logo" style="width: 90px; height: 90px; border-radius: 10px; display: block; margin: 0 auto;">
+                             <img src="https://muhammadumer.sirv.com/global-logo.png" alt="Global Salah Logo" style="width: 90px; height: 90px; border-radius: 10px; display: block; margin: 0 auto;">
                            </div>
                          </td>
                        </tr>

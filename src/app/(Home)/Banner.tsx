@@ -120,7 +120,7 @@ function Banner() {
                     <Skeleton className="h-screen w-full" />
                 </div>
             </div> : (
-                <div className="relative lg:h-screen h-[550px] bg-[#FAFAFF] dark:bg-[#000000] supports-[backdrop-filter]:bg-[#093108] bg-[url('/main-page-frame.svg')] bg-center bg-cover bg-no-repeat text-zinc-100 ">
+                <div className="relative lg:h-screen h-[550px] bg-[#FAFAFF] dark:bg-[#090a0a] supports-[backdrop-filter]:bg-[#093108] bg-[url('/banner-img-salah.jpg')] bg-blend-overlay  bg-center bg-cover bg-no-repeat text-zinc-100 ">
                     <div className="absolute inset-0 bg-[#0046E5]/10" />
                     <div className="container relative lg:mx-auto px-4 lg:pt-20  pt-6">
                         <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">  {lang && t("banner.title") ? t("banner.title") : "Welcome to Global Salah"}

@@ -61,7 +61,7 @@ useEffect(() => {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
-      <div className="relative overflow-hidden bg-[#1e8e67] bg-[url('/main-page-frame.svg')] bg-no-repeat rounded-2xl lg:h-72 p-8 md:p-12">
+      <div className="relative overflow-hidden bg-[#1e8e67] bg-[url('/banner-img-salah.jpg')] bg-no-repeat rounded-2xl lg:h-72 p-8 md:p-12 bg-blend-overlay">
         <div className="relative z-10 space-y-2">
           <h1 className="text-white text-3xl md:text-4xl text-center font-bold tracking-tight animate-fade-in">
             {t("HijriDivider.dividertitle")}

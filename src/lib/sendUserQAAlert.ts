@@ -32,7 +32,7 @@ style="margin: 0; padding: 0; font-family: 'Google-Sans', 'Helvetica Neue', sans
             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                 <tr>
                     <td style="text-align: center;">
-                        <img src="https://muhammadumer.sirv.com/logo.webp" alt="Global Salah Logo"
+                        <img src="https://muhammadumer.sirv.com/global-logo.png" alt="Global Salah Logo"
                             style="display: inline-block; height: 50px; width: auto; vertical-align: middle; margin-right: 10px; border: 0px; border-radius: 10px">
                         <span
                             style="display: inline-block; vertical-align: middle; font-size: 28px; font-weight: 600; color: whitesmoke;">Global
