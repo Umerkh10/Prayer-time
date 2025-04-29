@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { FaGlobe, FaHeart, FaPrayingHands, FaBrain, FaBalanceScale, FaClock, FaUsers, FaCalendar, FaBook } from "react-icons/fa"
 import { useTranslation } from '@/hooks/useTranslation'
 import { usePathname } from 'next/navigation'
-import { Loader2 } from 'lucide-react'
+import { Book, BookOpen, Calendar, FileText, Globe, Heart, Loader2, MessageSquare, Tv } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
 
 function AboutUs() {
@@ -35,205 +35,471 @@ function AboutUs() {
           <Skeleton className="h-screen w-full" />
         </div>
       </div> :
-        (<div>
-          <motion.section
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="py-28 text-center bg-[#FAFAFF] dark:bg-[#000000] supports-[backdrop-filter]:bg-[#003524]  text-white"
-          >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">{t("aboutus.title")}</h1>
-            <p className="text-sm max-w-2xl px-2 mx-auto">{t("aboutus.desc")}</p>
-          </motion.section>
-
-          <section className="py-20 bg-transparent">
-            <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center text-green-600">{t("aboutus.mission")}</h2>
-              <p className="text-sm max-w-2xl mx-auto text-center py-4">{t("aboutus.missionparagraph")}</p>
-              <div className="flex lg:flex-row flex-col justify-center gap-6 pt-5">
-
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-center"
-                >
-                  <FaGlobe className="text-5xl text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.coretitle")}</h3>
-                  <p className="text-muted-foreground text-sm max-w-md mx-auto">{t("aboutus.coredesc")}</p>
-                </motion.div>
-
-                {/* <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, }}
-                  className="text-center"
-                >
-                  <FaHeart className="text-5xl text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.communitytitle")}</h3>
-                  <p className="text-muted-foreground">{t("aboutus.communitydesc")}</p>
-                </motion.div> */}
-
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, }}
-                  className="text-center"
-                >
-                  <FaPrayingHands className="text-5xl text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{t("aboutus.visiontitle")}</h3>
-                  <p className="text-muted-foreground text-sm max-w-sm mx-auto">{t("aboutus.visiondesc")}</p>
-                </motion.div>
-
-              </div>
+        (<div className="min-h-screen bg-background">
+          {/* Hero Section */}
+          <div className="relative bg-gradient-to-r from-[#104e36] to-[#1e7954] text-white">
+            <div className="absolute inset-0 opacity-10">
+              <div style={{backgroundImage:'url(/about-bg.webp)'}} className="w-full h-full bg-cover bg-center"></div>
             </div>
-          </section>
 
+            <div className="container mx-auto px-4 py-20 relative z-10 max-w-6xl">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-center mb-8"
+              >
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm mb-6">
+                  <Heart className="w-10 h-10 text-white" />
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('aboutus.title')}
+                </h1>
+                <div className="w-24 h-1 bg-[#f5d792] mx-auto mb-6"></div>
+              </motion.div>
 
-          <section className="py-20 bg-transparent">
-            <div className="container mx-auto px-4">
-              <h2 className="text-3xl font-bold text-center mb-12 text-green-600">{t("aboutus.benefittitle")}</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className=" max-w-3xl mx-auto text-center leading-relaxed"
+              >
+     {t('aboutus.desc')}
+              </motion.p>
+            </div>
 
-                {isArabic === "ar" ? (<motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6 text-right"
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent"></div>
+          </div>
+
+          <div className="container px-4 py-12 mx-auto max-w-6xl">
+            {/* Who We Are Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <h2 className="text-3xl font-bold mb-4">{t('aboutus.whowetitle')}</h2>
+              <div className="w-16 h-1 bg-[#2e855e] mb-6"></div>
+              <p className="text-sm leading-relaxed">
+              {t('aboutus.whoweparagraph')}
+              </p>
+            </motion.div>
+
+            {/* Vision & Mission Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="h-full"
+              >
+                <h2 className="text-3xl font-bold mb-4">{t('aboutus.visiontitle')}</h2>
+                <div className="w-16 h-1 bg-[#2e855e] mb-6"></div>
+                <p className="text-sm leading-relaxed">
+                {t('aboutus.visionparagraph')}
+
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="h-full"
+              >
+                <h2 className="text-3xl font-bold mb-4"> {t('aboutus.mission')}</h2>
+                <div className="w-16 h-1 bg-[#2e855e] mb-6"></div>
+                <p className="text-sm leading-relaxed">
+                {t('aboutus.missionparagraph')}
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Our Story Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <h2 className="text-3xl font-bold mb-4"> {t('aboutus.storytitle')} </h2>
+              <div className="w-16 h-1 bg-[#2e855e] mb-6"></div>
+              <p className="text-sm leading-relaxed">
+              {t('aboutus.storyparagraph')}
+
+              </p>
+            </motion.div>
+
+            {/* What We Offer Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-16"
+            >
+              <h2 className="text-3xl font-bold text-center mb-12"> {t('aboutus.whatwetitle')} </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Prayer Times */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0 }}
+                  viewport={{ once: true }}
+                  className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
                 >
-                  <FaHeart className="text-4xl text-green-600 mb-4 inline-block md:mx-0 mx-auto" />
-                  <h3 className="text-xl font-semibold mb-2 md:text-right text-center">
-                    {t("aboutus.spiritualconnectiontitle")}
-                  </h3>
-                  <p className="text-muted-foreground md:text-right text-center">
-                    {t("aboutus.spiritualconnectiondesc")}
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 text-[#2e855e]">
+                      <Heart className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-medium">{t('aboutus.feature1title')} </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.feature1desc')}
                   </p>
-                </motion.div>) : (<motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6"
+                </motion.div>
+
+                {/* Qibla Finder */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
                 >
-                  <FaHeart className="text-4xl text-green-600 mb-4 md:mx-0 mx-auto" />
-                  <h3 className="text-xl font-semibold mb-2 md:text-left text-center">
-                    {t("aboutus.spiritualconnectiontitle")}</h3>
-                  <p className="text-muted-foreground md:text-left text-center">
-                    {t("aboutus.spiritualconnectiondesc")}</p>
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 text-[#2e855e]">
+                      <Globe className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-medium">{t('aboutus.feature2title')} </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.feature2desc')}
+                  </p>
+                </motion.div>
 
-                </motion.div>)}
-
-                {isArabic === "ar" ? (<motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6 text-right"
+                {/* Daily Hadiths */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
                 >
-                  <FaBrain className="text-4xl text-green-600 mb-4 inline-block md:mx-0 mx-auto" />
-                  <h3 className="text-xl font-semibold mb-2 md:text-right text-center">
-                    {t("aboutus.mentalclaritytitle")}</h3>
-                  <p className="text-muted-foreground md:text-right text-center">
-                    {t("aboutus.mentalclaritydesc")}</p>
-                </motion.div>) : (
-                  <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, }}
-                    className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6"
-                  >
-                    <FaBrain className="text-4xl text-green-600 mb-4 md:mx-0 mx-auto" />
-                    <h3 className="text-xl font-semibold mb-2 md:text-left text-center">
-                      {t("aboutus.mentalclaritytitle")}</h3>
-                    <p className="text-muted-foreground md:text-left text-center">
-                      {t("aboutus.mentalclaritydesc")}</p>
-                  </motion.div>)
-                }
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 text-[#2e855e]">
+                      <BookOpen className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-medium">{t('aboutus.feature3title')} </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.feature3desc')}
+                  </p>
+                </motion.div>
 
-                {isArabic === "ar" ? (<motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6 text-right"
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
                 >
-                  <FaBalanceScale className="text-4xl text-green-600 mb-4 inline-block md:mx-0 mx-auto" />
-                  <h3 className="text-xl font-semibold mb-2 md:text-right text-center">
-                    {t("aboutus.disciplinetitle")}</h3>
-                  <p className="text-muted-foreground md:text-right text-center">
-                    {t("aboutus.disciplinedesc")}</p>
-                </motion.div>) :
-                  (<motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, }}
-                    className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6"
-                  >
-                    <FaBalanceScale className="text-4xl text-green-600 mb-4 md:mx-0 mx-auto" />
-                    <h3 className="text-xl font-semibold mb-2 md:text-left text-center">
-                      {t("aboutus.disciplinetitle")}</h3>
-                    <p className="text-muted-foreground md:text-left text-center">
-                      {t("aboutus.disciplinedesc")}</p>
-                  </motion.div>)}
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 text-[#2e855e]">
+                      <BookOpen className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-medium">{t('aboutus.feature4title')} </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.feature4desc')}
+                  </p>
+                </motion.div>
 
 
-
-                {isArabic === "ar" ? (<motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6 text-right"
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
                 >
-                  <FaClock className="text-4xl text-green-600 mb-4 inline-block md:mx-0 mx-auto" />
-                  <h3 className="text-xl font-semibold mb-2 md:text-right text-center">
-                    {t("aboutus.dailystructuretitle")}</h3>
-                  <p className="text-muted-foreground md:text-right text-center">
-                    {t("aboutus.dailystructuredesc")}</p>
-                </motion.div>) :
-                  (<motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, }}
-                    className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6"
-                  >
-                    <FaClock className="text-4xl text-green-600 mb-4 md:mx-0 mx-auto" />
-                    <h3 className="text-xl font-semibold mb-2 md:text-left text-center">
-                      {t("aboutus.dailystructuretitle")}</h3>
-                    <p className="text-muted-foreground md:text-left text-center">
-                      {t("aboutus.dailystructuredesc")}</p>
-                  </motion.div>)}
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 text-[#2e855e]">
+                      <BookOpen className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-medium">{t('aboutus.feature5title')} </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.feature5desc')}
+                  </p>
+                </motion.div>
 
 
-
-                {isArabic === "ar" ? (<motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, }}
-                  className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6 text-right"
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
                 >
-                  <FaUsers className="text-4xl text-green-600 mb-4 inline-block md:mx-0 mx-auto" />
-                  <h3 className="text-xl font-semibold mb-2 md:text-right text-center">
-                    {t("aboutus.communitybondingtitle")}</h3>
-                  <p className="text-muted-foreground md:text-right text-center">
-                    {t("aboutus.communitybondingdesc")}</p>
-                </motion.div>) :
-                  (<motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, }}
-                    className="bg-blue-50 dark:bg-gray-900  rounded-lg shadow-md p-6"
-                  >
-                    <FaUsers className="text-4xl text-green-600 mb-4 md:mx-0 mx-auto" />
-                    <h3 className="text-xl font-semibold mb-2 md:text-left text-center">
-                      {t("aboutus.communitybondingtitle")}</h3>
-                    <p className="text-muted-foreground md:text-left text-center">
-                      {t("aboutus.communitybondingdesc")}</p>
-                  </motion.div>)}
+                  <div className="flex items-center mb-4">
+                    <div className="mr-4 text-[#2e855e]">
+                      <BookOpen className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-medium">{t('aboutus.feature6title')} </h3>
+                  </div>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.feature6desc')}
+                  </p>
+                </motion.div>
 
+
+            
               </div>
+            </motion.div>
+
+            <h3 className="text-3xl font-bold text-center mb-12">{t('aboutus.stayupdatedtitle')}</h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Hijri Calendar */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0 }}
+                viewport={{ once: true }}
+                className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 text-[#2e855e]">
+                    <Calendar className="w-6 h-6" />
+                  </div>
+                  <h4 className="text-xl font-medium"> {t('aboutus.feat1title')} </h4>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                {t('aboutus.feat1desc')}
+                </p>
+              </motion.div>
+
+              {/* Live TV */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 text-[#2e855e]">
+                    <Tv className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-medium"> {t('aboutus.feat2title')} </h3>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                {t('aboutus.feat2desc')}
+                </p>
+              </motion.div>
+
+              {/* Daily Hadiths */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 text-[#2e855e]">
+                    <BookOpen className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-medium"> {t('aboutus.feat3title')} </h3>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                {t('aboutus.feat3desc')}
+                </p>
+              </motion.div>
+
+              {/* Forum */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 text-[#2e855e]">
+                    <MessageSquare className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-medium"> {t('aboutus.feat4title')} </h3>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                {t('aboutus.feat4desc')}
+                </p>
+              </motion.div>
+
+              {/* Duas */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 text-[#2e855e]">
+                    <Book className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-medium"> {t('aboutus.feat5title')} </h3>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                {t('aboutus.feat5desc')}
+                </p>
+              </motion.div>
+
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 text-[#2e855e]">
+                    <Book className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-medium"> {t('aboutus.feat6title')} </h3>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                {t('aboutus.feat6desc')}
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 text-[#2e855e]">
+                    <Book className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-medium"> {t('aboutus.feat7title')} </h3>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                {t('aboutus.feat7desc')}
+                </p>
+              </motion.div>
+
+              {/* E-Books */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="border rounded-xl p-6 hover:shadow-md transition-shadow bg-card"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="mr-4 text-[#2e855e]">
+                    <FileText className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-medium"> {t('aboutus.feat8title')} </h3>
+                </div>
+                <p className="text-muted-foreground text-sm">
+                {t('aboutus.feat8desc')}
+                </p>
+              </motion.div>
             </div>
-          </section>
 
-   
+            {/* Why Choose Us Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="mb-16 mt-10"
+            >
+              <h2 className="text-3xl font-bold text-center mb-12"> {t('aboutus.whychooseus')} </h2>
 
-        </div>)}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Trustworthy */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center text-center p-6 rounded-xl bg-card hover:shadow-md transition-shadow"
+                >
+                  <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+                    <Heart className="w-10 h-10" />
+                  </div>
+                  <h3 className="text-xl font-medium mb-2"> {t('aboutus.trust')} </h3>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.trustdesc')}
+                  </p>
+                </motion.div>
+
+                {/* Global Availability */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center text-center p-6 rounded-xl bg-card hover:shadow-md transition-shadow"
+                >
+                  <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+                    <Globe className="w-10 h-10" />
+                  </div>
+                  <h3 className="text-xl font-medium mb-2"> {t('aboutus.available')} </h3>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.availabledesc')}
+                  </p>
+                </motion.div>
+
+                {/* Relevant */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col items-center text-center p-6 rounded-xl bg-card hover:shadow-md transition-shadow"
+                >
+                  <div className="w-16 h-16 flex items-center justify-center rounded-full bg-primary/10 text-primary mb-4">
+                    <BookOpen className="w-10 h-10" />
+                  </div>
+                  <h3 className="text-xl font-medium mb-2"> {t('aboutus.relevant')} </h3>
+                  <p className="text-muted-foreground text-sm">
+                  {t('aboutus.relevantdesc')}
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Call to Action */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-primary/5 rounded-2xl p-8 text-center"
+            >
+              <h2 className="text-3xl font-bold mb-4"> {t('aboutus.community')} </h2>
+              <p className="text-sm mb-6 max-w-3xl mx-auto">
+              {t('aboutus.communitydesc')}
+              </p>
+
+            </motion.div>
+          </div>
+        </div>
+        )}
     </>
   )
 }

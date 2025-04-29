@@ -282,7 +282,7 @@ function DateTimingDisplay() {
 
             <select className=" mx-auto lg:w-[205px] w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
               value={selectedMadhab} onChange={(e) => setSelectedMadhab(e.target.value)}>
-              <option className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none"
+              <option  className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none "
                 value="Hanafi">{t("city.hanafi")}</option>
               <option className="rounded-lg dark:bg-zinc-200 px-4 dark:text-zinc-800 bg-zinc-800 outline-none"
                 value="Shafi">{t("city.shafi")}</option>

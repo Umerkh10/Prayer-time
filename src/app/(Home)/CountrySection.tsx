@@ -15,91 +15,91 @@ const destinations = [
     {
       id: 1,
       name: 'Turkey',
-      image: '/country-slider-1.webp',
+      image: '/country-slider/turkey.jpg',
       alt: 'Scenic view of a mosque in Turkey during sunset'
     },
     {
       id: 2,
       name: 'Pakistan',
-      image: '/country-slider-2.webp',
+      image: '/country-slider/pakistan.jpg',
       alt: 'Historic street in Pakistan with traditional architecture'
     },
     {
       id: 3,
       name: 'India',
-      image: '/country-slider-3.webp',
+      image: '/country-slider/india.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 4,
       name: 'Libya',
-      image: '/country-slider-4.webp',
+      image: '/country-slider/libya.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 5,
       name: 'Lebanon',
-      image: '/country-slider-5.webp',
+      image: '/country-slider/lebanon.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 6,
       name: 'Jordan',
-      image: '/country-slider-6.webp',
+      image: '/country-slider/jordan.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 7,
       name: 'Palestine',
-      image: '/country-slider-7.webp',
+      image: '/country-slider/palestine.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 8,
       name: 'Iraq',
-      image: '/country-slider-8.webp',
+      image: '/country-slider/iraq.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 9,
       name: 'Bangladesh',
-      image: '/country-slider-9.webp',
+      image: '/country-slider/bangladesh.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 10,
       name: 'Afghanistan',
-      image: '/country-slider-10.webp',
+      image: '/country-slider/afghanistan.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 11,
       name: 'Germany',
-      image: '/country-slider-11.webp',
+      image: '/country-slider/germany.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 12,
       name: 'Spain',
-      image: '/country-slider-12.webp',
+      image: '/country-slider/spain.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 13,
       name: 'Indonesia',
-      image: '/country-slider-13.webp',
+      image: '/country-slider/indonesia.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 14,
       name: 'Philippines',
-      image: '/country-slider-14.webp',
+      image: '/country-slider/philippines.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     },
     {
       id: 15,
       name: 'Switzerland',
-      image: '/country-slider-15.webp',
+      image: '/country-slider/switzerland.jpg',
       alt: 'Indian cityscape with historic temples and architecture'
     }
   ]

@@ -23,8 +23,6 @@ function Banner() {
     const pathname = usePathname();
     const lang = urlSplitter(pathname)
 
-
-
     useEffect(() => {
         localStorage.setItem("loading", "true");
         setIsLoading(true);
@@ -32,19 +30,15 @@ function Banner() {
         const timer = setTimeout(() => {
             localStorage.setItem("loading", "false");
             setIsLoading(false); 
-        }, 1000);
+        }, 2000);
 
         return () => clearTimeout(timer); 
     }, [])
 
-
-
-
     useEffect(() => {
         const language = localStorage.getItem("language");
         setSelectedLanguage(language);
-
-    }, []);
+    }, [])
 
     useEffect(() => {
         // Change content and reset indices daily
@@ -87,7 +81,6 @@ function Banner() {
         }
     }, [isHadith, hadithIndex, ayatIndex, lang]);
 
-
     const handleContentChange = (value: string) => {
         if (value === 'hadith') {
             setIsHadith(true)
@@ -95,8 +88,6 @@ function Banner() {
             setIsHadith(false)
         }
     }
-
-
 
     const handleNext = () => {
         if (isHadith) {
@@ -109,6 +100,7 @@ function Banner() {
             localStorage.setItem('ayatIndex', nextIndex.toString())
         }
     }
+
     const { t } = useTranslation("banner");
 
     return (
@@ -123,10 +115,11 @@ function Banner() {
                 <div className="relative lg:h-screen h-[550px] bg-[#FAFAFF] dark:bg-[#090a0a] supports-[backdrop-filter]:bg-[#093108] bg-[url('/banner-img-salah.jpg')] bg-blend-overlay  bg-center bg-cover bg-no-repeat text-zinc-100 ">
                     <div className="absolute inset-0 bg-[#0046E5]/10" />
                     <div className="container relative lg:mx-auto px-4 lg:pt-20  pt-6">
-                        <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">  {lang && t("banner.title") ? t("banner.title") : "Welcome to Global Salah"}
+                        <h1 className="text-3xl text-center lg:text-5xl font-bold my-5" >
+                            {t("banner.title", "Welcome to Global Salah")}
                         </h1>
 
-                        <div className="max-w-3xl lg:mt-12 py-2 lg:mx-auto ">
+                        <div className="max-w-3xl lg:mt-12 py-2 lg:mx-auto " >
                             <div className="flex md:flex-row flex-col lg:justify-between justify-start lg:items-center space-y-2 mb-4">
                                 <h2 className="lg:text-2xl text-xl font-semibold lg:text-left text-center">
                                     {isHadith && lang ? t("banner.hadithofday") : !isHadith && lang ? t("banner.ayatofday") : isHadith && !lang ? "Hadith of the Day" : "Ayat of the Day"}
@@ -136,6 +129,7 @@ function Banner() {
                                         <Select
                                             value={isHadith ? 'hadith' : 'ayat'}
                                             onValueChange={handleContentChange}
+                                            aria-label="Select content type"
                                         >
                                             <SelectTrigger className="lg:w-[180px] w-[130px]">
                                                 <SelectValue placeholder="Select content" />
@@ -150,6 +144,7 @@ function Banner() {
                                         <button
                                             onClick={handleNext}
                                             className="bg-white text-blue-900 px-4 py-2 rounded-md text-sm font-medium hover:bg-opacity-90 transition-colors"
+                                            aria-label="Next content"
                                         >
                                             {lang ? `${t("banner.next")} ${isHadith ? t("banner.titlehadith") : t("banner.titleayat")}` : `Next ${isHadith ? "Hadith" : "Ayat"}`}
                                         </button>
@@ -163,6 +158,7 @@ function Banner() {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.5 }}
+                                    
                                 >
                                     <p className="lg:text-lg text-sm text-center pt-6 px-2 leading-relaxed">
                                         {!isHadith ? ayatContent?.text : hadithContent?.arabic}
@@ -181,5 +177,4 @@ function Banner() {
     )
 }
 
-export default Banner
-
+export default Banner;

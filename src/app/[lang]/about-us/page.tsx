@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import AboutUs from './AboutUs'
+import AboutUs from './AboutUs';
+
 
 
 
