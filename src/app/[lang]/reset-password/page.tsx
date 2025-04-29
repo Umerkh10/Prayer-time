@@ -30,12 +30,12 @@ export async function generateMetadata({ params }: any) {
       ar: `https://www.globalsalah.com/ar/reset-password`,
     },
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       nocache: true,
       googleBot: {
-        index: false,
-        follow: false,
+        index: true,
+        follow: true,
         noimageindex: false,
         "max-video-preview": -1,
         "max-image-preview": "large",

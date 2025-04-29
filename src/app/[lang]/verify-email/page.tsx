@@ -11,12 +11,12 @@ alternates: {
   canonical: `https://www.globalsalah.com/${lang}/verify-email`,
 },
 robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       nocache: true,
       googleBot: {
-        index: false,
-        follow: false,
+        index: true,
+        follow: true,
         noimageindex: false,
         "max-video-preview": -1,
         "max-image-preview": "large",

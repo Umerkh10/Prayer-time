@@ -10,12 +10,12 @@ alternates: {
   canonical: `https://www.globalsalah.com/${lang}/edit-profile`,
 },
 robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       nocache: true,
       googleBot: {
-        index: false,
-        follow: false,
+        index: true,
+        follow: true,
         noimageindex: false,
         "max-video-preview": -1,
         "max-image-preview": "large",

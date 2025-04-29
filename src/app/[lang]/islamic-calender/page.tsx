@@ -34,12 +34,12 @@ export async function generateMetadata({ params }: any) {
       'x-default': `https://www.globalsalah.com/en/islamic-calender`,
     },
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       nocache: true,
       googleBot: {
-        index: false,
-        follow: false,
+        index: true,
+        follow: true,
         noimageindex: false,
         "max-video-preview": -1,
         "max-image-preview": "large",
