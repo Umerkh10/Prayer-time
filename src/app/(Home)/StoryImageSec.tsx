@@ -93,7 +93,7 @@ function StoryImageSec() {
     setCurrentIndex(index);
     setShowModal(true);
     setProgress(0); // Reset progress when modal is opened
-  
+
     // Wait for modal to open and then slide to correct index
     setTimeout(() => {
       if (swiperRef.current) {
@@ -113,52 +113,54 @@ function StoryImageSec() {
   }
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 py-8">
-     <div className="relative w-full">
-  <Swiper
-    slidesPerView="auto"
-    spaceBetween={16}
-    navigation={{
-      prevEl: "#previmgslide",
-      nextEl: "#nextimgslide",
-    }}
-    freeMode={true}
-    modules={[FreeMode, Navigation]}
-    className="w-full"
-  >
-    {images.map((image, index) => (
-      <SwiperSlide key={index} className="!w-auto mx-auto">
-        <div
-          className="rounded-xl p-1 bg-[#1e8e67] cursor-pointer"
-          onClick={() => openModal(index)}
+      <div className="relative w-full scale-90 lg:scale-100">
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={16}
+          navigation={{
+            prevEl: "#previmgslide",
+            nextEl: "#nextimgslide",
+          }}
+          freeMode={true}
+          modules={[FreeMode, Navigation]}
+          className="w-full"
         >
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={80}
-            height={80}
-            loading="eager"
-            className="w-20 h-20 object-cover rounded-lg"
-          />
-        </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
+          {images.map((image, index) => (
+            <SwiperSlide key={index} className="!w-auto mx-auto">
+              <div
+                className="rounded-xl p-1 bg-[#1e8e67] cursor-pointer"
+                onClick={() => openModal(index)}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  width={80}
+                  height={80}
+                  loading="eager"
+                  className="w-20 h-20 object-cover rounded-lg"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-  {/* Custom Navigation Arrows - Positioned Opposite and Centered */}
-  <button
-    id="previmgslide"
-    className="absolute top-1/2 left-0 lg:left-[-40px] -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
-  >
-    <ArrowLeft size={24} />
-  </button>
+        {/* Custom Navigation Arrows - Positioned Opposite and Centered */}
+        <button
+          aria-label="previmgslide"
+          id="previmgslide"
+          className="absolute top-1/2 left-0 lg:left-[-40px] -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
+        >
+          <ArrowLeft size={24} />
+        </button>
 
-  <button
-    id="nextimgslide"
-    className="absolute top-1/2 right-0 lg:right-[-25px] -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
-  >
-    <ArrowRight size={24} />
-  </button>
-</div>
+        <button
+          aria-label="nextimgslide"
+          id="nextimgslide"
+          className="absolute top-1/2 right-0 lg:right-[-25px] -translate-y-1/2 z-10 p-2 bg-[#1e8e67] text-white rounded-full shadow-lg hover:bg-green-600 transition"
+        >
+          <ArrowRight size={24} />
+        </button>
+      </div>
 
       {showModal && (
         <div onClick={closeModal} className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
@@ -183,7 +185,7 @@ function StoryImageSec() {
             >
               {images.map((image, index) => (
                 <SwiperSlide key={index}>
-                  <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  className="flex justify-center items-center h-[75vh]">
+                  <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="flex justify-center items-center h-[75vh]">
                     <Image
                       src={image.src}
                       alt={image.alt}

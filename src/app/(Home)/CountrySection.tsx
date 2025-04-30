@@ -34,19 +34,19 @@ const destinations = [
       id: 4,
       name: 'Libya',
       image: '/country-slider/libya.jpg',
-      alt: 'Indian cityscape with historic temples and architecture'
+      alt: 'Libya cityscape with historic temples and architecture'
     },
     {
       id: 5,
       name: 'Lebanon',
       image: '/country-slider/lebanon.jpg',
-      alt: 'Indian cityscape with historic temples and architecture'
+      alt: 'Lebanon cityscape with historic temples and architecture'
     },
     {
       id: 6,
       name: 'Jordan',
       image: '/country-slider/jordan.jpg',
-      alt: 'Indian cityscape with historic temples and architecture'
+      alt: 'Jordan cityscape with historic temples and architecture'
     },
     {
       id: 7,
@@ -108,8 +108,8 @@ function CountrySection() {
   const {t} = useTranslation("CountrySection")
   return (
     <div className='mx-auto max-w-screen-xl my-8 p-4'>
-    <h2 className='text-3xl font-bold text-center'>{t("CountrySection.country")} </h2>
-    <p className='text-lg text-center font-semibold text-muted-foreground pt-1'>{t("CountrySection.countryline")}</p>
+    <h2 className='lg:text-3xl text-2xl font-bold text-center'>{t("CountrySection.country")} </h2>
+    <p className='lg:text-base text-sm text-center font-semibold text-muted-foreground pt-1'>{t("CountrySection.countryline")}</p>
 
     <Swiper
         modules={[Pagination ]}

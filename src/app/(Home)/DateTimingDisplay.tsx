@@ -275,11 +275,11 @@ function DateTimingDisplay() {
 
   return (
     <div id="namaz-time" className="relative max-w-screen-xl mx-auto z-10 -mt-16">
-      <div className="mx-auto w-[90%] lg:w-[95%] py-3 bg-slate-50 dark:bg-background rounded-xl shadow-lg px-2 border border-muted">
+      <div className="mx-auto w-[90%] lg:w-[95%] py-3 bg-slate-50 dark:bg-background rounded-xl shadow-lg px-2 border border-muted scale-90 lg:scale-100">
         {/* Header with date tabs */}
         <div className="flex flex-col lg:flex-row lg:justify-between gap-4 items-center p-4 border-b-2 border-muted">
           <div className="flex md:flex-row flex-col md:space-y-0 space-y-2 space-x-4">
-
+          <label htmlFor="options" className="sr-only">Select an option</label>
             <select className=" mx-auto lg:w-[205px] w-[90%] px-4 py-2 rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none text-white"
               value={selectedMadhab} onChange={(e) => setSelectedMadhab(e.target.value)}>
               <option  className="rounded-lg dark:bg-zinc-200 dark:text-zinc-800 bg-zinc-800 outline-none "
@@ -399,10 +399,10 @@ function DateTimingDisplay() {
                 </SwiperSlide>
               ))}
               <div className="flex justify-center items-center gap-2">
-                <button className="z-10 p-2 bg-[#1e8e67] text-zinc-100 rounded-full shadow-lg transition"
+                <button aria-label="prevBtn" className="z-10 p-2 bg-[#1e8e67] text-zinc-100 rounded-full shadow-lg transition"
                   id="prevBtn"> <FaArrowLeft size={24} /></button>
 
-                <button className="z-10 p-2 bg-[#1e8e67] text-zinc-100 rounded-full shadow-lg transition"
+                <button aria-label="nextBtn" className="z-10 p-2 bg-[#1e8e67] text-zinc-100 rounded-full shadow-lg transition"
                   id="nextBtn"><FaArrowRight size={24} /></button>
               </div>
             </Swiper>

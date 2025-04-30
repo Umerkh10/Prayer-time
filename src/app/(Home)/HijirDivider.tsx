@@ -2,6 +2,7 @@
 import { useTranslation } from "@/hooks/useTranslation";
 import { MoonIcon } from "lucide-react";
 import moment from "moment-hijri";
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 function HijirDivider() {
@@ -60,53 +61,55 @@ useEffect(() => {
   const {t} = useTranslation("HijriDivider")
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-6">
-      <div className="relative overflow-hidden bg-[#1e8e67] bg-[url('/banner-img-salah.webp')] bg-no-repeat rounded-2xl lg:h-72 p-8 md:p-12 bg-blend-overlay">
-        <div className="relative z-10 space-y-2">
-          <h1 className="text-white text-3xl md:text-4xl text-center font-bold tracking-tight animate-fade-in">
-            {t("HijriDivider.dividertitle")}
-          </h1>
+    <div className="w-full max-w-7xl mx-auto p-6 scale-90 lg:scale-100">
+  <div className="relative rounded-2xl lg:h-72 h-64 overflow-hidden">
 
-          {location.city && location.country && (
-            <h2 className="text-white text-lg md:text-xl text-center font-medium animate-fade-in">
-              {location.city}, {location.country}
-            </h2>
-          )}
+    <Image
+      src="/banner-img-salah.webp"
+      alt="Hijri Divider Background"
+      fill
+      priority
+      className="object-cover object-center"
+      sizes="(min-width: 1024px) 1024px, 100vw"
+    />
 
-          <div className="grid lg:grid-cols-3 grid-cols-1 mx-auto pt-5 gap-4">
-            <div className="flex justify-center items-center group">
-              <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
-                <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
-                {t("HijriDivider.currenttime")}
-                </h3>
-                <div className="text-lg text-center">{formattedTime}</div>
-              </div>
-            </div>
+    <div className="absolute inset-0 bg-emerald-950/80 backdrop-blur-sm" />
 
-            <div className="flex justify-center items-center group">
-              <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
-                <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
-                {t("HijriDivider.hijrititle")}
-                </h3>
-                <div className="text-lg text-center">{currentHijriDate}</div>
-              </div>
-            </div>
+    <div className="relative z-10 p-6 md:p-10 text-white text-center space-y-4">
+      <h1 className="text-2xl md:text-4xl font-bold animate-fade-in">
+        {t("HijriDivider.dividertitle")}
+      </h1>
 
-            <div className="flex justify-center items-center group">
-              <div className="border border-muted rounded-lg bg-transparent w-52 p-4 text-zinc-100 group-hover:bg-zinc-100 group-hover:text-zinc-800 transition ease-in duration-150 delay-150">
-                <h3 className="text-lg md:text-xl animate-fade-in-delay text-center">
-                  {t("HijriDivider.currentdate")}
-                </h3>
-                <div className="text-lg text-center">{formattedDate}</div>
-              </div>
-            </div>
+      {location.city && location.country && (
+        <h2 className="text-lg md:text-xl font-medium animate-fade-in">
+          {location.city}, {location.country}
+        </h2>
+      )}
+
+      <div className="grid lg:grid-cols-3 gap-4 pt-4">
+        {[
+          {
+            label: t("HijriDivider.currenttime"),
+            value: formattedTime,
+          },
+          {
+            label: t("HijriDivider.hijrititle"),
+            value: currentHijriDate,
+          },
+          {
+            label: t("HijriDivider.currentdate"),
+            value: formattedDate,
+          },
+        ].map((item, i) => (
+          <div key={i} className="bg-transparent hover:bg-emerald-100 text-white hover:text-emerald-900 border-2 border-white transition-all rounded-lg p-4 w-full max-w-[200px] mx-auto shadow-md">
+            <h3 className="text-lg font-semibold">{item.label}</h3>
+            <div className="text-base mt-1">{item.value}</div>
           </div>
-        </div>
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-green-800/50 to-green-600/0 animate-fade-in" />
+        ))}
       </div>
     </div>
+  </div>
+</div>
   );
 }
 

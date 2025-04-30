@@ -39,34 +39,63 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
         <meta name="google-site-verification" content="0likJSP3-if8goGabTQOnxr1vNU8eh-XAd8JWDk3ZyU" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
         <link rel="alternate" hrefLang="fr" href="https://www.globalsalah.com/fr" />
         <link rel="alternate" hrefLang="ar" href="https://www.globalsalah.com/ar" />
 
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-KVK6TX0YCX"
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-KVK6TX0YCX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-KVK6TX0YCX');
         `}
-      </Script>
+        </Script>
 
-      <Script
-        src="https://cdn.jsdelivr.net/gh/manuelmhtr/countries-and-timezones@latest/dist/index.min.js"
-        strategy="beforeInteractive"
-      />
-      <Script
-        id="cookieyes"
-        src="https://cdn-cookieyes.com/client_data/5dcbb80ae3d7d4ff3df3c423/script.js"
-        strategy="afterInteractive"
-      />
+        <Script
+          src="https://cdn.jsdelivr.net/gh/manuelmhtr/countries-and-timezones@latest/dist/index.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          id="cookieyes"
+          src="https://cdn-cookieyes.com/client_data/5dcbb80ae3d7d4ff3df3c423/script.js"
+          strategy="afterInteractive"
+        />
 
+        <Script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Global Salah",
+              "url": "https://globalsalah.com/en/",
+              "logo": "https://globalsalah.com/global-salah-logo.png",
+              "alternateName": "Global Salah",
+              "sameAs": [
+                "https://www.facebook.com/globalsalahofficial/",
+                "https://x.com/globalsalah",
+                "https://www.pinterest.com/globalsalah/"
+              ],
+              "contactPoint": [
+                {
+                  "@type": "ContactPoint",
+                  "telephone": "",
+                  "contactType": "",
+                  "email": "support@globalsalah.com"
+                }
+              ]
+            })
+          }}
+        />
+      </head>
       <body className={`${poppins.variable} antialiased`}>
         <ThemeProvider
           attribute="class"

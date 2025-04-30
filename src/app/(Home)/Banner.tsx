@@ -11,6 +11,7 @@ import arabicLang from "../../../public/locales/ar.json"
 import englishLang from "../../../public/locales/en.json"
 import frenchLang from "../../../public/locales/fr.json"
 import { Skeleton } from "@/components/ui/skeleton"
+import Image from "next/image"
 
 function Banner() {
     const [isLoading, setIsLoading] = useState(true);
@@ -31,10 +32,10 @@ function Banner() {
 
         const timer = setTimeout(() => {
             localStorage.setItem("loading", "false");
-            setIsLoading(false); 
+            setIsLoading(false);
         }, 1000);
 
-        return () => clearTimeout(timer); 
+        return () => clearTimeout(timer);
     }, [])
 
 
@@ -120,42 +121,67 @@ function Banner() {
                     <Skeleton className="h-screen w-full" />
                 </div>
             </div> : (
-                <div className="relative lg:h-screen h-[550px] bg-[#FAFAFF] dark:bg-[#0a1f0b] supports-[backdrop-filter]:bg-[#093108] bg-[url('/banner-img-salah.webp')] bg-blend-overlay bg-center bg-cover bg-no-repeat text-zinc-100 ">
-                    <div className="absolute inset-0 bg-[#0046E5]/10" />
-                    <div className="container relative lg:mx-auto px-4 lg:pt-20  pt-6">
-                        <h1 className="text-3xl text-center lg:text-5xl font-bold my-5">  {lang && t("banner.title") ? t("banner.title") : "Welcome to Global Salah"}
+
+                <div className="relative lg:h-screen h-[550px] bg-[#FAFAFF] dark:bg-[#0a1f0b] text-zinc-100 overflow-hidden">
+                    {/* Background Image for LCP */}
+                    <Image
+                        src="/banner-img-salah.webp"
+                        alt="Banner background"
+                        fill
+                        priority
+                        className="object-cover object-center z-0"
+                        sizes="100vw"
+                    />
+
+                    {/* THEMED Overlay using gradient */}
+                    <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#101110] via-emerald-950 to-[#000000]/60 backdrop-blur-sm" />
+
+                    {/* Content Area */}
+                    <div className="container relative z-20 lg:mx-auto px-4 lg:pt-20 pt-6">
+                        <h1 className="text-2xl text-center lg:text-5xl font-bold my-5">
+                            {lang && t("banner.title") ? t("banner.title") : "Welcome to Global Salah"}
                         </h1>
 
-                        <div className="max-w-3xl lg:mt-12 py-2 lg:mx-auto ">
+                        <div className="max-w-3xl lg:mt-12 py-2 lg:mx-auto">
                             <div className="flex md:flex-row flex-col lg:justify-between justify-start lg:items-center space-y-2 mb-4">
-                                <h2 className="lg:text-2xl text-xl font-semibold lg:text-left text-center">
-                                    {isHadith && lang ? t("banner.hadithofday") : !isHadith && lang ? t("banner.ayatofday") : isHadith && !lang ? "Hadith of the Day" : "Ayat of the Day"}
+                                <h2 className="lg:text-2xl text-lg font-semibold lg:text-left text-center">
+                                    {isHadith && lang
+                                        ? t("banner.hadithofday")
+                                        : !isHadith && lang
+                                            ? t("banner.ayatofday")
+                                            : isHadith && !lang
+                                                ? "Hadith of the Day"
+                                                : "Ayat of the Day"}
                                 </h2>
-                                <div className="grid grid-cols-2 lg:gap-4 gap-8 lg:mx-0 mx-auto pl-10 pt-2">
-                                    <div className=''>
-                                        <Select
-                                            value={isHadith ? 'hadith' : 'ayat'}
-                                            onValueChange={handleContentChange}
-                                        >
-                                            <SelectTrigger className="lg:w-[180px] w-[130px]">
+
+                                <div className="grid grid-cols-2 lg:gap-4 gap-8 lg:mx-0 mx-auto pl-10 pt-2 scale-90 lg:scale-100">
+                                    <div>
+                                        <label htmlFor="content-select" className="sr-only">Select content</label>
+                                        <Select value={isHadith ? 'hadith' : 'ayat'} onValueChange={handleContentChange}>
+                                            <SelectTrigger id="content-select" className="lg:w-[180px] w-[130px]">
                                                 <SelectValue placeholder="Select content" />
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectItem value="hadith">{lang ? t("banner.titlehadith") : "Hadith"}</SelectItem>
-                                                <SelectItem value="ayat">{lang ? t("banner.titleayat") : "Ayat"} </SelectItem>
+                                                <SelectItem value="ayat">{lang ? t("banner.titleayat") : "Ayat"}</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </div>
                                     <div>
                                         <button
+                                            aria-label="Next Content"
                                             onClick={handleNext}
                                             className="bg-white text-blue-900 px-4 py-2 rounded-md text-sm font-medium hover:bg-opacity-90 transition-colors"
                                         >
-                                            {lang ? `${t("banner.next")} ${isHadith ? t("banner.titlehadith") : t("banner.titleayat")}` : `Next ${isHadith ? "Hadith" : "Ayat"}`}
+                                            {lang
+                                                ? `${t("banner.next")} ${isHadith ? t("banner.titlehadith") : t("banner.titleayat")}`
+                                                : `Next ${isHadith ? "Hadith" : "Ayat"}`}
                                         </button>
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Animated Content */}
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={`${isHadith ? 'hadith' : 'ayat'}-${isHadith ? hadithIndex : ayatIndex}`}
@@ -167,16 +193,19 @@ function Banner() {
                                     <p className="lg:text-lg text-sm text-center pt-6 px-2 leading-relaxed">
                                         {!isHadith ? ayatContent?.text : hadithContent?.arabic}
                                     </p>
-                                    <p className=" text-sm text-center pt-3 px-2 leading-relaxed">
+                                    <p className="text-sm text-center pt-3 px-2 leading-relaxed">
                                         {!isHadith ? t(ayatContent?.translation) : t(hadithContent?.translation)}
                                     </p>
                                     <p className="mt-4 text-sm opacity-75 lg:text-left text-center">
-                                        {!isHadith ? ayatContent?.refrence : hadithContent?.refrence} </p>
+                                        {!isHadith ? ayatContent?.refrence : hadithContent?.refrence}
+                                    </p>
                                 </motion.div>
                             </AnimatePresence>
                         </div>
                     </div>
-                </div>)}
+                </div>
+
+            )}
         </>
     )
 }

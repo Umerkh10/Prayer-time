@@ -52,7 +52,7 @@ function Navbar() {
               <div className="relative h-8 w-8 overflow-hidden rounded-lg">
                 <img
                   src="/global-salah-logo.png"
-                  alt="global salah"
+                  alt="global"
                   width={200}
                   height={200}
                 />
