@@ -6,6 +6,7 @@ import SwiperCore from "swiper"
 import "swiper/css"
 import "swiper/css/free-mode"
 import { ArrowLeft, ArrowLeftCircleIcon, ArrowRight, ArrowRightCircleIcon } from "lucide-react"
+import Image from "next/image"
 
 const images = [
   { src: "/hadees-images/hadees-img-1.webp", alt: "Desert with hot air balloons" },
@@ -130,9 +131,11 @@ function StoryImageSec() {
           className="rounded-xl p-1 bg-[#1e8e67] cursor-pointer"
           onClick={() => openModal(index)}
         >
-          <img
+          <Image
             src={image.src}
             alt={image.alt}
+            width={80}
+            height={80}
             loading="eager"
             className="w-20 h-20 object-cover rounded-lg"
           />
@@ -181,9 +184,11 @@ function StoryImageSec() {
               {images.map((image, index) => (
                 <SwiperSlide key={index}>
                   <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}  className="flex justify-center items-center h-[75vh]">
-                    <img
+                    <Image
                       src={image.src}
                       alt={image.alt}
+                      width={700}
+                      height={1000}
                       className="max-w-full max-h-full object-contain rounded-lg"
                     />
                   </div>
