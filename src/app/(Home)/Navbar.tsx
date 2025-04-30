@@ -50,12 +50,11 @@ function Navbar() {
           <div className="flex items-center gap-2">
             <Link href={isLang ? `/${currentLang}` : "/"} className="flex items-center gap-2">
               <div className="relative h-8 w-8 overflow-hidden rounded-lg">
-                <Image
-                  src="/global-logo.png"
-                  alt="Global Salah Logo"
+                <img
+                  src="/global-salah-logo.png"
+                  alt="global salah"
                   width={200}
                   height={200}
-                  priority
                 />
               </div>
               <span className="text-lg font-semibold text-white"> {isLang ? t("navigation.title") : "Global Salah"} </span>

@@ -4,7 +4,6 @@ import StoryImageSec from '../(Home)/StoryImageSec';
 import CountrySection from '../(Home)/CountrySection';
 import HijirDivider from '../(Home)/HijirDivider';
 import Banner from '../(Home)/Banner';
-import { Metadata } from 'next';
 
 
 
