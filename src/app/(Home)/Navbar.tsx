@@ -53,8 +53,8 @@ function Navbar() {
                 <img
                   src="/global-salah-logo.png"
                   alt="global"
-                  width={200}
-                  height={200}
+                  width={260}
+                  height={230}
                 />
               </div>
               <span className="text-lg font-semibold text-white"> {isLang ? t("navigation.title") : "Global Salah"} </span>

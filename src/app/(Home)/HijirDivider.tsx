@@ -62,7 +62,7 @@ useEffect(() => {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6 scale-90 lg:scale-100">
-  <div className="relative rounded-2xl lg:h-72 h-64 overflow-hidden">
+  <div className="relative rounded-2xl lg:h-72  overflow-hidden">
 
     <Image
       src="/banner-img-salah.webp"
