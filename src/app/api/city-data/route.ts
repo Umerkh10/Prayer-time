@@ -1,44 +1,53 @@
 // app/api/city-data/route.ts
-import { NextRequest, NextResponse } from 'next/server';
-import citiesAndTimezones from '@/lib/citiesAndTimezones';
+import { countriesData } from '@/lib/cityDataWithTimezone';
+import { NextResponse } from 'next/server';
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url);
-  const countryParam = searchParams.get('country');
-  const cityParam = searchParams.get('city');
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const country = searchParams.get('country');
+  const city = searchParams.get('city');
 
-  if (!countryParam || !cityParam) {
-    return NextResponse.json({ error: 'Country and city required' }, { status: 400 });
+  if (!country || !city) {
+    return NextResponse.json(
+      { error: 'Country and city parameters are required' },
+      { status: 400 }
+    );
   }
 
-  const countryKey = countryParam.toLowerCase();
-  const cityKey = cityParam.toLowerCase();
-
-  const countryData = (citiesAndTimezones as Record<string, typeof citiesAndTimezones[keyof typeof citiesAndTimezones]>)[countryKey];
+  // Find country (case insensitive, with hyphen replacement)
+  const normalizedCountry = country.toLowerCase().replace(/-/g, ' ');
+  const countryData = countriesData.find(c => 
+    c.name.toLowerCase() === normalizedCountry ||
+    c.code.toLowerCase() === normalizedCountry
+  );
 
   if (!countryData) {
-    return NextResponse.json({ error: 'Country not found' }, { status: 404 });
+    return NextResponse.json(
+      { error: 'Country not found' },
+      { status: 404 }
+    );
   }
 
-  const cityData = countryData.cities.find(
-    (c) => c.name.toLowerCase() === cityKey
+  // Find city (case insensitive, with hyphen replacement)
+  const normalizedCity = city.toLowerCase().replace(/-/g, ' ');
+  const cityData = countryData.cities.find(c => 
+    c.name.toLowerCase() === normalizedCity
   );
 
   if (!cityData) {
-    return NextResponse.json({ error: 'City not found in this country' }, { status: 404 });
+    return NextResponse.json(
+      { error: 'City not found' },
+      { status: 404 }
+    );
   }
 
   return NextResponse.json({
-    city: cityData.name,
-    cityLat: cityData.latitude,
-    cityLng: cityData.longitude,
-    timezone: cityData.timezone,
-    country: countryData.country,
-    countryCode: countryData.countryCode,
-    countryLat: countryData.latitude,
-    countryLng: countryData.longitude,
-    otherCities: countryData.cities
-      .filter((c) => c.name.toLowerCase() !== cityKey)
-      .map((c) => c.name),
+    country: countryData.name,
+    countryCode: countryData.code,
+    city: cityData,
+    timezones: {
+      zone: cityData.timezone
+    },
+    cities: countryData.cities
   });
 }
