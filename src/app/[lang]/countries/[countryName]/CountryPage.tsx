@@ -41,7 +41,6 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
   { zone: "America/Antigua", utc: "(GMT-04:00)", name: "Antigua and Barbuda" },
   { zone: "Europe/Andorra", utc: "(GMT+01:00)", name: "Andorra" },
   { zone: "Pacific/Pago_Pago", utc: "(GMT-11:00)", name: "American Samoa" },
-  { zone: "Europe/Tirane", utc: "(GMT+01:00)", name: "Albania" },
   { zone: "Pacific/Midway", utc: "(GMT-11:00)", name: "Midway Island" },
   { zone: "US/Samoa", utc: "(GMT-11:00)", name: "Samoa" },
   { zone: "US/Hawaii", utc: "(GMT-10:00)", name: "Hawaii" },
@@ -271,7 +270,7 @@ export default function CountryPage() {
   } else if (pathParts[2] === "countries") {
     extracted = pathParts[3]?.toLowerCase();
   }
-   const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [country, setCountry] = useState<CountryData | null>(null);
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState<string>("");
@@ -279,16 +278,16 @@ export default function CountryPage() {
   const { t } = useTranslation("country")
 
   useEffect(() => {
-      localStorage.setItem("loading", "true");
-      setIsLoading(true);
-  
-      const timer = setTimeout(() => {
-        localStorage.setItem("loading", "false");
-        setIsLoading(false); // This will now execute AFTER 2 seconds
-      }, 800);
-  
-      return () => clearTimeout(timer); // Cleanup timeout on unmount
-    }, []);
+    localStorage.setItem("loading", "true");
+    setIsLoading(true);
+
+    const timer = setTimeout(() => {
+      localStorage.setItem("loading", "false");
+      setIsLoading(false); // This will now execute AFTER 2 seconds
+    }, 800);
+
+    return () => clearTimeout(timer); // Cleanup timeout on unmount
+  }, []);
 
 
   useEffect(() => {
@@ -874,11 +873,7 @@ export default function CountryPage() {
         } else if (data[0].name.common === "American Samoa") {
           mappedTimezone = "Pacific/Pago_Pago";
           countryData.timezones = ["Pacific/Pago_Pago"];
-        } else if (data[0].name.common === "Albania") {
-          mappedTimezone = "Europe/Tirane";
-          countryData.timezones = ["Europe/Tirane"];
-        }
-        else if (data[0].name.common === "Bahamas") {
+        } else if (data[0].name.common === "Bahamas") {
           mappedTimezone = "America/Nassau";
           countryData.timezones = ["America/Nassau"];
         }
@@ -898,8 +893,8 @@ export default function CountryPage() {
         setCountry(countryData);
 
         localStorage.setItem("countryData", JSON.stringify(countryData));
-        
-        
+
+
       } catch (error) {
         console.error("Error fetching country data:", error);
       } finally {
@@ -952,111 +947,111 @@ export default function CountryPage() {
 
   return (
     <>
-      {isLoading ? <CustomSkeleton/> :
-        ( <div className="bg-background">
-      <Banner image={country.bannerImage} />
+      {isLoading ? <CustomSkeleton /> :
+        (<div className="bg-background">
+          <Banner image={country.bannerImage} />
 
-      <main className="mx-auto px-4 py-8 -mt-32 relative z-10">
-        <div className="bg-background rounded-lg shadow-lg p-6 mb-8">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-            <CountryInfo
-              name={country.name} // Directly use the country name
-              flagUrl={flagUrl}
-              timezone={country.timezone} // Pass the timezone
-              time={time} // Pass the current time
-            />
-            </div>
+          <main className="mx-auto px-4 py-8 -mt-32 relative z-10">
+            <div className="bg-background rounded-lg shadow-lg p-6 mb-8">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+                <CountryInfo
+                  name={country.name} // Directly use the country name
+                  flagUrl={flagUrl}
+                  timezone={country.timezone} // Pass the timezone
+                  time={time} // Pass the current time
+                />
+              </div>
 
-          <div className="space-y-8">
+              <div className="space-y-8">
 
-            {isArabic === "ar" ? (<div className={`mb-6 flex items-center text-sm text-muted-foreground justify-end text-right `}>
+                {isArabic === "ar" ? (<div className={`mb-6 flex items-center text-sm text-muted-foreground justify-end text-right `}>
 
-              <span className="text-foreground">{country.name}</span>
-              <ChevronLeft className="h-4 w-4 mx-1" />
-              <Link href="/countries" className="hover:text-green-500">
-                {t("navigation.countries")}
-              </Link>
-              <ChevronLeft className="h-4 w-4 mx-1" />
-              <Link href="/" className="hover:text-green-500">
-                {t("navigation.home")}
-              </Link>
-            </div>) :
-              (<div className={`mb-6 flex items-center text-sm text-muted-foreground `}>
-                <Link href="/" className="hover:text-green-500">
-                  {t("navigation.home")}
-                </Link>
-                <ChevronRight className="h-4 w-4 mx-1" />
-                <Link href="/countries" className="hover:text-green-500">
-                  {t("navigation.countries")}
-                </Link>
-                <ChevronRight className="h-4 w-4 mx-1" />
-                <span className="text-foreground">{country.name}</span>
-              </div>)
-            }
+                  <span className="text-foreground">{country.name}</span>
+                  <ChevronLeft className="h-4 w-4 mx-1" />
+                  <Link href="/countries" className="hover:text-green-500">
+                    {t("navigation.countries")}
+                  </Link>
+                  <ChevronLeft className="h-4 w-4 mx-1" />
+                  <Link href="/" className="hover:text-green-500">
+                    {t("navigation.home")}
+                  </Link>
+                </div>) :
+                  (<div className={`mb-6 flex items-center text-sm text-muted-foreground `}>
+                    <Link href="/" className="hover:text-green-500">
+                      {t("navigation.home")}
+                    </Link>
+                    <ChevronRight className="h-4 w-4 mx-1" />
+                    <Link href="/countries" className="hover:text-green-500">
+                      {t("navigation.countries")}
+                    </Link>
+                    <ChevronRight className="h-4 w-4 mx-1" />
+                    <span className="text-foreground">{country.name}</span>
+                  </div>)
+                }
 
-            {isArabic === "ar" ? (
-              <h2 className="text-2xl font-bold lg:text-right text-center">
-                <span className="capitalize">{country.name}</span> {t("country.title")}
-              </h2>
-            ) : (
-              <h2 className="text-2xl font-bold lg:text-left text-center">
-                {t("country.title")} <span className="capitalize">{country.name}</span>
-              </h2>
-            )}
+                {isArabic === "ar" ? (
+                  <h2 className="text-2xl font-bold lg:text-right text-center">
+                    <span className="capitalize">{country.name}</span> {t("country.title")}
+                  </h2>
+                ) : (
+                  <h2 className="text-2xl font-bold lg:text-left text-center">
+                    {t("country.title")} <span className="capitalize">{country.name}</span>
+                  </h2>
+                )}
 
-            <PrayerTimesTable country={country.name} countryCode={country.countryCode} timezone={country.timezone} timezoneMapping={timezoneMapping} />
-          </div>
+                <PrayerTimesTable country={country.name} countryCode={country.countryCode} timezone={country.timezone} timezoneMapping={timezoneMapping} />
+              </div>
 
-          {isArabic === "ar" ? (
-            <h2 className="text-2xl md:text-4xl font-bold lg:text-right text-center text-blue-900 dark:text-zinc-100 pt-8 pb-1 ">
-              {country.name}  {t("country.subheading_1")}
-            </h2>
-          ) : (
-            <h2 className="text-2xl md:text-4xl font-bold lg:text-left text-center text-blue-900 dark:text-zinc-100 pt-8 pb-1">
-              {t("country.subheading_1")} {country.name}
-            </h2>
-          )}
+              {isArabic === "ar" ? (
+                <h2 className="text-2xl md:text-4xl font-bold lg:text-right text-center text-blue-900 dark:text-zinc-100 pt-8 pb-1 ">
+                  {country.name}  {t("country.subheading_1")}
+                </h2>
+              ) : (
+                <h2 className="text-2xl md:text-4xl font-bold lg:text-left text-center text-blue-900 dark:text-zinc-100 pt-8 pb-1">
+                  {t("country.subheading_1")} {country.name}
+                </h2>
+              )}
 
-          <p className="mt-1 text-muted-foreground text-base pb-3 lg:text-left text-center">
-            {t("country.subparagraph_1")}
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10 max-w-6xl mx-auto">
-            {/* First Column */}
-            <div className="bg-transparent border border-muted rounded-lg shadow-md p-6">
-              <h3 className="text-xl lg:text-left text-center font-semibold text-blue-900 dark:text-zinc-100 ">{t("country.subheading_2")}</h3>
-              <p className="mt-4 text-muted-foreground lg:text-left text-center text-sm">
-                {t("country.subparagraph_2")}
+              <p className="mt-1 text-muted-foreground text-base pb-3 lg:text-left text-center">
+                {t("country.subparagraph_1")}
               </p>
-            </div>
-            {/* Second Column */}
-            <div className="bg-transparent border border-muted rounded-lg shadow-md p-6">
-              <h3 className="text-2xl font-semibold text-blue-900 dark:text-zinc-100 lg:text-left text-center">{t("country.subheading_3")}</h3>
-              <p className="mt-4 text-muted-foreground lg:text-left text-center text-sm">
-                {t("country.subparagraph_3")}
-              </p>
-            </div>
-            {/* Third Column */}
-            <div className="bg-transparent border border-muted rounded-lg shadow-md p-6">
-              <h3 className="text-2xl font-semibold text-blue-900 dark:text-zinc-100 lg:text-left text-center">{t("country.subheading_4")}</h3>
-              <p className="mt-4 text-muted-foreground lg:text-left text-center text-sm">
-                {t("country.subparagraph_4")}
-              </p>
-            </div>
-            {/* Fourth Column */}
-            <div className="bg-transparent border border-muted rounded-lg shadow-md p-6">
-              <h3 className="text-2xl font-semibold text-blue-900 dark:text-zinc-100 lg:text-left text-center">{t("country.subheading_5")}</h3>
-              <p className="mt-4 text-muted-foreground lg:text-left text-center text-sm">
-                {t("country.subparagraph_5")}
-              </p>
-            </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-10 max-w-6xl mx-auto">
+                {/* First Column */}
+                <div className="bg-transparent border border-muted rounded-lg shadow-md p-6">
+                  <h3 className="text-xl lg:text-left text-center font-semibold text-blue-900 dark:text-zinc-100 ">{t("country.subheading_2")}</h3>
+                  <p className="mt-4 text-muted-foreground lg:text-left text-center text-sm">
+                    {t("country.subparagraph_2")}
+                  </p>
+                </div>
+                {/* Second Column */}
+                <div className="bg-transparent border border-muted rounded-lg shadow-md p-6">
+                  <h3 className="text-2xl font-semibold text-blue-900 dark:text-zinc-100 lg:text-left text-center">{t("country.subheading_3")}</h3>
+                  <p className="mt-4 text-muted-foreground lg:text-left text-center text-sm">
+                    {t("country.subparagraph_3")}
+                  </p>
+                </div>
+                {/* Third Column */}
+                <div className="bg-transparent border border-muted rounded-lg shadow-md p-6">
+                  <h3 className="text-2xl font-semibold text-blue-900 dark:text-zinc-100 lg:text-left text-center">{t("country.subheading_4")}</h3>
+                  <p className="mt-4 text-muted-foreground lg:text-left text-center text-sm">
+                    {t("country.subparagraph_4")}
+                  </p>
+                </div>
+                {/* Fourth Column */}
+                <div className="bg-transparent border border-muted rounded-lg shadow-md p-6">
+                  <h3 className="text-2xl font-semibold text-blue-900 dark:text-zinc-100 lg:text-left text-center">{t("country.subheading_5")}</h3>
+                  <p className="mt-4 text-muted-foreground lg:text-left text-center text-sm">
+                    {t("country.subparagraph_5")}
+                  </p>
+                </div>
 
-          </div>
+              </div>
 
 
 
-        </div>
-      </main>
-    </div>)}
+            </div>
+          </main>
+        </div>)}
     </>
   );
 }

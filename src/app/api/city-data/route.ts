@@ -14,7 +14,6 @@ export async function GET(request: Request) {
     );
   }
 
-  // Find country (case insensitive, with hyphen replacement)
   const normalizedCountry = country.toLowerCase().replace(/-/g, ' ');
   const countryData = countriesData.find(c => 
     c.name.toLowerCase() === normalizedCountry ||
@@ -28,7 +27,6 @@ export async function GET(request: Request) {
     );
   }
 
-  // Find city (case insensitive, with hyphen replacement)
   const normalizedCity = city.toLowerCase().replace(/-/g, ' ');
   const cityData = countryData.cities.find(c => 
     c.name.toLowerCase() === normalizedCity

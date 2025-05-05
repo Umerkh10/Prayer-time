@@ -198,7 +198,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Curitiba", latitude: -25.4284, longitude: -49.2733 },
         { "name": "Campinas", latitude: -22.9056, longitude: -47.0608 },
         { "name": "Santos", latitude: -23.9608, longitude: -46.3339 },
-        { "name": "Brasília", latitude: -15.8267, longitude: -47.9218 }
+        { "name": "Brasilia", latitude: -15.8267, longitude: -47.9218 }
       ],
     }
   },
@@ -302,7 +302,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Ciudad Juarez", latitude: 31.7333, longitude: -106.4875 },
         { "name": "Delicias", latitude: 27.4394, longitude: -105.9350 },
         { "name": "Camargo", latitude: 27.6342, longitude: -105.3213 },
-        { "name": "Cuauhtémoc", latitude: 28.4141, longitude: -106.8744 },
+        { "name": "Cuauhtemoc", latitude: 28.4141, longitude: -106.8744 },
         { "name": "Parral", latitude: 26.9333, longitude: -105.6667 }
       ],
       "America/Hermosillo": [
@@ -388,7 +388,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Cologne", latitude: 50.9375, longitude: 6.9603 },
         { "name": "Frankfurt", latitude: 50.1109, longitude: 8.6821 },
         { "name": "Stuttgart", latitude: 48.7758, longitude: 9.1829 },
-        { "name": "Düsseldorf", latitude: 51.2277, longitude: 6.7735 }
+        { "name": "Dusseldorf", latitude: 51.2277, longitude: 6.7735 }
       ]
     }
   },
@@ -415,7 +415,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Valencia", latitude: 39.4699, longitude: -0.3763 },
         { "name": "Seville", latitude: 37.3891, longitude: -5.9845 },
         { "name": "Zaragoza", latitude: 41.6488, longitude: -0.8891 },
-        { "name": "Málaga", latitude: 36.7213, longitude: -4.4215 },
+        { "name": "Malaga", latitude: 36.7213, longitude: -4.4215 },
         { "name": "Murcia", latitude: 37.9922, longitude: -1.1307 }
       ]
     }
@@ -577,11 +577,11 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "Europe/Warsaw": [
         { "name": "Warsaw", latitude: 52.2297, longitude: 21.0122 },
-        { "name": "Kraków", latitude: 50.0647, longitude: 19.9450 },
-        { "name": "Łódź", latitude: 51.7592, longitude: 19.4554 },
-        { "name": "Wrocław", latitude: 51.1079, longitude: 17.0385 },
-        { "name": "Poznań", latitude: 52.4064, longitude: 16.9252 },
-        { "name": "Gdańsk", latitude: 54.3520, longitude: 18.6466 },
+        { "name": "Krakow", latitude: 50.0647, longitude: 19.9450 },
+        { "name": "Lodz", latitude: 51.7592, longitude: 19.4554 },
+        { "name": "Wroclaw", latitude: 51.1079, longitude: 17.0385 },
+        { "name": "Poznan", latitude: 52.4064, longitude: 16.9252 },
+        { "name": "Gdansk", latitude: 54.3520, longitude: 18.6466 },
         { "name": "Szczecin", latitude: 53.4285, longitude: 14.5528 }
       ]
     }
@@ -592,10 +592,8 @@ export const countriesData: { [country: string]: CountryData } = {
       "Europe/Stockholm": [
         { "name": "Stockholm", latitude: 59.3293, longitude: 18.0686 },
         { "name": "Gothenburg", latitude: 57.7089, longitude: 11.9746 },
-        { "name": "Malmö", latitude: 55.6044, longitude: 13.0038 },
+        { "name": "Malmo", latitude: 55.6044, longitude: 13.0038 },
         { "name": "Uppsala", latitude: 59.8586, longitude: 17.6389 },
-        { "name": "Västerås", latitude: 59.6168, longitude: 16.5528 },
-        { "name": "Örebro", latitude: 59.2753, longitude: 15.2134 }
       ]
     }
   },
@@ -932,11 +930,11 @@ export const countriesData: { [country: string]: CountryData } = {
       "Europe/Bucharest": [
         { "name": "Bucharest", latitude: 44.4268, longitude: 26.1025 },
         { "name": "Cluj-Napoca", latitude: 46.7712, longitude: 23.6236 },
-        { "name": "Timișoara", latitude: 45.7489, longitude: 21.2087 },
-        { "name": "Iași", latitude: 47.1585, longitude: 27.6014 },
-        { "name": "Constanța", latitude: 44.1807, longitude: 28.6343 },
+        { "name": "Timisoara", latitude: 45.7489, longitude: 21.2087 },
+        { "name": "Iasi", latitude: 47.1585, longitude: 27.6014 },
+        { "name": "Constanta", latitude: 44.1807, longitude: 28.6343 },
         { "name": "Craiova", latitude: 44.3302, longitude: 23.7946 },
-        { "name": "Brașov", latitude: 45.6556, longitude: 25.6100 }
+        { "name": "Brasov", latitude: 45.6556, longitude: 25.6100 }
       ]
     }
   },
@@ -960,11 +958,11 @@ export const countriesData: { [country: string]: CountryData } = {
       "Europe/Belgrade": [
         { "name": "Belgrade", latitude: 44.7866, longitude: 20.4489 },
         { "name": "Novi Sad", latitude: 45.2671, longitude: 19.8335 },
-        { "name": "Niš", latitude: 43.3194, longitude: 21.8967 },
+        { "name": "Nis", latitude: 43.3194, longitude: 21.8967 },
         { "name": "Kragujevac", latitude: 44.0128, longitude: 20.9114 },
         { "name": "Subotica", latitude: 46.1008, longitude: 19.6674 },
         { "name": "Zrenjanin", latitude: 45.3814, longitude: 20.3780 },
-        { "name": "Pančevo", latitude: 44.8739, longitude: 20.6408 }
+        { "name": "Pancevo", latitude: 44.8739, longitude: 20.6408 }
       ]
     }
   },
@@ -973,11 +971,11 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "Europe/Bratislava": [
         { "name": "Bratislava", latitude: 48.1486, longitude: 17.1077 },
-        { "name": "Košice", latitude: 48.7071, longitude: 21.2587 },
-        { "name": "Prešov", latitude: 49.0000, longitude: 21.2333 },
-        { "name": "Žilina", latitude: 49.2197, longitude: 18.7394 },
+        { "name": "Kosice", latitude: 48.7071, longitude: 21.2587 },
+        { "name": "Presov", latitude: 49.0000, longitude: 21.2333 },
+        { "name": "Zilina", latitude: 49.2197, longitude: 18.7394 },
         { "name": "Nitra", latitude: 48.3124, longitude: 18.0866 },
-        { "name": "Banská Bystrica", latitude: 48.7387, longitude: 19.1576 },
+        { "name": "Banska Bystrica", latitude: 48.7387, longitude: 19.1576 },
         { "name": "Trnava", latitude: 48.3774, longitude: 17.5872 }
       ]
     }
@@ -1003,7 +1001,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Montevideo", latitude: -34.9011, longitude: -56.1645 },
         { "name": "Salto", latitude: -31.3833, longitude: -57.9667 },
         { "name": "Ciudad de la Costa", latitude: -34.8173, longitude: -56.3772 },
-        { "name": "Paysandú", latitude: -32.3214, longitude: -58.0756 },
+        { "name": "Paysandu", latitude: -32.3214, longitude: -58.0756 },
         { "name": "Las Piedras", latitude: -34.7264, longitude: -56.2200 },
         { "name": "Rivera", latitude: -30.9053, longitude: -55.5508 },
         { "name": "Maldonado", latitude: -34.9053, longitude: -54.9551 }
@@ -1291,7 +1289,7 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "Indian/Maldives": [
         { "name": "Malé", latitude: 4.1755, longitude: 73.5093 },
-        { "name": "Hulhumalé", latitude: 4.2143, longitude: 73.5391 },
+        { "name": "Hulhumale", latitude: 4.2143, longitude: 73.5391 },
         { "name": "Addu City", latitude: -0.6167, longitude: 73.0833 },
         { "name": "Fuvahmulah", latitude: -0.2989, longitude: 73.4247 },
         { "name": "Kulhudhuffushi", latitude: 6.6222, longitude: 73.0700 }
@@ -1471,8 +1469,8 @@ export const countriesData: { [country: string]: CountryData } = {
     timezones: ["America/Bogota"],
     cities: {
       "America/Bogota": [
-        { "name": "Bogotá", latitude: 4.7110, longitude: -74.0721 },
-        { "name": "Medellín", latitude: 6.2442, longitude: -75.5812 },
+        { "name": "Bogota", latitude: 4.7110, longitude: -74.0721 },
+        { "name": "Medellin", latitude: 6.2442, longitude: -75.5812 },
         { "name": "Cali", latitude: 3.4372, longitude: -76.5225 },
         { "name": "Barranquilla", latitude: 10.9639, longitude: -74.7964 },
         { "name": "Cartagena", latitude: 10.3910, longitude: -75.4794 }
@@ -1484,8 +1482,8 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "America/Santiago": [
         { "name": "Santiago", latitude: -33.4489, longitude: -70.6693 },
-        { "name": "Valparaíso", latitude: -33.0460, longitude: -71.6127 },
-        { "name": "Concepción", latitude: -36.8260, longitude: -73.0498 },
+        { "name": "Valparaiso", latitude: -33.0460, longitude: -71.6127 },
+        { "name": "Concepcion", latitude: -36.8260, longitude: -73.0498 },
         { "name": "La Serena", latitude: -29.9075, longitude: -71.2518 },
         { "name": "Antofagasta", latitude: -23.6500, longitude: -70.4000 }
       ]
@@ -1498,7 +1496,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "N'Djamena", latitude: 12.6392, longitude: 15.0147 },
         { "name": "Moundou", latitude: 8.5792, longitude: 15.6167 },
         { "name": "Sarh", latitude: 9.1500, longitude: 15.7500 },
-        { "name": "Abéché", latitude: 13.8333, longitude: 20.8333 },
+        { "name": "Abeche", latitude: 13.8333, longitude: 20.8333 },
         { "name": "Kélo", latitude: 9.5000, longitude: 15.5000 }
       ]
     }
@@ -1508,10 +1506,10 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "Africa/Bangui": [
         { "name": "Bangui", latitude: 4.3947, longitude: 18.5582 },
-        { "name": "Berbérati", latitude: 4.2500, longitude: 15.8000 },
+        { "name": "Berberati", latitude: 4.2500, longitude: 15.8000 },
         { "name": "Bimbo", latitude: 4.4000, longitude: 18.5000 },
         { "name": "Carnot", latitude: 4.5000, longitude: 15.5000 },
-        { "name": "Mbaïki", latitude: 4.5000, longitude: 15.5000 }
+        { "name": "Mbaiki", latitude: 4.5000, longitude: 15.5000 }
       ]
     }
   },
@@ -1520,7 +1518,7 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "Africa/Douala": [
         { "name": "Douala", latitude: 4.0511, longitude: 9.7085 },
-        { "name": "Yaoundé", latitude: 3.848, longitude: 11.5021 },
+        { "name": "Yaounde", latitude: 3.848, longitude: 11.5021 },
         { "name": "Bafoussam", latitude: 5.4634, longitude: 10.1571 },
         { "name": "Garoua", latitude: 9.3077, longitude: 13.3944 },
         { "name": "Maroua", latitude: 10.5917, longitude: 14.3249 }
@@ -1559,7 +1557,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Santiago de los Caballeros", latitude: 19.4531, longitude: -70.6928 },
         { "name": "La Romana", latitude: 18.4233, longitude: -68.9846 },
         { "name": "Puerto Plata", latitude: 19.7739, longitude: -70.6937 },
-        { "name": "San Pedro de Macorís", latitude: 18.4522, longitude: -69.3003 }
+        { "name": "San Pedro de Macoris", latitude: 18.4522, longitude: -69.3003 }
       ]
     }
   },
@@ -1706,7 +1704,7 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "America/Port-au-Prince": [
         { "name": "Port-au-Prince", latitude: 18.5944, longitude: -72.3074 },
-        { "name": "Cap-Haïtien", latitude: 19.7592, longitude: -72.2047 },
+        { "name": "Cap-Haitien", latitude: 19.7592, longitude: -72.2047 },
         { "name": "Les Cayes", latitude: 18.198, longitude: -74.1212 }
       ]
     }
@@ -1849,7 +1847,7 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "America/Managua": [
         { "name": "Managua", latitude: 12.1364, longitude: -86.2512 },
-        { "name": "León", latitude: 12.4351, longitude: -86.8784 },
+        { "name": "Leon", latitude: 12.4351, longitude: -86.8784 },
         { "name": "Masaya", latitude: 11.9733, longitude: -86.1017 },
         { "name": "Estelí", latitude: 13.0846, longitude: -86.3554 },
         { "name": "Chinandega", latitude: 12.6206, longitude: -87.1261 }
@@ -1956,9 +1954,9 @@ export const countriesData: { [country: string]: CountryData } = {
       "Europe/Vilnius": [
         { "name": "Vilnius", latitude: 54.6892, longitude: 25.2798 },
         { "name": "Kaunas", latitude: 54.8985, longitude: 23.9036 },
-        { "name": "Klaipėda", latitude: 55.7033, longitude: 21.1442 },
-        { "name": "Šiauliai", latitude: 55.9333, longitude: 23.3136 },
-        { "name": "Panevėžys", latitude: 55.7294, longitude: 24.3656 }
+        { "name": "Klaipeda", latitude: 55.7033, longitude: 21.1442 },
+        { "name": "Siauliai", latitude: 55.9333, longitude: 23.3136 },
+        { "name": "Panevezys", latitude: 55.7294, longitude: 24.3656 }
       ]
     }
   },
@@ -2014,8 +2012,8 @@ export const countriesData: { [country: string]: CountryData } = {
     timezones: ["Europe/Chisinau"],
     cities: {
       "Europe/Chisinau": [
-        { "name": "Chișinău", latitude: 47.0105, longitude: 28.8638 },
-        { "name": "Bălți", latitude: 47.7566, longitude: 27.9214 },
+        { "name": "Chisinau", latitude: 47.0105, longitude: 28.8638 },
+        { "name": "Balti", latitude: 47.7566, longitude: 27.9214 },
         { "name": "Tiraspol", latitude: 46.8594, longitude: 29.6167 },
         { "name": "Bender", latitude: 45.8496, longitude: 29.4572 },
         { "name": "Briceni", latitude: 48.2997, longitude: 26.5231 }
@@ -2042,7 +2040,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Erdenet", latitude: 49.0364, longitude: 104.1667 },
         { "name": "Darkhan", latitude: 49.4878, longitude: 105.8703 },
         { "name": "Choibalsan", latitude: 48.1236, longitude: 114.5411 },
-        { "name": "Mörön", latitude: 49.6333, longitude: 100.1667 }
+        { "name": "Moron", latitude: 49.6333, longitude: 100.1667 }
       ]
     }
   },
@@ -2051,7 +2049,7 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "Europe/Podgorica": [
         { "name": "Podgorica", latitude: 42.4411, longitude: 19.2636 },
-        { "name": "Nikšić", latitude: 42.7792, longitude: 18.9703 },
+        { "name": "Niksic", latitude: 42.7792, longitude: 18.9703 },
         { "name": "Bijelo Polje", latitude: 43.0036, longitude: 19.1472 },
         { "name": "Herceg Novi", latitude: 42.4536, longitude: 18.5319 },
         { "name": "Tivat", latitude: 42.4333, longitude: 18.7139 }
@@ -2087,9 +2085,9 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "America/Panama": [
         { "name": "Panama City", latitude: 8.9833, longitude: -79.5167 },
-        { "name": "Colón", latitude: 9.3605, longitude: -79.9005 },
+        { "name": "Colon", latitude: 9.3605, longitude: -79.9005 },
         { "name": "David", latitude: 8.4297, longitude: -82.4281 },
-        { "name": "Chiriquí", latitude: 8.056, longitude: -81.7005 },
+        { "name": "Chiriqui", latitude: 8.056, longitude: -81.7005 },
         { "name": "La Chorrera", latitude: 8.7611, longitude: -79.7497 }
       ]
     }
@@ -2110,11 +2108,11 @@ export const countriesData: { [country: string]: CountryData } = {
     timezones: ["America/Asuncion"],
     cities: {
       "America/Asuncion": [
-        { "name": "Asunción", latitude: -25.2637, longitude: -57.5759 },
+        { "name": "Asuncion", latitude: -25.2637, longitude: -57.5759 },
         { "name": "Ciudad del Este", latitude: -25.5086, longitude: -54.6092 },
         { "name": "Luque", latitude: -25.2986, longitude: -57.4786 },
         { "name": "San Lorenzo", latitude: -25.292, longitude: -57.542 },
-        { "name": "Encarnación", latitude: -27.3667, longitude: -55.8667 }
+        { "name": "Encarnacion", latitude: -27.3667, longitude: -55.8667 }
       ]
     }
   },
@@ -2136,9 +2134,9 @@ export const countriesData: { [country: string]: CountryData } = {
       "America/Puerto_Rico": [
         { "name": "San Juan", latitude: 18.4655, longitude: -66.1057 },
         { "name": "Ponce", latitude: 17.9784, longitude: -66.9756 },
-        { "name": "Bayamón", latitude: 18.1931, longitude: -66.1496 },
+        { "name": "Bayamon", latitude: 18.1931, longitude: -66.1496 },
         { "name": "Carolina", latitude: 18.3419, longitude: -65.9833 },
-        { "name": "Mayagüez", latitude: 18.2016, longitude: -67.1384 }
+        { "name": "Mayaguez", latitude: 18.2016, longitude: -67.1384 }
       ]
     }
   },
@@ -2185,7 +2183,7 @@ export const countriesData: { [country: string]: CountryData } = {
         { "name": "Castries", latitude: 13.998, longitude: -61.0022 },
         { "name": "Gros Islet", latitude: 14.0703, longitude: -60.9528 },
         { "name": "Vieux Fort", latitude: 13.7167, longitude: -60.9667 },
-        { "name": "Soufrière", latitude: 13.8486, longitude: -61.0747 },
+        { "name": "Soufriere", latitude: 13.8486, longitude: -61.0747 },
         { "name": "Dennery", latitude: 13.7914, longitude: -60.9469 }
       ]
     }

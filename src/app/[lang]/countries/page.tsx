@@ -58,7 +58,6 @@ export async function generateMetadata({ params }: any) {
 const page = () => {
    const countries = [
     { name: 'Afghanistan', code: 'AF', timezone: 'Asia/Kabul', offset: '+04:30' },
-    { name: 'Albania', code: 'AL', timezone: 'Europe/Tirane', offset: '+01:00' },
     { name: 'Algeria', code: 'DZ', timezone: 'Africa/Algiers', offset: '+01:00' },
     { name: 'American Samoa', code: 'AS', timezone: 'Pacific/Pago_Pago', offset: '-11:00' },
     { name: 'Andorra', code: 'AD', timezone: 'Europe/Andorra', offset: '+01:00' },
