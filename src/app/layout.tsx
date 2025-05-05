@@ -41,7 +41,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="google-site-verification" content="0likJSP3-if8goGabTQOnxr1vNU8eh-XAd8JWDk3ZyU" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico"/>
+        <meta name="msvalidate.01" content="D56CF647A902FCA3278A894778A65D88" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="alternate" hrefLang="fr" href="https://www.globalsalah.com/fr" />
         <link rel="alternate" hrefLang="ar" href="https://www.globalsalah.com/ar" />
 

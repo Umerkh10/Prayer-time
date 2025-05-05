@@ -104,16 +104,13 @@ const CityPage = () => {
           `/api/city-data?country=${encodeURIComponent(countryName)}&city=${encodeURIComponent(cityName)}`
         );
 
-        console.log("country and city", countryName, cityName);
+        
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
 
         const cityData = await response.json();
-
-        console.log("Fetched cityData", cityData);
-        console.log("countryCode:", cityData?.city?.countryCode);
 
         if (cityData.error) {
           throw new Error(cityData.error);

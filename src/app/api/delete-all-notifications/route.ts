@@ -20,7 +20,6 @@ export async function DELETE(req: Request) {
       [user_id]
     );
 
-    console.log
 
     if (!notifications || notifications.length === 0) {
       return NextResponse.json(

@@ -940,5 +940,56 @@
     "shares":"Parts",
     "amount":"Montant",
     "percentage":"Pourcentage"
+  },
+  "duasection": {
+    "title": "Importance des Duas en Islam",
+    "desc": "Les Duas en Islam sont un moyen profond de se connecter avec Allah, de chercher Sa guidance et d'exprimer gratitude, espoir et dépendance à Sa miséricorde.",
+    "heading2": "Dua : Une connexion spirituelle avec Allah",
+    "desc2": "Les Duas sont l'adoration de base effectuée par les musulmans pour établir une communication directe entre eux et Allah. C'est une connexion sincère pour les croyants qui se tournent vers leur Dieu. Ils le font pour remercier Allah et chercher Sa guidance, Ses bénédictions et Sa miséricorde. De plus, une dua peut être faite à tout moment et en tout lieu, offrant ainsi aux croyants le réconfort de savoir qu'il y a toujours quelqu'un pour eux, peu importe les circonstances. Ainsi, même après avoir commis un péché, les croyants se tournent vers Dieu pour demander pardon, exprimer leurs regrets et promettre de ne plus recommencer.",
+    "heading3": "Le pouvoir de la Dua",
+    "desc3": "La Dua est l'outil le plus puissant qu'Allah a donné à l'humanité pour établir une bonne relation et une communication entre eux. De plus, elle ne dépend pas de ce que l'individu essaie de dire, mais uniquement des intentions. Ainsi, la dua montre qu'Allah a seul le pouvoir d'accepter ou de refuser vos souhaits, espoirs et désirs.",
+    "heading4": "Ne perdez pas espoir, ayez foi",
+    "desc4": "Votre dua n'est pas interdite, mais votre Créateur sait ce qui est mieux pour vous. Ainsi, les bonnes choses arrivent au bon moment, ayez foi en votre dua. Au lieu de faire des duas mécaniques, demandez à Allah : si cela est bon pour moi, alors faites-le arriver, et si ce n'est pas le cas, ne laissez pas mon cœur s'y attacher. Ainsi, demandez une dua avec des intentions pures, et si vous ne pouvez pas le faire avec vos mots, laissez votre cœur révéler ce que vous essayez de transmettre."
+  },
+
+  "calculatiorsection": {
+    "title": "Calculateur Islamique",
+    "desc": "Un calculateur islamique est un outil conçu pour aider les musulmans à gérer leurs finances en conformité avec les lois de la Shariah, y compris le calcul de la Zakat et les estimations de profits licites.",
+    "heading2": "Calculateur de Qaza Namaz",
+    "para2": "Si vous êtes ponctuel dans vos prières ou si vous ne l'êtes pas et souhaitez calculer celles qui restent, alors notre calculateur de Qaza Namaz est là pour vous rappeler vos prières manquées. De plus, notre religion met fortement l'accent sur la prière cinq fois par jour, et il n'est pas permis de la négliger sans raison valable. Ainsi, les prières laissées pour diverses raisons doivent être accomplies plus tard.",
+    "pointheading1": "Ce calculateur vous aide à :",
+    "point1": "Enregistrer vos prières manquées depuis le jour où vous souhaitez commencer.",
+    "point2": "Les organiser en fonction de combien vous devez prier à la fois pour les compléter toutes.",
+    "point3": "Suivre les progrès de ce qui reste et de ce que vous devez encore prier.",
+    "heading3": "Calculateur de Zakat",
+    "para3": "C'est un pilier fondamental de l'Islam, et chaque musulman doit le payer chaque année. Il est calculé selon le nisab. Ce calculateur vous aide à calculer vos obligations de Zakat avec précision et conformément aux principes islamiques.",
+    "pointheading2": "Calculez la Zakat sur :",
+    "point4": "L'argent liquide et les économies qui ont complété une année lunaire.",
+    "point5": "87,48 grammes d'or (environ 7,5 tolas) ou l'équivalent en argent.",
+    "point6": "612,36 grammes d'argent (environ 52,5 kilos) ou l'équivalent en argent.",
+    "point7": "Vos investissements et actifs commerciaux.",
+    "point8": "Les animaux que vous devez considérer pour payer votre Zakat.",
+    "heading4": "Calculateur d'Héritage",
+    "para4": "Le calculateur d'héritage aide les musulmans à distribuer leurs biens à leurs enfants selon la loi islamique de l'héritage (Faraid). Nous l'avons conçu selon les distributions du Coran et des Hadiths pour partager votre richesse avec votre famille. Ce calculateur simplifie les calculs complexes pour se conformer aux obligations religieuses.",
+    "pointheading3": "Principaux avantages :",
+    "point9": "Distribution précise des biens selon la loi islamique.",
+    "point10": "Calculs simplifiés pour des scénarios d'héritage complexes.",
+    "point11": "Basé sur des sources authentiques du Coran et des Hadiths."
+  },
+
+  "hadithsection": {
+    "title": "Rectifiez votre chemin avec un Hadith quotidien",
+    "desc": "Enrichissez votre vie et renforcez votre foi en réfléchissant à un Hadith quotidien, offrant une sagesse intemporelle pour un chemin juste et spirituellement épanouissant.",
+    "subheading1": "Types de Hadith : Sahih, Hasan et Da'if",
+    "subpara1": "Les Hadiths sont classés selon leur authenticité et leur fiabilité. Cependant, il existe trois principaux types de Hadiths. Le premier est le Hadith Sahih, qui montre les enseignements et les règles islamiques et est le plus authentique. Ensuite, le Hadith Hasan a des complications mineures, mais il reste bon et fiable et est accepté pour sa guidance. Le troisième est le Hadith Da'if, qui présente une faiblesse majeure dans la chaîne de transmission et est évité pour de nombreuses règles. Ainsi, ces classifications visent à garantir que ce qui doit être suivi respecte l'intégrité des enseignements islamiques.",
+    "subheading2": "Préservation et compilation des Hadiths en Islam",
+    "subpara2": "La préservation et la compilation des Hadiths en Islam sont des efforts fondamentaux réalisés par de nombreux érudits. Cela vise à garantir et à protéger les paroles de notre Prophète Muhammad (paix et bénédictions sur lui). Ils utilisent ces méthodes pour vérifier la chaîne de transmission (Isnad) et vérifier la fiabilité. Les Hadiths ont d'abord été mémorisés par les gens, puis transmis oralement. Cependant, différents érudits comme l'Imam Bukhari et l'Imam Muslim les ont ensuite compilés pour les rendre authentiques. Leur processus de documentation authentique préserve l'intégrité des enseignements de l'Islam pour les générations futures.",
+    "subheading3": "L'importance des Hadiths dans les enseignements islamiques",
+    "subpara3": "Les Hadiths jouent un rôle important dans les enseignements islamiques, car les versets du Coran sont généraux, mais les Hadiths montrent des exemples pratiques de ce que le dernier Prophète (paix et bénédictions sur lui) a essayé de dire avec ses paroles et ses actions. Ainsi, ils aident les musulmans à comprendre le sens profond des versets du Coran et comment les appliquer dans leur vie quotidienne. De plus, ils constituent également une base fondamentale pour la loi islamique (Shariah) afin de façonner les règles qui doivent être établies en conséquence. Ainsi, le sens profond du Coran est élargi dans les Hadiths pour rendre la vie plus significative."
+  },
+
+  "namesection": {
+    "title": "Importance des 99 Noms d'Allah",
+    "desc": "Les 99 Noms d'Allah, également appelés Asmaul Husna, ont une grande importance non seulement pour la religion islamique mais aussi pour chaque individu, car ils montrent la perfection des noms d'Allah. Chaque nom d'Allah reflète des qualités, notamment la miséricorde, la sagesse et la justice, pour aider les musulmans à mieux comprendre combien de pouvoir leur Créateur possède. Cela renforce encore plus la foi. Ainsi, ils sont inclus pour que les croyants récitent ces noms quotidiennement. Cela rend les croyants plus à l'aise face aux défis qu'ils rencontrent. De plus, ils servent également de guide pour des conduites morales qui motivent les croyants à adopter des qualités telles que la gentillesse, la patience et le pardon dans leur vie quotidienne."
   }
 }

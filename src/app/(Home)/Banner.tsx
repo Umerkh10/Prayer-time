@@ -1,17 +1,25 @@
 "use client"
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+const AnimatePresence = dynamic(() =>
+    import('framer-motion').then(mod => mod.AnimatePresence), { ssr: false }
+)
+const Select = dynamic(() => import('@/components/ui/select').then(mod => mod.Select), { ssr: false })
+const SelectContent = dynamic(() => import('@/components/ui/select').then(mod => mod.SelectContent), { ssr: false })
+const SelectItem = dynamic(() => import('@/components/ui/select').then(mod => mod.SelectItem), { ssr: false })
+const SelectTrigger = dynamic(() => import('@/components/ui/select').then(mod => mod.SelectTrigger), { ssr: false })
+const SelectValue = dynamic(() => import('@/components/ui/select').then(mod => mod.SelectValue), { ssr: false })
+
 import { useTranslation } from '@/hooks/useTranslation'
 import { urlSplitter } from '@/lib'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Loader2 } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import arabicLang from "../../../public/locales/ar.json"
 import englishLang from "../../../public/locales/en.json"
 import frenchLang from "../../../public/locales/fr.json"
-import { Skeleton } from "@/components/ui/skeleton"
 import Image from "next/image"
+import dynamic from 'next/dynamic'
+import { Skeleton } from '@/components/ui/skeleton'
+import { motion } from 'framer-motion'
 
 function Banner() {
     const [isLoading, setIsLoading] = useState(true);

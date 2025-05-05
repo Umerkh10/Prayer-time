@@ -4,6 +4,10 @@ import StoryImageSec from '../(Home)/StoryImageSec';
 import CountrySection from '../(Home)/CountrySection';
 import HijirDivider from '../(Home)/HijirDivider';
 import Banner from '../(Home)/Banner';
+import DuaSection from '../(Home)/dua-section';
+import IslamicCalculators from '../(Home)/islamic-calculators';
+import HadithSection from '../(Home)/hadith-section';
+import NamesOfAllahSection from '../(Home)/names-of-Allah-section';
 
 
 
@@ -65,6 +69,10 @@ export default function Home() {
     <DateTimingDisplay/>
     <StoryImageSec/>
     <CountrySection/>
+    <DuaSection/>
+    <IslamicCalculators/>
+    <HadithSection/>
+    <NamesOfAllahSection/>
     <HijirDivider/>
     </>   
   );

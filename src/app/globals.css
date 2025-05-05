@@ -264,3 +264,8 @@ span.swiper-pagination-bullet {
   display: block;
   z-index: 9;
 }
+
+.animate-on-scroll.animate-in {
+  opacity: 1;
+  transform: translateY(0) translateX(0) !important;
+}
