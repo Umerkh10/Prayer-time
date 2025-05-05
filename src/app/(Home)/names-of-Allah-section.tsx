@@ -1,11 +1,15 @@
 "use client"
 import { useTranslation } from "@/hooks/useTranslation";
+import { checkIsPathnameIsEqualToLang, urlSplitter } from "@/lib";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function NamesOfAllahSection() {
   const pathname = usePathname();
   const { t } = useTranslation("namesection")
+  const currentLang = urlSplitter(pathname)
+  const isLang = checkIsPathnameIsEqualToLang(currentLang)
   const isArabic = pathname.split("/")[1]
   const [isLoading, setIsLoading] = useState(true);
 
@@ -69,7 +73,7 @@ export default function NamesOfAllahSection() {
                       </svg>
                     </div>
                     <p className="text-sm lg:text-base">
-                    {t("namesection.desc")}
+                      {t("namesection.desc")}
                     </p>
                   </div>
 
@@ -81,6 +85,10 @@ export default function NamesOfAllahSection() {
             {/* Bottom decorative element */}
             <div className="flex justify-center mt-10">
               <div className="w-24 h-1 bg-emerald-300 dark:bg-emerald-700 mx-auto rounded-full"></div>
+            </div>
+
+            <div className='flex justify-center mt-6 items-center '>
+              <Link className='rounded-lg border-2 border-emerald-600 py-2 px-7 hover:bg-emerald-700 hover:text-white transition-all' href={isLang ? `/${currentLang}/99-names-of-allah` : '/99-names-of-allah'}>{t("namesection.button")}</Link>
             </div>
           </div>
         </div>

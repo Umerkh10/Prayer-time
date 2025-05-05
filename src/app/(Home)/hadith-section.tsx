@@ -1,12 +1,16 @@
 "use client"
 import { useTranslation } from '@/hooks/useTranslation';
+import { checkIsPathnameIsEqualToLang, urlSplitter } from '@/lib';
 import { BookOpen, Award, Archive } from 'lucide-react'
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function HadithSection() {
   const pathname = usePathname();
   const { t } = useTranslation("hadithsection")
+  const currentLang = urlSplitter(pathname)
+  const isLang = checkIsPathnameIsEqualToLang(currentLang)
   const isArabic = pathname.split("/")[1]
   const [isLoading, setIsLoading] = useState(true);
 
@@ -31,7 +35,7 @@ export default function HadithSection() {
             <span className="absolute -bottom-2 left-0 right-0 h-3 bg-emerald-200 dark:bg-emerald-700/50 opacity-50 -rotate-1 z-0"></span>
           </h2>
           <p className="text-emerald-700 dark:text-emerald-400 lg:text-base text-sm max-w-xl mx-auto">
-          {t("hadithsection.desc")}
+            {t("hadithsection.desc")}
           </p>
           <div className="w-24 h-1 bg-emerald-600 dark:bg-emerald-500 mx-auto mt-2 rounded-full"></div>
         </div>
@@ -52,7 +56,7 @@ export default function HadithSection() {
               <div className="space-y-4">
                 <div className="bg-emerald-50 dark:bg-emerald-900/30 rounded-lg p-4 border-l-4 border-emerald-600 dark:border-emerald-500">
                   <p className="text-gray-700 dark:text-gray-300 lg:text-base text-sm">
-                  {t("hadithsection.subpara1")}
+                    {t("hadithsection.subpara1")}
                   </p>
                 </div>
 
@@ -74,7 +78,7 @@ export default function HadithSection() {
               </div>
 
               <p className="text-gray-700 dark:text-gray-300 mb-4 lg:text-base text-sm">
-              {t("hadithsection.subpara2")}
+                {t("hadithsection.subpara2")}
 
               </p>
 
@@ -94,7 +98,7 @@ export default function HadithSection() {
               </div>
 
               <p className="text-gray-700 dark:text-gray-300 mb-4 lg:text-base text-sm">
-              {t("hadithsection.subpara3")}
+                {t("hadithsection.subpara3")}
               </p>
 
 
@@ -102,9 +106,15 @@ export default function HadithSection() {
           </div>
         </div>
 
+
         {/* Decorative bottom element */}
         <div className="flex justify-center mt-5">
           <div className="max-w-2xl w-2/3 h-1 bg-emerald-300 dark:bg-emerald-700 mx-auto rounded-full"></div>
+        </div>
+
+        
+        <div className='flex justify-center mt-6 items-center '>
+          <Link className='rounded-lg border-2 border-emerald-600 py-2 px-7 hover:bg-emerald-700 hover:text-white transition-all' href={isLang ? `/${currentLang}/sahih-bukhari` : '/sahih-bukhari'}> {t("hadithsection.button")} </Link>
         </div>
       </div>
     </section>

@@ -950,7 +950,8 @@
     "heading3": "Power of Dua",
     "desc3": "Dua is the most powerful tool that Allah has given to humanity to establish a good relationship and make communication between them. Also, it doesn't depend upon what the individual is trying to speak but it solely depends on the intentions. Hence, the dua shows that Allah has the power alone to accept and deny your wishes, hopes, and desires.",
     "heading4": "Don't Be Hopeless, Have Faith",
-    "desc4": "Your dua is not forbidden, but your creator knows what is better for you. So, the right things occur at the right time, have faith in your dua. Instead of making robotics dua, ask Allah if it is right for me, then make it happen for me, and if it is not, then don't let my heart get attached to it. Thus, ask dua with pure intentions, and if you cannot do this through your word, let your heart reveal what you are trying to convey."
+    "desc4": "Your dua is not forbidden, but your creator knows what is better for you. So, the right things occur at the right time, have faith in your dua. Instead of making robotics dua, ask Allah if it is right for me, then make it happen for me, and if it is not, then don't let my heart get attached to it. Thus, ask dua with pure intentions, and if you cannot do this through your word, let your heart reveal what you are trying to convey.",
+    "button":"More Duas"
   },
 
   "calculatiorsection":{
@@ -962,6 +963,7 @@
     "point1":"Record your missed prayers from the day you want to start from.",
     "point2":"Organize them by how much you have to pray at a time to complete them all.",
     "point3":"Track the progress of how much is left and how much you need to pray for it.",
+    "button1":"Calculate Your Qaza Namaz",
     "heading3":"Zakat Calculator",
     "para3":"It is the basic pillar of Islam, and every Muslim must have to pay for it every year. It is calculated according to the nisab. This calculator helps you to calculate your zakat obligations accurately and in accordance with Islamic principles.",
     "pointheading2":"Calculate Zakat on:",
@@ -970,12 +972,15 @@
     "point6":"612.36 Grams Silver(approx. 52.5 kilo) or the equivalent cash.",
     "point7":"Your investments and assets of trading.",
     "point8":"Animals that you have to consider to pay for your zakat.",
+    "button2":"Calculate Your Zakat",
     "heading4":"Inheritance Calculator",
     "para4":"The inheritance calculator is to help Muslims distribute their assets to their children according to their Islamic inheritance law (Faraid). We make this according to the Quran and Hadith distributions to share your wealth with your family. This calculator simplifies complex calculations to comply with religious obligations.",
     "pointheading3":"Key Benefits:",
     "point9":"Accurate distribution of assets according to Islamic law",
     "point10":"Simplified calculations for complex inheritance scenarios",
-    "point11":"Based on authentic sources from the Quran and Hadith"
+    "point11":"Based on authentic sources from the Quran and Hadith",
+    "button3":"Calculate Your Inheritance"
+
   },
   "hadithsection":{
     "title":"Straighten Your Path With Daily Hadith",
@@ -985,11 +990,13 @@
     "subheading2":"Preservation and Compilation of Hadith in Islam",
     "subpara2":"The preservation and Hadith compliance with Islam is the basic effort that is carried out by many scholars. It is to ensure and safeguard the words of our Prophet Muhammad (peace be upon him). They use these methods to verify the chain of transmission  (Isnad) and to check the reliability. Hadiths were first memorized by people and then transmitted orally. However, different scholars like Imam Bukhari and Imam Muslim later compiled them to make them authentic. Their authentic documentation process preserves the integrity of the teachings of Islam for future generations.",
     "subheading3":"The Importance of  Hadith in Islamic Teachings",
-    "subpara3":"The Hadith plays an important role in Islamic teachings as the verses of the Quran are general, but hadiths show practical examples of what the last Prophet (peace be upon him) tried to say with his words and actions. So, it helps Muslims to understand the in-depth meaning of the verses of the Quran and how they have to implement it in their daily lives. Moreover, it is also a basic foundation for Islamic law (Shariah) to shape the rules that have to be made accordingly. Thus, the in-depth meaning of the Quran is expanded in the Hadith to make life more meaningful."
+    "subpara3":"The Hadith plays an important role in Islamic teachings as the verses of the Quran are general, but hadiths show practical examples of what the last Prophet (peace be upon him) tried to say with his words and actions. So, it helps Muslims to understand the in-depth meaning of the verses of the Quran and how they have to implement it in their daily lives. Moreover, it is also a basic foundation for Islamic law (Shariah) to shape the rules that have to be made accordingly. Thus, the in-depth meaning of the Quran is expanded in the Hadith to make life more meaningful.",
+    "button":"More Hadiths"
   },
   "namesection":{
     "title":"Importance Of 99 Names Of Allah",
-    "desc":" The 99 Names of Allah, also called Asmaul Husna, have a deep importance not only for the religion Islam but also for every individual who shows the perfection of Allah's name. Each name of Allah reflects the qualities, including mercy, wisdom, and justice, to help Muslims better understand how much power their creator has. It makes the faith even higher. So, this is included for the believers to recite these names daily. This makes the believers more comfortable during the challenges they face. Additionally, it also serves as a guide for moral conductions that motivate the believers to have qualities like kindness, patience, and forgiveness in their daily lives."
+    "desc":" The 99 Names of Allah, also called Asmaul Husna, have a deep importance not only for the religion Islam but also for every individual who shows the perfection of Allah's name. Each name of Allah reflects the qualities, including mercy, wisdom, and justice, to help Muslims better understand how much power their creator has. It makes the faith even higher. So, this is included for the believers to recite these names daily. This makes the believers more comfortable during the challenges they face. Additionally, it also serves as a guide for moral conductions that motivate the believers to have qualities like kindness, patience, and forgiveness in their daily lives.",
+    "button":"Discover the 99 Names of Allah"
   }
 
 

@@ -2,7 +2,7 @@
 import * as React from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
-import { ChevronDown, Calendar, Tv, Book, X, Calculator, CompassIcon } from "lucide-react"
+import { ChevronDown, Calendar, Tv, Book, X, Calculator, CompassIcon, BookAIcon } from "lucide-react"
 import { motion } from "framer-motion"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -88,6 +88,7 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
             {isActive(createPath("/inheritance-calculator")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
           </Link>
 
+
           <Link
             href={createPath("/qibla-finder")}
             className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
@@ -98,6 +99,18 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
             <CompassIcon className="h-4 w-4" />
             <span>{getText("qiblafinder")}</span>
             {isActive(createPath("/qibla-finder")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
+          </Link>
+
+          <Link
+            href={createPath("/99-names-of-allah")}
+            className={`flex items-center gap-2 px-4 py-3 text-sm rounded-md hover:bg-emerald-600 dark:hover:bg-emerald-700 hover:text-white transition-colors ${
+              isActive(createPath("/99-names-of-allah")) ? "bg-emerald-700 text-white" : ""
+            }`}
+            onClick={onClose}
+          >
+            <BookAIcon className="h-4 w-4" />
+            <span>{getText("namesallah")}</span>
+            {isActive(createPath("/99-names-of-allah")) && <span className="absolute left-0 top-0 bottom-0 w-1 bg-emerald-600"></span>}
           </Link>
 
           {/* Calendar Dropdown */}
