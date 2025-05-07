@@ -130,7 +130,7 @@ function Banner() {
                 </div>
             </div> : (
 
-                <div className="relative lg:h-screen h-[550px] bg-[#FAFAFF] dark:bg-[#0a1f0b] text-zinc-100 overflow-hidden">
+                <div className="relative lg:h-screen h-[500px] bg-[#FAFAFF] dark:bg-[#0a1f0b] text-zinc-100 overflow-hidden">
                     {/* Background Image for LCP */}
                     <Image
                         src="/banner-img-salah.webp"
@@ -138,7 +138,6 @@ function Banner() {
                         fill
                         priority
                         className="object-cover object-center z-0"
-                        sizes="100vw"
                     />
 
                     {/* THEMED Overlay using gradient */}

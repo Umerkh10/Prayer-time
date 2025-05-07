@@ -65,10 +65,10 @@ useEffect(() => {
   <div className="relative rounded-2xl lg:h-72  overflow-hidden">
 
     <Image
-      src="/banner-img-salah.webp"
+      src="/banner-img-salah-compressed.webp"
       alt="Hijri Divider Background"
       fill
-      priority
+      loading="eager"
       className="object-cover object-center"
       sizes="(min-width: 1024px) 1024px, 100vw"
     />

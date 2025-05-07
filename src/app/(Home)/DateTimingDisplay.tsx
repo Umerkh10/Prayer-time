@@ -7,11 +7,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { CloudSun, LucideSunset, MoonStarIcon, SunDimIcon, SunMediumIcon, SunriseIcon, } from "lucide-react";
 import moment from "moment-hijri";
-import MonthlyNamazTimings from "./MonthlyNamaz";
+const MonthlyNamazTimings = dynamic(() => import("./MonthlyNamaz"), {
+  ssr: true, 
+});
 import { useTranslation } from "@/hooks/useTranslation";
-
 import { Navigation } from "swiper/modules";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import dynamic from "next/dynamic";
 
 
 function DateTimingDisplay() {

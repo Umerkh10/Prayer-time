@@ -27,9 +27,9 @@ function IslamicCalculators() {
   }, []);
 
   return (
-    <main className=" py-10 px-4">
+    <main className=" lg:py-10 px-4 lg:scale-100 scale-90">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto lg:mb-12 mb-6">
           <h2 className="text-2xl md:text-3xl font-bold  mb-4"> {t('calculatiorsection.title')} </h2>
           <p className="text-sm md:text-base "> {t('calculatiorsection.desc')} </p>
           <div className="flex items-center justify-center mt-4">
@@ -37,7 +37,7 @@ function IslamicCalculators() {
           </div>
         </div>
 
-        <div className="space-y-5">
+        <div className="lg:space-y-5 space-y-3 ">
           {/* Qaza Namaz Calculator */}
           <div className="bg-white dark:bg-black rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-emerald-100 dark:border-emerald-900/40">
             <div className="bg-gradient-to-r from-emerald-50 to-emerald-100 dark:from-emerald-700 dark:to-emerald-800 p-6">
@@ -49,12 +49,12 @@ function IslamicCalculators() {
                   <MoveIcon className="w-10 h-10 text-emerald-700 dark:text-emerald-300" />
                 </div>
                 <div className="space-y-4">
-                  <p className="text-foreground leading-relaxed">
+                  <p className="text-foreground leading-relaxed lg:text-base text-sm">
                     {t('calculatiorsection.para2')}
                   </p>
                   <div className="pt-2">
                     <h4 className="font-semibold text-lg text-green-600 dark:text-green-500 mb-2">{t('calculatiorsection.pointheading1')}</h4>
-                    <ul className="space-y-2 list-disc list-inside text-foreground">
+                    <ul className="space-y-2 list-disc list-inside text-foreground lg:text-base text-sm">
                       <li> {t('calculatiorsection.point1')} </li>
                       <li>{t('calculatiorsection.point2')} </li>
                       <li> {t('calculatiorsection.point3')} </li>
@@ -80,12 +80,12 @@ function IslamicCalculators() {
                   <CoinsIcon className="w-10 h-10 text-amber-600 dark:text-amber-300" />
                 </div>
                 <div className="space-y-4">
-                  <p className="text-foreground leading-relaxed">
+                  <p className="text-foreground leading-relaxed lg:text-base text-sm">
                     {t('calculatiorsection.para3')}
                   </p>
                   <div className="pt-2">
                     <h4 className="font-semibold text-lg text-green-600 dark:text-green-500 mb-2">{t('calculatiorsection.pointheading2')}</h4>
-                    <ul className="space-y-2 list-disc list-inside text-foreground">
+                    <ul className="space-y-2 list-disc list-inside text-foreground lg:text-base text-sm">
                       <li>{t('calculatiorsection.point4')}</li>
                       <li>{t('calculatiorsection.point5')}</li>
                       <li>{t('calculatiorsection.point6')}</li>
@@ -112,12 +112,12 @@ function IslamicCalculators() {
                   <ScaleIcon className="w-10 h-10 text-blue-700 dark:text-blue-300" />
                 </div>
                 <div className="space-y-4">
-                  <p className="text-foreground leading-relaxed">
+                  <p className="text-foreground leading-relaxed lg:text-base text-sm">
                     {t('calculatiorsection.para4')}
                   </p>
                   <div className="pt-2">
                     <h4 className="font-semibold text-lg text-green-600 dark:text-green-500 mb-2">{t('calculatiorsection.pointheading3')}</h4>
-                    <ul className="space-y-2 list-disc list-inside text-foreground">
+                    <ul className="space-y-2 list-disc list-inside text-foreground lg:text-base text-sm">
                       <li> {t('calculatiorsection.point9')} </li>
                       <li>{t('calculatiorsection.point10')}</li>
                       <li>{t('calculatiorsection.point11')}</li>

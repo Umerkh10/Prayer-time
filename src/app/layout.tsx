@@ -49,9 +49,9 @@ export default function RootLayout({
         <Script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-KVK6TX0YCX"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics"  strategy="lazyOnload">
           {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -67,7 +67,7 @@ export default function RootLayout({
         <Script
           id="cookieyes"
           src="https://cdn-cookieyes.com/client_data/5dcbb80ae3d7d4ff3df3c423/script.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
 
         <Script

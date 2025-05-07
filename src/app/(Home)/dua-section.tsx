@@ -46,7 +46,7 @@ export default function DuaSection() {
     }, []);
 
     return (
-        <section ref={sectionRef} className="relative  bg-gradient-to-b from-background via-background/95 to-background py-8 px-4 overflow-hidden">
+        <section ref={sectionRef} className="relative  bg-gradient-to-b from-background via-background/95 to-background lg:py-8 px-4 overflow-hidden lg:scale-100 scale-90">
             <div className="max-w-4xl mx-auto">
                 <div className="animate-on-scroll opacity-0 translate-y-4 transition-all duration-700">
                     <h1 className="text-2xl md:text-3xl font-bold text-center mb-6 ">

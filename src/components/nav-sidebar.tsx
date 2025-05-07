@@ -28,17 +28,17 @@ export function NavSidebar({ isOpen, onClose }: NavSidebarProps) {
     <Sheet open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <SheetContent
         side="right"
-        className="w-80 z-[9999999999999] bg-gradient-to-b from-slate-100 to-slate-200 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border-l border-slate-700 "
+        className="w-80 z-[9999999999999] bg-gradient-to-b from-slate-100 to-slate-200 dark:bg-gradient-to-b dark:from-slate-900 dark:to-slate-950 border-l border-slate-700 overflow-scroll overflow-x-hidden"
       >
         <SheetHeader className="border-b border-slate-700 pb-4">
           <div className="flex items-center justify-between">
             <SheetTitle className=" font-bold">{getText("title")}</SheetTitle>
-            <button onClick={onClose} className="rounded-full p-1 hover:bg-emerald-700 transitio text-whiten-colors">
+            <button onClick={onClose} className="rounded-full p-1 hover:bg-emerald-700 transition-all text-whiten-colors">
             </button>
           </div>
         </SheetHeader>
 
-        <div className="mt-6 space-y-2">
+        <div className="mt-6 space-y-2 ">
           {/* Duas Link */}
           <Link
             href={createPath("/duas")}

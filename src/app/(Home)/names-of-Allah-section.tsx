@@ -25,7 +25,7 @@ export default function NamesOfAllahSection() {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-12 relative overflow-hidden ">
+    <section className="lg:py-16 px-4 md:px-8 lg:px-12 relative overflow-hidden lg:scale-100 scale-90">
       {/* Decorative elements */}
 
 
@@ -72,7 +72,7 @@ export default function NamesOfAllahSection() {
                         />
                       </svg>
                     </div>
-                    <p className="text-sm lg:text-base">
+                    <p className="">
                       {t("namesection.desc")}
                     </p>
                   </div>
