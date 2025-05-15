@@ -1,14 +1,19 @@
-import { dbConnection } from "@/db/dbConnect";
-import { NextResponse } from "next/server";
+import { dbConnection } from "@/db/dbConnect"
+import { NextResponse } from "next/server"
 
 export async function GET(req: Request) {
   try {
-    const { searchParams } = new URL(req.url);
+    const { searchParams } = new URL(req.url)
 
-    const title = searchParams.get("title") || "";
+    // Get the title from search params
+    let title = searchParams.get("title") || ""
 
-    const db = await dbConnection();
+    // Decode the URL parameter to handle Arabic characters properly
+    title = decodeURIComponent(title)
 
+    const db = await dbConnection()
+
+    // Modified query to better handle Arabic and other non-Latin characters
     const [question]: any = await db.execute(
       `SELECT 
         q.id AS question_id, 
@@ -27,22 +32,23 @@ export async function GET(req: Request) {
         a.created_at AS answer_created_at, 
         au.fullname AS answer_user_name, 
         au.email AS answer_user_email,
-        al.user_id AS liked_user_id, -- Fetch liked user_id individually
+        al.user_id AS liked_user_id,
         (SELECT COUNT(*) FROM answer_likes WHERE answer_likes.answer_id = a.id) AS like_count
         FROM questions q
         LEFT JOIN users qu ON q.user_id = qu.id
         LEFT JOIN answers a ON q.id = a.question_id
         LEFT JOIN users au ON a.user_id = au.id
         LEFT JOIN answer_likes al ON a.id = al.answer_id
-        WHERE LOWER(REPLACE(REPLACE(q.title, '?', ''), ' ', '-')) = LOWER(?);
-      `,
-      [title]
-    );
+        WHERE LOWER(REPLACE(REPLACE(q.title, '?', ''), ' ', '-')) = LOWER(?)
+        OR q.title = ?;`,
+      [title, title],
+    )
+
     if (!question || question.length === 0) {
-      return NextResponse.json(
-        { message: "Question Not Found" },
-        { status: 404 }
-      );
+      // Log the title for debugging
+      console.log("No question found for title:", title)
+
+      return NextResponse.json({ message: "Question Not Found" }, { status: 404 })
     }
 
     const questionData: any = {
@@ -58,13 +64,13 @@ export async function GET(req: Request) {
         email: question[0].question_user_email,
       },
       answers: [],
-    };
+    }
 
     // Group answers manually
-    const answerMap = new Map();
+    const answerMap = new Map()
 
     question.forEach((row: any) => {
-      if (!row.answer_id) return;
+      if (!row.answer_id) return
 
       if (!answerMap.has(row.answer_id)) {
         answerMap.set(row.answer_id, {
@@ -79,29 +85,21 @@ export async function GET(req: Request) {
             fullname: row.answer_user_name,
             email: row.answer_user_email,
           },
-        });
+        })
       }
 
       // Add liked user ID if available
       if (row.liked_user_id) {
-        answerMap.get(row.answer_id).liked_user_ids.push(row.liked_user_id);
+        answerMap.get(row.answer_id).liked_user_ids.push(row.liked_user_id)
       }
-    });
+    })
 
     // Convert map values to array
-    questionData.answers = Array.from(answerMap.values());
+    questionData.answers = Array.from(answerMap.values())
 
-    return NextResponse.json(questionData, { status: 200 });
-
-    // return NextResponse.json(
-    //   { message: "Question Retirieved Successfully", question: questionData },
-    //   { status: 200 }
-    // );
+    return NextResponse.json(questionData, { status: 200 })
   } catch (error: any) {
-    console.error("Error fetching question:", error);
-    return NextResponse.json(
-      { success: false, message: error.message },
-      { status: 500 }
-    );
+    console.error("Error fetching question:", error)
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 })
   }
 }

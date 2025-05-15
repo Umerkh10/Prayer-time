@@ -4,8 +4,14 @@ import SocialShare from "@/components/SocialShare";
 import CustomAccordion from "@/components/CustomAccordion";
 import { refactorDate } from "@/lib/date";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { urlSplitter } from "@/lib";
+import { useTranslation } from "@/hooks/useTranslation";
 
 const BlogDetails = ({ blog }: { blog: any }) => {
+  const pathname = usePathname();
+  const lang = urlSplitter(pathname);
+  const { t } = useTranslation("blog")
   const cleanSchema = (schemaString: string) => {
     try {
       try {
@@ -133,7 +139,7 @@ const BlogDetails = ({ blog }: { blog: any }) => {
         </div>
         <div>
           <p className="text-center w-[80%] m-auto mt-4">
-            {blog?.blog_author_bio}
+            {t("blog.authordesc")}
           </p>
         </div>
         <SocialShare

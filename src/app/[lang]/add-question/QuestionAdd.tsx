@@ -24,11 +24,13 @@ import { urlSplitter } from "@/lib";
 import { addQuestion } from "@/services/forum";
 import { toast } from "sonner";
 import CustomCaptcha from "@/components/ui/common/CustomCaptcha";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function AddQuestionPage() {
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const { t } = useTranslation("forum")
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -67,7 +69,7 @@ export default function AddQuestionPage() {
     }
     setIsLoading(true);
 
-    const questionDetail = { user_id: userDetailsInLS?.id, title, description };
+    const questionDetail = { user_id: userDetailsInLS?.id, title, description, lang };
 
     try {
       const response = await addQuestion(questionDetail);
@@ -86,7 +88,7 @@ export default function AddQuestionPage() {
       <Link href={`/${lang}/forum`}>
         <Button variant="ghost" className="mb-6">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Forum
+         {t("forum.returnforum")}
         </Button>
       </Link>
 
@@ -94,10 +96,10 @@ export default function AddQuestionPage() {
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold flex items-center gap-2">
             <HelpCircle className="h-5 w-5 text-emerald-600" />
-            Ask a Question
+            {t("forum.askquestion")}
           </CardTitle>
           <CardDescription>
-            Share your question with the Islamic community
+            {t("forum.sharequestion")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -106,11 +108,10 @@ export default function AddQuestionPage() {
               <div className="flex justify-between items-center">
                 <Label htmlFor="title">Question Title</Label>
                 <span
-                  className={`text-xs ${
-                    titleCount > MAX_TITLE_LENGTH * 0.8
+                  className={`text-xs ${titleCount > MAX_TITLE_LENGTH * 0.8
                       ? "text-orange-500"
                       : "text-muted-foreground"
-                  }`}
+                    }`}
                 >
                   {titleCount}/{MAX_TITLE_LENGTH}
                 </span>
@@ -125,32 +126,30 @@ export default function AddQuestionPage() {
                 required
               />
               <p className="text-xs text-muted-foreground">
-                Keep your title clear and specific to get better answers
+                {t("forum.addquestionlabel")}
               </p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="content">Question Details</Label>
+              <Label htmlFor="content">{t("forum.questiondetails")}</Label>
               <Textarea
                 id="content"
                 name="content"
                 value={description}
                 onChange={handleChange}
-                placeholder="Describe your question in detail. Include references from the Quran, Hadith, or scholarly opinions if applicable."
+                placeholder={t("forum.addquestionplaceholder")}
                 className="min-h-[200px] border-primary/20 focus-visible:ring-primary/30"
                 required
               />
               <p className="text-xs text-muted-foreground">
-                Be specific and provide context to help others understand your
-                question
+                {t("forum.addquestiondesc")}
               </p>
             </div>
 
             <Alert className="bg-muted/50 border-primary/20">
               <Info className="h-4 w-4" />
               <AlertDescription className="text-sm">
-                All questions are reviewed by moderators before being published
-                to ensure quality content.
+                {t("forum.addquestiondesc2")}
               </AlertDescription>
             </Alert>
           </form>
@@ -161,7 +160,7 @@ export default function AddQuestionPage() {
             onClick={() => router.push(`/${lang}/forum`)}
             className="border-primary/20"
           >
-            Cancel
+            {t("forum.cancel")}
           </Button>
           <CustomCaptcha setIsVerified={setIsVerified} />
 
@@ -173,12 +172,12 @@ export default function AddQuestionPage() {
             {isLoading ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Submitting...
+               {t("forum.submit")}
               </>
             ) : (
               <>
                 <Send className="h-4 w-4" />
-                Submit Question
+                {t("forum.submitquestion")}
               </>
             )}
           </Button>

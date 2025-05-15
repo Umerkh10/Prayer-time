@@ -15,6 +15,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import UserAvatar from "../UserAvatar";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function UserDropdown({
   userName,
@@ -29,6 +30,8 @@ export default function UserDropdown({
 
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const { t } = useTranslation("forum")
+
 
   // useEffect(() => {
   //   const user: any = localStorage.getItem("userData");
@@ -67,7 +70,7 @@ export default function UserDropdown({
         <Link href={`/${lang}/edit-profile`}>
           <DropdownMenuItem className="cursor-pointer">
             <Settings className="mr-2 h-4 w-4" />
-            <span>Edit Profile</span>
+            <span>{t("forum.editprofile")}</span>
           </DropdownMenuItem>
         </Link>
         <Link href={`/${lang}/notifications`}>
@@ -78,7 +81,7 @@ export default function UserDropdown({
                 <span className="bg-red-600 w-2 h-2 rounded-full absolute right-1 top-0" />
               )}
             </div>
-            <span>Notifications</span>
+            <span>{t("forum.notifications")}</span>
           </DropdownMenuItem>
         </Link>
         <DropdownMenuItem
@@ -86,7 +89,7 @@ export default function UserDropdown({
           className="cursor-pointer text-destructive focus:text-destructive"
         >
           <LogOut className="mr-2 h-4 w-4" />
-          <span>Logout</span>
+          <span>{t("forum.logout")}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

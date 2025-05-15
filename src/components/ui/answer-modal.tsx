@@ -1,22 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import { addAnswer } from "@/services/forum";
-import CustomCaptcha from "./common/CustomCaptcha";
-import { usePathname, useRouter } from "next/navigation";
+import { useTranslation } from "@/hooks/useTranslation";
 import { urlSplitter } from "@/lib";
+import { addAnswer } from "@/services/forum";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface AnswerModalProps {
   questionId: string;
@@ -40,6 +31,7 @@ export function AnswerModal({
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const { t } = useTranslation("forum")
   const [answer, setAnswer] = useState("");
   const [userId, setUserId] = useState<any>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -61,12 +53,12 @@ export function AnswerModal({
       setUserId(parsedUserData.id);
     }
   }, []);
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isCaptchaVerified) {
-      return;
-    }
+    // if (!isCaptchaVerified) {
+    //   return;
+    // }
     if (!answer.trim()) {
       return;
     }
@@ -102,10 +94,9 @@ export function AnswerModal({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] z-[1000]">
         <DialogHeader>
-          <DialogTitle>Post Your Answer</DialogTitle>
+          <DialogTitle> {t("forum.postanswers")} </DialogTitle>
           <DialogDescription>
-            Share your knowledge with the community. Be clear and provide
-            details in your answer.
+            {t("forum.postanswersdesc")}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -117,7 +108,7 @@ export function AnswerModal({
           />
         </div>
         <DialogFooter>
-          <CustomCaptcha setIsVerified={setIsCaptchaVerified} />
+          {/* <CustomCaptcha setIsVerified={setIsCaptchaVerified} /> */}
         </DialogFooter>
 
         <div className="flex justify-end items-end gap-3">
@@ -126,7 +117,7 @@ export function AnswerModal({
             onClick={() => setOpen(false)}
             disabled={isSubmitting}
           >
-            Cancel
+            {t("forum.cancel")}
           </Button>
 
           <Button

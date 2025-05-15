@@ -1,15 +1,14 @@
 "use client"
-import Image from 'next/image'
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination, Navigation } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-import Link from 'next/link'
 import { useTranslation } from '@/hooks/useTranslation'
 import { checkIsPathnameIsEqualToLang, urlSplitter } from '@/lib'
+import Image from 'next/image'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import { Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 
 

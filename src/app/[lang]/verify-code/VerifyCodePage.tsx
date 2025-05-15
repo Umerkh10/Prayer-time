@@ -4,33 +4,22 @@ import type React from "react";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Loader2, KeyRound } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { urlSplitter } from "@/lib";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp";
 import { verifyCode, verifyEmail } from "@/services/authentication";
 import { toast } from "sonner";
 import CustomCaptcha from "@/components/ui/common/CustomCaptcha";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function VerifyCodePage() {
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
-
+  const { t } = useTranslation("forum")
   const [code, setCode] = useState("");
   const [email, setEmail] = useState("");
   const [isVerified, setIsVerified] = useState(false);
@@ -125,10 +114,10 @@ export default function VerifyCodePage() {
               <KeyRound className="h-8 w-8 text-white" />
             </div>
             <CardTitle className="text-2xl font-bold text-center">
-              Enter Verification Code
+              {t("forum.verifycode")}
             </CardTitle>
             <CardDescription className="text-center">
-              We've sent a 6-digit code to your email address
+              {t("forum.verifycode2")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -158,14 +147,14 @@ export default function VerifyCodePage() {
                   </p>
                 )}
                 <p className="text-xs text-muted-foreground text-center">
-                  Didn't receive a code?{" "}
+                  {t("forum.notrecievedcode")} {" "}
                   <button
                     disabled={disableButton}
                     onClick={sendVerificationCode}
                     type="button"
                     className={disableButton ? 'text-gray-300' : 'text-green-500 hover:underline'}
                   >
-                    Resend
+                    {t("forum.resend")}
                   </button>
                 </p>
               </div>
@@ -181,7 +170,7 @@ export default function VerifyCodePage() {
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Verifying...
+                     {t("forum.verifying")}
                   </>
                 ) : (
                   "Verify Code"

@@ -61,6 +61,7 @@ const page = () => {
     { name: 'Algeria', code: 'DZ', timezone: 'Africa/Algiers', offset: '+01:00' },
     { name: 'American Samoa', code: 'AS', timezone: 'Pacific/Pago_Pago', offset: '-11:00' },
     { name: 'Andorra', code: 'AD', timezone: 'Europe/Andorra', offset: '+01:00' },
+    { name: 'Albania', code: 'AL', timezone: 'Europe/Tirane', offset: '+01:00' },
     { name: 'Angola', code: 'AO', timezone: 'Africa/Luanda', offset: '+01:00' },
     { name: 'Argentina', code: 'AR', timezone: 'America/Argentina/Buenos_Aires', offset: '-03:00' },
     { name: 'Armenia', code: 'AM', timezone: 'Asia/Yerevan', offset: '+04:00' },

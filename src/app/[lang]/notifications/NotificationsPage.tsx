@@ -19,36 +19,18 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  ArrowLeft,
-  Bell,
-  MessageSquare,
-  AtSign,
-  ThumbsUp,
-  UserPlus,
-  AlertCircle,
-  CheckCircle,
-  Check,
-  Trash2,
-  Filter,
-  BellOff,
-} from "lucide-react";
-import {
-  type Notification,
-  type NotificationType,
-} from "@/lib/mock-notification";
+import { ArrowLeft, Bell, MessageSquare, AtSign, ThumbsUp, UserPlus, AlertCircle, CheckCircle, Check, Trash2, Filter, BellOff, } from "lucide-react";
+import { type Notification, type NotificationType, } from "@/lib/mock-notification";
 import { urlSplitter } from "@/lib";
-import {
-  deleteAllNotifications,
-  deleteNotifications,
-  getUserNotifications,
-} from "@/services/notifications";
+import { deleteAllNotifications, deleteNotifications, getUserNotifications } from "@/services/notifications";
 import { refactorDate } from "@/lib/date";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function NotificationsPage() {
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const { t } = useTranslation("forum")
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [notifications, setNotifications] = useState<any>([]);
   const [activeTab, setActiveTab] = useState<"all" | "unread" | "read">("all");
@@ -60,7 +42,7 @@ export default function NotificationsPage() {
       const response = await getUserNotifications(userId);
 
       if (response.status === 200) {
- 
+
         setNotifications(response.data.notifications);
       }
     } catch (error: any) {
@@ -83,29 +65,6 @@ export default function NotificationsPage() {
     }
   }, []);
 
-  // const filteredNotifications = notifications.filter((notification) => {
-  //   if (activeTab === "unread") return !notification.read;
-  //   if (activeTab === "read") return notification.read;
-  //   return true;
-  // });
-
-  // const unreadCount = notifications.filter(
-  //   (notification) => !notification.read
-  // ).length;
-
-  // const markAsRead = (id: string) => {
-  //   setNotifications((prev) =>
-  //     prev.map((notification) =>
-  //       notification.id === id ? { ...notification, read: true } : notification
-  //     )
-  //   );
-  // };
-
-  // const markAllAsRead = () => {
-  //   setNotifications((prev) =>
-  //     prev.map((notification) => ({ ...notification, read: true }))
-  //   );
-  // };
 
   const handleDeleteNotification = async (id: string) => {
     try {
@@ -133,7 +92,7 @@ export default function NotificationsPage() {
     }
   };
 
-  
+
 
   const getNotificationIcon = (type: NotificationType) => {
     switch (type) {
@@ -154,9 +113,6 @@ export default function NotificationsPage() {
     }
   };
 
-  // if (isLoading) {
-  //   return <div className="flex items-center justify-center min-h-screen">Loading...</div>
-  // }
 
   return (
     <div className="container max-w-4xl mx-auto py-8 px-4">
@@ -164,7 +120,7 @@ export default function NotificationsPage() {
         <Link href={`/${lang}/forum`}>
           <Button variant="ghost" className="gap-2">
             <ArrowLeft className="h-4 w-4" />
-            Back to Forum
+            {t("forum.returnforum")}
           </Button>
         </Link>
 
@@ -176,7 +132,7 @@ export default function NotificationsPage() {
             onClick={handleDeleteAllNotification}
           >
             <Check className="mr-2 h-4 w-4" />
-            Mark all as read
+            {t("forum.markread")}
           </Button>
         </div>
       </div>
@@ -190,10 +146,10 @@ export default function NotificationsPage() {
               </div>
               <div>
                 <CardTitle className="text-2xl font-bold">
-                  Notifications
+                  {t("forum.notifications")}
                 </CardTitle>
                 <CardDescription>
-                  Stay updated with your activity
+                  {t("forum.updateactivity")}
                 </CardDescription>
               </div>
             </div>
@@ -248,17 +204,17 @@ export default function NotificationsPage() {
             <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4">
               <BellOff className="h-8 w-8 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-medium mb-2">No notifications</h3>
+            <h3 className="text-lg font-medium mb-2">{t("forum.nonotifications")}</h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
               {activeTab === "unread"
                 ? "You've read all your notifications. Check back later for updates!"
                 : activeTab === "read"
-                ? "You don't have any read notifications yet."
-                : "You don't have any notifications yet. Check back later!"}
+                  ? "You don't have any read notifications yet."
+                  : "You don't have any notifications yet. Check back later!"}
             </p>
             {activeTab !== "all" && (
               <Button variant="outline" onClick={() => setActiveTab("all")}>
-                View all notifications
+                {t("forum.viewnotifications")}
               </Button>
             )}
           </div>
@@ -292,6 +248,9 @@ function NotificationList({
   deleteNotification,
   getNotificationIcon,
 }: any) {
+  const pathname = usePathname();
+  const lang = urlSplitter(pathname);
+  const { t } = useTranslation("forum")
   return (
     <div className="divide-y divide-border">
       <AnimatePresence initial={false}>
@@ -305,9 +264,8 @@ function NotificationList({
             className="relative"
           >
             <div
-              className={`p-6 hover:bg-muted/30 transition-colors ${
-                !notification.is_read ? "bg-emerald-600/5" : ""
-              }`}
+              className={`p-6 hover:bg-muted/30 transition-colors ${!notification.is_read ? "bg-emerald-600/5" : ""
+                }`}
             >
               <div className="flex gap-4">
                 {notification.sender ? null : (
@@ -350,7 +308,7 @@ function NotificationList({
                           size="sm"
                           className="h-auto p-0 text-primary"
                         >
-                          View details
+                          {t("forum.viewdetails")}
                         </Button>
                       </Link>
                     ) : (
@@ -365,7 +323,7 @@ function NotificationList({
                           // onClick={() => markAsRead(notification.id)}
                           className="h-8 px-2"
                         >
-                          <span className="sr-only">Mark as read</span>
+                          <span className="sr-only">{t("forum.markasread")}</span>
                         </Button>
                       )}
                       <Button
@@ -377,7 +335,7 @@ function NotificationList({
                         className="h-8 px-2 text-red-500 hover:text-destructive"
                       >
                         <Trash2 className="h-4 w-4" />
-                        <span className="sr-only">Delete</span>
+                        <span className="sr-only">{t("forum.delete")}</span>
                       </Button>
                     </div>
                   </div>

@@ -199,6 +199,61 @@ export const countriesData: CountryData[] = [
     ]
   },
   {
+    name: "Albania",
+    code: "AL",
+    cities: [
+      {
+        name: "Tirana",
+        countryCode: "AL",
+        timezone: "Europe/Tirane",
+        latitude: 41.3275,
+        longitude: 19.8187
+      },
+      {
+        name: "Durres",
+        countryCode: "AL",
+        timezone: "Europe/Tirane",
+        latitude: 41.3236,
+        longitude: 19.4416
+      },
+      {
+        name: "Vlore",
+        countryCode: "AL",
+        timezone: "Europe/Tirane",
+        latitude: 40.4667,
+        longitude: 19.4833
+      },
+      {
+        name: "Shkoder",
+        countryCode: "AL",
+        timezone: "Europe/Tirane",
+        latitude: 42.0685,
+        longitude: 19.5188
+      },
+      {
+        name: "Fier",
+        countryCode: "AL",
+        timezone: "Europe/Tirane",
+        latitude: 40.7206,
+        longitude: 19.5561
+      },
+      {
+        name: "Korce",
+        countryCode: "AL",
+        timezone: "Europe/Tirane",
+        latitude: 40.6186,
+        longitude: 20.7800
+      },
+      {
+        name: "Berat",
+        countryCode: "AL",
+        timezone: "Europe/Tirane",
+        latitude: 40.7058,
+        longitude: 19.9524
+      }
+    ]
+  },
+  {
     name: "Angola",
     code: "AO",
     cities: [

@@ -15,6 +15,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { toast } from "sonner";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface LoginFormProps {
   onSignUpClick: () => void;
@@ -31,6 +32,7 @@ export default function LoginForm({
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const { t } = useTranslation("forum")
   const [email, setEmail] = useState("");
   const [adminEmail, setAdminEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -109,12 +111,12 @@ export default function LoginForm({
             <div className="space-y-2">
               <Label htmlFor="email" className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-muted-foreground" />
-                Email
+                {t('forum.email')}
               </Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t("forum.emailplaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="border-primary/20 focus-visible:ring-primary/30"
@@ -125,20 +127,20 @@ export default function LoginForm({
               <div className="flex items-center justify-between">
                 <Label htmlFor="password" className="flex items-center gap-2">
                   <Lock className="h-4 w-4 text-muted-foreground" />
-                  Password
+                  {t('forum.password')}
                 </Label>
                 <Link
                   href={`/${lang}/verify-email`}
                   className="text-sm text-green-500 hover:underline"
                 >
-                  Forgot password?
+                  {t('forum.forgotpassword')}
                 </Link>
               </div>
               <div className="flex items-center border border-primary/20 focus-visible:ring-primary/30 px-2 rounded-lg">
                 <Input
                   id="password"
                   type={!viewPassword ? "password" : "text"}
-                  placeholder="Enter your password"
+                  placeholder={t("forum.passwordplaceholder")}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="border-none"
@@ -162,22 +164,22 @@ export default function LoginForm({
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Logging in...
+                  {t("forum.logging")}
                 </>
               ) : (
-                "Login"
+                `${t('forum.login')}`
               )}
             </Button>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center border-t pt-4">
           <p className="text-sm text-muted-foreground">
-            Don&apos;t have an account yet?{" "}
+            {t('forum.noaccount')}{" "}
             <button
               onClick={onSignUpClick}
               className="text-green-600 hover:underline font-medium"
             >
-              Sign up
+              {t('forum.signup')}
             </button>
           </p>
         </CardFooter>

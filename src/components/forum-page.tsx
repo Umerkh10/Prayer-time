@@ -1,25 +1,13 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { urlSplitter } from "@/lib";
 import { refactorDate } from "@/lib/date";
 import { getAllQuestions } from "@/services/forum";
 import { motion } from "framer-motion";
-import { MessageSquare, Plus, Search, ThumbsUp, User } from "lucide-react";
+import { MessageSquare, Plus, Search, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -29,6 +17,7 @@ import UserDropdown from "./ui/user-dropdown";
 import UserAvatar from "./UserAvatar";
 import { getUserNotifications } from "@/services/notifications";
 import { verifyEmail } from "@/services/authentication";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface ForumPageProps {
   isLoggedIn: boolean;
@@ -46,14 +35,15 @@ export default function ForumPage({
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const { t } = useTranslation("forum")
   const [questions, setQuestions] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredQuestions, setFilteredQuestions] = useState(() =>
     questions
       ? questions.filter(
-          (question: any) => question.question_status === "approved"
-        )
+        (question: any) => question.question_status === "approved"
+      )
       : []
   );
   const [currentPage, setCurrentPage] = useState(1);
@@ -129,23 +119,41 @@ export default function ForumPage({
   );
   const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
 
-  const fetchAllQuestions = async () => {
-    try {
-      const response = await getAllQuestions();
+  // const fetchAllQuestions = async () => {
+  //   try {
+  //     const response = await getAllQuestions();
 
-      if (response.status === 200) {
-        setQuestions(response.data.questions.reverse());
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  //     if (response.status === 200) {
+  //       setQuestions(response.data.questions.reverse());
+  //     }
+  //   } catch (error: any) {
+  //     toast.error(error?.message);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  const fetchQuestions = debounce((lang) => {
+    fetch(`/api/get-all-questions?lang=${lang}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setQuestions(data.questions);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching questions:", error);
+        setIsLoading(false);
+      });
+  }, 500); // Adjust debounce time as necessary
 
   useEffect(() => {
-    fetchAllQuestions();
-  }, []);
+    setIsLoading(true);
+    fetchQuestions(lang);
+  }, [lang]);
+
+  // useEffect(() => {
+  //   fetchAllQuestions();
+  // }, []);
 
   const handleAddQuestionClick = () => {
     if (isLoggedIn && !isVerified) {
@@ -218,24 +226,24 @@ export default function ForumPage({
         <div className="container mx-auto py-4 px-4">
           {!isVerified && userDetailsInLS?.token && (
             <div className="alert-bar w-full rounded-lg text-center capitalize  text-white">
-              You are not verified click here{" "}
+              {t('forum.verifystatus1')} {" "}
               <Button
                 className="!bg-inherit text-white px-0 capitalize pr-1 underline"
                 onClick={sendVerificationCode}
               >
-                email link
+                {t('forum.verifystatus2')}
               </Button>
-              to verify your account
+              {t('forum.verifystatus3')}
             </div>
           )}
           <div className="bg-gradient-to-r from-emerald-500/10 via-emerald-600/5 to-background rounded-xl p-8 mb-8 shadow-md">
             <div className="flex justify-between items-center mb-4">
               <h1 className="md:text-4xl text-2xl font-bold ">
-                Global Salah Forum
+                {t('forum.title')}
               </h1>
               {isLoggedIn ? (
                 <div className="font-semibold text-lg">
-                  My Account
+                  {t('forum.account')}
                   <div className="flex items-center gap-1 scale-110 justify-center mt-3">
                     <User />
                     <div className="relative">
@@ -255,20 +263,19 @@ export default function ForumPage({
                       className="bg-emerald-700 py-1 px-4 text-sm font-medium mt-6 text-white rounded-lg"
                       href={`/${lang}/admin`}
                     >
-                      Go to Panel
+                      {t('forum.panel')}
                     </Link>
                   )}
                 </div>
               ) : (
                 <Button variant="outline" size="sm" onClick={onAddQuestion}>
-                  Login / Sign Up
+                  {t('forum.loginbutton')}
                 </Button>
               )}
             </div>
             <div className="max-w-3xl">
               <p className="text-muted-foreground md:text-lg text-sm md:text-left text-center mb-6">
-                Connect with fellow believers, discuss Islamic insights, and
-                enhance your Salah journey.
+                {t('forum.desc')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 {isLoggedIn && isVerified ? (
@@ -277,7 +284,7 @@ export default function ForumPage({
                     className="gap-2 flex md:justify-start justify-center py-3 px-4  rounded-xl bg-emerald-500 text-white hover:bg-emerald-600"
                   >
                     <Plus className="h-5 w-5" />
-                    Ask a Question
+                    {t('forum.askquestion')}
                   </Link>
                 ) : (
                   <Button
@@ -286,7 +293,7 @@ export default function ForumPage({
                     className="gap-2 bg-emerald-500 text-white hover:bg-emerald-600"
                   >
                     <Plus className="h-5 w-5" />
-                    Ask a Question
+                    {t('forum.askquestion')}
                   </Button>
                 )}
               </div>
@@ -298,14 +305,14 @@ export default function ForumPage({
               <div className="sticky top-20 space-y-6">
                 <Card className="overflow-hidden border-primary/20 shadow-md">
                   <CardHeader className="bg-primary/5 pb-3">
-                    <h3 className="font-semibold text-lg">Search & Filters</h3>
+                    <h3 className="font-semibold text-lg">{t('forum.search')}</h3>
                   </CardHeader>
                   <CardContent className="pt-4 space-y-4">
                     <div className="relative">
                       <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                       <Input
                         type="search"
-                        placeholder="Search questions..."
+                        placeholder={t("forum.searchquestionplaceholder")}
                         className="pl-8 border-primary/20 focus-visible:ring-primary/30"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -320,9 +327,9 @@ export default function ForumPage({
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-muted-foreground">
-                    Showing {indexOfFirstQuestion + 1}-
+                    {t('forum.showing')} {indexOfFirstQuestion + 1}-
                     {Math.min(indexOfLastQuestion, filteredQuestions.length)} of{" "}
-                    {filteredQuestions.length} questions
+                    {filteredQuestions.length} {t('forum.questions')}
                   </span>
                 </div>
               </div>
@@ -358,7 +365,7 @@ export default function ForumPage({
                                     <div className="flex flex-col">
                                       <span>{question.user.name}</span>
                                       <span>
-                                        Posted on{" "}
+                                        {t('forum.posted')}{" "}
                                         {refactorDate(question.created_at)}
                                       </span>
                                     </div>
@@ -398,7 +405,7 @@ export default function ForumPage({
                                       size="sm"
                                       className="mt-1 h-auto p-0 text-primary"
                                     >
-                                      View more replies
+                                     {t('forum.viewmore')}
                                     </Button>
                                   </div>
                                 )}
@@ -432,7 +439,7 @@ export default function ForumPage({
                                     size="sm"
                                     className="border-primary/20 hover:bg-green-700/10"
                                   >
-                                    View Question
+                                    {t('forum.viewquestion')}
                                   </Button>
                                 </Link>
                               </CardFooter>
@@ -446,10 +453,10 @@ export default function ForumPage({
               ) : (
                 <Card className="text-center py-12 border-primary/20 shadow-md">
                   <h3 className="text-lg font-medium mb-2">
-                    No questions found
+                    {t('forum.noquestion')}
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    Try adjusting your search or ask a new question
+                    {t('forum.searchquestion')}
                   </p>
                   {isLoggedIn && isVerified ? (
                     <Link
@@ -457,7 +464,7 @@ export default function ForumPage({
                       className="gap-2 w-[50%]  mx-auto flex py-3 px-4 rounded-xl bg-emerald-500 text-white hover:bg-emerald-600"
                     >
                       <Plus className="h-5 w-5" />
-                      Ask a Question
+                      {t('forum.askquestion')}
                     </Link>
                   ) : (
                     <Button
@@ -466,7 +473,7 @@ export default function ForumPage({
                       className="gap-2 bg-emerald-500 text-white hover:bg-emerald-600"
                     >
                       <Plus className="h-5 w-5" />
-                      Add Question
+                      {t('forum.addquestion')}
                     </Button>
                   )}
                 </Card>
@@ -537,3 +544,11 @@ export default function ForumPage({
     </>
   );
 }
+function debounce(func: (...args: any[]) => void, wait: number) {
+  let timeout: NodeJS.Timeout;
+  return (...args: any[]) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
+

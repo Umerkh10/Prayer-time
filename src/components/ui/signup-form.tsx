@@ -16,6 +16,7 @@ import { urlSplitter } from "@/lib";
 import axios from "axios";
 import CustomCaptcha from "./common/CustomCaptcha";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { useTranslation } from "@/hooks/useTranslation";
 
 interface SignupFormProps {
   onLoginClick: () => void;
@@ -31,6 +32,8 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
   const [isVerified, setIsVerified] = useState(false);
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
+  const { t } = useTranslation("forum")
+
 
   const router = useRouter();
 
@@ -79,11 +82,11 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
             <div className="space-y-2">
               <Label htmlFor="name" className="flex items-center gap-2">
                 <User className="h-4 w-4 text-muted-foreground" />
-                Full Name
+               {t("forum.fullname")}
               </Label>
               <Input
                 id="name"
-                placeholder="Enter your name"
+                placeholder={t("forum.fullnameplaceholder")}
                 value={fullname}
                 onChange={(e) => setFullname(e.target.value)}
                 className="border-primary/20 focus-visible:ring-primary/30"
@@ -93,12 +96,12 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
             <div className="space-y-2">
               <Label htmlFor="email-signup" className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-muted-foreground" />
-                Email
+                {t("forum.email")}
               </Label>
               <Input
                 id="email-signup"
                 type="email"
-                placeholder="Enter your email"
+                placeholder={t("forum.emailplaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="border-primary/20 focus-visible:ring-primary/30"
@@ -111,13 +114,13 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
                 className="flex items-center gap-2"
               >
                 <Lock className="h-4 w-4 text-muted-foreground" />
-                Password
+                {t("forum.password")}
               </Label>
               <div className="flex items-center border border-primary/20 focus-visible:ring-primary/30 px-2 rounded-lg">
                 <Input
                   id="password"
                   type={!viewPassword ? "password" : "text"}
-                  placeholder="Enter your password"
+                  placeholder={t("forum.passwordplaceholder")}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="border-none"
@@ -126,7 +129,7 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
                 {viewPassword ? <FaEye onClick={() => setViewPassword(false)} /> : <FaEyeSlash onClick={() => setViewPassword(true)} />}
               </div>
               <p className="text-xs text-muted-foreground">
-                Password must be at least 8 characters long
+                {t("forum.pwlimit")}
               </p>
             </div>
             {/* <CustomCaptcha setIsVerified={setIsVerified} /> */}
@@ -139,22 +142,22 @@ export default function SignupForm({ onLoginClick }: SignupFormProps) {
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Creating account...
+                  {t("forum.createacc")}
                 </>
               ) : (
-                "Create Account"
+                `${t("forum.createaccount")}`
               )}
             </Button>
           </form>
         </CardContent>
         <CardFooter className="flex justify-center border-t pt-4">
           <p className="text-sm text-muted-foreground">
-            Already have an account?{" "}
+           {t("forum.haveaccount")}{" "}
             <button
               onClick={onLoginClick}
               className="text-emerald-500 hover:underline font-medium"
             >
-              Login
+             {t("forum.login")}
             </button>
           </p>
         </CardFooter>

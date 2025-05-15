@@ -5,19 +5,21 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
     const page = Number(searchParams.get("page")) || 1;
+    const lang = searchParams.get("lang") || "en";  // Get 'lang' from query param
 
     const db = await dbConnection();
     const pageSize = 40;
     const offset = (page - 1) * pageSize;
 
-    // Get total questions count
+    // Get total questions count with language filter
     const [countResult]: any = await db.execute(
-      "SELECT COUNT(*) AS total_questions FROM questions"
+      "SELECT COUNT(*) AS total_questions FROM questions WHERE lang = ?",
+      [lang]  // Filter questions by lang
     );
     const totalQuestions = countResult[0].total_questions;
     const totalPages = Math.ceil(totalQuestions / pageSize);
 
-    // Fetch questions with user and answers
+    // Fetch questions based on language
     const [questions]: any = await db.execute(
       `SELECT 
           q.id AS question_id, 
@@ -41,9 +43,10 @@ export async function GET(req: Request) {
         LEFT JOIN users qu ON q.user_id = qu.id
         LEFT JOIN answers a ON q.id = a.question_id
         LEFT JOIN users au ON a.user_id = au.id
+        WHERE q.lang = ?  -- Filter questions by lang
         ORDER BY q.created_at DESC
         LIMIT ? OFFSET ?`,
-      [pageSize, offset]
+      [lang, pageSize, offset]  // Pass lang to query
     );
 
     const questionMapping: any = {};

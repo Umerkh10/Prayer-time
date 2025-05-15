@@ -50,6 +50,7 @@ const timezoneMapping: { zone: string; utc: string; name: string }[] = [
   { zone: "America/Edmonton", utc: "(GMT-07:00)", name: "Mountain Time (Canada)" },
   { zone: "America/Vancouver", utc: "(GMT-08:00)", name: "Pacific Time (Canada)" },
   { zone: "America/Tijuana", utc: "(GMT-08:00)", name: "Tijuana" },
+  { zone: "Europe/Tirane", utc: "(GMT+1:00)", name: "Albania" },
   { zone: "US/Arizona", utc: "(GMT-07:00)", name: "Arizona" },
   { zone: "US/Mountain", utc: "(GMT-07:00)", name: "Mountain Time (US & Canada)" },
   { zone: "America/Chihuahua", utc: "(GMT-07:00)", name: "Chihuahua" },
@@ -876,10 +877,12 @@ export default function CountryPage() {
         } else if (data[0].name.common === "Bahamas") {
           mappedTimezone = "America/Nassau";
           countryData.timezones = ["America/Nassau"];
-        }
-        else if (data[0].name.common === "Iran") {
+        }else if (data[0].name.common === "Iran") {
           mappedTimezone = "Asia/Tehran";
           countryData.timezones = ["Asia/Tehran"];
+        }else if (data[0].name.common === "Albania") {
+          mappedTimezone = "Europe/Tirane";
+          countryData.timezones = ["Europe/Tirane"];
         }
         else {
           const timezoneEntry = timezoneMapping.find(tz => tz.zone === rawTimezone);

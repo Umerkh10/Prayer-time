@@ -636,11 +636,11 @@ export const countriesData: { [country: string]: CountryData } = {
     cities: {
       "Europe/Tirane": [
         { "name": "Tirana", latitude: 41.3275, longitude: 19.8187 },
-        { "name": "Durrës", latitude: 41.3236, longitude: 19.4416 },
-        { "name": "Vlorë", latitude: 40.4667, longitude: 19.4833 },
-        { "name": "Shkodër", latitude: 42.0685, longitude: 19.5188 },
+        { "name": "Durres", latitude: 41.3236, longitude: 19.4416 },
+        { "name": "Vlore", latitude: 40.4667, longitude: 19.4833 },
+        { "name": "Shkoder", latitude: 42.0685, longitude: 19.5188 },
         { "name": "Fier", latitude: 40.7206, longitude: 19.5561 },
-        { "name": "Korçë", latitude: 40.6186, longitude: 20.7800 },
+        { "name": "Korce", latitude: 40.6186, longitude: 20.7800 },
         { "name": "Berat", latitude: 40.7058, longitude: 19.9524 }
       ]
     }

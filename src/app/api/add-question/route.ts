@@ -5,11 +5,11 @@ import { sendUserQAAlert } from "@/lib/sendUserQAAlert";
 
 export async function POST(req: Request) {
   try {
-    const { user_id, title, description } = await req.json();
+    const { user_id, title, description, lang } = await req.json();
 
-    if (!user_id || !title || !description) {
+    if (!user_id || !title || !description || !lang) {
       return NextResponse.json(
-        { message: "Field are required" },
+        { message: "Fields are required" },
         { status: 400 }
       );
     }
@@ -24,8 +24,8 @@ export async function POST(req: Request) {
     }
 
     await db.execute(
-      "INSERT INTO questions (user_id, title, description, status) VALUES (?, ?, ?, ?)",
-      [user_id, title, description, "pending"]
+      "INSERT INTO questions (user_id, title, description, status, lang) VALUES (?, ?, ?, ?, ?)",
+      [user_id, title, description, "pending", lang]
     );
 
     await sendAdminQAAlert();

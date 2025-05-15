@@ -47,24 +47,28 @@ export function QuestionsTable({ currentPage }: QuestionsTableProps) {
   //   const endIndex = startIndex + itemsPerPage;
   //   setQuestions(mockQuestions.slice(startIndex, endIndex));
   // }, [currentPage]);
-
-  const fetchAllQuestions = async () => {
-    try {
-      const response = await getAllQuestions();
-
-      if (response.status === 200) {
-        setQuestions(response.data.questions.reverse());
-      }
-    } catch (error: any) {
-      toast.error(error?.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  
+  const fetchQuestions = debounce((lang) => {
+    fetch(`/api/get-all-questions?lang=${lang}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setQuestions(data.questions);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching questions:", error);
+        setIsLoading(false);
+      });
+  }, 500); // Adjust debounce time as necessary
 
   useEffect(() => {
-    fetchAllQuestions();
-  }, []);
+    setIsLoading(true);
+    fetchQuestions(lang);
+  }, [lang]);
+
+  // useEffect(() => {
+  //   fetchAllQuestions();
+  // }, []);
 
   return (
     <div className="space-y-4">
@@ -115,3 +119,11 @@ export function QuestionsTable({ currentPage }: QuestionsTableProps) {
     </div>
   );
 }
+function debounce(func: (...args: any[]) => void, wait: number) {
+  let timeout: NodeJS.Timeout | null = null;
+  return (...args: any[]) => {
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+}
+

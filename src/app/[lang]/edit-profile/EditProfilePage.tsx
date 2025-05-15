@@ -4,14 +4,7 @@ import type React from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import UserAvatar from "@/components/UserAvatar";
@@ -22,12 +15,13 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function EditProfilePage() {
   const router = useRouter();
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
-
+  const { t } = useTranslation("forum")
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fullname, setFullname] = useState("");
@@ -81,7 +75,7 @@ export default function EditProfilePage() {
       const response = await updateUserDetails(userId, fullname);
 
       if (response) {
-       
+
         const updatedUserData = {
           ...userDetails,
           fullname,
@@ -103,14 +97,14 @@ export default function EditProfilePage() {
       <Link href={`/${lang}/forum`}>
         <Button variant="ghost" className="mb-6">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Forum
+          {t("forum.returnforum")}
         </Button>
       </Link>
 
       <Card className="border-primary/20 shadow-md">
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-2xl font-bold">Edit Profile</CardTitle>
+            <CardTitle className="text-2xl font-bold">{t("forum.editprofile")}</CardTitle>
             <Avatar className="h-12 w-12 border border-primary/20">
               <AvatarImage
                 src="/placeholder.svg?height=40&width=40"
@@ -122,7 +116,7 @@ export default function EditProfilePage() {
             </Avatar>
           </div>
           <CardDescription>
-            Update your personal information and password
+            {t("forum.editprofiletitle")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -131,7 +125,7 @@ export default function EditProfilePage() {
               <div className="space-y-2">
                 <Label htmlFor="name" className="flex items-center gap-2">
                   <User className="h-4 w-4 text-muted-foreground" />
-                  Full Name
+                 {t("forum.fullname")}
                 </Label>
                 <Input
                   id="name"
@@ -146,7 +140,7 @@ export default function EditProfilePage() {
               <div className="space-y-2">
                 <Label htmlFor="email" className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-muted-foreground" />
-                  Email Address
+                  {t("forum.email")}
                 </Label>
                 <Input
                   disabled
@@ -168,7 +162,7 @@ export default function EditProfilePage() {
             onClick={() => router.push(`/${lang}/forum`)}
             className="border-primary/20"
           >
-            Cancel
+            {t("forum.cancel")}
           </Button>
           <Button
             onClick={handleSubmit}
@@ -178,12 +172,12 @@ export default function EditProfilePage() {
             {isLoading ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Updating...
+                 {t("forum.updating")}
               </>
             ) : (
               <>
                 <Save className="h-4 w-4" />
-                Update Profile
+                {t("forum.update")}
               </>
             )}
           </Button>

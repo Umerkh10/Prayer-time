@@ -13,6 +13,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import UserAvatar from "@/components/UserAvatar";
+import { useTranslation } from "@/hooks/useTranslation";
 import { urlSplitter } from "@/lib";
 import { refactorDate } from "@/lib/date";
 import { verifyEmail } from "@/services/authentication";
@@ -30,7 +31,7 @@ export default function QuestionPage() {
   const pathname = usePathname();
   const lang = urlSplitter(pathname);
   const router = useRouter();
-
+  const { t } = useTranslation("forum")
   const [question, setQuestion] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [url, setUrl] = useState("");
@@ -243,7 +244,7 @@ export default function QuestionPage() {
               <UserAvatar userName={question?.user?.fullname} />
               <div className="flex flex-col">
                 <span>{question?.user?.fullname}</span>
-                <span>Posted on {refactorDate(question?.created_at)}</span>
+                <span> {t("forum.posted")} {refactorDate(question?.created_at)}</span>
               </div>
             </div>
           </div>
@@ -281,13 +282,13 @@ export default function QuestionPage() {
                       onClick={sendVerificationCode}
                       className="bg-yellow-600 hover:bg-yellow-500 text-white capitalize py-2"
                     >
-                      Please verify your account to post an answer
+                     {t("forum.verifyanswer")}
                     </Button>
                   )
                 ) : (
                   <Link href={`/${lang}/forum`}>
                     <Badge className="bg-red-700 hover:bg-red-600 text-white capitalize py-2">
-                      Please login first to post an answer
+                     {t("forum.loginanswer")}
                     </Badge>
                   </Link>
                 )}
@@ -299,7 +300,7 @@ export default function QuestionPage() {
                   onClick={handleCopy}
                 >
                   <Share2 className="h-4 w-4" />
-                  Share
+                  {t("forum.share")}
                 </Button>
               </div>
             </CardFooter>
@@ -315,7 +316,7 @@ export default function QuestionPage() {
               (answer: any) => answer.status === "approved"
             ).length
           }{" "}
-          Answers
+          {t("forum.answers")}
         </h2>
         <Separator className="mb-6 w-[90%] ml-auto" />
 
@@ -374,7 +375,7 @@ export default function QuestionPage() {
               <>
                 <MessageSquare className="h-12 w-12 text-muted-foreground mx-auto mb-4" />{" "}
                 <p className="text-muted-foreground mb-2">
-                  No answers yet. Be the first to answer!
+                {t("forum.noanswers")}
                 </p>
                 <AnswerModal
                   isVerified
