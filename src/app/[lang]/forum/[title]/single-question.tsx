@@ -228,7 +228,7 @@ export default function QuestionPage() {
         <div className="flex items-center mb-4">
           <Breadcrumbs
             items={[
-              { label: "Forum", href: `/${lang}/forum` },
+              { label: `${t('navigation.forum')}`, href: `/${lang}/forum` },
               { label: question?.title, href: `/${lang}/admin/questions` },
             ]}
           />

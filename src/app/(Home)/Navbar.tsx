@@ -12,6 +12,7 @@ import { checkIsPathnameIsEqualToLang, urlSplitter } from "@/lib"
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher"
 import { SidebarButton } from "@/components/sidebar-button"
 import { Skeleton } from "@/components/ui/skeleton"
+import { SearchButton } from "@/components/ui/search-button"
 
 function Navbar() {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,42 +41,43 @@ function Navbar() {
     <>
       {isLoading ? <div className='px-8 mt-4'>
         <Skeleton className="h-20 w-full" />
-      </div> : 
-      (<motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className="sticky top-0 z-[9999999999] border-b border-white/10 bg-[#003422] backdrop-blur dark:supports-[backdrop-filter]:bg-[#000717]"
-      >
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="flex items-center gap-2">
-            <Link href={isLang ? `/${currentLang}` : "/"} className="flex items-center gap-2">
-              <div className="relative h-8 w-8 overflow-hidden rounded-lg">
-                <img
-                  src="/global-salah-logo.png"
-                  alt="global"
-                  width={260}
-                  height={230}
-                />
+      </div> :
+        (<motion.header
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          className="sticky top-0 z-[9999999999] border-b border-white/10 bg-[#003422] backdrop-blur dark:supports-[backdrop-filter]:bg-[#000717]"
+        >
+          <div className="container mx-auto flex h-16 items-center justify-between px-4">
+            <div className="flex items-center gap-2">
+              <Link href={isLang ? `/${currentLang}` : "/"} className="flex items-center gap-2">
+                <div className="relative h-8 w-8 overflow-hidden rounded-lg">
+                  <img
+                    src="/global-salah-logo.png"
+                    alt="global"
+                    width={260}
+                    height={230}
+                  />
+                </div>
+                <span className="text-lg font-semibold text-white"> {isLang ? t("navigation.title") : "Global Salah"} </span>
+              </Link>
+            </div>
+
+            <MainNav />
+
+            <div className="flex items-center md:gap-5 gap-2 ">
+              <SearchButton />
+              <div className="lg:flex gap-2 hidden">
+                <SidebarButton />
               </div>
-              <span className="text-lg font-semibold text-white"> {isLang ? t("navigation.title") : "Global Salah"} </span>
-            </Link>
-          </div>
+              <LanguageSwitcher />
+              <ModeToggle />
 
-          <MainNav />
-
-          <div className="flex items-center md:gap-5 gap-2 ">
-            <div className="lg:block hidden">
-              <SidebarButton />
-            </div>
-            <LanguageSwitcher />
-            <ModeToggle />
-
-            <div className="md:hidden">
-              <MobileNav />
+              <div className="md:hidden">
+                <MobileNav />
+              </div>
             </div>
           </div>
-        </div>
-      </motion.header>)}
+        </motion.header>)}
     </>
   )
 }

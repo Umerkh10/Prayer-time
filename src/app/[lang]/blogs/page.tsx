@@ -31,7 +31,14 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   };
 }
 
-const Page = () => {
+type PageProps = {
+  params: {
+    lang: string;
+  };
+};
+
+const Page = ({ params }: PageProps) => {
+  const { lang } = params;
   <Head>
     <title>Blogs</title>
   </Head>;
@@ -84,7 +91,7 @@ const Page = () => {
         <meta name="twitter:label1" content="Time to read" />
         <meta name="twitter:data1" content="51 minutes" />
       </Head>
-      <Blogs />
+      <Blogs lang={lang} />
     </>
   );
 };

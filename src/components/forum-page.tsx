@@ -137,7 +137,7 @@ export default function ForumPage({
     fetch(`/api/get-all-questions?lang=${lang}`)
       .then((res) => res.json())
       .then((data) => {
-        setQuestions(data.questions);
+        setQuestions(data.questions.reverse());
         setIsLoading(false);
       })
       .catch((error) => {

@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "compress-translations": "node compress-translations.js",
+    "build": "npm run compress-translations && next build",
     "start": "NODE_ENV=production node app.js",
     "lint": "next lint"
   },

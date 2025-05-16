@@ -15,7 +15,6 @@ interface AnswerModalProps {
   buttonVariant?: "default" | "outline" | "ghost";
   buttonSize?: "default" | "sm" | "lg" | "icon";
   buttonClassName?: string;
-  buttonText?: string;
   isVerified: boolean;
 }
 
@@ -26,7 +25,6 @@ export function AnswerModal({
   buttonVariant = "outline",
   buttonSize = "sm",
   buttonClassName = "",
-  buttonText = "Post an Answer",
 }: AnswerModalProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -89,7 +87,7 @@ export function AnswerModal({
           size={buttonSize}
           className={buttonClassName}
         >
-          {buttonText}
+          {t("forum.answerbuttontext")}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] z-[1000]">
@@ -101,7 +99,7 @@ export function AnswerModal({
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <Textarea
-            placeholder="Write your answer here..."
+            placeholder={t('forum.answerplaceholder')}
             className="min-h-[200px]"
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
@@ -125,7 +123,7 @@ export function AnswerModal({
             onClick={handleSubmit}
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Posting..." : "Post Answer"}
+            {isSubmitting ? `${t('forum.posting')}` : `${t('forum.postanswer')}`}
           </Button>
         </div>
       </DialogContent>

@@ -18,7 +18,7 @@ export default function Home() {
         setIsLoggedIn(true);
         setUserDetails(parsedUser);
       } else {
-        setShowAuthModal(true);
+        setShowAuthModal(false);
       }
     } else {
       // If no userData is in localStorage, set it to an empty object
