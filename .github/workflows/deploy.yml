@@ -31,7 +31,7 @@ jobs:
           rm -rf .github
 
       - name: FTP Upload - Entire App (for dynamic hosting)
-        uses: SamKirkland/FTP-Deploy-Action@main  # <-- changed v4 to main
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
