@@ -27,6 +27,9 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: 162.0.232.190
+          username: global_sallaahh266@globalsalah.com
+          password: 2O7O-FjIapDC
+          port: 21
+          server-dir: /home/teckezxd/globalsalah.com/
+          local-dir: ./
