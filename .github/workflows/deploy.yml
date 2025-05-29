@@ -1,4 +1,4 @@
-name:  Deploy Dynamic Next.js App via FTP
+name: Deploy Dynamic Next.js App via FTP
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           rm -rf .github
 
       - name: FTP Upload - Entire App (for dynamic hosting)
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@main  # <-- changed v4 to main
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
@@ -40,6 +40,5 @@ jobs:
           server-dir: /home/teckezxd/globalsalah.com
           local-dir: ./
 
-
-      - name:  Trigger Node.js App Restart
+      - name: Trigger Node.js App Restart
         run: curl https://globalsalah.com/restart.php
