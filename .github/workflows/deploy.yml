@@ -37,7 +37,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          server-dir: /home/teckezxd/globalsalah.com
+          server-dir: /home/teckezxd/globalsalah.com/
           local-dir: ./
 
       - name: Trigger Node.js App Restart
